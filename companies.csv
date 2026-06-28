@@ -1,52 +1,186 @@
 company
 Google
-Alphabet (Waymo)
-Apple
-Microsoft
-Amazon
-Amazon Web Services
-Meta
-Nvidia
-Netflix
-Tesla
 OpenAI
 Anthropic
+Apple
+Microsoft
+Meta
+Nvidia
+Amazon
 Google DeepMind
+Netflix
+Tesla
+Amazon Web Services
 xAI
+SpaceX
+Jane Street
+Citadel
+Citadel Securities
+Two Sigma
+Hudson River Trading
+Stripe
+Databricks
+Palantir
+Scale AI
+Anduril
 Mistral AI
 Cohere
 Perplexity
-Scale AI
 Hugging Face
+Anysphere (Cursor)
+Cognition
+Safe Superintelligence (SSI)
+Thinking Machines Lab
+Figma
+Notion
+Ramp
+Bloomberg
+Jump Trading
+D.E. Shaw
+Optiver
+Susquehanna International Group
+DRW
+IMC Trading
+Five Rings
+XTX Markets
+Point72
+Millennium
+Adobe
+Salesforce
+Coinbase
+Snowflake
+Datadog
+Cloudflare
+Uber
+Airbnb
+Broadcom
+AMD
+Qualcomm
+Intel
+TSMC
+ASML
+Waymo
+Spotify
+Shopify
+Block
+PayPal
+Robinhood
+Plaid
+Brex
+Mercury
+Rippling
+Deel
+Retool
+Vercel
+Linear
+Canva
+Airtable
+Discord
+Reddit
+Pinterest
+Snap
+Roblox
+Unity
+Epic Games
+Riot Games
+ServiceNow
+Workday
+Atlassian
+Intuit
+Oracle
+SAP
+IBM
+DoorDash
+Instacart
+Lyft
+Twilio
+MongoDB
+Confluent
+GitHub
+GitLab
+CrowdStrike
+Palo Alto Networks
+Zscaler
+Okta
+Wiz
+Cerebras
+Groq
+SambaNova
+CoreWeave
+Together AI
+Fireworks AI
+Modal
+Anyscale
+Glean
+Sierra
+Harvey
+Cresta
+ElevenLabs
+Runway
+Midjourney
+Suno
+Synopsys
+Cadence
+Applied Materials
+Lam Research
+KLA
+ARM
+Texas Instruments
+Micron
+Marvell
+Visa
+Mastercard
+Capital One
+Goldman Sachs
+JPMorgan Chase
+Morgan Stanley
+American Express
+Fidelity Investments
+Renaissance Technologies
+WorldQuant
+Tower Research Capital
+PDT Partners
+Bridgewater Associates
+Virtu Financial
+Akuna Capital
+Marshall Wace
+AQR Capital
+Boston Dynamics
+Figure AI
+Physical Intelligence
+Skydio
+Shield AI
+Applied Intuition
+Zipline
+Blue Origin
+Rocket Lab
+Relativity Space
+Rivian
+Cruise
+Zoox
+Aurora
+Samsung
+Sony
+ByteDance
+Tencent
+Alibaba
+Sea Limited
+Nubank
+Mercado Libre
+Coupang
+Alphabet (Waymo)
 Stability AI
 Character AI
 Inflection AI
-Midjourney
-Runway
-ElevenLabs
-Suno
-Together AI
-Fireworks AI
-Anyscale
-Modal
 Baseten
-Cresta
-Glean
-Harvey
-Sierra
-Cognition
-Anysphere (Cursor)
 Poolside
 Magic
 Reka AI
 Liquid AI
 World Labs
-Physical Intelligence
 Sakana AI
 Contextual AI
 Imbue
-Thinking Machines Lab
-Safe Superintelligence (SSI)
 Luma AI
 Pika
 Twelve Labs
@@ -55,41 +189,17 @@ Deepgram
 Writer
 Jasper
 Synthesia
-Databricks
-Cerebras
-Groq
-SambaNova
 Tenstorrent
 Graphcore
 Etched
 Lightmatter
 d-Matrix
 Rivos
-Adobe
-Salesforce
-Oracle
-SAP
-IBM
-Intel
-AMD
-Qualcomm
-Broadcom
 Cisco
-Texas Instruments
-Micron
 Analog Devices
-Marvell
 NXP Semiconductors
 Infineon
 STMicroelectronics
-ARM
-TSMC
-ASML
-Applied Materials
-Lam Research
-KLA
-Synopsys
-Cadence
 Siemens EDA
 GlobalFoundries
 Microchip Technology
@@ -101,40 +211,8 @@ Dell Technologies
 HP
 Hewlett Packard Enterprise
 VMware
-ServiceNow
-Workday
-Intuit
 Autodesk
-Atlassian
-Shopify
-Spotify
-Uber
-Lyft
-Airbnb
-DoorDash
-Instacart
-Pinterest
-Snap
-Reddit
-Block
-PayPal
-Coinbase
-Robinhood
-Twilio
-Datadog
-Snowflake
-MongoDB
-Cloudflare
-Palantir
-CrowdStrike
-Zscaler
-Okta
-Confluent
 Elastic
-GitLab
-GitHub
-Unity
-Roblox
 Zoom
 DocuSign
 Dropbox
@@ -148,7 +226,6 @@ Akamai
 Fastly
 DigitalOcean
 Fortinet
-Palo Alto Networks
 SentinelOne
 Tenable
 Rapid7
@@ -206,19 +283,13 @@ Carvana
 Chewy
 Wayfair
 Peloton
-Stripe
-Plaid
 Adyen
 Affirm
 Chime
-Brex
-Ramp
-Mercury
 Marqeta
 SoFi
 Wise
 Revolut
-Nubank
 Klarna
 Gemini
 Kraken
@@ -229,8 +300,6 @@ Fireblocks
 Alchemy
 Bolt
 Modern Treasury
-Deel
-Rippling
 Gusto
 Carta
 Addepar
@@ -240,14 +309,7 @@ Column
 Unit
 Lithic
 Sardine
-Notion
-Figma
-Canva
-Airtable
-Retool
-Vercel
 Netlify
-Linear
 Webflow
 Miro
 Grammarly
@@ -281,7 +343,6 @@ PostHog
 Grafana Labs
 Vanta
 Drata
-Wiz
 Snyk
 Abnormal Security
 Tailscale
@@ -293,31 +354,11 @@ Gong
 Outreach
 ZoomInfo
 Clari
-Jane Street
-Citadel
-Citadel Securities
-Two Sigma
-Hudson River Trading
-Jump Trading
-D.E. Shaw
-Optiver
-IMC Trading
-DRW
-Akuna Capital
-Susquehanna International Group
-Five Rings
 Old Mission Capital
-Tower Research Capital
-PDT Partners
-Bridgewater Associates
-Point72
-Millennium
-Virtu Financial
 Belvedere Trading
 Wolverine Trading
 Chicago Trading Company
 Flow Traders
-XTX Markets
 Squarepoint Capital
 Headlands Technologies
 Group One Trading
@@ -325,28 +366,11 @@ PEAK6
 Maven Securities
 Quadrature Capital
 G-Research
-Marshall Wace
-AQR Capital
-SpaceX
-Anduril
-Skydio
-Shield AI
-Applied Intuition
-Zipline
-Boston Dynamics
-Waymo
-Cruise
 Nuro
-Aurora
-Zoox
 Wayve
-Figure AI
 Saronic
 Hadrian
-Relativity Space
 Astranis
-Rocket Lab
-Blue Origin
 Planet Labs
 Varda Space Industries
 Vannevar Labs
@@ -358,10 +382,7 @@ Helion Energy
 Crusoe
 Redwood Materials
 QuantumScape
-Rivian
 Lucid Motors
-Epic Games
-Riot Games
 Valve
 Activision Blizzard
 Electronic Arts
@@ -372,7 +393,6 @@ Take-Two Interactive
 Rockstar Games
 Bungie
 Naughty Dog
-Discord
 Disney
 Warner Bros Discovery
 Roku
@@ -401,23 +421,15 @@ Illumina
 Recursion Pharmaceuticals
 Insitro
 Isomorphic Labs
-Samsung
-Sony
-Tencent
-Alibaba
-ByteDance
 Baidu
 Meituan
 JD.com
 Shein
-Sea Limited
 Grab
 Gojek
 Rakuten
 LINE
 Naver
-Coupang
-Mercado Libre
 DeepSeek
 Yandex
 Faire
@@ -429,23 +441,11 @@ Sonos
 Garmin
 GoPro
 Dyson
-Bloomberg
-Capital One
-Visa
-Mastercard
-American Express
-Goldman Sachs
-JPMorgan Chase
-Morgan Stanley
-Fidelity Investments
-Renaissance Technologies
-WorldQuant
 Quantlab
 Radix Trading
 Cubist Systematic Strategies
 Adept AI
 Windsurf
-CoreWeave
 Lambda Labs
 Nebius
 Decagon
