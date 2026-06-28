@@ -70,7 +70,7 @@ Brex,https://job-boards.greenhouse.io/brex,https://boards-api.greenhouse.io/v1/b
 Mercury,https://mercury.com/jobs,https://boards-api.greenhouse.io/v1/boards/mercury/jobs?content=true
 Rippling,https://www.rippling.com/careers,https://boards-api.greenhouse.io/v1/boards/rippling/jobs?content=true (unverified)
 Deel,https://jobs.ashbyhq.com/deel,https://api.ashbyhq.com/posting-api/job-board/deel
-Retool,https://job-boards.greenhouse.io/retool,https://boards-api.greenhouse.io/v1/boards/retool/jobs?content=true (unverified)
+Retool,https://jobs.gem.com/retool,none found (Gem board; no public API)
 Vercel,https://vercel.com/careers,https://boards-api.greenhouse.io/v1/boards/vercel/jobs?content=true (unverified) ; https://api.ashbyhq.com/posting-api/job-board/vercel (unverified)
 Linear,https://linear.app/careers,https://api.ashbyhq.com/posting-api/job-board/linear
 Canva,https://www.lifeatcanva.com/en/jobs/,https://api.smartrecruiters.com/v1/companies/Canva/postings
