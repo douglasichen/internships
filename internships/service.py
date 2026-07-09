@@ -35,6 +35,7 @@ def _run_one(source, data_dir):
         return source.name, [], SourceResult(error=str(e))
     swe = [l for l in listings if is_swe_internship(l.title)
            and year_relevance(l.title, l.location, l.extra_text) != "no"]
+    swe = list({l.id(): l for l in swe}.values())  # dedupe within this batch (e.g. a listing appearing in 2 README table sections)
     store = SeenStore(data_dir / "seen" / f"{source.name}.json")
     seen = store.load()
     new = [l for l in swe if l.id() not in seen]
@@ -81,6 +82,13 @@ def selftest():
             raise RuntimeError("boom")
     r3 = run([BrokenSource()], data_dir=d)
     assert r3.new_listings == [] and r3.per_source["broken"].error == "boom"
+
+    # a source returning the same listing twice in one fetch() (e.g. it appears
+    # in two README table sections) must not produce duplicate new_listings
+    dupe = Listing("fake", "Acme", "Software Engineer Intern", "SF", "http://a/1")
+    r4 = run([FakeSource([dupe, dupe])], data_dir=Path(tempfile.mkdtemp()))
+    assert len(r4.new_listings) == 1
+    assert r4.per_source["fake"] == SourceResult(fetched=2, swe=1, new=1)
     print("service selftest OK")
 
 
