@@ -21,3 +21,5 @@ Whenever the user says a task requires a PR, run this loop rather than doing the
 5. Once resolved, approve and merge each PR into main autonomously (`gh pr merge`). This whole loop is pre-authorized once the user has flagged a task as needing a PR — no need to check in again before merging.
 
 Note: `git push origin main` directly is blocked by the harness's own auto-mode classifier regardless of what's written here (it requires genuine per-action user authorization, not standing instructions) — always go through a branch + PR + `gh pr merge` instead. This is also just good practice for anything going through the PR loop above.
+
+Agents in this loop (reviewers especially) must never run destructive/irreversible git commands — `reset --hard`, `push --force`, `branch -D`, `clean -f` — on a shared branch (`main` or otherwise) as a side effect of "syncing" or "cleaning up." If a local branch needs to catch up after a squash-merge, that's a call for the orchestrating agent to make deliberately (and check reflog/stash first), not something a review/merge subagent should do on its own.
