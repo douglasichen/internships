@@ -31,15 +31,21 @@ class RunResult:
 def _run_one(source, data_dir):
     try:
         listings = source.fetch()
+        # filtering/store also happen inside the try: a bad non-str field
+        # from a misbehaving source (e.g. a list-valued location) can throw
+        # out of year_relevance()'s regex calls, and letting that escape here
+        # would crash the whole ex.map() loop in run() -- after other
+        # sources' SeenStore.save() had already run, stranding their newly
+        # fetched listings as "seen" without ever being written out.
+        swe = [l for l in listings if is_swe_internship(l.title)
+               and year_relevance(l.title, l.location, l.extra_text) != "no"]
+        swe = list({l.id(): l for l in swe}.values())  # dedupe within this batch (e.g. a listing appearing in 2 README table sections)
+        store = SeenStore(data_dir / "seen" / f"{source.name}.json")
+        seen = store.load()
+        new = [l for l in swe if l.id() not in seen]
+        store.save(seen | {l.id() for l in swe})
     except Exception as e:  # noqa: BLE001 - one bad source shouldn't kill the run
         return source.name, [], SourceResult(error=str(e))
-    swe = [l for l in listings if is_swe_internship(l.title)
-           and year_relevance(l.title, l.location, l.extra_text) != "no"]
-    swe = list({l.id(): l for l in swe}.values())  # dedupe within this batch (e.g. a listing appearing in 2 README table sections)
-    store = SeenStore(data_dir / "seen" / f"{source.name}.json")
-    seen = store.load()
-    new = [l for l in swe if l.id() not in seen]
-    store.save(seen | {l.id() for l in swe})
     return source.name, new, SourceResult(fetched=len(listings), swe=len(swe), new=len(new))
 
 
@@ -89,6 +95,19 @@ def selftest():
     r4 = run([FakeSource([dupe, dupe])], data_dir=Path(tempfile.mkdtemp()))
     assert len(r4.new_listings) == 1
     assert r4.per_source["fake"] == SourceResult(fetched=2, swe=1, new=1)
+
+    # a source returning a listing with a non-str field (e.g. a list-valued
+    # location, as ats_boards._get_location can produce from some fallback
+    # branches) must degrade to a per-source error, not crash run() and
+    # strand other sources' already-persisted seen-ids.
+    class BadFieldSource:
+        name = "badfield"
+        def fetch(self):
+            return [Listing("badfield", "Weird Co", "Software Engineer Intern",
+                             ["SF", "NYC"], "http://b/1")]
+    r5 = run([FakeSource(listings), BadFieldSource()], data_dir=d)
+    assert r5.per_source["badfield"].error
+    assert r5.per_source["fake"] == SourceResult(fetched=3, swe=1, new=0)  # already seen from r1/r2
     print("service selftest OK")
 
 

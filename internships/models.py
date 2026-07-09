@@ -4,7 +4,7 @@ import hashlib
 import re
 from dataclasses import dataclass
 
-Y2027_RE = re.compile(r"20\s?27")
+Y2027_RE = re.compile(r"\b20\s?27\b")
 
 
 @dataclass(frozen=True)
@@ -36,6 +36,10 @@ def selftest():
     assert a.id() != c.id()
     assert Listing("x", "A", "SWE Intern Summer 2027", "SF", "u").is_2027
     assert not Listing("x", "A", "SWE Intern", "SF", "u").is_2027
+    # bounded match: '2027' must be a standalone year, not a substring of a
+    # longer number like a req ID or address
+    assert not Listing("x", "A", "SWE Intern (Req 20271)", "SF", "u").is_2027
+    assert not Listing("x", "A", "SWE Intern", "120275 Main St", "u").is_2027
     print("models selftest OK")
 
 

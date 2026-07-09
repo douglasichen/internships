@@ -31,7 +31,7 @@ URL_RE = re.compile(r"https?://\S+")
 TITLE_KEYS = ("title", "text", "name", "jobTitle", "job_title")
 URL_KEYS = ("absolute_url", "hostedUrl", "jobUrl", "applyUrl", "externalPath",
             "url", "canonicalUrl")
-LOC_KEYS = ("location", "city", "locationName", "primaryLocation")
+LOC_KEYS = ("location", "city", "locationName", "primaryLocation", "locationsText")
 BODY_KEYS = ("descriptionPlain", "descriptionBodyPlain", "content",
              "description", "openingPlain")
 LIST_KEYS = ("jobs", "jobPostings", "postings", "data", "results")
@@ -80,9 +80,16 @@ def fetch_json(url):
         data = json.loads(raw)
     except (ValueError, UnicodeDecodeError):
         return False, None, "not json"
-    if data in (None, [], {}, ""):
+    if _is_dead_response(data):
         return False, None, "empty"
     return True, data, "ok"
+
+
+def _is_dead_response(data):
+    """A syntactically valid empty list/dict is a live board with 0 current
+    postings, not a dead endpoint -- only a genuinely missing/blank body
+    should count as dead."""
+    return data is None or data == ""
 
 
 def _first(d, keys):
@@ -106,8 +113,11 @@ def _get_location(job):
     addr = job.get("address")
     if isinstance(addr, dict):
         pa = addr.get("postalAddress", {})
-        return ", ".join(x for x in (pa.get("addressLocality", ""),
-                                      pa.get("addressCountry", "")) if x)
+        if isinstance(pa, dict):
+            return ", ".join(x for x in (pa.get("addressLocality", ""),
+                                          pa.get("addressCountry", "")) if x)
+        if isinstance(pa, str):
+            return pa.strip()
     return ""
 
 
@@ -229,8 +239,16 @@ class AtsBoardsSource:
                 throttle.wait(url)
                 ok, data, note = fetch_json(url)
                 if ok:
-                    listings = [l for j in extract_postings(data)
-                                if (l := job_to_listing(company, j, api_url=url)) is not None]
+                    listings = []
+                    for j in extract_postings(data):
+                        try:
+                            l = job_to_listing(company, j, api_url=url)
+                        except Exception:  # noqa: BLE001 - one malformed
+                            # record from a company's board shouldn't sink
+                            # the whole batch; skip just that job.
+                            continue
+                        if l is not None:
+                            listings.append(l)
                     return company, "ok", listings
             return company, "dead", []
 
@@ -259,10 +277,26 @@ def selftest():
     assert l.title == "SWE Intern" and l.location == "SF" and l.url == "http://x/1"
     assert job_to_listing("Acme", {"no_title": True}) is None
 
+    # address.postalAddress can legitimately be a bare string, not a dict --
+    # must not crash job_to_listing (was AttributeError, killed whole batch)
+    weird = job_to_listing("Weird Co", {"title": "SWE Intern",
+                                         "address": {"postalAddress": "123 Main St"}})
+    assert weird.title == "SWE Intern" and weird.location == "123 Main St", weird
+
+    assert not _is_dead_response([])
+    assert not _is_dead_response({})
+    assert _is_dead_response(None)
+    assert _is_dead_response("")
+
     api_url = "https://autodesk.wd1.myworkdayjobs.com/wday/cxs/autodesk/Ext/jobs"
     wd = job_to_listing("Autodesk", {"title": "Intern", "externalPath": "/job/Toronto/Intern_26WD1"},
                          api_url=api_url)
     assert wd.url == "https://autodesk.wd1.myworkdayjobs.com/Ext/job/Toronto/Intern_26WD1", wd.url
+
+    # Workday's plain jobPosting shape uses locationsText, not location/city/etc.
+    wd_loc = job_to_listing("NVIDIA", {"title": "Intern", "externalPath": "/job/x",
+                                        "locationsText": "Israel, Yokneam"}, api_url=api_url)
+    assert wd_loc.location == "Israel, Yokneam", wd_loc.location
     print("ats_boards selftest OK")
 
 
