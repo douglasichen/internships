@@ -1,0 +1,115 @@
+"""Orchestrator: fetch every source (in parallel), filter to SWE internships,
+drop anything already seen from a prior run, persist the updated seen-ids,
+return what's new. One run = one call to run().
+"""
+from concurrent.futures import ThreadPoolExecutor
+from dataclasses import dataclass, field
+from pathlib import Path
+
+from internships.filters import is_swe_internship, year_relevance
+from internships.models import Listing
+from internships.seen_store import SeenStore
+
+ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = ROOT / "data"
+
+
+@dataclass
+class SourceResult:
+    fetched: int = 0
+    swe: int = 0
+    new: int = 0
+    error: str = ""
+
+
+@dataclass
+class RunResult:
+    new_listings: list = field(default_factory=list)
+    per_source: dict = field(default_factory=dict)  # name -> SourceResult
+
+
+def _run_one(source, data_dir):
+    try:
+        listings = source.fetch()
+        # filtering/store also happen inside the try: a bad non-str field
+        # from a misbehaving source (e.g. a list-valued location) can throw
+        # out of year_relevance()'s regex calls, and letting that escape here
+        # would crash the whole ex.map() loop in run() -- after other
+        # sources' SeenStore.save() had already run, stranding their newly
+        # fetched listings as "seen" without ever being written out.
+        swe = [l for l in listings if is_swe_internship(l.title)
+               and year_relevance(l.title, l.location, l.extra_text) != "no"]
+        swe = list({l.id(): l for l in swe}.values())  # dedupe within this batch (e.g. a listing appearing in 2 README table sections)
+        store = SeenStore(data_dir / "seen" / f"{source.name}.json")
+        seen = store.load()
+        new = [l for l in swe if l.id() not in seen]
+        store.save(seen | {l.id() for l in swe})
+    except Exception as e:  # noqa: BLE001 - one bad source shouldn't kill the run
+        return source.name, [], SourceResult(error=str(e))
+    return source.name, new, SourceResult(fetched=len(listings), swe=len(swe), new=len(new))
+
+
+def run(sources, data_dir=DATA_DIR) -> RunResult:
+    result = RunResult()
+    with ThreadPoolExecutor(max_workers=len(sources) or 1) as ex:
+        for name, new, stats in ex.map(lambda s: _run_one(s, data_dir), sources):
+            result.per_source[name] = stats
+            result.new_listings.extend(new)
+    result.new_listings.sort(key=lambda l: (not l.is_2027, l.company, l.title))
+    return result
+
+
+def selftest():
+    class FakeSource:
+        name = "fake"
+        def __init__(self, listings):
+            self._listings = listings
+        def fetch(self):
+            return self._listings
+
+    import tempfile
+    d = Path(tempfile.mkdtemp())
+    listings = [
+        Listing("fake", "Acme", "Software Engineer Intern", "SF", "http://a/1"),
+        Listing("fake", "Acme", "Marketing Intern", "SF", "http://a/2"),  # filtered: not SWE
+        Listing("fake", "Acme", "SWE Intern Summer 2026", "SF", "http://a/3"),  # for-sure not 2027
+    ]
+    r1 = run([FakeSource(listings)], data_dir=d)
+    assert len(r1.new_listings) == 1 and r1.new_listings[0].company == "Acme"
+    assert r1.per_source["fake"] == SourceResult(fetched=3, swe=1, new=1)
+
+    r2 = run([FakeSource(listings)], data_dir=d)  # same listings again -> nothing new
+    assert r2.new_listings == []
+    assert r2.per_source["fake"] == SourceResult(fetched=3, swe=1, new=0)
+
+    class BrokenSource:
+        name = "broken"
+        def fetch(self):
+            raise RuntimeError("boom")
+    r3 = run([BrokenSource()], data_dir=d)
+    assert r3.new_listings == [] and r3.per_source["broken"].error == "boom"
+
+    # a source returning the same listing twice in one fetch() (e.g. it appears
+    # in two README table sections) must not produce duplicate new_listings
+    dupe = Listing("fake", "Acme", "Software Engineer Intern", "SF", "http://a/1")
+    r4 = run([FakeSource([dupe, dupe])], data_dir=Path(tempfile.mkdtemp()))
+    assert len(r4.new_listings) == 1
+    assert r4.per_source["fake"] == SourceResult(fetched=2, swe=1, new=1)
+
+    # a source returning a listing with a non-str field (e.g. a list-valued
+    # location, as ats_boards._get_location can produce from some fallback
+    # branches) must degrade to a per-source error, not crash run() and
+    # strand other sources' already-persisted seen-ids.
+    class BadFieldSource:
+        name = "badfield"
+        def fetch(self):
+            return [Listing("badfield", "Weird Co", "Software Engineer Intern",
+                             ["SF", "NYC"], "http://b/1")]
+    r5 = run([FakeSource(listings), BadFieldSource()], data_dir=d)
+    assert r5.per_source["badfield"].error
+    assert r5.per_source["fake"] == SourceResult(fetched=3, swe=1, new=0)  # already seen from r1/r2
+    print("service selftest OK")
+
+
+if __name__ == "__main__":
+    selftest()

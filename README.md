@@ -1,13 +1,48 @@
 # internships
 
-A tracked list of company job boards (Ashby + Lever) discovered by sweeping their
-public posting APIs, hunting for **SWE internships (esp. 2027)**.
+A backend service that hunts for **SWE internships (esp. 2027)** across multiple
+sources and reports whatever's new since the last run.
 
-Even boards with **no internships posted yet** are kept here — many open their
-Summer/Fall 2027 internship reqs in **Aug–Oct 2026**, so this is a watchlist to
-re-check.
+## Running it
 
-## Files
+```
+python3 -m internships             # fetch all sources, write out/<timestamp>.csv
+python3 -m internships --selftest  # run every module's inline self-check
+```
+
+Each run fetches every source, filters to SWE internship/co-op titles that are
+2027 or "maybe 2027" (drops titles that explicitly mention a different year),
+drops anything already seen on a prior run (tracked per-source in
+`data/seen/*.json`), and writes the rest to `out/<timestamp>.csv` and appends
+it to `out/all.json` (the full history, used by the web UI below).
+
+## Web UI
+
+A static page (`internships/web/index.html`) lists every listing ever found,
+newest scrape first, with search + source + "2027 only" filters. It fetches
+`out/all.json`, so it needs a plain static file server run from the repo root:
+
+```
+python3 -m http.server 8765
+# then open http://localhost:8765/internships/web/
+```
+
+## Sources (`internships/sources/`)
+- `ats_boards.py` — Ashby/Lever/Greenhouse/Workday JSON APIs listed in `companies.csv`
+- `github_readme.py` — [vanshb03/Summer2027-Internships](https://github.com/vanshb03/Summer2027-Internships) README table
+- `speedyapply.py` — [speedyapply/2027-SWE-College-Jobs](https://github.com/speedyapply/2027-SWE-College-Jobs) README table
+- `sndsh404.py` — [sndsh404/summer-2027-internships](https://github.com/sndsh404/summer-2027-internships) README table
+
+Adding a source = write a class with `.name` and `.fetch() -> list[Listing]`,
+register it in `internships/__main__.py`. The three README-scraping sources
+share table-parsing helpers in `internships/sources/md_table.py`.
+
+No scheduling built in yet — run it manually (or cron it) whenever you want
+fresh results.
+
+## Legacy: boards.csv
+An earlier, separate artifact — a list of Ashby/Lever job boards discovered by
+probing their APIs directly. Not read by the `internships` service above.
 - [`boards.csv`](boards.csv) — every valid board found, with live counts.
 
 ## CSV columns
