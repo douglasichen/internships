@@ -31,7 +31,7 @@ URL_RE = re.compile(r"https?://\S+")
 TITLE_KEYS = ("title", "text", "name", "jobTitle", "job_title")
 URL_KEYS = ("absolute_url", "hostedUrl", "jobUrl", "applyUrl", "externalPath",
             "url", "canonicalUrl")
-LOC_KEYS = ("location", "city", "locationName", "primaryLocation")
+LOC_KEYS = ("location", "city", "locationName", "primaryLocation", "locationsText")
 BODY_KEYS = ("descriptionPlain", "descriptionBodyPlain", "content",
              "description", "openingPlain")
 LIST_KEYS = ("jobs", "jobPostings", "postings", "data", "results")
@@ -263,6 +263,11 @@ def selftest():
     wd = job_to_listing("Autodesk", {"title": "Intern", "externalPath": "/job/Toronto/Intern_26WD1"},
                          api_url=api_url)
     assert wd.url == "https://autodesk.wd1.myworkdayjobs.com/Ext/job/Toronto/Intern_26WD1", wd.url
+
+    # Workday's plain jobPosting shape uses locationsText, not location/city/etc.
+    wd_loc = job_to_listing("NVIDIA", {"title": "Intern", "externalPath": "/job/x",
+                                        "locationsText": "Israel, Yokneam"}, api_url=api_url)
+    assert wd_loc.location == "Israel, Yokneam", wd_loc.location
     print("ats_boards selftest OK")
 
 

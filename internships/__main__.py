@@ -39,7 +39,9 @@ def _row(l, scraped_at):
 def write_csv(listings, scraped_at, path):
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS)
+        # extrasaction="ignore": _row() includes "id" for the JSON dataset,
+        # but the CSV schema (FIELDS) deliberately omits it.
+        w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
         w.writeheader()
         for l in listings:
             row = _row(l, scraped_at)
@@ -59,12 +61,25 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
 
 def selftest():
     import subprocess
+    import tempfile
+    from internships.models import Listing
+
     modules = ["internships.models", "internships.filters", "internships.seen_store",
                "internships.sources.md_table", "internships.sources.ats_boards",
                "internships.sources.github_readme", "internships.sources.speedyapply",
                "internships.sources.sndsh404", "internships.service"]
     for m in modules:
         subprocess.run([sys.executable, "-m", m], cwd=ROOT, check=True)
+
+    # write_csv's _row() includes "id" (needed for all.json) but FIELDS doesn't --
+    # make sure that mismatch doesn't blow up csv.DictWriter.
+    with tempfile.TemporaryDirectory() as td:
+        out = Path(td) / "out.csv"
+        write_csv([Listing("ats_boards", "Acme", "SWE Intern", "SF", "http://x/1")],
+                   "2026-07-09T00:00:00", out)
+        rows = list(csv.DictReader(out.open()))
+        assert len(rows) == 1 and rows[0]["company"] == "Acme" and "id" not in rows[0]
+    print("__main__ selftest OK")
 
 
 def main():
