@@ -104,7 +104,7 @@ def backfill_descriptions(path=ALL_JSON_PATH):
     rows = json.loads(path.read_text())
     stale = [r for r in rows if not r.get("description")]
     with ThreadPoolExecutor(max_workers=8) as ex:
-        texts = list(ex.map(lambda r: _fetch_raw_page(r["url"]), stale))
+        texts = list(ex.map(lambda r: _fetch_raw_page(r.get("url")), stale))
     changed = 0
     for row, text in zip(stale, texts):
         if text:
@@ -189,16 +189,21 @@ def selftest():
         rows2 = [
             {"title": "a", "url": "http://x/1", "description": "already have one"},
             {"title": "b", "url": "http://x/2", "description": ""},
-            {"title": "c", "url": "http://x/3"},  # missing key entirely, not just empty
+            {"title": "c", "url": "http://x/3"},  # missing description key, not just empty
+            {"title": "d"},  # stale AND no url key -- must not crash the whole run
         ]
         p2 = Path(tempfile.mkdtemp()) / "all.json"
         p2.write_text(json.dumps(rows2))
+        # a single no-url stale row used to raise KeyError inside ex.map,
+        # killing the whole run and losing every other backfilled description
+        # (the atomic write never happened). It must be a plain no-op instead.
         changed, stale_count = backfill_descriptions(p2)
-        assert stale_count == 2 and changed == 2
+        assert stale_count == 3 and changed == 2
         result2 = json.loads(p2.read_text())
         assert result2[0]["description"] == "already have one"  # untouched
         assert result2[1]["description"] == "fetched: http://x/2"
         assert result2[2]["description"] == "fetched: http://x/3"
+        assert "description" not in result2[3]  # no url -> nothing fetched, still written back
     finally:
         _self._fetch_raw_page = orig_fetch
     print("recompute selftest OK")
