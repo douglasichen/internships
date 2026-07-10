@@ -31,12 +31,18 @@ TIMEOUT = 25
 URL_RE = re.compile(r"https?://\S+")
 
 TITLE_KEYS = ("title", "text", "name", "jobTitle", "job_title")
+# job_path: Amazon.jobs search.json (relative "/en/jobs/..."); resolved via
+# _resolve_url against the API origin. Prefer it over any later absolute keys
+# that are login/apply redirects rather than the public posting page.
 URL_KEYS = ("absolute_url", "hostedUrl", "jobUrl", "applyUrl", "externalPath",
-            "url", "canonicalUrl")
+            "job_path", "url", "canonicalUrl")
 LOC_KEYS = ("location", "city", "locationName", "primaryLocation", "locationsText")
 BODY_KEYS = ("descriptionPlain", "descriptionBodyPlain", "content",
              "description", "openingPlain")
-LIST_KEYS = ("jobs", "jobPostings", "postings", "data", "results")
+# "content": SmartRecruiters (/v1/companies/.../postings). Must stay after
+# "jobs"/"data"/etc. -- Amazon.jobs also has a top-level "content" object
+# (a dict, not a list), which isinstance(v, list) correctly skips.
+LIST_KEYS = ("jobs", "jobPostings", "postings", "data", "results", "content")
 
 
 def parse_urls(cell):
@@ -109,16 +115,33 @@ def _first(d, keys):
     return ""
 
 
+def _str_field(*values):
+    """First non-empty string among values; never returns a non-str (list/
+    dict locations must not escape into Listing.location -- year_relevance
+    and friends call re on these fields and a list crashes the whole
+    ats_boards batch at filter time)."""
+    for v in values:
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return ""
+
+
 def _get_location(job):
     v = _first(job, LOC_KEYS)
     if v:
         return v
     loc = job.get("location")
     if isinstance(loc, dict):
-        return loc.get("name") or loc.get("locationName") or ""
+        # Greenhouse: {name}; SmartRecruiters: {city, fullLocation} (no name)
+        return _str_field(loc.get("name"), loc.get("locationName"),
+                          loc.get("city"), loc.get("fullLocation"))
     cats = job.get("categories")
-    if isinstance(cats, dict) and cats.get("location"):
-        return cats["location"]
+    if isinstance(cats, dict):
+        cl = cats.get("location")
+        if isinstance(cl, str) and cl.strip():
+            return cl.strip()
+        if isinstance(cl, list):
+            return "; ".join(x.strip() for x in cl if isinstance(x, str) and x.strip())
     addr = job.get("address")
     if isinstance(addr, dict):
         pa = addr.get("postalAddress", {})
@@ -139,7 +162,8 @@ def _get_blob(job):
 def extract_postings(data):
     """Find the array of job dicts inside an arbitrary ATS JSON response.
     Covers every shape seen so far: Ashby/Greenhouse ({"jobs": [...]}),
-    Workday ({"jobPostings": [...]}), Lever (bare list)."""
+    Workday ({"jobPostings": [...]}), Lever (bare list), SmartRecruiters
+    ({"content": [...]})."""
     if isinstance(data, list):
         return [j for j in data if isinstance(j, dict)]
     if isinstance(data, dict):
@@ -154,24 +178,42 @@ WDAY_CXS_RE = re.compile(r"(https://[^/]+)/wday/cxs/[^/]+/([^/]+)/jobs")
 
 
 def _resolve_url(url, api_url):
-    """Workday's externalPath ('/job/...') has no domain -- it's relative to
-    the tenant's public career-site base, which we can derive from the cxs
-    API URL: .../wday/cxs/<tenant>/<site>/jobs -> https://<host>/<site>."""
-    if not url.startswith("/"):
-        return url
+    """Turn a board-relative path into an absolute apply URL.
+
+    Workday's externalPath ('/job/...') is relative to the tenant's public
+    career-site base (.../wday/cxs/<tenant>/<site>/jobs -> https://<host>/<site>).
+    Other boards (Amazon.jobs job_path) are just origin-relative, so fall
+    back to scheme://netloc + path when the Workday pattern doesn't match."""
+    if not url or not url.startswith("/"):
+        return url or ""
     m = WDAY_CXS_RE.search(api_url)
-    if not m:
-        return url
-    host, site = m.groups()
-    return f"{host}/{site}{url}"
+    if m:
+        host, site = m.groups()
+        return f"{host}/{site}{url}"
+    origin = urlparse(api_url)
+    if origin.scheme and origin.netloc:
+        return f"{origin.scheme}://{origin.netloc}{url}"
+    return url
+
+
+def _fallback_url(job):
+    """SmartRecruiters list rows carry no absolute apply link -- only
+    company.identifier + id. Reconstruct the public jobs.smartrecruiters.com
+    URL so the listing has a clickable link and a stable dedup identity."""
+    company = job.get("company")
+    jid = job.get("id")
+    if isinstance(company, dict) and company.get("identifier") and jid:
+        return f"https://jobs.smartrecruiters.com/{company['identifier']}/{jid}"
+    return ""
 
 
 def job_to_listing(company, job, api_url=""):
     title = _first(job, TITLE_KEYS)
     if not title:
         return None
+    url = _resolve_url(_first(job, URL_KEYS), api_url) or _fallback_url(job)
     return Listing(source="ats_boards", company=company, title=title,
-                    location=_get_location(job), url=_resolve_url(_first(job, URL_KEYS), api_url),
+                    location=_get_location(job), url=url,
                     extra_text=_get_blob(job))
 
 
@@ -193,7 +235,10 @@ def fetch_workday_description(api_url, external_path):
     if not ok or not isinstance(data, dict):
         return ""
     info = data.get("jobPostingInfo")
-    return info.get("jobDescription", "") if isinstance(info, dict) else ""
+    if not isinstance(info, dict):
+        return ""
+    desc = info.get("jobDescription", "")
+    return desc if isinstance(desc, str) else ""
 
 
 WORKDAY_PAGE_LIMIT = 20
@@ -376,6 +421,17 @@ def selftest():
     assert extract_postings([{"title": "a"}]) == [{"title": "a"}]
     assert extract_postings({"jobPostings": [{"title": "a"}]}) == [{"title": "a"}]
     assert extract_postings({"nope": 1}) == []
+    # SmartRecruiters: postings live under "content", not jobs/data/results.
+    # Without this key, every SmartRecruiters board in companies.csv (16 of
+    # them, status "ok") silently yielded zero listings.
+    assert extract_postings({"content": [{"name": "SWE Intern"}], "totalFound": 1}) == \
+        [{"name": "SWE Intern"}]
+    # Amazon.jobs has a top-level "content" *dict* alongside "jobs" -- must
+    # still pick jobs, and must not treat the dict as a posting list.
+    assert extract_postings({"content": {"sidebar": {}}, "jobs": [{"title": "a"}]}) == \
+        [{"title": "a"}]
+    assert extract_postings({"content": {"sidebar": {}}}) == []
+
     l = job_to_listing("Acme", {"title": "SWE Intern", "absolute_url": "http://x/1",
                                  "location": {"name": "SF"}})
     assert l.title == "SWE Intern" and l.location == "SF" and l.url == "http://x/1"
@@ -386,6 +442,41 @@ def selftest():
     weird = job_to_listing("Weird Co", {"title": "SWE Intern",
                                          "address": {"postalAddress": "123 Main St"}})
     assert weird.title == "SWE Intern" and weird.location == "123 Main St", weird
+
+    # SmartRecruiters location is {city, fullLocation} with no "name" -- was
+    # blanking every SR location. Also reconstruct the public apply URL from
+    # company.identifier + id (list payload has no absolute_url).
+    sr = job_to_listing("ServiceNow", {
+        "name": "Software Engineer Intern",
+        "id": "744000137189553",
+        "company": {"identifier": "servicenow", "name": "ServiceNow"},
+        "location": {"city": "New York", "region": "New York", "country": "us",
+                     "fullLocation": "New York, New York, United States"},
+    })
+    assert sr is not None and sr.location == "New York", sr
+    assert sr.url == "https://jobs.smartrecruiters.com/servicenow/744000137189553", sr.url
+
+    # categories.location as a list (or any non-str) must become a str -- a
+    # list-valued Listing.location TypeErrors year_relevance and, via
+    # service._run_one's listcomp, kills the entire ats_boards source for the run.
+    multi = job_to_listing("Acme", {"title": "SWE Intern", "absolute_url": "http://x/m",
+                                     "categories": {"location": ["SF", "NYC"]}})
+    assert isinstance(multi.location, str) and multi.location == "SF; NYC", multi.location
+    bad_loc = job_to_listing("Acme", {"title": "SWE Intern", "absolute_url": "http://x/b",
+                                       "location": {"name": ["Remote", "SF"]}})
+    assert isinstance(bad_loc.location, str) and bad_loc.location == "", bad_loc.location
+
+    # Amazon.jobs: job_path is origin-relative; must resolve against the API
+    # host rather than being left as "/en/jobs/..." (broken apply link + weak id).
+    amz = job_to_listing(
+        "Amazon",
+        {"title": "SDE Intern", "job_path": "/en/jobs/10418355/2027-software-dev-engineer-intern",
+         "location": "US, WA, Seattle"},
+        api_url="https://www.amazon.jobs/en/search.json",
+    )
+    assert amz.url == (
+        "https://www.amazon.jobs/en/jobs/10418355/2027-software-dev-engineer-intern"
+    ), amz.url
 
     assert not _is_dead_response([])
     assert not _is_dead_response({})
@@ -417,6 +508,13 @@ def selftest():
     try:
         assert fetch_workday_description(api_url, "/job/x") == "full text"
         assert fetch_workday_description(api_url, "") == ""  # no externalPath -> no detail_url
+    finally:
+        _self.fetch_json = orig_fetch_json
+
+    # non-str jobDescription (null/list) must not leak into Listing.extra_text
+    _self.fetch_json = lambda url: (True, {"jobPostingInfo": {"jobDescription": None}}, "ok")
+    try:
+        assert fetch_workday_description(api_url, "/job/x") == ""
     finally:
         _self.fetch_json = orig_fetch_json
 
