@@ -18,6 +18,7 @@
     --plum: #7D6B91;
     --gold: #B98A3E;
     --slate: #4A6B8A;
+    --rose: #9B5B6A;
     --serif: Georgia, "Times New Roman", serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -447,6 +448,7 @@
     <button id="filtersToggle" class="toggle" aria-expanded="false">Filters <span class="caret">▾</span></button>
     <div class="filter-details" id="filterDetails">
       <button class="chip" data-source="ats_boards"><span class="dot" style="background:var(--teal)"></span>Job boards</button>
+      <button class="chip" data-source="custom_boards"><span class="dot" style="background:var(--rose)"></span>Custom</button>
       <button class="chip" data-source="github_readme"><span class="dot" style="background:var(--plum)"></span>vanshb03</button>
       <button class="chip" data-source="speedyapply"><span class="dot" style="background:var(--gold)"></span>speedyapply</button>
       <button class="chip" data-source="sndsh404"><span class="dot" style="background:var(--slate)"></span>sndsh404</button>
@@ -475,12 +477,14 @@
 <script>
 const SOURCE_COLOR = {
   ats_boards: 'var(--teal)',
+  custom_boards: 'var(--rose)',
   github_readme: 'var(--plum)',
   speedyapply: 'var(--gold)',
   sndsh404: 'var(--slate)',
 };
 const SOURCE_LABEL = {
   ats_boards: 'Job boards',
+  custom_boards: 'Custom',
   github_readme: 'vanshb03',
   speedyapply: 'speedyapply',
   sndsh404: 'sndsh404',
@@ -512,6 +516,20 @@ let applied = loadApplied();
 
 function companyKey(name) {
   return (name || '').trim().toLowerCase();
+}
+
+// Same posting often appears once per location (and again from another
+// source) with the same path but different Listing.ids. Collapse those
+// for "applied siblings" so one Rippling UUID doesn't show as 3 applied.
+function postingKey(r) {
+  const u = r && r.url;
+  if (!u) return r && r.id ? 'id:' + r.id : '';
+  try {
+    const parsed = new URL(u, 'https://example.invalid');
+    return (parsed.host + parsed.pathname).toLowerCase().replace(/\/$/, '');
+  } catch {
+    return String(u).split('?')[0].split('#')[0].toLowerCase();
+  }
 }
 
 // Index all listings by company so each row can show siblings.
@@ -659,8 +677,11 @@ function render() {
       const url = safeUrl(r.url);
       const ck = companyKey(r.company);
       const companyRoles = byCompany.get(ck) || [];
-      // Only roles at this company the user has already applied to (excluding this row).
-      const appliedOthers = companyRoles.filter(s => s.id !== r.id && applied.has(s.id));
+      const selfPosting = postingKey(r);
+      // Other applied roles at this company: exclude this row and any row that
+      // is the same posting URL (location/source clones of the same job).
+      const appliedOthers = companyRoles.filter(s =>
+        s.id !== r.id && applied.has(s.id) && postingKey(s) !== selfPosting);
 
       const nApplied = appliedOthers.length;
       const open = nApplied > 0 && expandedRoles.has(r.id);
@@ -676,7 +697,7 @@ function render() {
             <div class="role-title">${escapeHtml(r.title)}${titleBadges(r)}</div>
             <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}${appliedCta}</div>
           </div>
-          <span class="source-badge" style="background:${SOURCE_COLOR[r.source]}">${SOURCE_LABEL[r.source]}</span>
+          <span class="source-badge" style="background:${SOURCE_COLOR[r.source] || 'var(--text-muted)'}">${SOURCE_LABEL[r.source] || escapeHtml(r.source || '')}</span>
           ${url ? `<a class="apply-link" href="${escapeHtml(url)}" target="_blank" rel="noopener">Apply →</a>` : ''}
         </div>
         ${open ? renderSiblings(appliedOthers) : ''}
