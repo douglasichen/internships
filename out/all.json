@@ -65,19 +65,6 @@
     "priority": 3
   },
   {
-    "id": "b4d8f95ca0351468",
-    "company": "Circleback",
-    "title": "Software Engineering Intern (Summer 2027) \ud83d\udec2",
-    "location": "San Francisco, CA",
-    "is_2027": true,
-    "source": "sndsh404",
-    "posted": "2026-06-16",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://www.ycombinator.com/companies/circleback/jobs/QMpriul-software-engineering-intern-summer-2027",
-    "important": false,
-    "priority": 3
-  },
-  {
     "id": "0ba40f890aa78b3b",
     "company": "Cubist Systematic Strategies",
     "title": "2027 Technology Development Intern \u2013 IIT Hyderabad",
@@ -139,19 +126,6 @@
     "posted": "2026-06-28",
     "scraped_at": "2026-07-09T01:42:28",
     "url": "https://www.ycombinator.com/companies/dedalus-labs/jobs/YtbvXM8-systems-engineer-summer-2027-intern",
-    "important": false,
-    "priority": 3
-  },
-  {
-    "id": "c5648452f138b1fa",
-    "company": "GE Aerospace",
-    "title": "Engines Engineering Co-op, Computer/Software Engineering (Spring 2027, Returning Students) \ud83d\udec2 \ud83c\uddfa\ud83c\uddf8",
-    "location": "Cincinnati, OH / Lynn, MA",
-    "is_2027": true,
-    "source": "sndsh404",
-    "posted": "2026-06-14",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://careers.geaerospace.com/global/en/job/GAOGAYGLOBALR5030073EXTERNALENGLOBAL/Engines-Engineering-Co-op-Computer-or-Software-Engineering-US-Spring-2027-Returning-Students",
     "important": false,
     "priority": 3
   },
@@ -325,19 +299,6 @@
     "priority": 1
   },
   {
-    "id": "0d356943f10e7e97",
-    "company": "MongoDB",
-    "title": "Software Engineering Internship - Summer 2026/2027",
-    "location": "Sydney",
-    "is_2027": true,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://www.mongodb.com/careers/job/?gh_jid=7768470",
-    "important": true,
-    "priority": 2
-  },
-  {
     "id": "c498ddc95152b9e9",
     "company": "Notion",
     "title": "Software Engineer Intern (Fall 2026)",
@@ -507,19 +468,6 @@
     "priority": 2
   },
   {
-    "id": "73575244dea96942",
-    "company": "Abundant",
-    "title": "Software Engineering Intern, Research Focused \ud83c\uddfa\ud83c\uddf8",
-    "location": "San Francisco, CA",
-    "is_2027": true,
-    "source": "github_readme",
-    "posted": "May 14",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://www.workatastartup.com/jobs/94634?utm_source=github-vansh-ouckah",
-    "important": false,
-    "priority": 3
-  },
-  {
     "id": "5a63002ef648e97a",
     "company": "Al Warren Oil Company",
     "title": "Software Developer Intern",
@@ -555,19 +503,6 @@
     "posted": "77d",
     "scraped_at": "2026-07-09T01:42:28",
     "url": "https://www.amazon.jobs/jobs/10412530/apply",
-    "important": true,
-    "priority": 1
-  },
-  {
-    "id": "1ef9efd5963ca5a1",
-    "company": "Amazon",
-    "title": "Software Development Engineer Intern, Amazon Leo \ud83c\uddfa\ud83c\uddf8",
-    "location": "Sunnyvale, CA; Redmond, WA; Northridge, CA",
-    "is_2027": true,
-    "source": "github_readme",
-    "posted": "May 09",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://www.amazon.jobs/en/jobs/3144153/software-development-engineer-internship-amazon-leo-summer-2026-us?no_int_redir=1&utm_source=github-vansh-ouckah",
     "important": true,
     "priority": 1
   },
@@ -723,7 +658,7 @@
     "source": "ats_boards",
     "posted": "",
     "scraped_at": "2026-07-09T01:42:28",
-    "url": "/job/AMER---Canada---Ontario---Toronto---University-Ave/Intern--Model-Based-Systems-Engineering_26WD94900",
+    "url": "https://autodesk.wd1.myworkdayjobs.com/Ext/job/AMER---Canada---Ontario---Toronto---University-Ave/Intern--Model-Based-Systems-Engineering_26WD94900",
     "important": true,
     "priority": 2
   },
@@ -1066,19 +1001,6 @@
     "priority": 3
   },
   {
-    "id": "26cd32d244a347b5",
-    "company": "Fiserv",
-    "title": "Application Development Intern \ud83d\udec2",
-    "location": "Alpharetta, GA",
-    "is_2027": true,
-    "source": "github_readme",
-    "posted": "Apr 20",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://careers.fiserv.com/us/en/job/FFFYJUSR10390264EXTERNALENUS/Application-Development-Summer-Intern?jr_id=69e6ab177820c036924d1dc6&utm_source=github-vansh-ouckah",
-    "important": false,
-    "priority": 3
-  },
-  {
     "id": "7e414bf836aaf865",
     "company": "Gemini",
     "title": "Software Engineering Intern (Fall 2026)",
@@ -1157,19 +1079,6 @@
     "priority": 2
   },
   {
-    "id": "09e1f8afe4baf97b",
-    "company": "Intercontinental Exchange, Inc.",
-    "title": "Artificial Intelligence, Data & Machine Learning Intern",
-    "location": "New York, NY",
-    "is_2027": true,
-    "source": "github_readme",
-    "posted": "Apr 20",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://careers.ice.com/jobs/12830?lang=en-us&iis=LinkedIn&iisn=Linkedin&mode=apply&jr_id=69e67bb27820c036924d0af9&utm_source=github-vansh-ouckah",
-    "important": false,
-    "priority": 3
-  },
-  {
     "id": "8cb039f5a518c4d1",
     "company": "JD.com",
     "title": "System Implementation Intern",
@@ -1178,7 +1087,7 @@
     "source": "ats_boards",
     "posted": "",
     "scraped_at": "2026-07-09T01:42:28",
-    "url": "/job/USA-California-Fontana/System-Implementation-Intern_JR102899",
+    "url": "https://jd.wd103.myworkdayjobs.com/Campus_Career_Site/job/USA-California-Fontana/System-Implementation-Intern_JR102899",
     "important": true,
     "priority": 2
   },
@@ -1217,7 +1126,7 @@
     "source": "ats_boards",
     "posted": "",
     "scraped_at": "2026-07-09T01:42:28",
-    "url": "/job/Newport-United-Kingdom/AI-Summer-Intern_2638689",
+    "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/AI-Summer-Intern_2638689",
     "important": true,
     "priority": 3
   },
@@ -1360,7 +1269,7 @@
     "source": "ats_boards",
     "posted": "",
     "scraped_at": "2026-07-09T01:42:28",
-    "url": "/job/Eindhoven/Internship----System-Innovations-Automotive_R-10062365",
+    "url": "https://nxp.wd3.myworkdayjobs.com/careers/job/Eindhoven/Internship----System-Innovations-Automotive_R-10062365",
     "important": true,
     "priority": 2
   },
@@ -1373,7 +1282,7 @@
     "source": "ats_boards",
     "posted": "",
     "scraped_at": "2026-07-09T01:42:28",
-    "url": "/job/Eindhoven/Internship---Master-Thesis-Opportunity---Analog---RFIC-Design-for-Sub-THz-Communication-Systems_R-10064225",
+    "url": "https://nxp.wd3.myworkdayjobs.com/careers/job/Eindhoven/Internship---Master-Thesis-Opportunity---Analog---RFIC-Design-for-Sub-THz-Communication-Systems_R-10064225",
     "important": true,
     "priority": 2
   },
@@ -1387,19 +1296,6 @@
     "posted": "-",
     "scraped_at": "2026-07-09T01:42:28",
     "url": "https://www.workatastartup.com/jobs/94647",
-    "important": false,
-    "priority": 3
-  },
-  {
-    "id": "b372a5c6420be303",
-    "company": "Nash",
-    "title": "Full Stack Engineering Intern \ud83c\uddfa\ud83c\uddf8",
-    "location": "San Francisco, CA",
-    "is_2027": true,
-    "source": "github_readme",
-    "posted": "May 19",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://www.workatastartup.com/jobs/94993?utm_source=github-vansh-ouckah",
     "important": false,
     "priority": 3
   },
@@ -2145,19 +2041,6 @@
     "priority": 1
   },
   {
-    "id": "da2a2d8a19749b1a",
-    "company": "StarSling",
-    "title": "Software Engineer Intern \ud83c\uddfa\ud83c\uddf8",
-    "location": "San Mateo, CA",
-    "is_2027": true,
-    "source": "github_readme",
-    "posted": "May 19",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://www.workatastartup.com/jobs/95003?utm_source=github-vansh-ouckah",
-    "important": false,
-    "priority": 3
-  },
-  {
     "id": "44ae8d11b8905743",
     "company": "Stoke Space",
     "title": "Software Engineer Intern",
@@ -2244,7 +2127,7 @@
     "source": "ats_boards",
     "posted": "",
     "scraped_at": "2026-07-09T01:42:28",
-    "url": "/job/Singapore-CapitaSky/Big-Data-Development-Engineer-Intern_R107740-2",
+    "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/Singapore-CapitaSky/Big-Data-Development-Engineer-Intern_R107740-2",
     "important": true,
     "priority": 1
   },
@@ -2257,7 +2140,7 @@
     "source": "ats_boards",
     "posted": "",
     "scraped_at": "2026-07-09T01:42:28",
-    "url": "/job/Australia-New-South-Wales-Sydney/Project-Management-Business-Development-Intern_R107728-1",
+    "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/Australia-New-South-Wales-Sydney/Project-Management-Business-Development-Intern_R107728-1",
     "important": true,
     "priority": 1
   },
@@ -2270,22 +2153,9 @@
     "source": "ats_boards",
     "posted": "",
     "scraped_at": "2026-07-09T01:42:28",
-    "url": "/job/UK-London/Software-Engineering-Intern_R107162-1",
+    "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/UK-London/Software-Engineering-Intern_R107162-1",
     "important": true,
     "priority": 1
-  },
-  {
-    "id": "1ea6afc74c26dc7e",
-    "company": "Terranox AI",
-    "title": "Summer Intern - AI/ML Engineering \ud83c\uddfa\ud83c\uddf8",
-    "location": "San Francisco, CA",
-    "is_2027": true,
-    "source": "github_readme",
-    "posted": "May 14",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://www.workatastartup.com/jobs/94631?utm_source=github-vansh-ouckah",
-    "important": false,
-    "priority": 3
   },
   {
     "id": "76e0daeed0b91b59",
@@ -2873,19 +2743,6 @@
     "priority": 3
   },
   {
-    "id": "f01327aa52df4aef",
-    "company": "Voloridge Investment Management",
-    "title": "Quantitative Developer Intern",
-    "location": "Jupiter, FL",
-    "is_2027": true,
-    "source": "github_readme",
-    "posted": "May 22",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://voloridge-investment-management.hiringthing.com/job/1013126/quantitative-developer-intern-2027?s=lif&jr_id=69eaa8e4dc35f7132c4ab803&utm_source=github-vansh-ouckah",
-    "important": false,
-    "priority": 3
-  },
-  {
     "id": "1f03296036cc93e7",
     "company": "Voloridge Investment Management",
     "title": "Quantitative Developer Intern",
@@ -2925,19 +2782,6 @@
     "priority": 3
   },
   {
-    "id": "9e8bba123e98032f",
-    "company": "Zoox",
-    "title": "Platform Intelligence Intern",
-    "location": "Foster City, CA",
-    "is_2027": true,
-    "source": "github_readme",
-    "posted": "May 12",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://jobs.lever.co/zoox/22bece12-95a5-4ad7-a4e4-6c43178153d2?utm_source=github-vansh-ouckah",
-    "important": true,
-    "priority": 2
-  },
-  {
     "id": "8808720585d6d149",
     "company": "d-Matrix",
     "title": "Applied AI Engineering Intern",
@@ -2951,45 +2795,6 @@
     "priority": 3
   },
   {
-    "id": "345c11c2722b39f2",
-    "company": "Autodesk",
-    "title": "Intern, AI in Design & Manufacturing",
-    "location": "AMER - Canada - Ontario - Toronto - University Ave",
-    "is_2027": true,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-09T23:59:55",
-    "url": "https://autodesk.wd1.myworkdayjobs.com/Ext/job/AMER---Canada---Ontario---Toronto---University-Ave/Intern--Model-Based-Systems-Engineering_26WD94900",
-    "important": true,
-    "priority": 2
-  },
-  {
-    "id": "b2646505f23d2865",
-    "company": "JD.com",
-    "title": "System Implementation Intern",
-    "location": "USA-California-Fontana",
-    "is_2027": true,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-09T23:59:55",
-    "url": "https://jd.wd103.myworkdayjobs.com/Campus_Career_Site/job/USA-California-Fontana/System-Implementation-Intern_JR102899",
-    "important": true,
-    "priority": 2
-  },
-  {
-    "id": "be3d0a69f64d2e0a",
-    "company": "KLA",
-    "title": "AI Summer Intern",
-    "location": "Newport, United Kingdom",
-    "is_2027": true,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-09T23:59:55",
-    "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/AI-Summer-Intern_2638689",
-    "important": true,
-    "priority": 3
-  },
-  {
     "id": "241ec0d8ffee8283",
     "company": "Tencent",
     "title": "AI Infra Intern",
@@ -2999,19 +2804,6 @@
     "posted": "",
     "scraped_at": "2026-07-09T23:59:55",
     "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/Singapore-CapitaSky/AI-Infra-Intern_R107682",
-    "important": true,
-    "priority": 1
-  },
-  {
-    "id": "9969385712889b88",
-    "company": "Tencent",
-    "title": "Big Data Development Engineer Intern",
-    "location": "Singapore-CapitaSky",
-    "is_2027": true,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-09T23:59:55",
-    "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/Singapore-CapitaSky/Big-Data-Development-Engineer-Intern_R107740-2",
     "important": true,
     "priority": 1
   },
@@ -3614,32 +3406,6 @@
     "priority": 2
   },
   {
-    "id": "55174be411a2b1cd",
-    "company": "NXP Semiconductors",
-    "title": "Internship -  System Innovations Automotive",
-    "location": "Eindhoven",
-    "is_2027": true,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T00:56:15",
-    "url": "https://nxp.wd3.myworkdayjobs.com/careers/job/Eindhoven/Internship----System-Innovations-Automotive_R-10062365",
-    "important": true,
-    "priority": 2
-  },
-  {
-    "id": "928df7d7387701fc",
-    "company": "NXP Semiconductors",
-    "title": "Internship / Master Thesis Opportunity \u2013 Analog & RFIC Design for Sub-THz Communication Systems",
-    "location": "Eindhoven",
-    "is_2027": true,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T00:56:15",
-    "url": "https://nxp.wd3.myworkdayjobs.com/careers/job/Eindhoven/Internship---Master-Thesis-Opportunity---Analog---RFIC-Design-for-Sub-THz-Communication-Systems_R-10064225",
-    "important": true,
-    "priority": 2
-  },
-  {
     "id": "d536c9284d363e9e",
     "company": "NXP Semiconductors",
     "title": "Internship \u2013 Product Engineering (Data Science: Machine Learning Analyst)",
@@ -3952,32 +3718,6 @@
     "priority": 1
   },
   {
-    "id": "451758a2fceeccf3",
-    "company": "Tencent",
-    "title": "Project Management/Business Development Intern",
-    "location": "Australia-New South Wales-Sydney",
-    "is_2027": true,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T00:56:15",
-    "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/Australia-New-South-Wales-Sydney/Project-Management-Business-Development-Intern_R107728-1",
-    "important": true,
-    "priority": 1
-  },
-  {
-    "id": "747179ea12b71ace",
-    "company": "Tencent",
-    "title": "Software Engineering Intern",
-    "location": "UK-London",
-    "is_2027": true,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T00:56:15",
-    "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/UK-London/Software-Engineering-Intern_R107162-1",
-    "important": true,
-    "priority": 1
-  },
-  {
     "id": "0a12e1f00b6bb6da",
     "company": "Stripe",
     "title": "Software Engineer, Intern",
@@ -4038,18 +3778,6 @@
     "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/United-Kindom-London/Software-Engineering-Intern_R107162-1"
   },
   {
-    "id": "b21c4078b2eb4f7b",
-    "company": "Anduril",
-    "title": "Software Engineer Intern",
-    "location": "Atlanta, GA; Boston, MA; Costa Mesa, CA; Irvine, CA; Reston, VA; Seattle, WA",
-    "is_2027": true,
-    "priority": 2,
-    "source": "github_readme",
-    "posted": "Jul 07",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://job-boards.greenhouse.io/andurilindustries/jobs/5148079007?gh_jid=5148079007&utm_source=github-vansh-ouckah"
-  },
-  {
     "id": "0845a4634098cf9a",
     "company": "Aquatic Capital",
     "title": "Software Engineer Intern",
@@ -4072,18 +3800,6 @@
     "posted": "",
     "scraped_at": "2026-07-10T16:58:43",
     "url": "https://www.citadel.com/careers/details/software-engineer-intern-us"
-  },
-  {
-    "id": "027d3f7565040e1f",
-    "company": "Cresta",
-    "title": "Product Design Intern for AI and Human Agents Platform",
-    "location": "Toronto, Canada",
-    "is_2027": true,
-    "priority": 3,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://job-boards.greenhouse.io/cresta/jobs/4476000008"
   },
   {
     "id": "7dac9f7ddb93d7b6",
@@ -4276,18 +3992,6 @@
     "posted": "Apr 22",
     "scraped_at": "2026-07-10T16:58:43",
     "url": "https://career41.sapsf.com/career?career_ns=job_listing&company=hcollp&career_job_req_id=3507&utm_source=github-vansh-ouckah"
-  },
-  {
-    "id": "67a71347e67d8de4",
-    "company": "Intercontinental Exchange, Inc.",
-    "title": "Artificial Intelligence, Data & Machine Learning Intern",
-    "location": "New York, NY",
-    "is_2027": true,
-    "priority": 3,
-    "source": "github_readme",
-    "posted": "Apr 20",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://careers.ice.com/jobs/12830?lang=en-us&iis=LinkedIn&iisn=Linkedin&mode=apply&jr_id=69e67bb27820c036924d0af9&utm_source=github-vansh-ouckah"
   },
   {
     "id": "a116dfae291bd2cd",
@@ -4542,30 +4246,6 @@
     "url": "https://ats.rippling.com/rippling/jobs/35b3ba25-ff2e-4b68-a2d7-61be26f2b24a"
   },
   {
-    "id": "d55c7c1fa8e10713",
-    "company": "Rippling",
-    "title": "Full Stack Software Engineer Intern - Winter 2027",
-    "location": "San Francisco, CA",
-    "is_2027": true,
-    "priority": 3,
-    "source": "custom_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://ats.rippling.com/rippling/jobs/35b3ba25-ff2e-4b68-a2d7-61be26f2b24a"
-  },
-  {
-    "id": "6e3bc4aa1185123b",
-    "company": "Rippling",
-    "title": "Full Stack Software Engineer Intern - Winter 2027",
-    "location": "New York, NY",
-    "is_2027": true,
-    "priority": 3,
-    "source": "custom_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://ats.rippling.com/rippling/jobs/35b3ba25-ff2e-4b68-a2d7-61be26f2b24a"
-  },
-  {
     "id": "207a03a4ce9bcb19",
     "company": "Rippling",
     "title": "Machine Learning Software Engineer Intern - Winter 2027",
@@ -4576,42 +4256,6 @@
     "posted": "",
     "scraped_at": "2026-07-10T16:58:43",
     "url": "https://ats.rippling.com/rippling/jobs/82c13e8f-ae96-4c60-a872-c0ddf9eb0781"
-  },
-  {
-    "id": "7c47c4fe5d7d4d5a",
-    "company": "Rippling",
-    "title": "Software Engineer Intern - Backend Focused - Winter 2027",
-    "location": "Seattle, WA",
-    "is_2027": true,
-    "priority": 3,
-    "source": "custom_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://ats.rippling.com/rippling/jobs/00cbc991-d2fb-452c-a8b6-2978f109a484"
-  },
-  {
-    "id": "fe670d8c31dc10bd",
-    "company": "Rippling",
-    "title": "Software Engineer Intern - Backend Focused - Winter 2027",
-    "location": "San Francisco, CA",
-    "is_2027": true,
-    "priority": 3,
-    "source": "custom_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://ats.rippling.com/rippling/jobs/00cbc991-d2fb-452c-a8b6-2978f109a484"
-  },
-  {
-    "id": "4056984a1a4a2af5",
-    "company": "Rippling",
-    "title": "Software Engineer Intern - Backend Focused - Winter 2027",
-    "location": "New York, NY",
-    "is_2027": true,
-    "priority": 3,
-    "source": "custom_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://ats.rippling.com/rippling/jobs/00cbc991-d2fb-452c-a8b6-2978f109a484"
   },
   {
     "id": "8ba11b1e23edcfa4",
@@ -4878,18 +4522,6 @@
     "url": "https://stripe.com/jobs/search?gh_jid=8031833"
   },
   {
-    "id": "19bf74989926769b",
-    "company": "Susquehanna",
-    "title": "Trading System Engineering Intern",
-    "location": "Bala Cynwyd, PA",
-    "is_2027": true,
-    "priority": 3,
-    "source": "github_readme",
-    "posted": "May 22",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://careers.sig.com/jobs/10837?lang=en-us&mode=apply&iis=LinkedIn&jr_id=69f3d11158b23a2329da8088&utm_source=github-vansh-ouckah"
-  },
-  {
     "id": "d70ff66a10d5c73a",
     "company": "Susquehanna International Group",
     "title": "Equity Options AI Co-op with Drexel University",
@@ -4936,18 +4568,6 @@
     "posted": "",
     "scraped_at": "2026-07-10T16:58:43",
     "url": "https://careers-sig.icims.com/jobs/11169/login"
-  },
-  {
-    "id": "365a441b6e17919d",
-    "company": "Susquehanna Investment Group",
-    "title": "Quantitative Strategy Developer Intern",
-    "location": "Bala Cynwyd, PA",
-    "is_2027": true,
-    "priority": 3,
-    "source": "github_readme",
-    "posted": "Jul 07",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://careers.sig.com/intern-co-op-technology/jobs/10838?lang=en-us&utm_source=github-vansh-ouckah"
   },
   {
     "id": "be3a61b8d2b01868",
@@ -5020,18 +4640,6 @@
     "posted": "",
     "scraped_at": "2026-07-10T16:58:43",
     "url": "https://iaziqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/159595"
-  },
-  {
-    "id": "18ffd6c8f3d966f8",
-    "company": "Voloridge Investment Management",
-    "title": "Quantitative Developer Intern",
-    "location": "Jupiter, FL",
-    "is_2027": true,
-    "priority": 3,
-    "source": "github_readme",
-    "posted": "May 22",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://voloridge-investment-management.hiringthing.com/job/1013126/quantitative-developer-intern-2027?s=lif&jr_id=69eaa8e4dc35f7132c4ab803&utm_source=github-vansh-ouckah"
   },
   {
     "id": "149c482c26df9daf",
