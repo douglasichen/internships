@@ -5116,5 +5116,44 @@
     "posted": "",
     "scraped_at": "2026-07-10T16:58:43",
     "url": "https://job-boards.greenhouse.io/worldquant/jobs/4652485006"
+  },
+  {
+    "id": "c4a513c96b0674eb",
+    "company": "Jane Street",
+    "title": "Software Engineer Internship, December-February",
+    "location": "Hong Kong",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-07-10T17:24:08",
+    "url": "https://www.janestreet.com/join-jane-street/position/7582902002/",
+    "important": false
+  },
+  {
+    "id": "7e15073859a2c494",
+    "company": "Circleback",
+    "title": "Software Engineering Intern (Summer 2027)",
+    "location": "San Francisco",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-10T17:24:08",
+    "url": "https://jobs.ashbyhq.com/circleback/2bb6be67-d1a8-42f7-bb1b-64ee36bf613f",
+    "important": false
+  },
+  {
+    "id": "aaf11ac28d2de269",
+    "company": "Simular",
+    "title": "Software Engineer Intern",
+    "location": "Palo Alto",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-10T17:24:08",
+    "url": "https://jobs.ashbyhq.com/simular/063f177b-c3f2-44d2-8eeb-622a977e7d5a",
+    "important": false
   }
 ]
