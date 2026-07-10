@@ -13,3 +13,4 @@ out/*
 new_swe_interns.csv
 reports/
 responses/
+.DS_Store
