@@ -110,7 +110,10 @@ def run(sources, data_dir=DATA_DIR) -> RunResult:
         name, new, swe, stats = _run_one(ats, data_dir)
         result.per_source[name] = stats
         result.new_listings.extend(new)
-        known_urls = frozenset(normalize_url(l.url) for l in swe)
+        # exclude empty: normalize_url("") is "", and a url-less ats listing
+        # (a job whose JSON had no url key) must not poison known_urls into
+        # dropping every url-less fallback-source listing as a false duplicate.
+        known_urls = frozenset(u for l in swe if (u := normalize_url(l.url)))
 
     def work(s):
         fallback = s.name in DESCRIPTION_FALLBACK_SOURCES
@@ -207,6 +210,23 @@ def selftest():
     assert by_company["Beta"].source == "github_readme"
     assert by_company["Beta"].extra_text == "raw page text"  # fell back to raw fetch
     assert calls == ["http://beta/1"]  # never fetched for the skipped duplicate
+
+    # a url-less ats listing (ats_boards.job_to_listing emits url="" when a
+    # job's JSON has no url key) must NOT poison known_urls: normalize_url("")
+    # is "", so without excluding it every url-less fallback-source listing
+    # (github_readme rows whose application cell has no <a href>) would be
+    # dropped as a false "duplicate" of it. Both distinct listings must survive.
+    _self._fetch_raw_page = lambda url: ""
+    try:
+        ats_nourl = Listing("ats_boards", "Acme", "Software Engineer Intern", "SF", "")
+        gh_nourl = Listing("github_readme", "Gamma", "Software Engineer Intern", "LA", "")
+        r7 = run([FakeSource([ats_nourl], name="ats_boards"),
+                  FakeSource([gh_nourl], name="github_readme")],
+                 data_dir=Path(tempfile.mkdtemp()))
+    finally:
+        _self._fetch_raw_page = orig_fetch_raw_page
+    assert len(r7.new_listings) == 2, r7.new_listings  # neither url-less listing dropped
+    assert {l.company for l in r7.new_listings} == {"Acme", "Gamma"}
     print("service selftest OK")
 
 
