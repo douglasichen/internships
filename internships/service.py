@@ -11,6 +11,7 @@ falling back to a raw, unparsed fetch of a listing's own page for whatever
 survives that isn't a duplicate -- those sources have no description of
 their own at all.
 """
+import re
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field, replace
 from pathlib import Path
@@ -30,6 +31,7 @@ DESCRIPTION_FALLBACK_SOURCES = {"github_readme", "speedyapply", "sndsh404"}
 
 _PAGE_FETCH_THROTTLE = DomainThrottle(1.0)
 _PAGE_FETCH_TIMEOUT = 15
+_SCRIPT_STYLE_RE = re.compile(r"<(script|style)\b[^>]*>.*?</\1>", re.I | re.S)
 
 
 @dataclass
@@ -47,19 +49,25 @@ class RunResult:
 
 
 def _fetch_raw_page(url: str) -> str:
-    """Best-effort, completely unparsed fallback description: whatever text
+    """Best-effort, mostly-unparsed fallback description: whatever text
     comes back for a listing's own page -- HTML tags, nav/footer noise and
-    all -- is fine, since this is meant to be pasted into an AI later, not
-    read as-is."""
+    all -- is kept as-is, since this is meant to be pasted into an AI later,
+    not read as-is. The one exception: <script>/<style> blocks are stripped.
+    They're not description content, and they're where GitHub's secret
+    scanner kept flagging real-looking-but-harmless strings baked into job
+    board page templates (presigned S3 image URLs, client-side Google
+    Analytics/Maps keys) -- already public on the source page either way,
+    just noise we don't need to also carry around."""
     if not url:
         return ""
     _PAGE_FETCH_THROTTLE.wait(url)
     try:
         req = Request(url, headers={"User-Agent": UA})
         with urlopen(req, timeout=_PAGE_FETCH_TIMEOUT) as r:
-            return r.read().decode("utf-8", errors="replace")
+            text = r.read().decode("utf-8", errors="replace")
     except Exception:  # noqa: BLE001 - best-effort fallback; any failure just means no description
         return ""
+    return _SCRIPT_STYLE_RE.sub("", text)
 
 
 def _with_raw_description(l):
