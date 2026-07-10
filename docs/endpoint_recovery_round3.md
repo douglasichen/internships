@@ -55,3 +55,9 @@ Genuinely browser-gated (Cloudflare/WAF/CSRF) or dead:
 | Tesla | Entire tesla.com domain is blocked at the Akamai edge for curl requests from this environment — not just /care |
 
 **Hit the session limit, not yet swept (retry later):** Opendoor, G-Research, Revolut, HashiCorp, Valve, Klarna, Loom, Nutanix, Siemens EDA — several (Revolut `__NEXT_DATA__`, Valve/G-Research WordPress HTML, Opendoor Next.js) look recoverable on a re-run.
+
+## Round 4 — the 9 session-limit stragglers
+
+Re-swept after the limit reset. **7 more recovered:** Valve (HTML), Opendoor (HTML), G-Research (HTML), Revolut (`__NEXT_DATA__` JSON, 687 roles), Klarna (Deel RSC payload via row_regex), Siemens EDA (jobsyn.org Solr API), Nutanix (sitemap.xml URL-slug titles — Cloudflare blocks the HTML pages but not the sitemap; titles are de-sluggable).
+
+Still unavailable: **HashiCorp** (IBM-acquired, WAF-gated), **Loom** (Atlassian-filtered view, no isolable feed).
