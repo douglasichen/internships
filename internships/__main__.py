@@ -65,7 +65,11 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     existing = json.loads(path.read_text()) if path.exists() else []
     existing.extend(_row(l, scraped_at) for l in listings)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(existing, indent=2))
+    # Atomic (tmp + replace), same as recompute writes to this very file: this
+    # is a full rewrite of the entire cumulative dataset, so a crash mid-write
+    # (SIGKILL / disk-full / OOM) would otherwise truncate all.json and lose
+    # every historical row -- and every later run would then crash on json.loads.
+    recompute._atomic_write(existing, path)
 
 
 def selftest():
@@ -107,6 +111,31 @@ def selftest():
         f1.close()  # releases the lock
         fcntl.flock(f2, fcntl.LOCK_EX | fcntl.LOCK_NB)  # now succeeds
         f2.close()
+
+    # append_all_json rewrites the ENTIRE cumulative all.json each run; a crash
+    # partway through the write must not corrupt the existing dataset. Simulate
+    # a write that truncates then fails, and assert the prior file survives
+    # (atomic tmp+replace guarantees this; a direct write_text would not).
+    with tempfile.TemporaryDirectory() as td:
+        all_json = Path(td) / "all.json"
+        all_json.write_text(json.dumps([_row(Listing("s", "Old", "SWE", "SF", "http://x/0"),
+                                              "2026-01-01T00:00:00")]))
+        orig_write_text = Path.write_text
+
+        def _partial_write(self, data, *args, **kwargs):
+            orig_write_text(self, data[:len(data) // 2], *args, **kwargs)  # truncated
+            raise OSError("simulated crash mid-write")
+
+        Path.write_text = _partial_write
+        try:
+            append_all_json([Listing("s", "New", "SWE", "NY", "http://x/1")],
+                            "2026-07-09T00:00:00", all_json)
+        except OSError:
+            pass
+        finally:
+            Path.write_text = orig_write_text
+        survivors = json.loads(all_json.read_text())  # must still be valid JSON
+        assert [r["company"] for r in survivors] == ["Old"]  # prior data intact
     print("__main__ selftest OK")
 
 
