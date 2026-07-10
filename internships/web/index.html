@@ -561,8 +561,14 @@ function escapeHtml(s) {
 // into href= and execute on click. Listing URLs come from arbitrary external
 // job boards/READMEs, so allowlist http/https (returns '' for anything else).
 function safeUrl(u) {
+  // Require an absolute http(s) URL in the listing data itself. A relative
+  // path like "/job/..." (seen when Workday externalPath failed to resolve)
+  // would otherwise resolve against our own origin via `new URL(u, location)`
+  // and look "safe" while pointing at localhost:8765/job/... instead of the
+  // employer's career site.
   try {
-    const proto = new URL(u, location.href).protocol;
+    if (typeof u !== 'string' || !/^https?:\/\//i.test(u)) return '';
+    const proto = new URL(u).protocol;
     return proto === 'http:' || proto === 'https:' ? u : '';
   } catch { return ''; }
 }
