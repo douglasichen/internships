@@ -2,6 +2,7 @@
 which source a listing came from beyond the `source` field."""
 import hashlib
 from dataclasses import dataclass
+from urllib.parse import urlsplit, urlunsplit
 
 from internships.filters import year_relevance
 
@@ -18,8 +19,14 @@ class Listing:
 
     def id(self) -> str:
         """Stable identity for dedup across runs. url is the best unique key
-        an ATS/board gives us; fall back to title when a source has none."""
-        basis = f"{self.source}|{self.company}|{self.url or self.title}|{self.location}"
+        an ATS/board gives us; fall back to title when a source has none.
+        Query string/fragment are stripped for hashing only (some boards
+        append tracking params like ?utm_source=... to an otherwise-identical
+        link) -- self.url itself is untouched, since that's the real apply
+        link shown in the UI."""
+        parts = urlsplit(self.url)
+        url_for_id = urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
+        basis = f"{self.source}|{self.company}|{url_for_id or self.title}|{self.location}"
         return hashlib.sha1(basis.encode()).hexdigest()[:16]
 
     @property
@@ -36,6 +43,15 @@ def selftest():
     c = Listing("x", "Acme", "SWE Intern", "SF", "http://a/2")
     assert a.id() == b.id()
     assert a.id() != c.id()
+
+    # query string / fragment on the url must not affect dedup identity...
+    d = Listing("x", "Acme", "SWE Intern", "SF", "http://a/1?utm_source=foo&ref=bar")
+    e = Listing("x", "Acme", "SWE Intern", "SF", "http://a/1#section")
+    assert a.id() == d.id() == e.id()
+    # ...but the stored url field itself must stay fully intact (real apply link)
+    assert d.url == "http://a/1?utm_source=foo&ref=bar"
+    assert e.url == "http://a/1#section"
+
     assert Listing("x", "A", "SWE Intern Summer 2027", "SF", "u").is_2027
     # no year stated at all -- "maybe 2027" counts as is_2027, same as year_relevance
     assert Listing("x", "A", "SWE Intern", "SF", "u").is_2027
