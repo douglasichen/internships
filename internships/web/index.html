@@ -438,7 +438,7 @@
 
 <div class="filters">
   <div class="filters-inner">
-    <input id="search" type="text" placeholder="Search company or title…" autocomplete="off">
+    <input id="search" type="text" placeholder="Search company, title, or location…" autocomplete="off">
     <button id="filtersToggle" class="toggle" aria-expanded="false">Filters <span class="caret">▾</span></button>
     <div class="filter-details" id="filterDetails">
       <button class="chip" data-source="ats_boards"><span class="dot" style="background:var(--teal)"></span>Job boards</button>
@@ -607,7 +607,7 @@ function applyFilters(rows) {
     if (state.priorityFilter === 'p12' && r.priority > 2) return false;
     if (state.hideApplied && applied.has(r.id)) return false;
     if (state.appliedOnly && !applied.has(r.id)) return false;
-    if (q && !(r.company.toLowerCase().includes(q) || r.title.toLowerCase().includes(q))) return false;
+    if (q && !(r.company.toLowerCase().includes(q) || r.title.toLowerCase().includes(q) || (r.location || '').toLowerCase().includes(q))) return false;
     return true;
   });
 }
