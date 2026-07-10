@@ -443,7 +443,7 @@ GoPro,https://jobs.gopro.com/en/us,https://boards-api.greenhouse.io/v1/boards/go
 Dyson,https://dyson.wd3.myworkdayjobs.com/dyson_careers,https://dyson.wd3.myworkdayjobs.com/wday/cxs/dyson/dyson_careers/jobs (unverified),ok
 Quantlab,https://www.quantlab.com/careers,none found,skipped
 Radix Trading,https://job-boards.greenhouse.io/radixexperienced,https://boards-api.greenhouse.io/v1/boards/radixexperienced/jobs?content=true ; https://boards-api.greenhouse.io/v1/boards/radixuniversity/jobs?content=true,ok
-Cubist Systematic Strategies,https://careers.point72.com/,https://boards-api.greenhouse.io/v1/boards/point72/jobs?content=true,ok
+Cubist Systematic Strategies,https://careers.point72.com/,none found (Cubist posts on Point72 Greenhouse board; no separate Cubist board),skipped
 Adept AI,https://www.adept.ai/about-careers,none found,skipped
 Windsurf,https://windsurf.com/careers,https://api.ashbyhq.com/posting-api/job-board/windsurf (dead) ; https://api.ashbyhq.com/posting-api/job-board/codeium (dead),dead
 Lambda Labs,https://jobs.ashbyhq.com/lambda,https://api.ashbyhq.com/posting-api/job-board/lambda,ok
