@@ -4,7 +4,7 @@ import hashlib
 from dataclasses import dataclass
 from urllib.parse import urlsplit, urlunsplit
 
-from internships.filters import is_important_company, year_relevance
+from internships.filters import company_priority, year_relevance
 
 
 def normalize_url(url: str) -> str:
@@ -42,10 +42,10 @@ class Listing:
         return year_relevance(self.title, self.location, self.extra_text) != "no"
 
     @property
-    def is_important(self) -> bool:
-        """Company is mid/big tech or otherwise prestigious -- see
-        filters.is_important_company()."""
-        return is_important_company(self.company)
+    def priority(self) -> int:
+        """1 = big tech/top-tier-elite, 2 = mid tech, 3 = everything else
+        (default) -- see filters.company_priority()."""
+        return company_priority(self.company)
 
 
 def selftest():
@@ -73,17 +73,17 @@ def selftest():
     assert Listing("x", "A", "SWE Intern (Req 20271)", "SF", "u").is_2027
     assert Listing("x", "A", "SWE Intern", "120275 Main St", "u").is_2027
 
-    # is_important delegates to filters.is_important_company(self.company) --
-    # the matching logic itself is filters.py's own selftest's job
+    # priority delegates to filters.company_priority(self.company) -- the
+    # classification itself is filters.py's own selftest's job
     import sys
     _self = sys.modules[__name__]
-    orig = _self.is_important_company
-    _self.is_important_company = lambda company: company == "Notable Co"
+    orig = _self.company_priority
+    _self.company_priority = lambda company: 1 if company == "Notable Co" else 3
     try:
-        assert Listing("x", "Notable Co", "SWE Intern", "SF", "u").is_important
-        assert not Listing("x", "Nobody Inc", "SWE Intern", "SF", "u").is_important
+        assert Listing("x", "Notable Co", "SWE Intern", "SF", "u").priority == 1
+        assert Listing("x", "Nobody Inc", "SWE Intern", "SF", "u").priority == 3
     finally:
-        _self.is_important_company = orig
+        _self.company_priority = orig
     print("models selftest OK")
 
 

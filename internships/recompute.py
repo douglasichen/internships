@@ -6,13 +6,13 @@ Usage:
     python3 -m internships --recompute is_2027
     python3 -m internships --recompute descriptions
     python3 -m internships --recompute dedup
-    python3 -m internships --recompute important
-    python3 -m internships --recompute dedup is_2027 important descriptions
+    python3 -m internships --recompute priority
+    python3 -m internships --recompute dedup is_2027 priority descriptions
 """
 import json
 from concurrent.futures import ThreadPoolExecutor
 
-from internships.filters import is_important_company, year_relevance
+from internships.filters import company_priority, year_relevance
 from internships.models import normalize_url
 from internships.service import ROOT, _fetch_raw_page
 
@@ -44,17 +44,17 @@ def recompute(path=ALL_JSON_PATH):
     return changed, len(rows)
 
 
-def recompute_important(path=ALL_JSON_PATH):
-    """Recompute the stored `important` flag (mid/big tech or otherwise
-    prestigious, per filters.is_important_company) against the current
-    companies.csv -- handy after companies.csv gains new entries, since
-    important is otherwise also baked in at scrape time."""
+def recompute_priority(path=ALL_JSON_PATH):
+    """Recompute the stored `priority` field (1/2/3, per
+    filters.company_priority) against the current classification -- handy
+    after the tier lists change, since priority is otherwise also baked in
+    at scrape time."""
     rows = json.loads(path.read_text())
     changed = 0
     for row in rows:
-        important = is_important_company(row.get("company", ""))
-        if row.get("important") != important:
-            row["important"] = important
+        priority = company_priority(row.get("company", ""))
+        if row.get("priority") != priority:
+            row["priority"] = priority
             changed += 1
     _atomic_write(rows, path)
     return changed, len(rows)
@@ -132,28 +132,28 @@ def selftest():
     assert result[1]["is_2027"] is False
     assert result[2]["is_2027"] is True
 
-    # important: delegates to filters.is_important_company(company) -- the
-    # matching logic itself is filters.py's own selftest's job
+    # priority: delegates to filters.company_priority(company) -- the
+    # classification itself is filters.py's own selftest's job
     import sys
     _self = sys.modules[__name__]
-    orig_important = _self.is_important_company
-    _self.is_important_company = lambda company: company == "Notable Co"
+    orig_priority = _self.company_priority
+    _self.company_priority = lambda company: 1 if company == "Notable Co" else 3
     try:
-        rows_imp = [
-            {"company": "Notable Co", "important": False},  # stale -> True
-            {"company": "Nobody Inc", "important": True},  # stale -> False
-            {"company": "Notable Co", "important": True},  # already correct
+        rows_pri = [
+            {"company": "Notable Co", "priority": 3},  # stale -> 1
+            {"company": "Nobody Inc", "priority": 1},  # stale -> 3
+            {"company": "Notable Co", "priority": 1},  # already correct
         ]
-        p_imp = Path(tempfile.mkdtemp()) / "all.json"
-        p_imp.write_text(json.dumps(rows_imp))
-        changed, total = recompute_important(p_imp)
+        p_pri = Path(tempfile.mkdtemp()) / "all.json"
+        p_pri.write_text(json.dumps(rows_pri))
+        changed, total = recompute_priority(p_pri)
         assert changed == 2 and total == 3
-        result_imp = json.loads(p_imp.read_text())
-        assert result_imp[0]["important"] is True
-        assert result_imp[1]["important"] is False
-        assert result_imp[2]["important"] is True
+        result_pri = json.loads(p_pri.read_text())
+        assert result_pri[0]["priority"] == 1
+        assert result_pri[1]["priority"] == 3
+        assert result_pri[2]["priority"] == 1
     finally:
-        _self.is_important_company = orig_important
+        _self.company_priority = orig_priority
 
     # dedupe: same link (query string aside), different source/scrape time --
     # keep the OLDEST record, never overwrite it with a newer one

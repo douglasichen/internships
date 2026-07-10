@@ -239,17 +239,24 @@
     border-radius: 4px;
     vertical-align: middle;
   }
-  .role-title .important {
+  .role-title .p1, .role-title .p2 {
     display: inline-block;
     margin-left: 8px;
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.05em;
-    color: var(--gold);
-    background: #F3E7D0;
     padding: 1px 6px;
     border-radius: 4px;
     vertical-align: middle;
+  }
+  .role-title .p1 {
+    font-weight: 700;
+    color: #fff;
+    background: var(--gold);
+  }
+  .role-title .p2 {
+    color: var(--gold);
+    background: #F3E7D0;
   }
   .role-meta {
     font-size: 13px;
@@ -328,14 +335,15 @@
       <button class="chip" data-source="speedyapply"><span class="dot" style="background:var(--gold)"></span>speedyapply</button>
       <button class="chip" data-source="sndsh404"><span class="dot" style="background:var(--slate)"></span>sndsh404</button>
       <button class="toggle active" id="toggle2027">2027 only</button>
-      <button class="toggle" id="toggleImportant">Notable only</button>
+      <button class="toggle" id="toggleP12">P1+P2 only</button>
+      <button class="toggle" id="toggleP1">P1 only</button>
       <button class="toggle" id="toggleHideApplied">Hide applied</button>
       <button class="toggle" id="toggleAppliedOnly">Applied only</button>
       <div class="recompute-row">
         <span class="recompute-label">Recompute</span>
         <button class="toggle recompute-check active" data-field="dedup">dedup</button>
         <button class="toggle recompute-check" data-field="is_2027">is_2027</button>
-        <button class="toggle recompute-check" data-field="important">important</button>
+        <button class="toggle recompute-check" data-field="priority">priority</button>
         <button class="toggle recompute-check" data-field="descriptions">descriptions</button>
         <button class="toggle" id="runRecompute">Run</button>
         <span class="recompute-status" id="recomputeStatus"></span>
@@ -366,7 +374,7 @@ const state = {
   query: '',
   sources: new Set(Object.keys(SOURCE_COLOR)),
   only2027: true,
-  importantOnly: false,
+  priorityFilter: 'all', // 'all' | 'p12' | 'p1'
   hideApplied: false,
   appliedOnly: false,
 };
@@ -410,7 +418,8 @@ function applyFilters(rows) {
   return rows.filter(r => {
     if (!state.sources.has(r.source)) return false;
     if (state.only2027 && !r.is_2027) return false;
-    if (state.importantOnly && !r.important) return false;
+    if (state.priorityFilter === 'p1' && r.priority !== 1) return false;
+    if (state.priorityFilter === 'p12' && r.priority > 2) return false;
     if (state.hideApplied && applied.has(r.id)) return false;
     if (state.appliedOnly && !applied.has(r.id)) return false;
     if (q && !(r.company.toLowerCase().includes(q) || r.title.toLowerCase().includes(q))) return false;
@@ -459,7 +468,7 @@ function render() {
       <li class="role${appliedAt ? ' applied' : ''}">
         <input type="checkbox" class="applied-checkbox" data-id="${r.id}" ${appliedAt ? 'checked' : ''} title="Mark applied">
         <div class="role-main">
-          <div class="role-title">${escapeHtml(r.title)}${r.is_2027 ? '<span class="y2027">2027</span>' : ''}${r.important ? '<span class="important">★ notable</span>' : ''}</div>
+          <div class="role-title">${escapeHtml(r.title)}${r.is_2027 ? '<span class="y2027">2027</span>' : ''}${r.priority === 1 ? '<span class="p1">P1</span>' : r.priority === 2 ? '<span class="p2">P2</span>' : ''}</div>
           <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}</div>
         </div>
         <span class="source-badge" style="background:${SOURCE_COLOR[r.source]}">${SOURCE_LABEL[r.source]}</span>
@@ -497,9 +506,16 @@ document.getElementById('toggle2027').addEventListener('click', e => {
   e.target.classList.toggle('active', state.only2027);
   render();
 });
-document.getElementById('toggleImportant').addEventListener('click', e => {
-  state.importantOnly = !state.importantOnly;
-  e.target.classList.toggle('active', state.importantOnly);
+document.getElementById('toggleP12').addEventListener('click', e => {
+  state.priorityFilter = state.priorityFilter === 'p12' ? 'all' : 'p12';
+  e.target.classList.toggle('active', state.priorityFilter === 'p12');
+  document.getElementById('toggleP1').classList.remove('active');
+  render();
+});
+document.getElementById('toggleP1').addEventListener('click', e => {
+  state.priorityFilter = state.priorityFilter === 'p1' ? 'all' : 'p1';
+  e.target.classList.toggle('active', state.priorityFilter === 'p1');
+  document.getElementById('toggleP12').classList.remove('active');
   render();
 });
 document.getElementById('toggleHideApplied').addEventListener('click', e => {

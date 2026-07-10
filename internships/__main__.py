@@ -32,13 +32,13 @@ LOCK_PATH = ROOT / ".run.lock"
 
 SOURCES = [AtsBoardsSource(), GithubReadmeSource(), SpeedyApplySource(), Sndsh404Source()]
 
-FIELDS = ["company", "title", "location", "is_2027", "important", "source", "posted",
+FIELDS = ["company", "title", "location", "is_2027", "priority", "source", "posted",
           "scraped_at", "url", "description"]
 
 
 def _row(l, scraped_at):
     return {"id": l.id(), "company": l.company, "title": l.title, "location": l.location,
-            "is_2027": l.is_2027, "important": l.is_important, "source": l.source,
+            "is_2027": l.is_2027, "priority": l.priority, "source": l.source,
             "posted": l.posted, "scraped_at": scraped_at, "url": l.url,
             "description": l.extra_text}
 
@@ -53,7 +53,8 @@ def write_csv(listings, scraped_at, path):
         for l in listings:
             row = _row(l, scraped_at)
             row["is_2027"] = "yes" if row["is_2027"] else ""
-            row["important"] = "yes" if row["important"] else ""
+            # priority is an int (1/2/3), not a boolean flag -- write it
+            # straight through, csv.DictWriter handles ints fine.
             w.writerow(row)
 
 
@@ -114,12 +115,12 @@ def main():
                                   formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--selftest", action="store_true", help="run every module's self-check")
     ap.add_argument("--recompute", nargs="+",
-                     choices=["is_2027", "descriptions", "dedup", "important"], metavar="FIELD",
+                     choices=["is_2027", "descriptions", "dedup", "priority"], metavar="FIELD",
                      help="recompute stale out/all.json field(s) in place instead of scraping: "
                           "is_2027 (against current filters), descriptions (re-fetch any row "
                           "missing one), dedup (merge rows that are the same job link under "
-                          "today's rules, always keeping the oldest record), and/or important "
-                          "(mid/big tech or otherwise prestigious, against current companies.csv)")
+                          "today's rules, always keeping the oldest record), and/or priority "
+                          "(1/2/3 tier against current company classification)")
     a = ap.parse_args()
     if a.selftest:
         selftest()
@@ -145,9 +146,9 @@ def main():
         if "is_2027" in a.recompute:
             changed, total = recompute.recompute()
             print(f"recomputed is_2027 for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
-        if "important" in a.recompute:
-            changed, total = recompute.recompute_important()
-            print(f"recomputed important for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
+        if "priority" in a.recompute:
+            changed, total = recompute.recompute_priority()
+            print(f"recomputed priority for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
         if "descriptions" in a.recompute:
             changed, stale = recompute.backfill_descriptions()
             print(f"backfilled {changed}/{stale} stale descriptions -> {recompute.ALL_JSON_PATH}")

@@ -18,7 +18,7 @@ from internships import recompute as recompute_mod
 from internships.service import ROOT
 
 LOCK_PATH = ROOT / ".run.lock"
-VALID_FIELDS = ("dedup", "is_2027", "important", "descriptions")  # dedup first: no point
+VALID_FIELDS = ("dedup", "is_2027", "priority", "descriptions")  # dedup first: no point
 # backfilling a description for a row that's about to be dropped as a dupe
 
 _state_lock = threading.Lock()
@@ -46,9 +46,9 @@ def _run_recompute(fields):
         if "is_2027" in fields:
             changed, total = recompute_mod.recompute()
             summary["is_2027"] = f"{changed}/{total} changed"
-        if "important" in fields:
-            changed, total = recompute_mod.recompute_important()
-            summary["important"] = f"{changed}/{total} changed"
+        if "priority" in fields:
+            changed, total = recompute_mod.recompute_priority()
+            summary["priority"] = f"{changed}/{total} changed"
         if "descriptions" in fields:
             changed, stale = recompute_mod.backfill_descriptions()
             summary["descriptions"] = f"{changed}/{stale} backfilled"
