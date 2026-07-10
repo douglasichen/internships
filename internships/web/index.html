@@ -144,6 +144,24 @@
     cursor: pointer;
   }
   .toggle.active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+  #filtersToggle {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #filtersToggle .caret { transition: transform 120ms; font-size: 10px; }
+  #filtersToggle.open .caret { transform: rotate(180deg); }
+  .filter-details {
+    display: none;
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .filter-details.open { display: flex; }
 
   main {
     max-width: 880px;
@@ -269,13 +287,16 @@
 <div class="filters">
   <div class="filters-inner">
     <input id="search" type="text" placeholder="Search company or title…" autocomplete="off">
-    <button class="chip" data-source="ats_boards"><span class="dot" style="background:var(--teal)"></span>Job boards</button>
-    <button class="chip" data-source="github_readme"><span class="dot" style="background:var(--plum)"></span>vanshb03</button>
-    <button class="chip" data-source="speedyapply"><span class="dot" style="background:var(--gold)"></span>speedyapply</button>
-    <button class="chip" data-source="sndsh404"><span class="dot" style="background:var(--slate)"></span>sndsh404</button>
-    <button class="toggle active" id="toggle2027">2027 only</button>
-    <button class="toggle" id="toggleHideApplied">Hide applied</button>
-    <button class="toggle" id="toggleAppliedOnly">Applied only</button>
+    <button id="filtersToggle" class="toggle" aria-expanded="false">Filters <span class="caret">▾</span></button>
+    <div class="filter-details" id="filterDetails">
+      <button class="chip" data-source="ats_boards"><span class="dot" style="background:var(--teal)"></span>Job boards</button>
+      <button class="chip" data-source="github_readme"><span class="dot" style="background:var(--plum)"></span>vanshb03</button>
+      <button class="chip" data-source="speedyapply"><span class="dot" style="background:var(--gold)"></span>speedyapply</button>
+      <button class="chip" data-source="sndsh404"><span class="dot" style="background:var(--slate)"></span>sndsh404</button>
+      <button class="toggle active" id="toggle2027">2027 only</button>
+      <button class="toggle" id="toggleHideApplied">Hide applied</button>
+      <button class="toggle" id="toggleAppliedOnly">Applied only</button>
+    </div>
   </div>
 </div>
 
@@ -419,6 +440,11 @@ document.querySelectorAll('.chip').forEach(chip => {
     else { state.sources.add(src); chip.classList.add('active'); }
     render();
   });
+});
+document.getElementById('filtersToggle').addEventListener('click', e => {
+  const open = document.getElementById('filterDetails').classList.toggle('open');
+  e.currentTarget.classList.toggle('open', open);
+  e.currentTarget.setAttribute('aria-expanded', open);
 });
 document.getElementById('toggle2027').addEventListener('click', e => {
   state.only2027 = !state.only2027;
