@@ -7,8 +7,9 @@
 
 ## out/all.json history
 
-- `out/all.json` (the full listing history the web UI reads) is tracked in git deliberately, specifically so its edit history is preserved — see `.gitignore` (`out/*` + `!out/all.json`; the per-run timestamped CSVs stay untracked).
-- Whenever a scrape or `--recompute` run changes `out/all.json`, commit that change **on its own** — don't bundle it into a code commit. Write a message that says what actually happened to the data (e.g. "Scrape: 12 new listings", "Recompute: backfilled 40 descriptions", "Recompute: deduped 15 rows"), not a generic "update data".
+- `out/all.json` (listing **metadata** the web UI reads — no description bodies) is tracked in git deliberately, specifically so its edit history is preserved — see `.gitignore` (`out/*` + `!out/all.json`; the per-run timestamped CSVs stay untracked).
+- Job descriptions live in `out/descriptions.json` keyed by the same listing `id`. That file is **gitignored** (large HTML blobs). Don't commit it.
+- Whenever a scrape or `--recompute` run changes `out/all.json`, commit that change **on its own** — don't bundle it into a code commit. Write a message that says what actually happened to the data (e.g. "Scrape: 12 new listings", "Recompute: deduped 15 rows"), not a generic "update data".
 
 ## Fetching external domains
 

@@ -12,16 +12,19 @@ Usage:
 import json
 from concurrent.futures import ThreadPoolExecutor
 
+from internships import desc_store
 from internships.filters import company_priority, year_relevance
 from internships.models import normalize_url
 from internships.service import ROOT, _fetch_raw_page
 
 ALL_JSON_PATH = ROOT / "out" / "all.json"
+DESCRIPTIONS_PATH = desc_store.DESCRIPTIONS_PATH
 
 
-def _atomic_write(rows, path):
-    tmp = path.with_suffix(".tmp")
-    tmp.write_text(json.dumps(rows, indent=2))
+def _atomic_write(obj, path):
+    """Atomic JSON write for lists (all.json) or dicts (descriptions.json)."""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(obj, indent=2))
     tmp.replace(path)
 
 
@@ -96,21 +99,32 @@ def dedupe(path=ALL_JSON_PATH):
 
 
 def backfill_descriptions(path=ALL_JSON_PATH):
-    """Re-fetch a description for any row that doesn't have one -- e.g. it
-    was scraped before description-capture existed, or an earlier fetch
-    failed transiently. Same best-effort raw-page fetch used as the
-    README-source fallback in service.py; doesn't touch rows that already
-    have a description, even a short one."""
+    """Re-fetch a description for any listing that doesn't have one in
+    out/descriptions.json -- e.g. scraped before description-capture, or a
+    prior fetch failed. Same best-effort raw-page fetch as service.py.
+    Does not touch all.json rows (descriptions are keyed by listing id).
+    Skips rows that already have a description, even a short one."""
     rows = json.loads(path.read_text())
-    stale = [r for r in rows if not r.get("description")]
+    # peel any legacy inline description fields into the store first.
+    # Save store BEFORE rewriting all.json so a crash can't drop bodies.
+    descs = desc_store.load(path)
+    peeled = desc_store.peel_from_rows(rows)
+    if peeled:
+        for k, v in peeled.items():
+            descs.setdefault(k, v)
+        desc_store.save(descs, path)
+        _atomic_write(rows, path)
+
+    stale = [r for r in rows if r.get("id") and not descs.get(r["id"])]
     with ThreadPoolExecutor(max_workers=8) as ex:
         texts = list(ex.map(lambda r: _fetch_raw_page(r.get("url")), stale))
     changed = 0
     for row, text in zip(stale, texts):
         if text:
-            row["description"] = text
+            descs[row["id"]] = text
             changed += 1
-    _atomic_write(rows, path)
+    if changed:
+        desc_store.save(descs, path)
     return changed, len(stale)
 
 
@@ -158,10 +172,8 @@ def selftest():
     # dedupe: same link (query string aside), different source/scrape time --
     # keep the OLDEST record, never overwrite it with a newer one
     dupe_rows = [
-        {"url": "http://a/1", "source": "ats_boards", "scraped_at": "2026-02-01T00:00:00",
-         "description": ""},
-        {"url": "http://a/1?utm=x", "source": "github_readme", "scraped_at": "2026-01-01T00:00:00",
-         "description": "has a description"},
+        {"url": "http://a/1", "source": "ats_boards", "scraped_at": "2026-02-01T00:00:00"},
+        {"url": "http://a/1?utm=x", "source": "github_readme", "scraped_at": "2026-01-01T00:00:00"},
         {"url": "http://a/2", "source": "ats_boards", "scraped_at": "2026-01-15T00:00:00"},
         {"source": "ats_boards", "scraped_at": "2026-01-01T00:00:00"},  # no url -- never merged
         {"source": "github_readme", "scraped_at": "2026-01-02T00:00:00"},  # no url -- never merged
@@ -175,7 +187,6 @@ def selftest():
     by_url = {r.get("url"): r for r in result3}
     # the older record's own url field is untouched -- still has ?utm=x
     assert by_url["http://a/1?utm=x"]["source"] == "github_readme"
-    assert by_url["http://a/1?utm=x"]["description"] == "has a description"
     assert by_url["http://a/2"]["source"] == "ats_boards"
     assert sum(1 for r in result3 if not r.get("url")) == 2  # both no-url rows kept, untouched
 
@@ -186,24 +197,27 @@ def selftest():
     orig_fetch = _self._fetch_raw_page
     _self._fetch_raw_page = lambda url: "fetched: " + url if url else ""
     try:
+        # descriptions live in descriptions.json keyed by id -- not on the row
         rows2 = [
-            {"title": "a", "url": "http://x/1", "description": "already have one"},
-            {"title": "b", "url": "http://x/2", "description": ""},
-            {"title": "c", "url": "http://x/3"},  # missing description key, not just empty
-            {"title": "d"},  # stale AND no url key -- must not crash the whole run
+            {"id": "a", "title": "a", "url": "http://x/1"},
+            {"id": "b", "title": "b", "url": "http://x/2"},
+            {"id": "c", "title": "c", "url": "http://x/3"},
+            {"id": "d", "title": "d"},  # no url -- must not crash the whole run
         ]
         p2 = Path(tempfile.mkdtemp()) / "all.json"
         p2.write_text(json.dumps(rows2))
-        # a single no-url stale row used to raise KeyError inside ex.map,
-        # killing the whole run and losing every other backfilled description
-        # (the atomic write never happened). It must be a plain no-op instead.
+        # seed store: a already has a description
+        desc_store.save({"a": "already have one"}, p2)
         changed, stale_count = backfill_descriptions(p2)
-        assert stale_count == 3 and changed == 2
+        assert stale_count == 3 and changed == 2  # b,c fetched; d no url -> empty
+        # all.json stays description-free
         result2 = json.loads(p2.read_text())
-        assert result2[0]["description"] == "already have one"  # untouched
-        assert result2[1]["description"] == "fetched: http://x/2"
-        assert result2[2]["description"] == "fetched: http://x/3"
-        assert "description" not in result2[3]  # no url -> nothing fetched, still written back
+        assert all("description" not in r for r in result2)
+        descs = desc_store.load(p2)
+        assert descs["a"] == "already have one"  # untouched
+        assert descs["b"] == "fetched: http://x/2"
+        assert descs["c"] == "fetched: http://x/3"
+        assert "d" not in descs
     finally:
         _self._fetch_raw_page = orig_fetch
     print("recompute selftest OK")
