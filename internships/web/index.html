@@ -253,7 +253,11 @@
   .role:hover { background: var(--surface-alt); margin: 0 -4px; padding-left: 8px; padding-right: 8px; border-radius: 8px; }
   .role-main { flex: 1; min-width: 0; }
   .role-title { font-weight: 600; font-size: 15px; }
-  .role-title .y2027 {
+  /* Shared title badges: main rows (.role-title) and applied-sibling rows
+     (.sibling-title). Without the sibling selectors, "2027"/"P1" render as
+     bare text and concatenate with titles that already end in a year
+     (e.g. "Winter 2027" + "2027" → "Winter 20272027"). */
+  .role-title .y2027, .sibling-title .y2027 {
     display: inline-block;
     margin-left: 8px;
     font-family: var(--mono);
@@ -265,7 +269,8 @@
     border-radius: 4px;
     vertical-align: middle;
   }
-  .role-title .p1, .role-title .p2 {
+  .role-title .p1, .role-title .p2,
+  .sibling-title .p1, .sibling-title .p2 {
     display: inline-block;
     margin-left: 8px;
     font-family: var(--mono);
@@ -275,12 +280,12 @@
     border-radius: 4px;
     vertical-align: middle;
   }
-  .role-title .p1 {
+  .role-title .p1, .sibling-title .p1 {
     font-weight: 700;
     color: #fff;
     background: var(--gold);
   }
-  .role-title .p2 {
+  .role-title .p2, .sibling-title .p2 {
     color: var(--gold);
     background: #F3E7D0;
   }
