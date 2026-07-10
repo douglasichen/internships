@@ -182,8 +182,9 @@ def selftest():
 
     # ats_boards runs first and its listings become known_urls: a
     # github_readme listing with the exact same link (tracking param and
-    # all -- normalize_url strips that) is skipped outright, while a
-    # genuinely different listing falls back to a raw page fetch.
+    # all -- normalize_url strips utm_*/ref/etc. but keeps gh_jid) is
+    # skipped outright, while a genuinely different listing falls back to
+    # a raw page fetch.
     import sys
     _self = sys.modules[__name__]  # not a fresh dotted import -- see ats_boards.py's
     # own selftest for why: this file runs as __main__ under --selftest, a
