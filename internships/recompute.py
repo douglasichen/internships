@@ -105,12 +105,14 @@ def backfill_descriptions(path=ALL_JSON_PATH):
     Does not touch all.json rows (descriptions are keyed by listing id).
     Skips rows that already have a description, even a short one."""
     rows = json.loads(path.read_text())
-    # peel any legacy inline description fields into the store first
+    # peel any legacy inline description fields into the store first.
+    # Save store BEFORE rewriting all.json so a crash can't drop bodies.
     descs = desc_store.load(path)
     peeled = desc_store.peel_from_rows(rows)
     if peeled:
         for k, v in peeled.items():
             descs.setdefault(k, v)
+        desc_store.save(descs, path)
         _atomic_write(rows, path)
 
     stale = [r for r in rows if r.get("id") and not descs.get(r["id"])]
@@ -121,7 +123,8 @@ def backfill_descriptions(path=ALL_JSON_PATH):
         if text:
             descs[row["id"]] = text
             changed += 1
-    desc_store.save(descs, path)
+    if changed:
+        desc_store.save(descs, path)
     return changed, len(stale)
 
 

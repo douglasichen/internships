@@ -18,15 +18,17 @@ def path_for(all_json_path) -> Path:
 
 
 def load(all_json_path=None) -> dict:
-    """Return id -> description. Missing/empty file -> {}."""
+    """Return id -> description. Missing file -> {}.
+
+    Corrupt / unreadable existing file raises -- callers must not treat that
+    as an empty store and rewrite (would wipe descriptions)."""
     p = path_for(all_json_path) if all_json_path else DESCRIPTIONS_PATH
     if not p.exists():
         return {}
-    try:
-        data = json.loads(p.read_text())
-    except (ValueError, OSError):
-        return {}
-    return data if isinstance(data, dict) else {}
+    data = json.loads(p.read_text())  # ValueError/OSError propagate
+    if not isinstance(data, dict):
+        raise ValueError(f"{p} is not a JSON object")
+    return data
 
 
 def save(descs: dict, all_json_path=None) -> None:
@@ -60,10 +62,15 @@ def peel_from_rows(rows: list) -> dict:
 def migrate_all_json(all_json_path=None) -> int:
     """One-shot: peel descriptions out of all.json into descriptions.json.
 
-    Merges with any existing descriptions.json (existing keys win only if the
-    all.json value is empty). Returns number of descriptions newly taken from
-    all.json. No-op if all.json has no description fields.
+    Writes descriptions.json FIRST (merged with any existing store), then
+    rewrites all.json without description fields -- so a crash between the
+    two leaves bodies safe (and all.json still peelable on retry).
+
+    Returns number of descriptions newly taken from all.json. No-op if
+    all.json has no description fields.
     """
+    from internships.recompute import _atomic_write
+
     all_path = Path(all_json_path) if all_json_path else (ROOT / "out" / "all.json")
     if not all_path.exists():
         return 0
@@ -78,10 +85,9 @@ def migrate_all_json(all_json_path=None) -> int:
             descs[k] = v
             added += 1
         # if already present, keep the existing store value (don't clobber)
-    from internships.recompute import _atomic_write
-
-    _atomic_write(rows, all_path)
+    # store first, then slim all.json
     save(descs, all_path)
+    _atomic_write(rows, all_path)
     return added
 
 
@@ -117,6 +123,15 @@ def selftest():
     descs["ccc"] = ""
     save(descs, all_p)
     assert "ccc" not in load(all_p)
+
+    # corrupt store must not fail-open to {}
+    bad = path_for(all_p)
+    bad.write_text("NOT JSON{{{")
+    try:
+        load(all_p)
+        raise AssertionError("corrupt store should raise")
+    except ValueError:
+        pass
 
     print("desc_store selftest OK")
 

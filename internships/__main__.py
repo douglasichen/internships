@@ -84,19 +84,24 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     have = {r.get("id") for r in existing}
     for l in listings:
         row = _row(l, scraped_at)  # no description field
-        if row["id"] in have:
+        lid = row["id"]
+        if lid in have:
+            # retry after crash: row may already be in all.json but desc never
+            # saved -- still fill the store when we have body text
+            if l.extra_text and not descs.get(lid):
+                descs[lid] = l.extra_text
             continue
         existing.append(row)
-        have.add(row["id"])
+        have.add(lid)
         if l.extra_text:
-            descs[row["id"]] = l.extra_text
+            descs[lid] = l.extra_text
     path.parent.mkdir(parents=True, exist_ok=True)
-    # Atomic (tmp + replace), same as recompute writes to this very file: this
-    # is a full rewrite of the entire cumulative dataset, so a crash mid-write
-    # (SIGKILL / disk-full / OOM) would otherwise truncate all.json and lose
-    # every historical row -- and every later run would then crash on json.loads.
-    recompute._atomic_write(existing, path)
+    # descriptions.json FIRST, then all.json: a crash between the two leaves
+    # bodies intact (and peelable if all.json still had inline fields). Orphan
+    # desc keys for ids not yet in all.json are harmless.
     desc_store.save(descs, path)
+    # Atomic (tmp + replace): full rewrite of the cumulative dataset.
+    recompute._atomic_write(existing, path)
 
 
 def selftest():
@@ -189,6 +194,30 @@ def selftest():
         assert "description" not in rows[0]
         descs = desc_store.load(all_json)
         assert descs[listing.id()] == "<p>full body</p>"
+
+    # retry: id already in all.json, desc missing -- second append fills store
+    with tempfile.TemporaryDirectory() as td:
+        from internships import desc_store
+        all_json = Path(td) / "all.json"
+        listing = Listing("s", "Acme", "SWE", "SF", "http://x/retry",
+                          extra_text="body on retry")
+        # simulate crash: row written, desc never saved
+        all_json.write_text(json.dumps([_row(listing, "2026-07-09T00:00:00")]))
+        assert listing.id() not in desc_store.load(all_json)
+        append_all_json([listing], "2026-07-09T01:00:00", all_json)
+        assert len(json.loads(all_json.read_text())) == 1  # no double insert
+        assert desc_store.load(all_json)[listing.id()] == "body on retry"
+
+    # peel legacy inline descriptions: store written, all.json slimmed
+    with tempfile.TemporaryDirectory() as td:
+        from internships import desc_store
+        all_json = Path(td) / "all.json"
+        all_json.write_text(json.dumps([
+            {"id": "leg1", "company": "X", "description": "legacy body"},
+        ]))
+        append_all_json([], "2026-07-09T00:00:00", all_json)
+        assert "description" not in json.loads(all_json.read_text())[0]
+        assert desc_store.load(all_json)["leg1"] == "legacy body"
     print("__main__ selftest OK")
 
 
