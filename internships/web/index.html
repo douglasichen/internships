@@ -179,14 +179,6 @@
     text-transform: uppercase;
     color: var(--text-muted);
   }
-  .recompute-check {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 13px;
-    color: var(--text-muted);
-    cursor: pointer;
-  }
   .recompute-status {
     font-size: 12px;
     color: var(--text-muted);
@@ -328,9 +320,9 @@
       <button class="toggle" id="toggleAppliedOnly">Applied only</button>
       <div class="recompute-row">
         <span class="recompute-label">Recompute</span>
-        <label class="recompute-check"><input type="checkbox" value="dedup" checked> dedup</label>
-        <label class="recompute-check"><input type="checkbox" value="is_2027"> is_2027</label>
-        <label class="recompute-check"><input type="checkbox" value="descriptions"> descriptions</label>
+        <button class="toggle recompute-check active" data-field="dedup">dedup</button>
+        <button class="toggle recompute-check" data-field="is_2027">is_2027</button>
+        <button class="toggle recompute-check" data-field="descriptions">descriptions</button>
         <button class="toggle" id="runRecompute">Run</button>
         <span class="recompute-status" id="recomputeStatus"></span>
       </div>
@@ -507,6 +499,9 @@ document.getElementById('toggleAppliedOnly').addEventListener('click', e => {
   }
   render();
 });
+document.querySelectorAll('.recompute-check').forEach(btn => {
+  btn.addEventListener('click', () => btn.classList.toggle('active'));
+});
 document.getElementById('search').addEventListener('input', e => {
   state.query = e.target.value;
   render();
@@ -541,7 +536,7 @@ function pollRecompute() {
 }
 
 document.getElementById('runRecompute').addEventListener('click', async e => {
-  const fields = [...document.querySelectorAll('.recompute-check input:checked')].map(c => c.value);
+  const fields = [...document.querySelectorAll('.recompute-check.active')].map(b => b.dataset.field);
   const statusEl = document.getElementById('recomputeStatus');
   const btn = e.target;
   if (!fields.length) { statusEl.textContent = 'pick at least one field'; return; }
