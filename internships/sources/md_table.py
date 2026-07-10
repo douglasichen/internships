@@ -9,7 +9,8 @@ sections) -- extract_rows yields every row from every marked section.
 All three README sources fetch from raw.githubusercontent.com and run
 concurrently (internships/service.py fires one thread per source), so
 without coordination they'd hit that one domain 3x at once. README_THROTTLE
-is a single shared DomainThrottle instance (see ats_boards.py) so they still
+is a single shared DomainThrottle (see ats_boards.py); use hold(url) around
+each fetch so they still
 space themselves out per-domain, same as the ATS board fetches.
 """
 import html

@@ -329,8 +329,8 @@ class CustomBoardsSource:
         throttle = DomainThrottle(self.interval)
 
         def run(spec):
-            throttle.wait(spec["url"])
-            return spec_to_listings(spec)
+            with throttle.hold(spec["url"]):
+                return spec_to_listings(spec)
 
         listings = []
         if self.config:
@@ -338,9 +338,9 @@ class CustomBoardsSource:
                 for got in ex.map(run, self.config):
                     listings.extend(got)
         for company, (url, fn) in DECODERS.items():
-            throttle.wait(url)
             try:
-                listings.extend(fn())
+                with throttle.hold(url):
+                    listings.extend(fn())
             except Exception:  # noqa: BLE001 - a broken decoder yields nothing, not a crash
                 pass
         return listings

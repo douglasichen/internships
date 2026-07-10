@@ -39,10 +39,10 @@ class Sndsh404Source:
         self.url = url
 
     def fetch(self) -> list:
-        README_THROTTLE.wait(self.url)
-        req = Request(self.url, headers={"User-Agent": UA})
-        with urlopen(req, timeout=25) as r:
-            markdown = r.read().decode("utf-8")
+        with README_THROTTLE.hold(self.url):
+            req = Request(self.url, headers={"User-Agent": UA})
+            with urlopen(req, timeout=25) as r:
+                markdown = r.read().decode("utf-8")
         return parse(markdown)
 
 
