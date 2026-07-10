@@ -445,7 +445,7 @@ Quantlab,https://www.quantlab.com/careers,none found,skipped
 Radix Trading,https://job-boards.greenhouse.io/radixexperienced,https://boards-api.greenhouse.io/v1/boards/radixexperienced/jobs?content=true ; https://boards-api.greenhouse.io/v1/boards/radixuniversity/jobs?content=true,ok
 Cubist Systematic Strategies,https://careers.point72.com/,https://boards-api.greenhouse.io/v1/boards/point72/jobs?content=true,ok
 Adept AI,https://www.adept.ai/about-careers,none found,skipped
-Windsurf,https://windsurf.com/careers,https://api.ashbyhq.com/posting-api/job-board/cognition?includeCompensation=true,ok
+Windsurf,https://windsurf.com/careers,https://api.ashbyhq.com/posting-api/job-board/windsurf (dead) ; https://api.ashbyhq.com/posting-api/job-board/codeium (dead),dead
 Lambda Labs,https://jobs.ashbyhq.com/lambda,https://api.ashbyhq.com/posting-api/job-board/lambda,ok
 Nebius,https://job-boards.eu.greenhouse.io/nebius,https://boards-api.greenhouse.io/v1/boards/nebius/jobs?content=true,ok
 Decagon,https://jobs.ashbyhq.com/decagon,https://api.ashbyhq.com/posting-api/job-board/decagon,ok
