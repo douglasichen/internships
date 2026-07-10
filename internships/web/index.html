@@ -284,6 +284,18 @@
     color: var(--gold);
     background: #F3E7D0;
   }
+  .role-title .workday, .sibling-title .workday {
+    display: inline-block;
+    margin-left: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--slate);
+    background: #E4EBF2;
+    padding: 1px 6px;
+    border-radius: 4px;
+    vertical-align: middle;
+  }
   .role-meta {
     font-size: 13px;
     color: var(--text-muted);
@@ -525,7 +537,7 @@ function renderSiblings(siblings) {
     return `
       <li class="sibling applied">
         <div class="sibling-main">
-          <div class="sibling-title">${escapeHtml(s.title)}${s.is_2027 ? '<span class="y2027">2027</span>' : ''}${s.priority === 1 ? '<span class="p1">P1</span>' : s.priority === 2 ? '<span class="p2">P2</span>' : ''}</div>
+          <div class="sibling-title">${escapeHtml(s.title)}${titleBadges(s)}</div>
           ${meta ? `<div class="sibling-meta">${escapeHtml(meta)}</div>` : ''}
         </div>
         ${appliedAt
@@ -554,6 +566,19 @@ function formatRunDate(iso) {
 
 function escapeHtml(s) {
   return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// Workday apply links: myworkdayjobs.com hosts (incl. wdN.*) and /wday/cxs/ API paths.
+function isWorkdayUrl(u) {
+  if (!u) return false;
+  const s = String(u).toLowerCase();
+  return s.includes('myworkdayjobs.com') || s.includes('/wday/cxs/');
+}
+
+function titleBadges(r) {
+  return (r.is_2027 ? '<span class="y2027">2027</span>' : '')
+    + (r.priority === 1 ? '<span class="p1">P1</span>' : r.priority === 2 ? '<span class="p2">P2</span>' : '')
+    + (isWorkdayUrl(r.url) ? '<span class="workday" title="Workday application">Workday</span>' : '');
 }
 
 // escapeHtml alone does NOT neutralize a scraped `javascript:`/`data:` URL --
@@ -643,7 +668,7 @@ function render() {
         <div class="role${appliedAt ? ' applied' : ''}">
           <input type="checkbox" class="applied-checkbox" data-id="${r.id}" ${appliedAt ? 'checked' : ''} title="Mark applied">
           <div class="role-main">
-            <div class="role-title">${escapeHtml(r.title)}${r.is_2027 ? '<span class="y2027">2027</span>' : ''}${r.priority === 1 ? '<span class="p1">P1</span>' : r.priority === 2 ? '<span class="p2">P2</span>' : ''}</div>
+            <div class="role-title">${escapeHtml(r.title)}${titleBadges(r)}</div>
             <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}${appliedCta}</div>
           </div>
           <span class="source-badge" style="background:${SOURCE_COLOR[r.source]}">${SOURCE_LABEL[r.source]}</span>
