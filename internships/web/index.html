@@ -227,6 +227,15 @@
     white-space: nowrap;
   }
   .apply-link:hover { text-decoration: underline; }
+  .applied-checkbox {
+    flex-shrink: 0;
+    width: 17px;
+    height: 17px;
+    accent-color: var(--teal);
+    cursor: pointer;
+  }
+  .role.applied { opacity: 0.55; }
+  .role.applied .role-title { text-decoration: line-through; }
 
   .empty {
     text-align: center;
@@ -264,7 +273,9 @@
     <button class="chip" data-source="github_readme"><span class="dot" style="background:var(--plum)"></span>vanshb03</button>
     <button class="chip" data-source="speedyapply"><span class="dot" style="background:var(--gold)"></span>speedyapply</button>
     <button class="chip" data-source="sndsh404"><span class="dot" style="background:var(--slate)"></span>sndsh404</button>
-    <button class="toggle" id="toggle2027">2027 only</button>
+    <button class="toggle active" id="toggle2027">2027 only</button>
+    <button class="toggle" id="toggleHideApplied">Hide applied</button>
+    <button class="toggle" id="toggleAppliedOnly">Applied only</button>
   </div>
 </div>
 
@@ -289,10 +300,23 @@ const SOURCE_LABEL = {
 const state = {
   query: '',
   sources: new Set(Object.keys(SOURCE_COLOR)),
-  only2027: false,
+  only2027: true,
+  hideApplied: false,
+  appliedOnly: false,
 };
 
 let ALL = [];
+
+// "Applied" is manual, per-browser state -- never touched by the scraper,
+// so it survives out/all.json being regenerated/appended on every run.
+// Maps listing id -> ISO timestamp of when it was marked applied.
+const APPLIED_KEY = 'internships-applied';
+function loadApplied() {
+  try { return new Map(Object.entries(JSON.parse(localStorage.getItem(APPLIED_KEY) || '{}'))); }
+  catch { return new Map(); }
+}
+function saveApplied(m) { localStorage.setItem(APPLIED_KEY, JSON.stringify(Object.fromEntries(m))); }
+let applied = loadApplied();
 
 function relativeTime(iso) {
   const then = new Date(iso), now = new Date();
@@ -320,6 +344,8 @@ function applyFilters(rows) {
   return rows.filter(r => {
     if (!state.sources.has(r.source)) return false;
     if (state.only2027 && !r.is_2027) return false;
+    if (state.hideApplied && applied.has(r.id)) return false;
+    if (state.appliedOnly && !applied.has(r.id)) return false;
     if (q && !(r.company.toLowerCase().includes(q) || r.title.toLowerCase().includes(q))) return false;
     return true;
   });
@@ -360,15 +386,19 @@ function render() {
 
   main.innerHTML = runs.map(run => {
     const items = groups.get(run).sort((a, b) => a.company.localeCompare(b.company));
-    const roleHtml = items.map(r => `
-      <li class="role">
+    const roleHtml = items.map(r => {
+      const appliedAt = applied.get(r.id);
+      return `
+      <li class="role${appliedAt ? ' applied' : ''}">
+        <input type="checkbox" class="applied-checkbox" data-id="${r.id}" ${appliedAt ? 'checked' : ''} title="Mark applied">
         <div class="role-main">
           <div class="role-title">${escapeHtml(r.title)}${r.is_2027 ? '<span class="y2027">2027</span>' : ''}</div>
-          <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}</div>
+          <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}</div>
         </div>
         <span class="source-badge" style="background:${SOURCE_COLOR[r.source]}">${SOURCE_LABEL[r.source]}</span>
         ${r.url ? `<a class="apply-link" href="${escapeHtml(r.url)}" target="_blank" rel="noopener">Apply →</a>` : ''}
-      </li>`).join('');
+      </li>`;
+    }).join('');
     return `
       <section class="run-group">
         <div class="run-header">
@@ -395,8 +425,35 @@ document.getElementById('toggle2027').addEventListener('click', e => {
   e.target.classList.toggle('active', state.only2027);
   render();
 });
+document.getElementById('toggleHideApplied').addEventListener('click', e => {
+  state.hideApplied = !state.hideApplied;
+  e.target.classList.toggle('active', state.hideApplied);
+  if (state.hideApplied && state.appliedOnly) {
+    state.appliedOnly = false;
+    document.getElementById('toggleAppliedOnly').classList.remove('active');
+  }
+  render();
+});
+document.getElementById('toggleAppliedOnly').addEventListener('click', e => {
+  state.appliedOnly = !state.appliedOnly;
+  e.target.classList.toggle('active', state.appliedOnly);
+  if (state.appliedOnly && state.hideApplied) {
+    state.hideApplied = false;
+    document.getElementById('toggleHideApplied').classList.remove('active');
+  }
+  render();
+});
 document.getElementById('search').addEventListener('input', e => {
   state.query = e.target.value;
+  render();
+});
+document.getElementById('main').addEventListener('change', e => {
+  const cb = e.target.closest('.applied-checkbox');
+  if (!cb) return;
+  const id = cb.dataset.id;
+  if (cb.checked) applied.set(id, new Date().toISOString());
+  else applied.delete(id);
+  saveApplied(applied);
   render();
 });
 
