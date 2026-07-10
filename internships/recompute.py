@@ -6,12 +6,13 @@ Usage:
     python3 -m internships --recompute is_2027
     python3 -m internships --recompute descriptions
     python3 -m internships --recompute dedup
-    python3 -m internships --recompute dedup is_2027 descriptions
+    python3 -m internships --recompute important
+    python3 -m internships --recompute dedup is_2027 important descriptions
 """
 import json
 from concurrent.futures import ThreadPoolExecutor
 
-from internships.filters import year_relevance
+from internships.filters import is_important_company, year_relevance
 from internships.models import normalize_url
 from internships.service import ROOT, _fetch_raw_page
 
@@ -38,6 +39,22 @@ def recompute(path=ALL_JSON_PATH):
         is_2027 = year_relevance(row["title"], row["location"]) != "no"
         if row["is_2027"] != is_2027:
             row["is_2027"] = is_2027
+            changed += 1
+    _atomic_write(rows, path)
+    return changed, len(rows)
+
+
+def recompute_important(path=ALL_JSON_PATH):
+    """Recompute the stored `important` flag (mid/big tech or otherwise
+    prestigious, per filters.is_important_company) against the current
+    companies.csv -- handy after companies.csv gains new entries, since
+    important is otherwise also baked in at scrape time."""
+    rows = json.loads(path.read_text())
+    changed = 0
+    for row in rows:
+        important = is_important_company(row.get("company", ""))
+        if row.get("important") != important:
+            row["important"] = important
             changed += 1
     _atomic_write(rows, path)
     return changed, len(rows)
@@ -114,6 +131,29 @@ def selftest():
     assert result[0]["is_2027"] is True
     assert result[1]["is_2027"] is False
     assert result[2]["is_2027"] is True
+
+    # important: delegates to filters.is_important_company(company) -- the
+    # matching logic itself is filters.py's own selftest's job
+    import sys
+    _self = sys.modules[__name__]
+    orig_important = _self.is_important_company
+    _self.is_important_company = lambda company: company == "Notable Co"
+    try:
+        rows_imp = [
+            {"company": "Notable Co", "important": False},  # stale -> True
+            {"company": "Nobody Inc", "important": True},  # stale -> False
+            {"company": "Notable Co", "important": True},  # already correct
+        ]
+        p_imp = Path(tempfile.mkdtemp()) / "all.json"
+        p_imp.write_text(json.dumps(rows_imp))
+        changed, total = recompute_important(p_imp)
+        assert changed == 2 and total == 3
+        result_imp = json.loads(p_imp.read_text())
+        assert result_imp[0]["important"] is True
+        assert result_imp[1]["important"] is False
+        assert result_imp[2]["important"] is True
+    finally:
+        _self.is_important_company = orig_important
 
     # dedupe: same link (query string aside), different source/scrape time --
     # keep the OLDEST record, never overwrite it with a newer one

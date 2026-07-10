@@ -4,7 +4,7 @@ import hashlib
 from dataclasses import dataclass
 from urllib.parse import urlsplit, urlunsplit
 
-from internships.filters import year_relevance
+from internships.filters import is_important_company, year_relevance
 
 
 def normalize_url(url: str) -> str:
@@ -41,6 +41,12 @@ class Listing:
         which is what decides whether this listing was kept at all."""
         return year_relevance(self.title, self.location, self.extra_text) != "no"
 
+    @property
+    def is_important(self) -> bool:
+        """Company is mid/big tech or otherwise prestigious -- see
+        filters.is_important_company()."""
+        return is_important_company(self.company)
+
 
 def selftest():
     a = Listing("x", "Acme", "SWE Intern", "SF", "http://a/1")
@@ -66,6 +72,18 @@ def selftest():
     # (i.e. maybe 2027), not a false "definitely 2027" match
     assert Listing("x", "A", "SWE Intern (Req 20271)", "SF", "u").is_2027
     assert Listing("x", "A", "SWE Intern", "120275 Main St", "u").is_2027
+
+    # is_important delegates to filters.is_important_company(self.company) --
+    # the matching logic itself is filters.py's own selftest's job
+    import sys
+    _self = sys.modules[__name__]
+    orig = _self.is_important_company
+    _self.is_important_company = lambda company: company == "Notable Co"
+    try:
+        assert Listing("x", "Notable Co", "SWE Intern", "SF", "u").is_important
+        assert not Listing("x", "Nobody Inc", "SWE Intern", "SF", "u").is_important
+    finally:
+        _self.is_important_company = orig
     print("models selftest OK")
 
 

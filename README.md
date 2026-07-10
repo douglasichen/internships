@@ -8,7 +8,7 @@ sources and reports whatever's new since the last run.
 ```
 python3 -m internships             # fetch all sources, write out/<timestamp>.csv
 python3 -m internships --selftest  # run every module's inline self-check
-python3 -m internships --recompute is_2027 descriptions dedup  # patch out/all.json, no scrape
+python3 -m internships --recompute is_2027 descriptions dedup important  # patch out/all.json, no scrape
 ```
 
 Each run takes a `.run.lock` flock so two scrapes can't race each other's
@@ -19,7 +19,9 @@ already seen on a prior run (tracked per-source in `data/seen/*.json`), and
 writes the rest to `out/<timestamp>.csv` and appends it to `out/all.json`
 (the full history, used by the web UI below) — every row carries a
 `description` (the posting's own body, or a raw-page-fetch fallback for
-sources that don't have one).
+sources that don't have one) and an `important` flag (mid/big tech or
+otherwise prestigious, approximated as "is this company on our own
+`companies.csv` sweep list" — see `filters.is_important_company`).
 
 `--recompute FIELD [FIELD ...]` (`internships/recompute.py`) patches
 `out/all.json` in place instead of scraping — handy after changing filter
@@ -28,15 +30,18 @@ logic or for backfilling rows scraped before a field existed:
 - `descriptions` — re-fetch a description for any row missing one
 - `dedup` — merge rows that are the same job link under today's rules,
   always keeping the oldest record
+- `important` — recompute the flag against the current `companies.csv`
 
 ## Web UI
 
 A static page (`internships/web/index.html`) lists every listing ever found,
-newest scrape first, with search + source + "2027 only"/"Hide applied"/
-"Applied only" filters. A checkbox on each row marks it applied — that state
-lives only in the browser's `localStorage`, not the backend, so it survives
-`out/all.json` being regenerated. A "Recompute" control in the filter panel
-lets you trigger `--recompute dedup`/`is_2027`/`descriptions` from the page
+newest scrape first, with search + source + "2027 only"/"Notable only"/
+"Hide applied"/"Applied only" filters. Notable (important) listings get a
+"★ notable" badge next to the title. A checkbox on each row marks it
+applied — that state lives only in the browser's `localStorage`, not the
+backend, so it survives `out/all.json` being regenerated. A "Recompute"
+control in the filter panel lets you trigger
+`--recompute dedup`/`is_2027`/`important`/`descriptions` from the page
 itself instead of the terminal.
 
 It fetches `out/all.json` and POSTs to `/api/recompute`, so it needs

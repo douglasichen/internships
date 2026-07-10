@@ -32,14 +32,15 @@ LOCK_PATH = ROOT / ".run.lock"
 
 SOURCES = [AtsBoardsSource(), GithubReadmeSource(), SpeedyApplySource(), Sndsh404Source()]
 
-FIELDS = ["company", "title", "location", "is_2027", "source", "posted", "scraped_at", "url",
-          "description"]
+FIELDS = ["company", "title", "location", "is_2027", "important", "source", "posted",
+          "scraped_at", "url", "description"]
 
 
 def _row(l, scraped_at):
     return {"id": l.id(), "company": l.company, "title": l.title, "location": l.location,
-            "is_2027": l.is_2027, "source": l.source, "posted": l.posted,
-            "scraped_at": scraped_at, "url": l.url, "description": l.extra_text}
+            "is_2027": l.is_2027, "important": l.is_important, "source": l.source,
+            "posted": l.posted, "scraped_at": scraped_at, "url": l.url,
+            "description": l.extra_text}
 
 
 def write_csv(listings, scraped_at, path):
@@ -52,6 +53,7 @@ def write_csv(listings, scraped_at, path):
         for l in listings:
             row = _row(l, scraped_at)
             row["is_2027"] = "yes" if row["is_2027"] else ""
+            row["important"] = "yes" if row["important"] else ""
             w.writerow(row)
 
 
@@ -111,12 +113,13 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                   formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--selftest", action="store_true", help="run every module's self-check")
-    ap.add_argument("--recompute", nargs="+", choices=["is_2027", "descriptions", "dedup"],
-                     metavar="FIELD",
+    ap.add_argument("--recompute", nargs="+",
+                     choices=["is_2027", "descriptions", "dedup", "important"], metavar="FIELD",
                      help="recompute stale out/all.json field(s) in place instead of scraping: "
                           "is_2027 (against current filters), descriptions (re-fetch any row "
-                          "missing one), and/or dedup (merge rows that are the same job link "
-                          "under today's rules, always keeping the oldest record)")
+                          "missing one), dedup (merge rows that are the same job link under "
+                          "today's rules, always keeping the oldest record), and/or important "
+                          "(mid/big tech or otherwise prestigious, against current companies.csv)")
     a = ap.parse_args()
     if a.selftest:
         selftest()
@@ -142,6 +145,9 @@ def main():
         if "is_2027" in a.recompute:
             changed, total = recompute.recompute()
             print(f"recomputed is_2027 for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
+        if "important" in a.recompute:
+            changed, total = recompute.recompute_important()
+            print(f"recomputed important for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
         if "descriptions" in a.recompute:
             changed, stale = recompute.backfill_descriptions()
             print(f"backfilled {changed}/{stale} stale descriptions -> {recompute.ALL_JSON_PATH}")
