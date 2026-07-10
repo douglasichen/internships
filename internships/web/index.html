@@ -775,6 +775,11 @@ document.getElementById('runRecompute').addEventListener('click', async e => {
 // --recompute run -- so the live indicator is accurate regardless of who
 // started it.
 let scrapeWasActive = false;
+// Set when THIS tab's POST /api/scrape returns 202; cleared when we surface
+// that run's result/error. Without this, /api/scrape/status keeps the last
+// server-side result forever, so a later recompute/CLI scrape releasing the
+// lock would re-show a stale "done — N new listings" from an earlier scrape.
+let pendingUiScrape = false;
 function pollScrapeActive() {
   fetch('/api/status').then(r => r.json()).then(s => {
     const statusEl = document.getElementById('scrapeStatus');
@@ -790,14 +795,18 @@ function pollScrapeActive() {
       if (scrapeWasActive) {
         scrapeWasActive = false;
         loadAll();
-        // only populated if THIS server's own /api/scrape triggered it --
-        // a CLI-triggered run leaves this blank, which is fine, the live
-        // indicator above already covered the important part
-        fetch('/api/scrape/status').then(r => r.json()).then(s2 => {
-          if (s2.result) statusEl.textContent = `done — ${s2.result.new_listings} new listings`;
-          else if (s2.error) statusEl.textContent = 'error: ' + s2.error;
-          else statusEl.textContent = '';
-        }).catch(() => { statusEl.textContent = ''; });
+        if (pendingUiScrape) {
+          pendingUiScrape = false;
+          fetch('/api/scrape/status').then(r => r.json()).then(s2 => {
+            if (s2.result) statusEl.textContent = `done — ${s2.result.new_listings} new listings`;
+            else if (s2.error) statusEl.textContent = 'error: ' + s2.error;
+            else statusEl.textContent = '';
+          }).catch(() => { statusEl.textContent = ''; });
+        } else {
+          // CLI scrape / --recompute / other tab: refresh data, don't invent a
+          // completion line from a previous /api/scrape result.
+          statusEl.textContent = '';
+        }
       }
     }
   }).catch(() => {});
@@ -815,6 +824,7 @@ document.getElementById('runScrape').addEventListener('click', async e => {
       statusEl.textContent = 'scrape running…';
       statusEl.classList.add('live');
       scrapeWasActive = true;
+      pendingUiScrape = true;
       return;
     }
     const err = await res.json().catch(() => ({}));
