@@ -1,10 +1,19 @@
 """Shared listing type. Every source emits these; nothing downstream cares
 which source a listing came from beyond the `source` field."""
 import hashlib
-import re
 from dataclasses import dataclass
+from urllib.parse import urlsplit, urlunsplit
 
-Y2027_RE = re.compile(r"\b20\s?27\b")
+from internships.filters import company_priority, year_relevance
+
+
+def normalize_url(url: str) -> str:
+    """Strip query string/fragment -- e.g. some boards append tracking
+    params like ?utm_source=... to an otherwise-identical link. Used both
+    for Listing.id()'s dedup identity and, in service.py, to recognize the
+    same job posting reached via two different sources."""
+    parts = urlsplit(url)
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
 
 
 @dataclass(frozen=True)
@@ -19,13 +28,24 @@ class Listing:
 
     def id(self) -> str:
         """Stable identity for dedup across runs. url is the best unique key
-        an ATS/board gives us; fall back to title when a source has none."""
-        basis = f"{self.source}|{self.company}|{self.url or self.title}|{self.location}"
+        an ATS/board gives us; fall back to title when a source has none.
+        self.url itself is untouched (the real apply link shown in the UI)
+        -- only the id() basis uses the normalized form."""
+        basis = f"{self.source}|{self.company}|{normalize_url(self.url) or self.title}|{self.location}"
         return hashlib.sha1(basis.encode()).hexdigest()[:16]
 
     @property
     def is_2027(self) -> bool:
-        return any(Y2027_RE.search(t) for t in (self.title, self.location, self.extra_text) if t)
+        """True unless title/location explicitly name a non-2027 year --
+        same "no year stated = maybe 2027" logic as filters.year_relevance,
+        which is what decides whether this listing was kept at all."""
+        return year_relevance(self.title, self.location, self.extra_text) != "no"
+
+    @property
+    def priority(self) -> int:
+        """1 = big tech/top-tier-elite, 2 = mid tech, 3 = everything else
+        (default) -- see filters.company_priority()."""
+        return company_priority(self.company)
 
 
 def selftest():
@@ -34,12 +54,36 @@ def selftest():
     c = Listing("x", "Acme", "SWE Intern", "SF", "http://a/2")
     assert a.id() == b.id()
     assert a.id() != c.id()
+
+    # query string / fragment on the url must not affect dedup identity...
+    d = Listing("x", "Acme", "SWE Intern", "SF", "http://a/1?utm_source=foo&ref=bar")
+    e = Listing("x", "Acme", "SWE Intern", "SF", "http://a/1#section")
+    assert a.id() == d.id() == e.id()
+    # ...but the stored url field itself must stay fully intact (real apply link)
+    assert d.url == "http://a/1?utm_source=foo&ref=bar"
+    assert e.url == "http://a/1#section"
+
     assert Listing("x", "A", "SWE Intern Summer 2027", "SF", "u").is_2027
-    assert not Listing("x", "A", "SWE Intern", "SF", "u").is_2027
+    # no year stated at all -- "maybe 2027" counts as is_2027, same as year_relevance
+    assert Listing("x", "A", "SWE Intern", "SF", "u").is_2027
+    assert not Listing("x", "A", "SWE Intern Summer 2026", "SF", "u").is_2027
     # bounded match: '2027' must be a standalone year, not a substring of a
-    # longer number like a req ID or address
-    assert not Listing("x", "A", "SWE Intern (Req 20271)", "SF", "u").is_2027
-    assert not Listing("x", "A", "SWE Intern", "120275 Main St", "u").is_2027
+    # longer number like a req ID or address -- these count as "no year found"
+    # (i.e. maybe 2027), not a false "definitely 2027" match
+    assert Listing("x", "A", "SWE Intern (Req 20271)", "SF", "u").is_2027
+    assert Listing("x", "A", "SWE Intern", "120275 Main St", "u").is_2027
+
+    # priority delegates to filters.company_priority(self.company) -- the
+    # classification itself is filters.py's own selftest's job
+    import sys
+    _self = sys.modules[__name__]
+    orig = _self.company_priority
+    _self.company_priority = lambda company: 1 if company == "Notable Co" else 3
+    try:
+        assert Listing("x", "Notable Co", "SWE Intern", "SF", "u").priority == 1
+        assert Listing("x", "Nobody Inc", "SWE Intern", "SF", "u").priority == 3
+    finally:
+        _self.company_priority = orig
     print("models selftest OK")
 
 

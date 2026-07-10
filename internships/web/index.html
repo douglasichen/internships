@@ -144,6 +144,72 @@
     cursor: pointer;
   }
   .toggle.active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+  #filtersToggle {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #filtersToggle .caret { transition: transform 120ms; font-size: 10px; }
+  #filtersToggle.open .caret { transform: rotate(180deg); }
+  .filter-details {
+    display: none;
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .filter-details.open { display: flex; }
+  .recompute-row {
+    flex-basis: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .recompute-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .recompute-status {
+    font-size: 12px;
+    color: var(--text-muted);
+    flex-basis: 100%;
+  }
+  .scrape-row {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .scrape-status {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .scrape-status.live {
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .scrape-status.live::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) { .scrape-status.live::before { animation: none; } }
 
   main {
     max-width: 880px;
@@ -199,6 +265,25 @@
     border-radius: 4px;
     vertical-align: middle;
   }
+  .role-title .p1, .role-title .p2 {
+    display: inline-block;
+    margin-left: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    padding: 1px 6px;
+    border-radius: 4px;
+    vertical-align: middle;
+  }
+  .role-title .p1 {
+    font-weight: 700;
+    color: #fff;
+    background: var(--gold);
+  }
+  .role-title .p2 {
+    color: var(--gold);
+    background: #F3E7D0;
+  }
   .role-meta {
     font-size: 13px;
     color: var(--text-muted);
@@ -227,6 +312,15 @@
     white-space: nowrap;
   }
   .apply-link:hover { text-decoration: underline; }
+  .applied-checkbox {
+    flex-shrink: 0;
+    width: 17px;
+    height: 17px;
+    accent-color: var(--teal);
+    cursor: pointer;
+  }
+  .role.applied { opacity: 0.55; }
+  .role.applied .role-title { text-decoration: line-through; }
 
   .empty {
     text-align: center;
@@ -255,16 +349,36 @@
   <div class="hero-count" id="heroCount">–</div>
   <div class="hero-label" id="heroLabel">roles found</div>
   <div class="hero-sub" id="heroSub"></div>
+  <div class="scrape-row">
+    <button class="toggle" id="runScrape">Run scrape</button>
+    <span class="scrape-status" id="scrapeStatus"></span>
+  </div>
 </header>
 
 <div class="filters">
   <div class="filters-inner">
     <input id="search" type="text" placeholder="Search company or title…" autocomplete="off">
-    <button class="chip" data-source="ats_boards"><span class="dot" style="background:var(--teal)"></span>Job boards</button>
-    <button class="chip" data-source="github_readme"><span class="dot" style="background:var(--plum)"></span>vanshb03</button>
-    <button class="chip" data-source="speedyapply"><span class="dot" style="background:var(--gold)"></span>speedyapply</button>
-    <button class="chip" data-source="sndsh404"><span class="dot" style="background:var(--slate)"></span>sndsh404</button>
-    <button class="toggle" id="toggle2027">2027 only</button>
+    <button id="filtersToggle" class="toggle" aria-expanded="false">Filters <span class="caret">▾</span></button>
+    <div class="filter-details" id="filterDetails">
+      <button class="chip" data-source="ats_boards"><span class="dot" style="background:var(--teal)"></span>Job boards</button>
+      <button class="chip" data-source="github_readme"><span class="dot" style="background:var(--plum)"></span>vanshb03</button>
+      <button class="chip" data-source="speedyapply"><span class="dot" style="background:var(--gold)"></span>speedyapply</button>
+      <button class="chip" data-source="sndsh404"><span class="dot" style="background:var(--slate)"></span>sndsh404</button>
+      <button class="toggle active" id="toggle2027">2027 only</button>
+      <button class="toggle" id="toggleP12">P1+P2 only</button>
+      <button class="toggle" id="toggleP1">P1 only</button>
+      <button class="toggle" id="toggleHideApplied">Hide applied</button>
+      <button class="toggle" id="toggleAppliedOnly">Applied only</button>
+      <div class="recompute-row">
+        <span class="recompute-label">Recompute</span>
+        <button class="toggle recompute-check active" data-field="dedup">dedup</button>
+        <button class="toggle recompute-check" data-field="is_2027">is_2027</button>
+        <button class="toggle recompute-check" data-field="priority">priority</button>
+        <button class="toggle recompute-check" data-field="descriptions">descriptions</button>
+        <button class="toggle" id="runRecompute">Run</button>
+        <span class="recompute-status" id="recomputeStatus"></span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -289,10 +403,24 @@ const SOURCE_LABEL = {
 const state = {
   query: '',
   sources: new Set(Object.keys(SOURCE_COLOR)),
-  only2027: false,
+  only2027: true,
+  priorityFilter: 'all', // 'all' | 'p12' | 'p1'
+  hideApplied: false,
+  appliedOnly: false,
 };
 
 let ALL = [];
+
+// "Applied" is manual, per-browser state -- never touched by the scraper,
+// so it survives out/all.json being regenerated/appended on every run.
+// Maps listing id -> ISO timestamp of when it was marked applied.
+const APPLIED_KEY = 'internships-applied';
+function loadApplied() {
+  try { return new Map(Object.entries(JSON.parse(localStorage.getItem(APPLIED_KEY) || '{}'))); }
+  catch { return new Map(); }
+}
+function saveApplied(m) { localStorage.setItem(APPLIED_KEY, JSON.stringify(Object.fromEntries(m))); }
+let applied = loadApplied();
 
 function relativeTime(iso) {
   const then = new Date(iso), now = new Date();
@@ -320,6 +448,10 @@ function applyFilters(rows) {
   return rows.filter(r => {
     if (!state.sources.has(r.source)) return false;
     if (state.only2027 && !r.is_2027) return false;
+    if (state.priorityFilter === 'p1' && r.priority !== 1) return false;
+    if (state.priorityFilter === 'p12' && r.priority > 2) return false;
+    if (state.hideApplied && applied.has(r.id)) return false;
+    if (state.appliedOnly && !applied.has(r.id)) return false;
     if (q && !(r.company.toLowerCase().includes(q) || r.title.toLowerCase().includes(q))) return false;
     return true;
   });
@@ -360,15 +492,19 @@ function render() {
 
   main.innerHTML = runs.map(run => {
     const items = groups.get(run).sort((a, b) => a.company.localeCompare(b.company));
-    const roleHtml = items.map(r => `
-      <li class="role">
+    const roleHtml = items.map(r => {
+      const appliedAt = applied.get(r.id);
+      return `
+      <li class="role${appliedAt ? ' applied' : ''}">
+        <input type="checkbox" class="applied-checkbox" data-id="${r.id}" ${appliedAt ? 'checked' : ''} title="Mark applied">
         <div class="role-main">
-          <div class="role-title">${escapeHtml(r.title)}${r.is_2027 ? '<span class="y2027">2027</span>' : ''}</div>
-          <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}</div>
+          <div class="role-title">${escapeHtml(r.title)}${r.is_2027 ? '<span class="y2027">2027</span>' : ''}${r.priority === 1 ? '<span class="p1">P1</span>' : r.priority === 2 ? '<span class="p2">P2</span>' : ''}</div>
+          <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}</div>
         </div>
         <span class="source-badge" style="background:${SOURCE_COLOR[r.source]}">${SOURCE_LABEL[r.source]}</span>
         ${r.url ? `<a class="apply-link" href="${escapeHtml(r.url)}" target="_blank" rel="noopener">Apply →</a>` : ''}
-      </li>`).join('');
+      </li>`;
+    }).join('');
     return `
       <section class="run-group">
         <div class="run-header">
@@ -390,20 +526,159 @@ document.querySelectorAll('.chip').forEach(chip => {
     render();
   });
 });
+document.getElementById('filtersToggle').addEventListener('click', e => {
+  const open = document.getElementById('filterDetails').classList.toggle('open');
+  e.currentTarget.classList.toggle('open', open);
+  e.currentTarget.setAttribute('aria-expanded', open);
+});
 document.getElementById('toggle2027').addEventListener('click', e => {
   state.only2027 = !state.only2027;
   e.target.classList.toggle('active', state.only2027);
   render();
 });
+document.getElementById('toggleP12').addEventListener('click', e => {
+  state.priorityFilter = state.priorityFilter === 'p12' ? 'all' : 'p12';
+  e.target.classList.toggle('active', state.priorityFilter === 'p12');
+  document.getElementById('toggleP1').classList.remove('active');
+  render();
+});
+document.getElementById('toggleP1').addEventListener('click', e => {
+  state.priorityFilter = state.priorityFilter === 'p1' ? 'all' : 'p1';
+  e.target.classList.toggle('active', state.priorityFilter === 'p1');
+  document.getElementById('toggleP12').classList.remove('active');
+  render();
+});
+document.getElementById('toggleHideApplied').addEventListener('click', e => {
+  state.hideApplied = !state.hideApplied;
+  e.target.classList.toggle('active', state.hideApplied);
+  if (state.hideApplied && state.appliedOnly) {
+    state.appliedOnly = false;
+    document.getElementById('toggleAppliedOnly').classList.remove('active');
+  }
+  render();
+});
+document.getElementById('toggleAppliedOnly').addEventListener('click', e => {
+  state.appliedOnly = !state.appliedOnly;
+  e.target.classList.toggle('active', state.appliedOnly);
+  if (state.appliedOnly && state.hideApplied) {
+    state.hideApplied = false;
+    document.getElementById('toggleHideApplied').classList.remove('active');
+  }
+  render();
+});
+document.querySelectorAll('.recompute-check').forEach(btn => {
+  btn.addEventListener('click', () => btn.classList.toggle('active'));
+});
 document.getElementById('search').addEventListener('input', e => {
   state.query = e.target.value;
   render();
 });
+document.getElementById('main').addEventListener('change', e => {
+  const cb = e.target.closest('.applied-checkbox');
+  if (!cb) return;
+  const id = cb.dataset.id;
+  if (cb.checked) applied.set(id, new Date().toISOString());
+  else applied.delete(id);
+  saveApplied(applied);
+  render();
+});
 
-fetch('/out/all.json')
-  .then(r => r.ok ? r.json() : [])
-  .catch(() => [])
-  .then(data => { ALL = data; render(); });
+function loadAll() {
+  return fetch('/out/all.json')
+    .then(r => r.ok ? r.json() : [])
+    .catch(() => [])
+    .then(data => { ALL = data; render(); });
+}
+
+function pollRecompute() {
+  const statusEl = document.getElementById('recomputeStatus');
+  const btn = document.getElementById('runRecompute');
+  fetch('/api/recompute/status').then(r => r.json()).then(s => {
+    if (s.running) { setTimeout(pollRecompute, 1500); return; }
+    btn.disabled = false;
+    if (s.error) { statusEl.textContent = 'error: ' + s.error; return; }
+    statusEl.textContent = Object.entries(s.result || {}).map(([k, v]) => `${k}: ${v}`).join(' · ') || 'done';
+    loadAll();
+  }).catch(() => { statusEl.textContent = 'lost connection while polling'; btn.disabled = false; });
+}
+
+document.getElementById('runRecompute').addEventListener('click', async e => {
+  const fields = [...document.querySelectorAll('.recompute-check.active')].map(b => b.dataset.field);
+  const statusEl = document.getElementById('recomputeStatus');
+  const btn = e.target;
+  if (!fields.length) { statusEl.textContent = 'pick at least one field'; return; }
+  btn.disabled = true;
+  statusEl.textContent = 'starting…';
+  try {
+    const res = await fetch(`/api/recompute?fields=${fields.join(',')}`, { method: 'POST' });
+    if (res.status === 202) { statusEl.textContent = 'running…'; pollRecompute(); return; }
+    const err = await res.json().catch(() => ({}));
+    statusEl.textContent = err.error || `failed (${res.status})`;
+    btn.disabled = false;
+  } catch {
+    statusEl.textContent = 'no server running -- start with: python3 -m internships.webserver';
+    btn.disabled = false;
+  }
+});
+
+// Polls whether .run.lock is held by ANYONE -- this tab's own "Run scrape"
+// click, another tab, or a bare terminal `python3 -m internships` /
+// --recompute run -- so the live indicator is accurate regardless of who
+// started it.
+let scrapeWasActive = false;
+function pollScrapeActive() {
+  fetch('/api/status').then(r => r.json()).then(s => {
+    const statusEl = document.getElementById('scrapeStatus');
+    const btn = document.getElementById('runScrape');
+    if (s.active) {
+      scrapeWasActive = true;
+      statusEl.textContent = 'scrape running…';
+      statusEl.classList.add('live');
+      btn.disabled = true;
+    } else {
+      statusEl.classList.remove('live');
+      btn.disabled = false;
+      if (scrapeWasActive) {
+        scrapeWasActive = false;
+        loadAll();
+        // only populated if THIS server's own /api/scrape triggered it --
+        // a CLI-triggered run leaves this blank, which is fine, the live
+        // indicator above already covered the important part
+        fetch('/api/scrape/status').then(r => r.json()).then(s2 => {
+          if (s2.result) statusEl.textContent = `done — ${s2.result.new_listings} new listings`;
+          else if (s2.error) statusEl.textContent = 'error: ' + s2.error;
+          else statusEl.textContent = '';
+        }).catch(() => { statusEl.textContent = ''; });
+      }
+    }
+  }).catch(() => {});
+  setTimeout(pollScrapeActive, 4000);
+}
+
+document.getElementById('runScrape').addEventListener('click', async e => {
+  const statusEl = document.getElementById('scrapeStatus');
+  const btn = e.target;
+  btn.disabled = true;
+  statusEl.textContent = 'starting…';
+  try {
+    const res = await fetch('/api/scrape', { method: 'POST' });
+    if (res.status === 202) {
+      statusEl.textContent = 'scrape running…';
+      statusEl.classList.add('live');
+      scrapeWasActive = true;
+      return;
+    }
+    const err = await res.json().catch(() => ({}));
+    statusEl.textContent = err.error || `failed (${res.status})`;
+    btn.disabled = false;
+  } catch {
+    statusEl.textContent = 'no server running -- start with: python3 -m internships.webserver';
+    btn.disabled = false;
+  }
+});
+
+loadAll();
+pollScrapeActive();
 </script>
 </body>
 </html>

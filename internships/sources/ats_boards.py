@@ -15,11 +15,13 @@ import re
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
+from dataclasses import replace
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
+from internships.filters import is_swe_internship
 from internships.models import Listing
 
 ROOT = Path(__file__).resolve().parent.parent.parent
@@ -49,11 +51,17 @@ def parse_urls(cell):
     return out
 
 
-def request_for(url):
-    """Workday cxs and Uber want a POST body; everything else is a GET."""
-    if "/wday/cxs/" in url:
-        body = json.dumps({"appliedFacets": {}, "limit": 20, "offset": 0,
-                            "searchText": ""}).encode()
+def request_for(url, search_text="", offset=0, limit=20):
+    """Workday cxs search and Uber want a POST body; everything else is a
+    GET -- including Workday's own per-job detail page, which also lives
+    under /wday/cxs/ but (unlike the .../jobs search endpoint) wants a
+    plain GET. search_text/offset/limit only matter for the Workday branch
+    (see fetch_workday_postings) -- an unfiltered searchText="" would only
+    ever return the site's first 20 postings unsorted, which for a big
+    company almost never includes an internship."""
+    if "/wday/cxs/" in url and url.split("?")[0].endswith("/jobs"):
+        body = json.dumps({"appliedFacets": {}, "limit": limit, "offset": offset,
+                            "searchText": search_text}).encode()
         return Request(url, data=body, method="POST",
                        headers={"User-Agent": UA, "Content-Type": "application/json",
                                 "Accept": "application/json"})
@@ -65,10 +73,11 @@ def request_for(url):
     return Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
 
 
-def fetch_json(url):
-    """Return (ok, parsed_json_or_None, note)."""
+def fetch_json(url, **kwargs):
+    """Return (ok, parsed_json_or_None, note). kwargs forwarded to
+    request_for (search_text/offset/limit -- meaningful for Workday only)."""
     try:
-        with urlopen(request_for(url), timeout=TIMEOUT) as r:
+        with urlopen(request_for(url, **kwargs), timeout=TIMEOUT) as r:
             raw = r.read()
     except HTTPError as e:
         return False, None, f"http {e.code}"
@@ -122,6 +131,8 @@ def _get_location(job):
 
 
 def _get_blob(job):
+    # deliberately untouched (HTML tags/entities and all) -- this is meant to
+    # be copy-pasted into an AI later, which handles markup noise just fine
     return " ".join(v for k in BODY_KEYS if isinstance((v := job.get(k)), str))
 
 
@@ -162,6 +173,71 @@ def job_to_listing(company, job, api_url=""):
     return Listing(source="ats_boards", company=company, title=title,
                     location=_get_location(job), url=_resolve_url(_first(job, URL_KEYS), api_url),
                     extra_text=_get_blob(job))
+
+
+def workday_detail_url(api_url, external_path):
+    """Workday's list/search endpoint (.../wday/cxs/<tenant>/<site>/jobs)
+    carries no description -- only the per-job detail endpoint does, which is
+    that same cxs base with '/jobs' swapped for the job's externalPath."""
+    base = api_url.split("?")[0]
+    if not (base.endswith("/jobs") and external_path):
+        return None
+    return base[:-len("/jobs")] + external_path
+
+
+def fetch_workday_description(api_url, external_path):
+    detail_url = workday_detail_url(api_url, external_path)
+    if not detail_url:
+        return ""
+    ok, data, _ = fetch_json(detail_url)
+    if not ok or not isinstance(data, dict):
+        return ""
+    info = data.get("jobPostingInfo")
+    return info.get("jobDescription", "") if isinstance(info, dict) else ""
+
+
+WORKDAY_PAGE_LIMIT = 20
+# ponytail: 5 pages/term (100 postings) is a hard ceiling so one company
+# can't make the sweep fetch unboundedly; raise if real intern/co-op hits
+# start showing up past page 5 for some company (Workday's searchText is a
+# loose relevance-ranked substring match, so in practice they cluster early).
+WORKDAY_MAX_PAGES = 5
+# "intern" alone misses postings titled bare "Co-Op" with no "intern"
+# substring (confirmed live: Analog Devices "Embedded Software Co-Op"), so
+# both terms are searched and merged rather than guessing one covers both.
+WORKDAY_SEARCH_TERMS = ("intern", "co-op")
+
+
+def _dedupe_key(job):
+    return _first(job, URL_KEYS) or id(job)
+
+
+def fetch_workday_postings(url, throttle):
+    """Search a Workday cxs /jobs endpoint for internship/co-op postings,
+    paginating each search term until a short page (fewer than the limit --
+    no more results) or WORKDAY_MAX_PAGES, merging + deduping across terms.
+    Returns (jobs, ok) -- ok is True iff at least one request succeeded, so a
+    company with zero current matches still counts as a live endpoint."""
+    seen, jobs, any_ok = set(), [], False
+    for term in WORKDAY_SEARCH_TERMS:
+        offset = 0
+        for _ in range(WORKDAY_MAX_PAGES):
+            throttle.wait(url)
+            ok, data, note = fetch_json(url, search_text=term, offset=offset,
+                                         limit=WORKDAY_PAGE_LIMIT)
+            if not ok:
+                break
+            any_ok = True
+            page = extract_postings(data)
+            for j in page:
+                key = _dedupe_key(j)
+                if key not in seen:
+                    seen.add(key)
+                    jobs.append(j)
+            if len(page) < WORKDAY_PAGE_LIMIT:
+                break
+            offset += WORKDAY_PAGE_LIMIT
+    return jobs, any_ok
 
 
 class DomainThrottle:
@@ -236,11 +312,15 @@ class AtsBoardsSource:
             row, urls = item
             company = row["company"]
             for url in urls:
-                throttle.wait(url)
-                ok, data, note = fetch_json(url)
+                if WDAY_CXS_RE.search(url):
+                    jobs, ok = fetch_workday_postings(url, throttle)
+                else:
+                    throttle.wait(url)
+                    ok, data, note = fetch_json(url)
+                    jobs = extract_postings(data) if ok else []
                 if ok:
                     listings = []
-                    for j in extract_postings(data):
+                    for j in jobs:
                         try:
                             l = job_to_listing(company, j, api_url=url)
                         except Exception:  # noqa: BLE001 - one malformed
@@ -248,6 +328,17 @@ class AtsBoardsSource:
                             # the whole batch; skip just that job.
                             continue
                         if l is not None:
+                            # Workday's list endpoint has no description --
+                            # only fetch the per-job detail page (one extra
+                            # request each) for postings that already look
+                            # like an SWE internship, to keep the added
+                            # request volume small.
+                            if not l.extra_text and WDAY_CXS_RE.search(url) and is_swe_internship(l.title):
+                                external_path = _first(j, ("externalPath",))
+                                throttle.wait(url)
+                                desc = fetch_workday_description(url, external_path)
+                                if desc:
+                                    l = replace(l, extra_text=desc)
                             listings.append(l)
                     return company, "ok", listings
             return company, "dead", []
@@ -266,6 +357,19 @@ class AtsBoardsSource:
 
 
 def selftest():
+    # the /jobs search endpoint POSTs a query body; a Workday detail page
+    # (same /wday/cxs/ prefix, but not ending in /jobs) must stay a plain GET
+    assert request_for("https://x.wd1.myworkdayjobs.com/wday/cxs/x/Ext/jobs").get_method() == "POST"
+    assert request_for("https://x.wd1.myworkdayjobs.com/wday/cxs/x/Ext/job/y").get_method() == "GET"
+
+    # search_text/offset/limit thread through into the POST body -- this is
+    # what makes pagination + keyword search possible instead of always
+    # fetching the same unfiltered first 20 postings.
+    req = request_for("https://x.wd1.myworkdayjobs.com/wday/cxs/x/Ext/jobs",
+                       search_text="intern", offset=20, limit=30)
+    assert json.loads(req.data) == {"appliedFacets": {}, "limit": 30, "offset": 20,
+                                     "searchText": "intern"}, req.data
+
     assert parse_urls("https://x.io/a (dead) ; https://y.io/b") == \
         [("https://x.io/a", "dead"), ("https://y.io/b", None)]
     assert extract_postings({"jobs": [{"title": "a"}]}) == [{"title": "a"}]
@@ -297,6 +401,66 @@ def selftest():
     wd_loc = job_to_listing("NVIDIA", {"title": "Intern", "externalPath": "/job/x",
                                         "locationsText": "Israel, Yokneam"}, api_url=api_url)
     assert wd_loc.location == "Israel, Yokneam", wd_loc.location
+
+    assert workday_detail_url(api_url, "/job/Toronto/Intern_26WD1") == \
+        "https://autodesk.wd1.myworkdayjobs.com/wday/cxs/autodesk/Ext/job/Toronto/Intern_26WD1"
+    assert workday_detail_url(api_url, "") is None
+    assert workday_detail_url("https://api.ashbyhq.com/posting-api/job-board/openai", "/job/x") is None
+
+    import sys
+    _self = sys.modules[__name__]  # not a fresh dotted import: this file runs
+    # as __main__ under its own selftest, which is a different module object
+    # than "internships.sources.ats_boards" -- patching that one wouldn't
+    # affect the fetch_json name this file's own functions actually look up.
+    orig_fetch_json = _self.fetch_json
+    _self.fetch_json = lambda url: (True, {"jobPostingInfo": {"jobDescription": "full text"}}, "ok")
+    try:
+        assert fetch_workday_description(api_url, "/job/x") == "full text"
+        assert fetch_workday_description(api_url, "") == ""  # no externalPath -> no detail_url
+    finally:
+        _self.fetch_json = orig_fetch_json
+
+    # fetch_workday_postings: pages each search term until a short page,
+    # dedupes across terms by URL/externalPath, caps at WORKDAY_MAX_PAGES,
+    # and reports ok=False only when every request failed.
+    throttle = DomainThrottle(0)
+    calls = []
+
+    def fake_paginated(url, search_text="", offset=0, limit=20):
+        calls.append((search_text, offset))
+        if search_text == "intern":
+            n = 20 if offset == 0 else 5  # 2nd page short (5 < 20) -> stop
+            return True, {"jobPostings": [{"externalPath": f"/job/i{offset + i}"}
+                                           for i in range(n)]}, "ok"
+        if search_text == "co-op":
+            # one dup of an "intern" hit (i0) + one co-op-only hit -- proves
+            # cross-term dedup and that "co-op" isn't just wasted requests
+            return True, {"jobPostings": [{"externalPath": "/job/i0"},
+                                           {"externalPath": "/job/c0"}]}, "ok"
+        return False, None, "err"
+
+    _self.fetch_json = fake_paginated
+    try:
+        jobs, ok = fetch_workday_postings(api_url, throttle)
+        assert ok
+        assert len(jobs) == 26, len(jobs)  # 20 + 5 intern, +1 new (i0 deduped) from co-op
+        assert calls == [("intern", 0), ("intern", 20), ("co-op", 0)], calls
+
+        # every page comes back full -> pagination stops at the hard cap
+        # instead of continuing forever
+        _self.fetch_json = lambda url, search_text="", offset=0, limit=20: (
+            True, {"jobPostings": [{"externalPath": f"/job/{search_text}-{offset}-{i}"}
+                                    for i in range(limit)]}, "ok")
+        jobs, ok = fetch_workday_postings(api_url, throttle)
+        assert ok
+        assert len(jobs) == WORKDAY_MAX_PAGES * len(WORKDAY_SEARCH_TERMS) * WORKDAY_PAGE_LIMIT
+
+        # every request fails -> dead endpoint, not a false "ok, zero hits"
+        _self.fetch_json = lambda url, search_text="", offset=0, limit=20: (False, None, "http 403")
+        jobs, ok = fetch_workday_postings(api_url, throttle)
+        assert not ok and jobs == []
+    finally:
+        _self.fetch_json = orig_fetch_json
     print("ats_boards selftest OK")
 
 

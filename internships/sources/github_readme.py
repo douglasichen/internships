@@ -8,7 +8,8 @@ forward. Closed applications render the link cell as a plain 🔒 -- skipped.
 from urllib.request import Request, urlopen
 
 from internships.models import Listing
-from internships.sources.md_table import clean_text, extract_href, extract_rows, is_closed
+from internships.sources.md_table import (
+    README_THROTTLE, clean_text, extract_href, extract_rows, is_closed)
 
 README_URL = "https://raw.githubusercontent.com/vanshb03/Summer2027-Internships/main/README.md"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) internships-service"
@@ -42,6 +43,7 @@ class GithubReadmeSource:
         self.url = url
 
     def fetch(self) -> list:
+        README_THROTTLE.wait(self.url)
         req = Request(self.url, headers={"User-Agent": UA})
         with urlopen(req, timeout=25) as r:
             markdown = r.read().decode("utf-8")

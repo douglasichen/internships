@@ -5,9 +5,19 @@ cells containing raw HTML (`<a href>`, `<details>`, `</br>`, emoji flags).
 
 One source repo can have several such tables (e.g. FAANG/Quant/Other
 sections) -- extract_rows yields every row from every marked section.
+
+All three README sources fetch from raw.githubusercontent.com and run
+concurrently (internships/service.py fires one thread per source), so
+without coordination they'd hit that one domain 3x at once. README_THROTTLE
+is a single shared DomainThrottle instance (see ats_boards.py) so they still
+space themselves out per-domain, same as the ATS board fetches.
 """
 import html
 import re
+
+from internships.sources.ats_boards import DomainThrottle
+
+README_THROTTLE = DomainThrottle(1.0)
 
 # Marker text varies per repo (e.g. "TABLE_START" vs "TABLE_FAANG_START",
 # sometimes prefixed with unrelated comment prose) -- match the token itself
@@ -41,12 +51,17 @@ def extract_rows(markdown: str):
 
 def clean_text(cell: str) -> str:
     """Strip a cell down to plain text: drop <details>/<summary> wrappers,
-    turn <br>/</br> into '; ', strip remaining tags, unescape entities."""
+    turn <br>/</br> into '; ', strip remaining tags, unescape entities.
+
+    Unescape runs first -- some sources (e.g. Greenhouse's "content" field)
+    hand back HTML whose tags are themselves entity-escaped (&lt;div&gt;);
+    unescaping after stripping would turn those into literal tags too late
+    and leave them in the output."""
+    cell = html.unescape(cell)
     cell = re.sub(r"<details>.*?</summary>", "", cell, flags=re.S)
     cell = cell.replace("</details>", "")
     cell = BR_RE.sub("; ", cell)
     cell = TAG_RE.sub("", cell)
-    cell = html.unescape(cell)
     cell = re.sub(r"\s*;\s*", "; ", cell).strip("; ")
     return re.sub(r"\s+", " ", cell).strip()
 
@@ -115,10 +130,17 @@ outro
     assert clean_text("<details><summary>2 locations</summary>SF</br>NYC</details>") == "SF; NYC"
     assert clean_text('<a href="https://x"><strong>Acme</strong></a>') == "Acme"
     assert clean_text("San Jose, CA &amp; Remote") == "San Jose, CA & Remote"
+    # Greenhouse's "content" field: tags are themselves entity-escaped
+    assert clean_text("&lt;div&gt;&lt;p&gt;About Us&lt;/p&gt;&lt;/div&gt;") == "About Us"
     assert extract_href('<a href="https://apply/1">Apply</a>') == "https://apply/1"
     assert extract_md_link("[apply](https://apply/3)") == "https://apply/3"
     assert is_closed("🔒")
     assert not is_closed('<a href="https://apply/1">Apply</a>')
+
+    # shared across the 3 README sources so concurrent fetches (all same
+    # domain) still get spaced out, per CLAUDE.md -- not a fresh limiter
+    assert isinstance(README_THROTTLE, DomainThrottle)
+    assert README_THROTTLE.interval == 1.0
 
     unmarked_doc = """
 ## programs open now

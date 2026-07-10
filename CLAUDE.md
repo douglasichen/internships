@@ -5,6 +5,11 @@
 - When the user tells you to do something, just do it. Don't stop to ask for approval or confirmation first.
 - Exception: pause and check only if the action is genuinely likely to break something badly or is irreversible (e.g. destructive git ops, deleting data, force-push).
 
+## out/all.json history
+
+- `out/all.json` (the full listing history the web UI reads) is tracked in git deliberately, specifically so its edit history is preserved — see `.gitignore` (`out/*` + `!out/all.json`; the per-run timestamped CSVs stay untracked).
+- Whenever a scrape or `--recompute` run changes `out/all.json`, commit that change **on its own** — don't bundle it into a code commit. Write a message that says what actually happened to the data (e.g. "Scrape: 12 new listings", "Recompute: backfilled 40 descriptions", "Recompute: deduped 15 rows"), not a generic "update data".
+
 ## Fetching external domains
 
 - Any source that hits an external domain must rate-limit itself **per domain**, not globally — different domains should still fetch concurrently. Reuse `DomainThrottle` in `internships/sources/ats_boards.py` (per-netloc lock + minimum interval between requests) rather than writing a new limiter.

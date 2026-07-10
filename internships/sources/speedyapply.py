@@ -11,7 +11,8 @@ every row (no '↳').
 from urllib.request import Request, urlopen
 
 from internships.models import Listing
-from internships.sources.md_table import clean_text, extract_href, extract_rows, is_closed
+from internships.sources.md_table import (
+    README_THROTTLE, clean_text, extract_href, extract_rows, is_closed)
 
 README_URL = "https://raw.githubusercontent.com/speedyapply/2027-SWE-College-Jobs/main/README.md"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) internships-service"
@@ -43,6 +44,7 @@ class SpeedyApplySource:
         self.url = url
 
     def fetch(self) -> list:
+        README_THROTTLE.wait(self.url)
         req = Request(self.url, headers={"User-Agent": UA})
         with urlopen(req, timeout=25) as r:
             markdown = r.read().decode("utf-8")

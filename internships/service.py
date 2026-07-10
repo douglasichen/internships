@@ -1,17 +1,37 @@
-"""Orchestrator: fetch every source (in parallel), filter to SWE internships,
-drop anything already seen from a prior run, persist the updated seen-ids,
+"""Orchestrator: fetch every source, filter to SWE internships, drop
+anything already seen from a prior run, persist the updated seen-ids,
 return what's new. One run = one call to run().
+
+ats_boards runs first, alone -- it already carries a full description from
+each ATS's own JSON API, so its listings are the cheapest/most reliable to
+get. The remaining (README-table) sources then run in parallel, each
+skipping any listing whose link exactly matches one ats_boards already
+found this run (same job, no need to re-report or re-fetch it), and
+falling back to a raw, unparsed fetch of a listing's own page for whatever
+survives that isn't a duplicate -- those sources have no description of
+their own at all.
 """
+import re
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
+from urllib.request import Request, urlopen
 
 from internships.filters import is_swe_internship, year_relevance
-from internships.models import Listing
+from internships.models import Listing, normalize_url
 from internships.seen_store import SeenStore
+from internships.sources.ats_boards import DomainThrottle, UA
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
+
+# Only these sources lack any description of their own -- everything else
+# (just ats_boards today) keeps its normal behavior untouched.
+DESCRIPTION_FALLBACK_SOURCES = {"github_readme", "speedyapply", "sndsh404"}
+
+_PAGE_FETCH_THROTTLE = DomainThrottle(1.0)
+_PAGE_FETCH_TIMEOUT = 15
+_SCRIPT_STYLE_RE = re.compile(r"<(script|style)\b[^>]*>.*?</\1>", re.I | re.S)
 
 
 @dataclass
@@ -28,7 +48,33 @@ class RunResult:
     per_source: dict = field(default_factory=dict)  # name -> SourceResult
 
 
-def _run_one(source, data_dir):
+def _fetch_raw_page(url: str) -> str:
+    """Best-effort, mostly-unparsed fallback description: whatever text
+    comes back for a listing's own page -- HTML tags, nav/footer noise and
+    all -- is kept as-is, since this is meant to be pasted into an AI later,
+    not read as-is. The one exception: <script>/<style> blocks are stripped.
+    They're not description content, and they're where GitHub's secret
+    scanner kept flagging real-looking-but-harmless strings baked into job
+    board page templates (presigned S3 image URLs, client-side Google
+    Analytics/Maps keys) -- already public on the source page either way,
+    just noise we don't need to also carry around."""
+    if not url:
+        return ""
+    _PAGE_FETCH_THROTTLE.wait(url)
+    try:
+        req = Request(url, headers={"User-Agent": UA})
+        with urlopen(req, timeout=_PAGE_FETCH_TIMEOUT) as r:
+            text = r.read().decode("utf-8", errors="replace")
+    except Exception:  # noqa: BLE001 - best-effort fallback; any failure just means no description
+        return ""
+    return _SCRIPT_STYLE_RE.sub("", text)
+
+
+def _with_raw_description(l):
+    return l if l.extra_text else replace(l, extra_text=_fetch_raw_page(l.url))
+
+
+def _run_one(source, data_dir, known_urls=frozenset(), fetch_missing_description=False):
     try:
         listings = source.fetch()
         # filtering/store also happen inside the try: a bad non-str field
@@ -40,29 +86,51 @@ def _run_one(source, data_dir):
         swe = [l for l in listings if is_swe_internship(l.title)
                and year_relevance(l.title, l.location, l.extra_text) != "no"]
         swe = list({l.id(): l for l in swe}.values())  # dedupe within this batch (e.g. a listing appearing in 2 README table sections)
+        if known_urls:
+            swe = [l for l in swe if normalize_url(l.url) not in known_urls]
+        if fetch_missing_description:
+            with ThreadPoolExecutor(max_workers=8) as ex:
+                swe = list(ex.map(_with_raw_description, swe))
         store = SeenStore(data_dir / "seen" / f"{source.name}.json")
         seen = store.load()
         new = [l for l in swe if l.id() not in seen]
         store.save(seen | {l.id() for l in swe})
     except Exception as e:  # noqa: BLE001 - one bad source shouldn't kill the run
-        return source.name, [], SourceResult(error=str(e))
-    return source.name, new, SourceResult(fetched=len(listings), swe=len(swe), new=len(new))
+        return source.name, [], [], SourceResult(error=str(e))
+    return source.name, new, swe, SourceResult(fetched=len(listings), swe=len(swe), new=len(new))
 
 
 def run(sources, data_dir=DATA_DIR) -> RunResult:
     result = RunResult()
-    with ThreadPoolExecutor(max_workers=len(sources) or 1) as ex:
-        for name, new, stats in ex.map(lambda s: _run_one(s, data_dir), sources):
-            result.per_source[name] = stats
-            result.new_listings.extend(new)
+    ats = next((s for s in sources if s.name == "ats_boards"), None)
+    rest = [s for s in sources if s is not ats]
+
+    known_urls = frozenset()
+    if ats is not None:
+        name, new, swe, stats = _run_one(ats, data_dir)
+        result.per_source[name] = stats
+        result.new_listings.extend(new)
+        known_urls = frozenset(normalize_url(l.url) for l in swe)
+
+    def work(s):
+        fallback = s.name in DESCRIPTION_FALLBACK_SOURCES
+        return _run_one(s, data_dir, known_urls=known_urls if fallback else frozenset(),
+                         fetch_missing_description=fallback)
+
+    if rest:
+        with ThreadPoolExecutor(max_workers=len(rest)) as ex:
+            for name, new, swe, stats in ex.map(work, rest):
+                result.per_source[name] = stats
+                result.new_listings.extend(new)
+
     result.new_listings.sort(key=lambda l: (not l.is_2027, l.company, l.title))
     return result
 
 
 def selftest():
     class FakeSource:
-        name = "fake"
-        def __init__(self, listings):
+        def __init__(self, listings, name="fake"):
+            self.name = name
             self._listings = listings
         def fetch(self):
             return self._listings
@@ -108,6 +176,37 @@ def selftest():
     r5 = run([FakeSource(listings), BadFieldSource()], data_dir=d)
     assert r5.per_source["badfield"].error
     assert r5.per_source["fake"] == SourceResult(fetched=3, swe=1, new=0)  # already seen from r1/r2
+
+    # ats_boards runs first and its listings become known_urls: a
+    # github_readme listing with the exact same link (tracking param and
+    # all -- normalize_url strips that) is skipped outright, while a
+    # genuinely different listing falls back to a raw page fetch.
+    import sys
+    _self = sys.modules[__name__]  # not a fresh dotted import -- see ats_boards.py's
+    # own selftest for why: this file runs as __main__ under --selftest, a
+    # different module object than "internships.service" would be.
+    orig_fetch_raw_page = _self._fetch_raw_page
+    calls = []
+    def fake_fetch(url):
+        calls.append(url)
+        return "raw page text"
+    _self._fetch_raw_page = fake_fetch
+    try:
+        ats_listing = Listing("ats_boards", "Acme", "Software Engineer Intern", "SF", "http://ats/1?utm=x")
+        dupe_listing = Listing("github_readme", "Acme", "Software Engineer Intern", "SF", "http://ats/1")
+        new_listing = Listing("github_readme", "Beta", "Software Engineer Intern", "NYC", "http://beta/1")
+        r6 = run([FakeSource([ats_listing], name="ats_boards"),
+                  FakeSource([dupe_listing, new_listing], name="github_readme")],
+                 data_dir=Path(tempfile.mkdtemp()))
+    finally:
+        _self._fetch_raw_page = orig_fetch_raw_page
+
+    assert len(r6.new_listings) == 2
+    by_company = {l.company: l for l in r6.new_listings}
+    assert by_company["Acme"].source == "ats_boards"  # the github_readme dupe was skipped
+    assert by_company["Beta"].source == "github_readme"
+    assert by_company["Beta"].extra_text == "raw page text"  # fell back to raw fetch
+    assert calls == ["http://beta/1"]  # never fetched for the skipped duplicate
     print("service selftest OK")
 
 

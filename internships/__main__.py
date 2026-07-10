@@ -4,18 +4,22 @@
 Usage:
     python3 -m internships              # run all sources, write out/<ts>.csv + out/all.json
     python3 -m internships --selftest   # run every module's inline self-check
+    python3 -m internships --recompute is_2027 descriptions dedup  # fix stale out/all.json fields
 
-Serving the web UI (internships/web/index.html) needs a static file server for
-CORS reasons -- from the repo root: `python3 -m http.server 8765`, then open
+Serving the web UI (internships/web/index.html) needs internships/webserver.py
+(not plain http.server -- it also backs the UI's "Recompute" button) -- from
+the repo root: `python3 -m internships.webserver 8765`, then open
 http://localhost:8765/internships/web/
 """
 import argparse
 import csv
+import fcntl
 import json
 import sys
 from datetime import datetime
 from pathlib import Path
 
+from internships import recompute
 from internships.service import ROOT, run
 from internships.sources.ats_boards import AtsBoardsSource
 from internships.sources.github_readme import GithubReadmeSource
@@ -24,16 +28,19 @@ from internships.sources.speedyapply import SpeedyApplySource
 
 OUT_DIR = ROOT / "out"
 ALL_JSON_PATH = OUT_DIR / "all.json"
+LOCK_PATH = ROOT / ".run.lock"
 
 SOURCES = [AtsBoardsSource(), GithubReadmeSource(), SpeedyApplySource(), Sndsh404Source()]
 
-FIELDS = ["company", "title", "location", "is_2027", "source", "posted", "scraped_at", "url"]
+FIELDS = ["company", "title", "location", "is_2027", "priority", "source", "posted",
+          "scraped_at", "url", "description"]
 
 
 def _row(l, scraped_at):
     return {"id": l.id(), "company": l.company, "title": l.title, "location": l.location,
-            "is_2027": l.is_2027, "source": l.source, "posted": l.posted,
-            "scraped_at": scraped_at, "url": l.url}
+            "is_2027": l.is_2027, "priority": l.priority, "source": l.source,
+            "posted": l.posted, "scraped_at": scraped_at, "url": l.url,
+            "description": l.extra_text}
 
 
 def write_csv(listings, scraped_at, path):
@@ -46,6 +53,8 @@ def write_csv(listings, scraped_at, path):
         for l in listings:
             row = _row(l, scraped_at)
             row["is_2027"] = "yes" if row["is_2027"] else ""
+            # priority is an int (1/2/3), not a boolean flag -- write it
+            # straight through, csv.DictWriter handles ints fine.
             w.writerow(row)
 
 
@@ -67,9 +76,13 @@ def selftest():
     modules = ["internships.models", "internships.filters", "internships.seen_store",
                "internships.sources.md_table", "internships.sources.ats_boards",
                "internships.sources.github_readme", "internships.sources.speedyapply",
-               "internships.sources.sndsh404", "internships.service"]
+               "internships.sources.sndsh404", "internships.service", "internships.recompute"]
     for m in modules:
         subprocess.run([sys.executable, "-m", m], cwd=ROOT, check=True)
+    # webserver.py's bare `-m` invocation starts the (blocking) real server,
+    # unlike every other module here -- its selftest needs the explicit flag.
+    subprocess.run([sys.executable, "-m", "internships.webserver", "--selftest"],
+                    cwd=ROOT, check=True)
 
     # write_csv's _row() includes "id" (needed for all.json) but FIELDS doesn't --
     # make sure that mismatch doesn't blow up csv.DictWriter.
@@ -79,6 +92,21 @@ def selftest():
                    "2026-07-09T00:00:00", out)
         rows = list(csv.DictReader(out.open()))
         assert len(rows) == 1 and rows[0]["company"] == "Acme" and "id" not in rows[0]
+
+    # a second flock on the same lock file must fail while the first is held
+    with tempfile.TemporaryDirectory() as td:
+        lock_path = Path(td) / ".run.lock"
+        f1 = open(lock_path, "w")
+        fcntl.flock(f1, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        f2 = open(lock_path, "w")
+        try:
+            fcntl.flock(f2, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            raise AssertionError("second flock should have failed")
+        except BlockingIOError:
+            pass
+        f1.close()  # releases the lock
+        fcntl.flock(f2, fcntl.LOCK_EX | fcntl.LOCK_NB)  # now succeeds
+        f2.close()
     print("__main__ selftest OK")
 
 
@@ -86,9 +114,44 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                   formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--selftest", action="store_true", help="run every module's self-check")
+    ap.add_argument("--recompute", nargs="+",
+                     choices=["is_2027", "descriptions", "dedup", "priority"], metavar="FIELD",
+                     help="recompute stale out/all.json field(s) in place instead of scraping: "
+                          "is_2027 (against current filters), descriptions (re-fetch any row "
+                          "missing one), dedup (merge rows that are the same job link under "
+                          "today's rules, always keeping the oldest record), and/or priority "
+                          "(1/2/3 tier against current company classification)")
     a = ap.parse_args()
     if a.selftest:
         selftest()
+        return
+
+    # ponytail: flock held for the process lifetime (released on exit), not
+    # released explicitly -- fine for a one-shot CLI run, not for a long-lived
+    # server holding this same lock. Held for --recompute too since both
+    # recompute modes rewrite out/all.json, same file a real scrape appends to.
+    lock_file = open(LOCK_PATH, "w")
+    try:
+        fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        print("another scrape is already running, exiting", file=sys.stderr)
+        sys.exit(1)
+
+    if a.recompute:
+        # dedup first when combined with descriptions: no point fetching a
+        # description for a row that's about to be dropped as a duplicate
+        if "dedup" in a.recompute:
+            removed, total = recompute.dedupe()
+            print(f"deduped {removed}/{total} rows (oldest record kept) -> {recompute.ALL_JSON_PATH}")
+        if "is_2027" in a.recompute:
+            changed, total = recompute.recompute()
+            print(f"recomputed is_2027 for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
+        if "priority" in a.recompute:
+            changed, total = recompute.recompute_priority()
+            print(f"recomputed priority for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
+        if "descriptions" in a.recompute:
+            changed, stale = recompute.backfill_descriptions()
+            print(f"backfilled {changed}/{stale} stale descriptions -> {recompute.ALL_JSON_PATH}")
         return
 
     result = run(SOURCES)
