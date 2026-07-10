@@ -4,6 +4,7 @@
 Usage:
     python3 -m internships              # run all sources, write out/<ts>.csv + out/all.json
     python3 -m internships --selftest   # run every module's inline self-check
+    python3 -m internships --recompute is_2027 descriptions  # fix stale out/all.json fields
 
 Serving the web UI (internships/web/index.html) needs a static file server for
 CORS reasons -- from the repo root: `python3 -m http.server 8765`, then open
@@ -105,26 +106,34 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                   formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--selftest", action="store_true", help="run every module's self-check")
-    ap.add_argument("--recompute", action="store_true",
-                     help="recompute is_2027 on out/all.json against the current filters, in place")
+    ap.add_argument("--recompute", nargs="+", choices=["is_2027", "descriptions"], metavar="FIELD",
+                     help="recompute stale out/all.json field(s) in place instead of scraping: "
+                          "is_2027 (against current filters) and/or descriptions (re-fetch any "
+                          "row missing one)")
     a = ap.parse_args()
     if a.selftest:
         selftest()
         return
-    if a.recompute:
-        changed, total = recompute.recompute()
-        print(f"recomputed is_2027 for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
-        return
 
     # ponytail: flock held for the process lifetime (released on exit), not
     # released explicitly -- fine for a one-shot CLI run, not for a long-lived
-    # server holding this same lock.
+    # server holding this same lock. Held for --recompute too since both
+    # recompute modes rewrite out/all.json, same file a real scrape appends to.
     lock_file = open(LOCK_PATH, "w")
     try:
         fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError:
         print("another scrape is already running, exiting", file=sys.stderr)
         sys.exit(1)
+
+    if a.recompute:
+        if "is_2027" in a.recompute:
+            changed, total = recompute.recompute()
+            print(f"recomputed is_2027 for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
+        if "descriptions" in a.recompute:
+            changed, stale = recompute.backfill_descriptions()
+            print(f"backfilled {changed}/{stale} stale descriptions -> {recompute.ALL_JSON_PATH}")
+        return
 
     result = run(SOURCES)
     ts = datetime.now().strftime("%Y%m%d-%H%M%S")

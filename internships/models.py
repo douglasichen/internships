@@ -7,6 +7,15 @@ from urllib.parse import urlsplit, urlunsplit
 from internships.filters import year_relevance
 
 
+def normalize_url(url: str) -> str:
+    """Strip query string/fragment -- e.g. some boards append tracking
+    params like ?utm_source=... to an otherwise-identical link. Used both
+    for Listing.id()'s dedup identity and, in service.py, to recognize the
+    same job posting reached via two different sources."""
+    parts = urlsplit(url)
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
+
+
 @dataclass(frozen=True)
 class Listing:
     source: str
@@ -20,13 +29,9 @@ class Listing:
     def id(self) -> str:
         """Stable identity for dedup across runs. url is the best unique key
         an ATS/board gives us; fall back to title when a source has none.
-        Query string/fragment are stripped for hashing only (some boards
-        append tracking params like ?utm_source=... to an otherwise-identical
-        link) -- self.url itself is untouched, since that's the real apply
-        link shown in the UI."""
-        parts = urlsplit(self.url)
-        url_for_id = urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
-        basis = f"{self.source}|{self.company}|{url_for_id or self.title}|{self.location}"
+        self.url itself is untouched (the real apply link shown in the UI)
+        -- only the id() basis uses the normalized form."""
+        basis = f"{self.source}|{self.company}|{normalize_url(self.url) or self.title}|{self.location}"
         return hashlib.sha1(basis.encode()).hexdigest()[:16]
 
     @property
