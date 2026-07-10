@@ -63,7 +63,9 @@ def _run_scrape():
             _scrape_state["error"] = "a scrape or recompute is already running"
         return
     try:
-        result = run_sources(main_mod.SOURCES)
+        # persist_seen=False: don't mark ids seen until out/all.json has the
+        # rows -- same ordering as the CLI path in __main__.main().
+        result = run_sources(main_mod.SOURCES, persist_seen=False)
         summary = {name: {"fetched": s.fetched, "swe": s.swe, "new": s.new, "error": s.error}
                    for name, s in result.per_source.items()}
         summary["new_listings"] = len(result.new_listings)
@@ -72,6 +74,7 @@ def _run_scrape():
             scraped_at = datetime.now().isoformat(timespec="seconds")
             main_mod.write_csv(result.new_listings, scraped_at, main_mod.OUT_DIR / f"{ts}.csv")
             main_mod.append_all_json(result.new_listings, scraped_at)
+        result.persist_seen()
         with _scrape_lock:
             _scrape_state["result"] = summary
             _scrape_state["error"] = None
@@ -264,7 +267,9 @@ def selftest():
         class _FakeResult:
             new_listings = []
             per_source = {"fake": _FakeStats()}
-        run_sources = lambda sources: _FakeResult()
+            def persist_seen(self):
+                pass
+        run_sources = lambda sources, persist_seen=True: _FakeResult()
         try:
             req = urllib.request.Request(f"http://127.0.0.1:{port}/api/scrape", method="POST")
             r = urllib.request.urlopen(req, timeout=5)

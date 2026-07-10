@@ -60,10 +60,20 @@ def write_csv(listings, scraped_at, path):
 
 def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     """The web UI's whole dataset: every listing ever found, across every run,
-    each stamped with when it was scraped. Grows by appending -- seen_store
-    already guarantees a given listing only reaches here once."""
+    each stamped with when it was scraped. Grows by appending.
+
+    Skips rows whose id is already present -- defense in depth for the case
+    where seen-ids were not yet persisted after a prior successful write
+    (e.g. crash between append and persist_seen), so a retry cannot
+    double-insert the same listing into the UI feed."""
     existing = json.loads(path.read_text()) if path.exists() else []
-    existing.extend(_row(l, scraped_at) for l in listings)
+    have = {r.get("id") for r in existing}
+    for l in listings:
+        row = _row(l, scraped_at)
+        if row["id"] in have:
+            continue
+        existing.append(row)
+        have.add(row["id"])
     path.parent.mkdir(parents=True, exist_ok=True)
     # Atomic (tmp + replace), same as recompute writes to this very file: this
     # is a full rewrite of the entire cumulative dataset, so a crash mid-write
@@ -136,6 +146,17 @@ def selftest():
             Path.write_text = orig_write_text
         survivors = json.loads(all_json.read_text())  # must still be valid JSON
         assert [r["company"] for r in survivors] == ["Old"]  # prior data intact
+
+    # append_all_json must not double-insert a listing whose id is already
+    # present (retry after a crash between append and persist_seen).
+    with tempfile.TemporaryDirectory() as td:
+        all_json = Path(td) / "all.json"
+        listing = Listing("s", "Acme", "SWE", "SF", "http://x/dup")
+        append_all_json([listing], "2026-07-09T00:00:00", all_json)
+        append_all_json([listing], "2026-07-09T01:00:00", all_json)  # same id
+        rows = json.loads(all_json.read_text())
+        assert len(rows) == 1 and rows[0]["company"] == "Acme"
+        assert rows[0]["scraped_at"] == "2026-07-09T00:00:00"  # first write kept
     print("__main__ selftest OK")
 
 
@@ -183,7 +204,10 @@ def main():
             print(f"backfilled {changed}/{stale} stale descriptions -> {recompute.ALL_JSON_PATH}")
         return
 
-    result = run(SOURCES)
+    # Defer seen-id writes until after a successful out/all.json append so a
+    # crash/exception between fetch and the dataset write cannot permanently
+    # drop new listings (they'd be marked seen without ever being recorded).
+    result = run(SOURCES, persist_seen=False)
     ts = datetime.now().strftime("%Y%m%d-%H%M%S")
 
     for name, stats in result.per_source.items():
@@ -193,6 +217,7 @@ def main():
             print(f"  {name}: fetched={stats.fetched} swe={stats.swe} new={stats.new}")
 
     if not result.new_listings:
+        result.persist_seen()
         print("no new SWE internships this run")
         return
 
@@ -200,6 +225,7 @@ def main():
     out_path = OUT_DIR / f"{ts}.csv"
     write_csv(result.new_listings, scraped_at, out_path)
     append_all_json(result.new_listings, scraped_at)
+    result.persist_seen()
     n27 = sum(1 for l in result.new_listings if l.is_2027)
     print(f"{len(result.new_listings)} new SWE internships ({n27} mention 2027) -> {out_path}")
     print(f"web dataset updated -> {ALL_JSON_PATH}")
