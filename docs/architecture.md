@@ -45,9 +45,10 @@ flowchart TD
     MAIN --> ALLJSON[("out/all.json\nevery listing ever found,\nappended, never overwritten\n(incl. description)")]
 
     RECOMPUTE["internships/recompute.py\n--recompute is_2027|descriptions|dedup"] -.->|patches in place, no scrape| ALLJSON
+    WEB -.->|POST /api/recompute| RECOMPUTE
 
-    ALLJSON --> WEB["internships/web/index.html\nvanilla JS, fetch('/out/all.json')\nsearch + source + 2027-only +\nhide-applied/applied-only filters\n(applied state in localStorage)"]
-    WEB --> Browser(["served via\npython3 -m http.server"])
+    ALLJSON --> WEB["internships/web/index.html\nvanilla JS, fetch('/out/all.json')\nsearch + source + 2027-only +\nhide-applied/applied-only filters\n(applied state in localStorage)\n+ Recompute button"]
+    WEB --> Browser(["served via\npython3 -m internships.webserver\n(static files + POST /api/recompute)"])
 
     style CSV fill:#F1EEE5,stroke:#8A8478
     style R1 fill:#F1EEE5,stroke:#8A8478
@@ -71,7 +72,8 @@ flowchart TD
 | `internships/service.py` | `run(sources)` — runs `ats_boards` first, alone, then the rest in parallel; applies the filters, dedupes, persists seen-ids, returns what's new. The non-ats_boards sources skip any listing whose normalized URL exactly matches one `ats_boards` already found this run, and fall back to a raw/unparsed page fetch (own `DomainThrottle` instance) for their own listing's URL otherwise, since they carry no description of their own. One bad source degrades to a `SourceResult(error=...)` rather than taking down the run. |
 | `internships/__main__.py` | CLI entrypoint (`python3 -m internships`). Takes a `.run.lock` flock for the process lifetime so two scrapes can't race each other's writes. Writes this run's new listings to `out/<timestamp>.csv` and appends them to the cumulative `out/all.json`. `--recompute FIELD...` skips scraping and calls into `recompute.py` instead. |
 | `internships/recompute.py` | `--recompute` implementation — patches `out/all.json` in place, no scrape: `is_2027` (recompute against current `filters.year_relevance`), `descriptions` (re-fetch via the same raw-page fetch for any row missing one), `dedup` (merge rows that are the same job link under today's rules, always keeping the oldest record). Writes atomically (`.tmp` + `replace`). |
-| `internships/web/index.html` | Single static file, no build step. Fetches `out/all.json`, renders a reverse-chronological feed grouped by scrape run, with search/source/2027-only/hide-applied/applied-only filters. A per-row checkbox marks a listing "applied"; that state (and its timestamp, shown as "Applied Xh ago") lives only in the browser's `localStorage`, so it survives `out/all.json` being regenerated. |
+| `internships/webserver.py` | Static file server for the web UI (`SimpleHTTPRequestHandler`, same behavior as plain `http.server`) plus two JSON endpoints -- `POST /api/recompute?fields=dedup,is_2027,descriptions` (kicks off `recompute.py` functions in a background thread, guarded by the same `.run.lock`) and `GET /api/recompute/status` (poll for completion/result/error). No auth; localhost-only tool. |
+| `internships/web/index.html` | Single static file, no build step. Fetches `out/all.json`, renders a reverse-chronological feed grouped by scrape run, with search/source/2027-only/hide-applied/applied-only filters. A per-row checkbox marks a listing "applied"; that state (and its timestamp, shown as "Applied Xh ago") lives only in the browser's `localStorage`, so it survives `out/all.json` being regenerated. A "Recompute" row in the filter panel POSTs to `/api/recompute` and polls status, needs `internships/webserver.py` (not plain `http.server`) to work. |
 
 ## Adding a source
 

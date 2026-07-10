@@ -6,8 +6,9 @@ Usage:
     python3 -m internships --selftest   # run every module's inline self-check
     python3 -m internships --recompute is_2027 descriptions dedup  # fix stale out/all.json fields
 
-Serving the web UI (internships/web/index.html) needs a static file server for
-CORS reasons -- from the repo root: `python3 -m http.server 8765`, then open
+Serving the web UI (internships/web/index.html) needs internships/webserver.py
+(not plain http.server -- it also backs the UI's "Recompute" button) -- from
+the repo root: `python3 -m internships.webserver 8765`, then open
 http://localhost:8765/internships/web/
 """
 import argparse
@@ -75,6 +76,10 @@ def selftest():
                "internships.sources.sndsh404", "internships.service", "internships.recompute"]
     for m in modules:
         subprocess.run([sys.executable, "-m", m], cwd=ROOT, check=True)
+    # webserver.py's bare `-m` invocation starts the (blocking) real server,
+    # unlike every other module here -- its selftest needs the explicit flag.
+    subprocess.run([sys.executable, "-m", "internships.webserver", "--selftest"],
+                    cwd=ROOT, check=True)
 
     # write_csv's _row() includes "id" (needed for all.json) but FIELDS doesn't --
     # make sure that mismatch doesn't blow up csv.DictWriter.

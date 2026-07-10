@@ -35,11 +35,16 @@ A static page (`internships/web/index.html`) lists every listing ever found,
 newest scrape first, with search + source + "2027 only"/"Hide applied"/
 "Applied only" filters. A checkbox on each row marks it applied — that state
 lives only in the browser's `localStorage`, not the backend, so it survives
-`out/all.json` being regenerated. It fetches `out/all.json`, so it needs a
-plain static file server run from the repo root:
+`out/all.json` being regenerated. A "Recompute" control in the filter panel
+lets you trigger `--recompute dedup`/`is_2027`/`descriptions` from the page
+itself instead of the terminal.
+
+It fetches `out/all.json` and POSTs to `/api/recompute`, so it needs
+`internships/webserver.py` (not plain `python3 -m http.server`) run from the
+repo root:
 
 ```
-python3 -m http.server 8765
+python3 -m internships.webserver 8765
 # then open http://localhost:8765/internships/web/
 ```
 

@@ -162,6 +162,36 @@
     border-top: 1px solid var(--border);
   }
   .filter-details.open { display: flex; }
+  .recompute-row {
+    flex-basis: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .recompute-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .recompute-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+  .recompute-status {
+    font-size: 12px;
+    color: var(--text-muted);
+    flex-basis: 100%;
+  }
 
   main {
     max-width: 880px;
@@ -296,6 +326,14 @@
       <button class="toggle active" id="toggle2027">2027 only</button>
       <button class="toggle" id="toggleHideApplied">Hide applied</button>
       <button class="toggle" id="toggleAppliedOnly">Applied only</button>
+      <div class="recompute-row">
+        <span class="recompute-label">Recompute</span>
+        <label class="recompute-check"><input type="checkbox" value="dedup" checked> dedup</label>
+        <label class="recompute-check"><input type="checkbox" value="is_2027"> is_2027</label>
+        <label class="recompute-check"><input type="checkbox" value="descriptions"> descriptions</label>
+        <button class="toggle" id="runRecompute">Run</button>
+        <span class="recompute-status" id="recomputeStatus"></span>
+      </div>
     </div>
   </div>
 </div>
@@ -483,10 +521,45 @@ document.getElementById('main').addEventListener('change', e => {
   render();
 });
 
-fetch('/out/all.json')
-  .then(r => r.ok ? r.json() : [])
-  .catch(() => [])
-  .then(data => { ALL = data; render(); });
+function loadAll() {
+  return fetch('/out/all.json')
+    .then(r => r.ok ? r.json() : [])
+    .catch(() => [])
+    .then(data => { ALL = data; render(); });
+}
+
+function pollRecompute() {
+  const statusEl = document.getElementById('recomputeStatus');
+  const btn = document.getElementById('runRecompute');
+  fetch('/api/recompute/status').then(r => r.json()).then(s => {
+    if (s.running) { setTimeout(pollRecompute, 1500); return; }
+    btn.disabled = false;
+    if (s.error) { statusEl.textContent = 'error: ' + s.error; return; }
+    statusEl.textContent = Object.entries(s.result || {}).map(([k, v]) => `${k}: ${v}`).join(' · ') || 'done';
+    loadAll();
+  }).catch(() => { statusEl.textContent = 'lost connection while polling'; btn.disabled = false; });
+}
+
+document.getElementById('runRecompute').addEventListener('click', async e => {
+  const fields = [...document.querySelectorAll('.recompute-check input:checked')].map(c => c.value);
+  const statusEl = document.getElementById('recomputeStatus');
+  const btn = e.target;
+  if (!fields.length) { statusEl.textContent = 'pick at least one field'; return; }
+  btn.disabled = true;
+  statusEl.textContent = 'starting…';
+  try {
+    const res = await fetch(`/api/recompute?fields=${fields.join(',')}`, { method: 'POST' });
+    if (res.status === 202) { statusEl.textContent = 'running…'; pollRecompute(); return; }
+    const err = await res.json().catch(() => ({}));
+    statusEl.textContent = err.error || `failed (${res.status})`;
+    btn.disabled = false;
+  } catch {
+    statusEl.textContent = 'no server running -- start with: python3 -m internships.webserver';
+    btn.disabled = false;
+  }
+});
+
+loadAll();
 </script>
 </body>
 </html>
