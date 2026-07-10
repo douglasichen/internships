@@ -443,6 +443,17 @@ function escapeHtml(s) {
   return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
+// escapeHtml alone does NOT neutralize a scraped `javascript:`/`data:` URL --
+// those schemes contain no HTML metacharacters, so they'd survive untouched
+// into href= and execute on click. Listing URLs come from arbitrary external
+// job boards/READMEs, so allowlist http/https (returns '' for anything else).
+function safeUrl(u) {
+  try {
+    const proto = new URL(u, location.href).protocol;
+    return proto === 'http:' || proto === 'https:' ? u : '';
+  } catch { return ''; }
+}
+
 function applyFilters(rows) {
   const q = state.query.trim().toLowerCase();
   return rows.filter(r => {
@@ -494,6 +505,7 @@ function render() {
     const items = groups.get(run).sort((a, b) => a.company.localeCompare(b.company));
     const roleHtml = items.map(r => {
       const appliedAt = applied.get(r.id);
+      const url = safeUrl(r.url);
       return `
       <li class="role${appliedAt ? ' applied' : ''}">
         <input type="checkbox" class="applied-checkbox" data-id="${r.id}" ${appliedAt ? 'checked' : ''} title="Mark applied">
@@ -502,7 +514,7 @@ function render() {
           <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}</div>
         </div>
         <span class="source-badge" style="background:${SOURCE_COLOR[r.source]}">${SOURCE_LABEL[r.source]}</span>
-        ${r.url ? `<a class="apply-link" href="${escapeHtml(r.url)}" target="_blank" rel="noopener">Apply →</a>` : ''}
+        ${url ? `<a class="apply-link" href="${escapeHtml(url)}" target="_blank" rel="noopener">Apply →</a>` : ''}
       </li>`;
     }).join('');
     return `
