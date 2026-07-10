@@ -4,7 +4,7 @@
 Usage:
     python3 -m internships              # run all sources, write out/<ts>.csv + out/all.json
     python3 -m internships --selftest   # run every module's inline self-check
-    python3 -m internships --recompute is_2027 descriptions  # fix stale out/all.json fields
+    python3 -m internships --recompute is_2027 descriptions dedup  # fix stale out/all.json fields
 
 Serving the web UI (internships/web/index.html) needs a static file server for
 CORS reasons -- from the repo root: `python3 -m http.server 8765`, then open
@@ -106,10 +106,12 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                   formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--selftest", action="store_true", help="run every module's self-check")
-    ap.add_argument("--recompute", nargs="+", choices=["is_2027", "descriptions"], metavar="FIELD",
+    ap.add_argument("--recompute", nargs="+", choices=["is_2027", "descriptions", "dedup"],
+                     metavar="FIELD",
                      help="recompute stale out/all.json field(s) in place instead of scraping: "
-                          "is_2027 (against current filters) and/or descriptions (re-fetch any "
-                          "row missing one)")
+                          "is_2027 (against current filters), descriptions (re-fetch any row "
+                          "missing one), and/or dedup (merge rows that are the same job link "
+                          "under today's rules, always keeping the oldest record)")
     a = ap.parse_args()
     if a.selftest:
         selftest()
@@ -127,6 +129,11 @@ def main():
         sys.exit(1)
 
     if a.recompute:
+        # dedup first when combined with descriptions: no point fetching a
+        # description for a row that's about to be dropped as a duplicate
+        if "dedup" in a.recompute:
+            removed, total = recompute.dedupe()
+            print(f"deduped {removed}/{total} rows (oldest record kept) -> {recompute.ALL_JSON_PATH}")
         if "is_2027" in a.recompute:
             changed, total = recompute.recompute()
             print(f"recomputed is_2027 for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")

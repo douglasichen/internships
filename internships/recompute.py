@@ -5,12 +5,14 @@ already reported, so a normal run never revisits an old listing).
 Usage:
     python3 -m internships --recompute is_2027
     python3 -m internships --recompute descriptions
-    python3 -m internships --recompute is_2027 descriptions
+    python3 -m internships --recompute dedup
+    python3 -m internships --recompute dedup is_2027 descriptions
 """
 import json
 from concurrent.futures import ThreadPoolExecutor
 
 from internships.filters import year_relevance
+from internships.models import normalize_url
 from internships.service import ROOT, _fetch_raw_page
 
 ALL_JSON_PATH = ROOT / "out" / "all.json"
@@ -39,6 +41,41 @@ def recompute(path=ALL_JSON_PATH):
             changed += 1
     _atomic_write(rows, path)
     return changed, len(rows)
+
+
+def dedupe(path=ALL_JSON_PATH):
+    """Merge rows that are the same job posting under today's identity rules
+    but weren't recognized as duplicates when they were scraped -- e.g. a
+    query-string variant of an earlier link (normalize_url wasn't applied
+    yet), or the same job found by both ats_boards and a README-table
+    source before cross-source dedup existed. Rows with no url at all are
+    never merged (nothing reliable to match on).
+
+    Always keeps the OLDEST record for a given link and drops the rest --
+    never overwrites an existing record with a newer one, even if the
+    newer one happens to have more/better data (e.g. a backfilled
+    description)."""
+    rows = json.loads(path.read_text())
+    groups = {}
+    singles = []
+    for row in rows:
+        key = normalize_url(row["url"]) if row.get("url") else None
+        if key:
+            groups.setdefault(key, []).append(row)
+        else:
+            singles.append(row)
+
+    kept = []
+    removed = 0
+    for group in groups.values():
+        if len(group) > 1:
+            group = sorted(group, key=lambda r: r.get("scraped_at", ""))
+            removed += len(group) - 1
+        kept.append(group[0])
+
+    result_rows = sorted(kept + singles, key=lambda r: r.get("scraped_at", ""))
+    _atomic_write(result_rows, path)
+    return removed, len(rows)
 
 
 def backfill_descriptions(path=ALL_JSON_PATH):
@@ -77,6 +114,30 @@ def selftest():
     assert result[0]["is_2027"] is True
     assert result[1]["is_2027"] is False
     assert result[2]["is_2027"] is True
+
+    # dedupe: same link (query string aside), different source/scrape time --
+    # keep the OLDEST record, never overwrite it with a newer one
+    dupe_rows = [
+        {"url": "http://a/1", "source": "ats_boards", "scraped_at": "2026-02-01T00:00:00",
+         "description": ""},
+        {"url": "http://a/1?utm=x", "source": "github_readme", "scraped_at": "2026-01-01T00:00:00",
+         "description": "has a description"},
+        {"url": "http://a/2", "source": "ats_boards", "scraped_at": "2026-01-15T00:00:00"},
+        {"source": "ats_boards", "scraped_at": "2026-01-01T00:00:00"},  # no url -- never merged
+        {"source": "github_readme", "scraped_at": "2026-01-02T00:00:00"},  # no url -- never merged
+    ]
+    p3 = Path(tempfile.mkdtemp()) / "all.json"
+    p3.write_text(json.dumps(dupe_rows))
+    removed, total = dedupe(p3)
+    assert removed == 1 and total == 5
+    result3 = json.loads(p3.read_text())
+    assert len(result3) == 4
+    by_url = {r.get("url"): r for r in result3}
+    # the older record's own url field is untouched -- still has ?utm=x
+    assert by_url["http://a/1?utm=x"]["source"] == "github_readme"
+    assert by_url["http://a/1?utm=x"]["description"] == "has a description"
+    assert by_url["http://a/2"]["source"] == "ats_boards"
+    assert sum(1 for r in result3 if not r.get("url")) == 2  # both no-url rows kept, untouched
 
     import sys
     _self = sys.modules[__name__]  # module-level patch, not a fresh dotted
