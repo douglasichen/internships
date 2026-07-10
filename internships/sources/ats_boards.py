@@ -30,24 +30,35 @@ UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) internships-service"
 TIMEOUT = 25
 URL_RE = re.compile(r"https?://\S+")
 
-TITLE_KEYS = ("title", "text", "name", "jobTitle", "job_title")
+# Title: Oracle Fusion requisitionList rows.
+TITLE_KEYS = ("title", "text", "name", "jobTitle", "job_title", "Title")
 # job_path: Amazon.jobs search.json (relative "/en/jobs/..."); resolved via
 # _resolve_url against the API origin. Prefer it over any later absolute keys
 # that are login/apply redirects rather than the public posting page.
+# canonicalPositionUrl: Eightfold /api/apply/v2/jobs rows.
 URL_KEYS = ("absolute_url", "hostedUrl", "jobUrl", "applyUrl", "externalPath",
-            "job_path", "url", "canonicalUrl")
-LOC_KEYS = ("location", "city", "locationName", "primaryLocation", "locationsText")
+            "job_path", "url", "canonicalUrl", "canonicalPositionUrl")
+# PrimaryLocation: Oracle Fusion requisitionList rows.
+LOC_KEYS = ("location", "city", "locationName", "primaryLocation", "locationsText",
+            "PrimaryLocation")
 BODY_KEYS = ("descriptionPlain", "descriptionBodyPlain", "content",
-             "description", "openingPlain")
+             "description", "openingPlain", "job_description")
 # "content": SmartRecruiters (/v1/companies/.../postings). Must stay after
 # "jobs"/"data"/etc. -- Amazon.jobs also has a top-level "content" object
 # (a dict, not a list), which isinstance(v, list) correctly skips.
 LIST_KEYS = ("jobs", "jobPostings", "postings", "data", "results", "content")
 
 
+# Split the api_urls cell into separate endpoints on ";" only when the ";"
+# begins a new URL (" ; https://..."). Oracle Fusion endpoints carry a literal
+# ";" *inside* one URL (finder=findReqs;siteNumber=...), which must not be
+# split off as a bogus second endpoint.
+URL_SEP_RE = re.compile(r";(?=\s*https?://)")
+
+
 def parse_urls(cell):
     out = []
-    for part in cell.split(";"):
+    for part in URL_SEP_RE.split(cell):
         m = URL_RE.search(part)
         if not m:
             continue
@@ -163,7 +174,8 @@ def extract_postings(data):
     """Find the array of job dicts inside an arbitrary ATS JSON response.
     Covers every shape seen so far: Ashby/Greenhouse ({"jobs": [...]}),
     Workday ({"jobPostings": [...]}), Lever (bare list), SmartRecruiters
-    ({"content": [...]})."""
+    ({"content": [...]}), Eightfold ({"positions": [...]} or nested under
+    data), Oracle Fusion (items[*].requisitionList[*])."""
     if isinstance(data, list):
         return [j for j in data if isinstance(j, dict)]
     if isinstance(data, dict):
@@ -171,6 +183,23 @@ def extract_postings(data):
             v = data.get(key)
             if isinstance(v, list):
                 return [j for j in v if isinstance(j, dict)]
+        # Eightfold: {"positions": [...]} (/api/apply/v2/jobs) or
+        # {"data": {"positions": [...]}} (/api/pcsx/search).
+        # Note: LIST_KEYS already tries top-level "data" as a list; here we
+        # only handle the nested-dict shape pcsx uses.
+        pos = data.get("positions")
+        if not isinstance(pos, list) and isinstance(data.get("data"), dict):
+            pos = data["data"].get("positions")
+        if isinstance(pos, list):
+            return [j for j in pos if isinstance(j, dict)]
+        # Oracle Fusion (recruitingCEJobRequisitions): the postings are nested
+        # one level down, in items[*].requisitionList[*].
+        items = data.get("items")
+        if isinstance(items, list):
+            reqs = [j for it in items if isinstance(it, dict)
+                    for j in (it.get("requisitionList") or []) if isinstance(j, dict)]
+            if reqs:
+                return reqs
     return []
 
 
@@ -207,11 +236,34 @@ def _fallback_url(job):
     return ""
 
 
+ORACLE_SITE_RE = re.compile(r"(https://[^/]+)/hcmRestApi/.*?siteNumber=([^,&;]+)")
+EIGHTFOLD_HOST_RE = re.compile(r"(https://[^/]+)/api/(?:apply/v2/jobs|pcsx/search)")
+
+
+def _build_missing_url(job, api_url):
+    """Oracle Fusion list rows and the Eightfold /pcsx/search shape don't carry
+    a ready-made apply link -- reconstruct the public job URL from the tenant
+    host in api_url plus the posting's own id, so each listing still has a
+    stable, clickable url (also the basis of its dedup identity)."""
+    m = ORACLE_SITE_RE.search(api_url)
+    if m and job.get("Id"):
+        host, site = m.groups()
+        return f"{host}/hcmUI/CandidateExperience/en/sites/{site}/job/{job['Id']}"
+    m = EIGHTFOLD_HOST_RE.match(api_url)
+    if m:
+        jid = job.get("id") or job.get("displayJobId")
+        if jid:
+            return f"{m.group(1)}/careers/job/{jid}"
+    return ""
+
+
 def job_to_listing(company, job, api_url=""):
     title = _first(job, TITLE_KEYS)
     if not title:
         return None
-    url = _resolve_url(_first(job, URL_KEYS), api_url) or _fallback_url(job)
+    url = (_resolve_url(_first(job, URL_KEYS), api_url)
+           or _fallback_url(job)
+           or _build_missing_url(job, api_url))
     return Listing(source="ats_boards", company=company, title=title,
                     location=_get_location(job), url=url,
                     extra_text=_get_blob(job))
@@ -417,6 +469,12 @@ def selftest():
 
     assert parse_urls("https://x.io/a (dead) ; https://y.io/b") == \
         [("https://x.io/a", "dead"), ("https://y.io/b", None)]
+    # an Oracle Fusion url's internal ";" (findReqs;siteNumber=...) must NOT be
+    # split into a bogus second endpoint -- only " ; https://" separates urls
+    oracle_cell = ("https://x.fa.oraclecloud.com/hcmRestApi/resources/latest/"
+                   "recruitingCEJobRequisitions?finder=findReqs;siteNumber=CX_1,"
+                   "limit=25,keyword=intern")
+    assert parse_urls(oracle_cell) == [(oracle_cell, None)], parse_urls(oracle_cell)
     assert extract_postings({"jobs": [{"title": "a"}]}) == [{"title": "a"}]
     assert extract_postings([{"title": "a"}]) == [{"title": "a"}]
     assert extract_postings({"jobPostings": [{"title": "a"}]}) == [{"title": "a"}]
@@ -431,6 +489,29 @@ def selftest():
     assert extract_postings({"content": {"sidebar": {}}, "jobs": [{"title": "a"}]}) == \
         [{"title": "a"}]
     assert extract_postings({"content": {"sidebar": {}}}) == []
+    # Eightfold: positions at top level or nested under "data"
+    assert extract_postings({"positions": [{"name": "a"}]}) == [{"name": "a"}]
+    assert extract_postings({"data": {"positions": [{"name": "a"}]}}) == [{"name": "a"}]
+    # Oracle Fusion: items[*].requisitionList[*] flattened
+    assert extract_postings({"items": [{"requisitionList": [{"Title": "a"}, {"Title": "b"}]}]}) \
+        == [{"Title": "a"}, {"Title": "b"}]
+    assert extract_postings({"items": [{"SearchId": 1}]}) == []  # no requisitionList -> nothing
+
+    # Oracle row: Title/PrimaryLocation keys + reconstructed apply url from
+    # the tenant host + siteNumber in api_url and the posting's Id
+    oj = job_to_listing("Uber", {"Title": "SWE Intern", "Id": "42", "PrimaryLocation": "SF"},
+                         api_url=oracle_cell)
+    assert oj.title == "SWE Intern" and oj.location == "SF"
+    assert oj.url == "https://x.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/42", oj.url
+    # Eightfold /pcsx/search row has no ready-made link -> build one from host+id
+    ej = job_to_listing("Ericsson", {"name": "SWE Intern", "id": 99},
+                        api_url="https://jobs.ericsson.com/api/pcsx/search?domain=ericsson.com")
+    assert ej.url == "https://jobs.ericsson.com/careers/job/99", ej.url
+    # Eightfold /apply/v2 row already carries canonicalPositionUrl -> keep it
+    ej2 = job_to_listing("Netflix", {"name": "SWE Intern",
+                                      "canonicalPositionUrl": "https://x/careers/job/7"},
+                         api_url="https://netflix.eightfold.ai/api/apply/v2/jobs")
+    assert ej2.url == "https://x/careers/job/7", ej2.url
 
     l = job_to_listing("Acme", {"title": "SWE Intern", "absolute_url": "http://x/1",
                                  "location": {"name": "SF"}})
