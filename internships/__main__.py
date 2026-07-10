@@ -37,11 +37,15 @@ FIELDS = ["company", "title", "location", "is_2027", "priority", "source", "post
           "scraped_at", "url", "description"]
 
 
-def _row(l, scraped_at):
-    return {"id": l.id(), "company": l.company, "title": l.title, "location": l.location,
-            "is_2027": l.is_2027, "priority": l.priority, "source": l.source,
-            "posted": l.posted, "scraped_at": scraped_at, "url": l.url,
-            "description": l.extra_text}
+def _row(l, scraped_at, *, include_description=False):
+    """Listing as a plain dict. all.json omits description (see desc_store);
+    per-run CSVs still include it when include_description=True."""
+    row = {"id": l.id(), "company": l.company, "title": l.title, "location": l.location,
+           "is_2027": l.is_2027, "priority": l.priority, "source": l.source,
+           "posted": l.posted, "scraped_at": scraped_at, "url": l.url}
+    if include_description:
+        row["description"] = l.extra_text
+    return row
 
 
 def write_csv(listings, scraped_at, path):
@@ -52,7 +56,7 @@ def write_csv(listings, scraped_at, path):
         w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
         w.writeheader()
         for l in listings:
-            row = _row(l, scraped_at)
+            row = _row(l, scraped_at, include_description=True)
             row["is_2027"] = "yes" if row["is_2027"] else ""
             # priority is an int (1/2/3), not a boolean flag -- write it
             # straight through, csv.DictWriter handles ints fine.
@@ -63,24 +67,36 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     """The web UI's whole dataset: every listing ever found, across every run,
     each stamped with when it was scraped. Grows by appending.
 
-    Skips rows whose id is already present -- defense in depth for the case
-    where seen-ids were not yet persisted after a prior successful write
-    (e.g. crash between append and persist_seen), so a retry cannot
-    double-insert the same listing into the UI feed."""
+    Descriptions are NOT stored here -- they go to out/descriptions.json keyed
+    by the same listing id (see desc_store). Skips rows whose id is already
+    present so a retry after crash-between-append-and-persist_seen cannot
+    double-insert."""
+    from internships import desc_store
+
     existing = json.loads(path.read_text()) if path.exists() else []
+    # one-shot peel if this all.json still has inline description fields
+    descs = desc_store.load(path)
+    peeled = desc_store.peel_from_rows(existing)
+    if peeled:
+        for k, v in peeled.items():
+            descs.setdefault(k, v)
+
     have = {r.get("id") for r in existing}
     for l in listings:
-        row = _row(l, scraped_at)
+        row = _row(l, scraped_at)  # no description field
         if row["id"] in have:
             continue
         existing.append(row)
         have.add(row["id"])
+        if l.extra_text:
+            descs[row["id"]] = l.extra_text
     path.parent.mkdir(parents=True, exist_ok=True)
     # Atomic (tmp + replace), same as recompute writes to this very file: this
     # is a full rewrite of the entire cumulative dataset, so a crash mid-write
     # (SIGKILL / disk-full / OOM) would otherwise truncate all.json and lose
     # every historical row -- and every later run would then crash on json.loads.
     recompute._atomic_write(existing, path)
+    desc_store.save(descs, path)
 
 
 def selftest():
@@ -89,6 +105,7 @@ def selftest():
     from internships.models import Listing
 
     modules = ["internships.models", "internships.filters", "internships.seen_store",
+               "internships.desc_store",
                "internships.sources.md_table", "internships.sources.ats_boards",
                "internships.sources.custom_boards",
                "internships.sources.github_readme", "internships.sources.speedyapply",
@@ -159,6 +176,19 @@ def selftest():
         rows = json.loads(all_json.read_text())
         assert len(rows) == 1 and rows[0]["company"] == "Acme"
         assert rows[0]["scraped_at"] == "2026-07-09T00:00:00"  # first write kept
+        assert "description" not in rows[0]
+
+    # descriptions land in descriptions.json keyed by the same listing id
+    with tempfile.TemporaryDirectory() as td:
+        from internships import desc_store
+        all_json = Path(td) / "all.json"
+        listing = Listing("s", "Acme", "SWE", "SF", "http://x/1",
+                          extra_text="<p>full body</p>")
+        append_all_json([listing], "2026-07-09T00:00:00", all_json)
+        rows = json.loads(all_json.read_text())
+        assert "description" not in rows[0]
+        descs = desc_store.load(all_json)
+        assert descs[listing.id()] == "<p>full body</p>"
     print("__main__ selftest OK")
 
 
@@ -203,7 +233,8 @@ def main():
             print(f"recomputed priority for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
         if "descriptions" in a.recompute:
             changed, stale = recompute.backfill_descriptions()
-            print(f"backfilled {changed}/{stale} stale descriptions -> {recompute.ALL_JSON_PATH}")
+            print(f"backfilled {changed}/{stale} stale descriptions -> "
+                  f"{recompute.DESCRIPTIONS_PATH}")
         return
 
     # Defer seen-id writes until after a successful out/all.json append so a

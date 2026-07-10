@@ -1,9 +1,11 @@
 __pycache__/
 *.pyc
 data/
-# out/all.json is tracked deliberately -- it's the full listing history,
-# kept under git so that history survives scrapes/recomputes. Per-run CSV
-# snapshots aren't (out/*.csv is just a point-in-time export of a run).
+# out/all.json is tracked deliberately -- metadata listing history for the
+# web UI, kept under git so that history survives scrapes/recomputes.
+# Descriptions are huge HTML blobs and live in out/descriptions.json keyed
+# by the same listing id; that file is local-only (not tracked). Per-run CSV
+# snapshots aren't tracked either (out/*.csv is just a point-in-time export).
 out/*
 !out/all.json
 .run.lock
