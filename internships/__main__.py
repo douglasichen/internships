@@ -76,6 +76,7 @@ def selftest():
 
     modules = ["internships.models", "internships.filters", "internships.seen_store",
                "internships.sources.md_table", "internships.sources.ats_boards",
+               "internships.sources.custom_boards",
                "internships.sources.github_readme", "internships.sources.speedyapply",
                "internships.sources.sndsh404", "internships.service", "internships.recompute"]
     for m in modules:

@@ -47,6 +47,31 @@ def _str(v):
     return v.strip() if isinstance(v, str) and v.strip() else ""
 
 
+def _loc(v):
+    """A location field is sometimes a list (e.g. Eightfold 'locations' /
+    'standardizedLocations') -- take the first usable string rather than
+    silently blanking it."""
+    if isinstance(v, list):
+        v = next((x for x in v if isinstance(x, str) and x.strip()), "")
+    return _str(v)
+
+
+_ORIGIN_RE = re.compile(r"(https?://[^/]+)")
+
+
+def _abs_url(url, spec):
+    """Make a relative apply link absolute: prepend url_prefix if set, else the
+    origin of the spec's own endpoint. Applies in both HTML and JSON modes, so
+    a bare relative link_key (e.g. '/careers/job/123') doesn't ship unusable."""
+    if url.startswith("/"):
+        prefix = spec.get("url_prefix")
+        if not prefix:
+            m = _ORIGIN_RE.match(spec.get("url", ""))
+            prefix = m.group(1) if m else ""
+        url = prefix.rstrip("/") + url
+    return url
+
+
 _TEMPLATE_RE = re.compile(r"\{([\w.]+)\}")
 
 
@@ -80,16 +105,13 @@ def _rows_from_html(raw, spec):
     (title required; url/loc/desc optional) become one Listing. url_prefix is
     prepended to a relative url. This is the generic 'raw HTML' path for sites
     with no JSON feed at all."""
-    prefix = spec.get("url_prefix", "")
     out = []
     for m in re.finditer(spec["row_regex"], raw, re.S):
         g = m.groupdict()
         title = html.unescape(_str(re.sub(r"<[^>]+>", "", g.get("title", "") or ""))).strip()
         if not title:
             continue
-        url = html.unescape(_str(g.get("url", "")))
-        if url and prefix and url.startswith("/"):
-            url = prefix.rstrip("/") + url
+        url = _abs_url(html.unescape(_str(g.get("url", ""))), spec)
         loc = html.unescape(_str(re.sub(r"<[^>]+>", "", g.get("loc", "") or ""))).strip()
         desc = _str(g.get("desc", ""))
         out.append(Listing(NAME, spec["company"], title, loc, url, extra_text=desc))
@@ -121,18 +143,23 @@ def spec_to_listings(spec):
     for job in arr:
         # a "job" is usually a dict, but some sites (e.g. Google's cportal)
         # encode each posting as a positional array -- _dig handles integer
-        # path segments, so allow lists too.
+        # path segments, so allow lists too. The whole body is guarded so a
+        # single malformed row (or a spec that omits title_key) skips that row
+        # instead of raising out of the ThreadPoolExecutor and zeroing the run.
         if not isinstance(job, (dict, list)):
             continue
-        title = _str(_dig(job, spec["title_key"]))
-        if not title:
+        try:
+            title = _str(_dig(job, spec.get("title_key", "")))
+            if not title:
+                continue
+            if spec.get("link_template"):
+                url = _fill(spec["link_template"], job)
+            else:
+                url = _abs_url(_str(_dig(job, spec.get("link_key", ""))), spec)
+            loc = _loc(_dig(job, spec.get("loc_key", "")))
+            desc = _str(_dig(job, spec.get("desc_key", "")))
+        except Exception:  # noqa: BLE001 - one malformed row must not sink the spec
             continue
-        if spec.get("link_template"):
-            url = _fill(spec["link_template"], job)
-        else:
-            url = _str(_dig(job, spec.get("link_key", "")))
-        loc = _str(_dig(job, spec.get("loc_key", "")))
-        desc = _str(_dig(job, spec.get("desc_key", "")))
         out.append(Listing(NAME, spec["company"], title, loc, url, extra_text=desc))
     return out
 
@@ -207,7 +234,6 @@ CONFIG = [
     {'company': 'Valve', 'url': 'https://www.valvesoftware.com/en/jobs', 'method': 'GET', 'row_regex': '<div class="job_opening[^"]*">\s*<a href="(?P<url>[^"]+)">\s*<h5 class="job_title">\s*(?P<title>[^<]+?)\s*</h5>'},
     {'company': 'Opendoor', 'url': 'https://www.opendoor.com/careers/open-positions', 'method': 'GET', 'row_regex': '<a[^>]*href="(?P<url>/careers/open-positions/jobs/[^"]+)"[^>]*><div><h3[^>]*>(?P<title>[^<]+)</h3></div><p[^>]*>(?P<loc>[^<]+)</p></a>', 'url_prefix': 'https://www.opendoor.com'},
     {'company': 'G-Research', 'url': 'https://www.gresearch.com/vacancies/', 'method': 'GET', 'row_regex': '<a href="(?P<url>[^"]+)" class="c-vacancy-result">\s*<span class="c-vacancy-result__title">(?P<title>[^<]+)</span>\s*(?:<span class="c-vacancy-result__location">(?P<loc>[^<]*)</span>)?'},
-    {'company': 'Revolut', 'url': 'https://web.archive.org/web/2/https://www.revolut.com/en-US/careers/', 'method': 'GET', 'extract_regex': '<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', 'list_path': 'props.pageProps.positions', 'title_key': 'text', 'link_key': 'id', 'link_template': 'https://www.revolut.com/en-US/careers/position/{id}/', 'loc_key': 'locations', 'desc_key': 'description'},
     {'company': 'Klarna', 'url': 'https://jobs.deel.com/klarna', 'method': 'GET', 'row_regex': '\\"id\\":\\"[0-9a-f-]{36}\\",\\"jobId\\":\\"[0-9a-f-]{36}\\",\\"title\\":\\"(?P<title>[^\\\\]+?)\\".*?\\"jobLocations\\":\[\{[^]]*?\\"name\\":\\"(?P<loc>[^\\\\]+?)\\"', 'url_prefix': 'https://jobs.deel.com'},
     {'company': 'Nutanix', 'url': 'https://careers.nutanix.com/sitemap.xml', 'method': 'GET', 'row_regex': '<loc>(?P<url>https://careers\.nutanix\.com/en/jobs/\d+/(?P<title>[^/<]+))/</loc>', 'url_prefix': 'https://careers.nutanix.com'},
     {'company': 'Siemens EDA', 'url': 'https://prod-search-api.jobsyn.org/api/v1/solr/search?num_items=50&q=intern', 'method': 'GET', 'headers': {'Accept': 'application/json', 'Content-Type': 'application/json', 'X-Origin': 'jobs.sw.siemens.com'}, 'list_path': 'jobs', 'title_key': 'title_exact', 'link_template': 'https://jobs.sw.siemens.com/{title_slug}/{title_slug}/{guid}/job/', 'loc_key': 'location_exact', 'desc_key': 'description'},
@@ -253,6 +279,17 @@ def selftest():
     assert _fill("https://h/job/{id}", {"id": 42}) == "https://h/job/42"
     assert _fill("https://h/{a.b}", {"a": {"b": "x"}}) == "https://h/x"
 
+    # a location that digs to a list (Eightfold shape) takes the first string
+    assert _loc(["NYC", "SF"]) == "NYC"
+    assert _loc("SF") == "SF"
+    assert _loc([]) == "" and _loc(None) == ""
+
+    # a relative link_key/url is made absolute -- via url_prefix, else the
+    # origin of the spec's own endpoint
+    assert _abs_url("/careers/job/1", {"url": "https://x.test/api/s"}) == "https://x.test/careers/job/1"
+    assert _abs_url("/j/1", {"url": "https://x.test/api", "url_prefix": "https://apply.x.test"}) == "https://apply.x.test/j/1"
+    assert _abs_url("https://x.test/j/1", {"url": "https://x.test/api"}) == "https://x.test/j/1"  # already absolute, untouched
+
     # generic spec: dig to a nested array, map dotted keys + a URL template
     payload = {"data": {"jobs": [
         {"t": "SWE Intern", "id": 7, "city": "SF", "body": "desc"},
@@ -283,7 +320,8 @@ def selftest():
         got2 = spec_to_listings(spec2)
     finally:
         _self.fetch_text = orig
-    assert len(got2) == 1 and got2[0].title == "ML Intern" and got2[0].url == "/j/1", got2
+    # relative link_key is absolutized to the spec endpoint's origin
+    assert len(got2) == 1 and got2[0].title == "ML Intern" and got2[0].url == "https://beta.test/j/1", got2
 
     # a spec whose shape no longer matches (wrong list_path) degrades to []
     _self.fetch_text = lambda s: json.dumps(payload)
