@@ -184,6 +184,32 @@
     color: var(--text-muted);
     flex-basis: 100%;
   }
+  .scrape-row {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .scrape-status {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .scrape-status.live {
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .scrape-status.live::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) { .scrape-status.live::before { animation: none; } }
 
   main {
     max-width: 880px;
@@ -323,6 +349,10 @@
   <div class="hero-count" id="heroCount">–</div>
   <div class="hero-label" id="heroLabel">roles found</div>
   <div class="hero-sub" id="heroSub"></div>
+  <div class="scrape-row">
+    <button class="toggle" id="runScrape">Run scrape</button>
+    <span class="scrape-status" id="scrapeStatus"></span>
+  </div>
 </header>
 
 <div class="filters">
@@ -591,7 +621,64 @@ document.getElementById('runRecompute').addEventListener('click', async e => {
   }
 });
 
+// Polls whether .run.lock is held by ANYONE -- this tab's own "Run scrape"
+// click, another tab, or a bare terminal `python3 -m internships` /
+// --recompute run -- so the live indicator is accurate regardless of who
+// started it.
+let scrapeWasActive = false;
+function pollScrapeActive() {
+  fetch('/api/status').then(r => r.json()).then(s => {
+    const statusEl = document.getElementById('scrapeStatus');
+    const btn = document.getElementById('runScrape');
+    if (s.active) {
+      scrapeWasActive = true;
+      statusEl.textContent = 'scrape running…';
+      statusEl.classList.add('live');
+      btn.disabled = true;
+    } else {
+      statusEl.classList.remove('live');
+      btn.disabled = false;
+      if (scrapeWasActive) {
+        scrapeWasActive = false;
+        loadAll();
+        // only populated if THIS server's own /api/scrape triggered it --
+        // a CLI-triggered run leaves this blank, which is fine, the live
+        // indicator above already covered the important part
+        fetch('/api/scrape/status').then(r => r.json()).then(s2 => {
+          if (s2.result) statusEl.textContent = `done — ${s2.result.new_listings} new listings`;
+          else if (s2.error) statusEl.textContent = 'error: ' + s2.error;
+          else statusEl.textContent = '';
+        }).catch(() => { statusEl.textContent = ''; });
+      }
+    }
+  }).catch(() => {});
+  setTimeout(pollScrapeActive, 4000);
+}
+
+document.getElementById('runScrape').addEventListener('click', async e => {
+  const statusEl = document.getElementById('scrapeStatus');
+  const btn = e.target;
+  btn.disabled = true;
+  statusEl.textContent = 'starting…';
+  try {
+    const res = await fetch('/api/scrape', { method: 'POST' });
+    if (res.status === 202) {
+      statusEl.textContent = 'scrape running…';
+      statusEl.classList.add('live');
+      scrapeWasActive = true;
+      return;
+    }
+    const err = await res.json().catch(() => ({}));
+    statusEl.textContent = err.error || `failed (${res.status})`;
+    btn.disabled = false;
+  } catch {
+    statusEl.textContent = 'no server running -- start with: python3 -m internships.webserver';
+    btn.disabled = false;
+  }
+});
+
 loadAll();
+pollScrapeActive();
 </script>
 </body>
 </html>
