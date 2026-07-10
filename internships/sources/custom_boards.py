@@ -180,6 +180,85 @@ def decoder(company, url):
     return wrap
 
 
+# ---------------------------------------------------------------------------
+# Tesla: compressed-key state payload (not a generic list-of-jobs shape).
+# Endpoint: GET https://www.tesla.com/cua-api/apps/careers/state
+# Shape verified against Wayback (2025-05) + public first-party scrapers:
+#   lookup.locations / .departments / .types  — id -> display string
+#   listings[]  — {id, t title, dp dept id, l location id, y type id}
+# Detail URL: https://www.tesla.com/careers/search/job/<slug-title>-<id>
+# Akamai Bot Manager often 403/429's non-browser clients (cpr_chlge). Live
+# scrape needs a non-blocked network; CI uses fixture-based decode only.
+# ---------------------------------------------------------------------------
+_TESLA_STATE_URL = "https://www.tesla.com/cua-api/apps/careers/state"
+_TESLA_DETAIL_ROOT = "https://www.tesla.com/careers/search/job"
+_TESLA_SLUG_RE = re.compile(r"[^a-z0-9]+")
+
+
+def _tesla_job_url(title, job_id):
+    slug = _TESLA_SLUG_RE.sub("-", title.casefold()).strip("-") or "job"
+    return f"{_TESLA_DETAIL_ROOT}/{slug}-{job_id}"
+
+
+def listings_from_tesla_state(payload):
+    """Decode Tesla careers state JSON -> list[Listing]. Pure function so
+    selftests don't need a live (Akamai-gated) fetch."""
+    if not isinstance(payload, dict):
+        return []
+    lookup = payload.get("lookup") if isinstance(payload.get("lookup"), dict) else {}
+    locs = lookup.get("locations") if isinstance(lookup.get("locations"), dict) else {}
+    depts = lookup.get("departments") if isinstance(lookup.get("departments"), dict) else {}
+    loc_map = {str(k): _str(v) for k, v in locs.items()}
+    dept_map = {str(k): _str(v) for k, v in depts.items()}
+
+    out = []
+    for row in payload.get("listings") or []:
+        if not isinstance(row, dict):
+            continue
+        title = _str(row.get("t"))
+        job_id = _str(row.get("id"))
+        if not title or not job_id:
+            continue
+        raw_l = row.get("l")
+        if isinstance(raw_l, list):
+            loc = ", ".join(
+                p for p in (loc_map.get(str(x), "") for x in raw_l) if p
+            )
+        elif raw_l is None or raw_l == "":
+            loc = ""
+        else:
+            loc = loc_map.get(str(raw_l), "")
+        dept = dept_map.get(str(row.get("dp")), "") if row.get("dp") is not None else ""
+        out.append(Listing(
+            NAME, "Tesla", title, loc, _tesla_job_url(title, job_id),
+            extra_text=dept,
+        ))
+    return out
+
+
+@decoder("Tesla", _TESLA_STATE_URL)
+def _tesla():
+    """Fetch Tesla /cua-api/apps/careers/state and decode compact listings.
+    Transport/shape failures yield [] so one blocked edge never sinks the
+    whole custom_boards source."""
+    try:
+        req = Request(_TESLA_STATE_URL, headers={
+            "User-Agent": UA,
+            "Accept": "application/json, text/plain, */*",
+            "Referer": "https://www.tesla.com/careers/search/",
+            "Origin": "https://www.tesla.com",
+        })
+        with urlopen(req, timeout=TIMEOUT) as r:
+            raw = r.read().decode("utf-8", errors="replace")
+        payload = json.loads(raw)
+    except Exception:  # noqa: BLE001 - Akamai 403/429 / network; degrade to []
+        return []
+    # Akamai challenge is small JSON ({cpr_chlge,t}) without listings
+    if not isinstance(payload, dict) or "listings" not in payload:
+        return []
+    return listings_from_tesla_state(payload)
+
+
 # CONFIG: verified fetch specs (dicts) + bespoke decoder companies. Populated
 # from the endpoint-recovery sweep; every entry was curl-verified to return
 # real postings before being added. See docs/endpoint_recovery.md.
@@ -364,6 +443,40 @@ def selftest():
     finally:
         _self.fetch_text = orig
     assert len(g) == 1 and g[0].url == "", g
+
+    # Tesla state decoder: compressed keys + location/dept lookup tables.
+    # Fixture mirrors the live /cua-api/apps/careers/state shape (Wayback-
+    # verified 2025-05); live fetch is Akamai-gated so CI never depends on it.
+    tesla_payload = {
+        "lookup": {
+            "locations": {"401022": "Palo Alto, California", "16964": "Fremont, California"},
+            "departments": {"9": "AI & Robotics", "2": "Sales & Customer Support"},
+            "types": {"1": "fulltime", "3": "intern"},
+        },
+        "listings": [
+            {"id": "243692", "t": "Software Engineer, Mobile App, Vehicle Software",
+             "dp": "9", "l": "401022", "y": 1},
+            {"id": "242901", "t": "Internship, Software Integration Engineer, Service (Fall 2025)",
+             "dp": "2", "l": "16964", "y": 3},
+            {"id": "999", "t": "", "dp": "9", "l": "401022", "y": 3},  # blank title -> skip
+            {"id": "260509", "t": "Co-op Firmware Engineer",
+             "dp": "9", "l": ["401022", "16964"], "y": 3},  # multi-location
+        ],
+    }
+    tg = listings_from_tesla_state(tesla_payload)
+    assert len(tg) == 3, tg
+    assert all(l.source == NAME and l.company == "Tesla" for l in tg), tg
+    assert tg[0].title.startswith("Software Engineer") and tg[0].location == "Palo Alto, California"
+    assert tg[0].url == (
+        "https://www.tesla.com/careers/search/job/"
+        "software-engineer-mobile-app-vehicle-software-243692"
+    ), tg[0].url
+    assert tg[0].extra_text == "AI & Robotics"
+    assert "internship-software-integration" in tg[1].url and tg[1].location == "Fremont, California"
+    assert tg[2].url.endswith("-260509") and "Palo Alto" in tg[2].location and "Fremont" in tg[2].location
+    assert listings_from_tesla_state({"cpr_chlge": "true"}) == []
+    assert listings_from_tesla_state({"listings": "nope"}) == []
+    assert "Tesla" in DECODERS and DECODERS["Tesla"][0] == _TESLA_STATE_URL
 
     print("custom_boards selftest OK")
 
