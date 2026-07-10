@@ -15,13 +15,14 @@ import re
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
+from dataclasses import replace
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
+from internships.filters import is_swe_internship
 from internships.models import Listing
-from internships.sources.md_table import clean_text
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 CSV_PATH = ROOT / "companies.csv"
@@ -51,8 +52,11 @@ def parse_urls(cell):
 
 
 def request_for(url):
-    """Workday cxs and Uber want a POST body; everything else is a GET."""
-    if "/wday/cxs/" in url:
+    """Workday cxs search and Uber want a POST body; everything else is a
+    GET -- including Workday's own per-job detail page, which also lives
+    under /wday/cxs/ but (unlike the .../jobs search endpoint) wants a
+    plain GET."""
+    if "/wday/cxs/" in url and url.split("?")[0].endswith("/jobs"):
         body = json.dumps({"appliedFacets": {}, "limit": 20, "offset": 0,
                             "searchText": ""}).encode()
         return Request(url, data=body, method="POST",
@@ -123,8 +127,9 @@ def _get_location(job):
 
 
 def _get_blob(job):
-    # clean_text also handles Greenhouse's "content", which is raw HTML
-    return clean_text(" ".join(v for k in BODY_KEYS if isinstance((v := job.get(k)), str)))
+    # deliberately untouched (HTML tags/entities and all) -- this is meant to
+    # be copy-pasted into an AI later, which handles markup noise just fine
+    return " ".join(v for k in BODY_KEYS if isinstance((v := job.get(k)), str))
 
 
 def extract_postings(data):
@@ -164,6 +169,27 @@ def job_to_listing(company, job, api_url=""):
     return Listing(source="ats_boards", company=company, title=title,
                     location=_get_location(job), url=_resolve_url(_first(job, URL_KEYS), api_url),
                     extra_text=_get_blob(job))
+
+
+def workday_detail_url(api_url, external_path):
+    """Workday's list/search endpoint (.../wday/cxs/<tenant>/<site>/jobs)
+    carries no description -- only the per-job detail endpoint does, which is
+    that same cxs base with '/jobs' swapped for the job's externalPath."""
+    base = api_url.split("?")[0]
+    if not (base.endswith("/jobs") and external_path):
+        return None
+    return base[:-len("/jobs")] + external_path
+
+
+def fetch_workday_description(api_url, external_path):
+    detail_url = workday_detail_url(api_url, external_path)
+    if not detail_url:
+        return ""
+    ok, data, _ = fetch_json(detail_url)
+    if not ok or not isinstance(data, dict):
+        return ""
+    info = data.get("jobPostingInfo")
+    return info.get("jobDescription", "") if isinstance(info, dict) else ""
 
 
 class DomainThrottle:
@@ -250,6 +276,17 @@ class AtsBoardsSource:
                             # the whole batch; skip just that job.
                             continue
                         if l is not None:
+                            # Workday's list endpoint has no description --
+                            # only fetch the per-job detail page (one extra
+                            # request each) for postings that already look
+                            # like an SWE internship, to keep the added
+                            # request volume small.
+                            if not l.extra_text and WDAY_CXS_RE.search(url) and is_swe_internship(l.title):
+                                external_path = _first(j, ("externalPath",))
+                                throttle.wait(url)
+                                desc = fetch_workday_description(url, external_path)
+                                if desc:
+                                    l = replace(l, extra_text=desc)
                             listings.append(l)
                     return company, "ok", listings
             return company, "dead", []
@@ -268,6 +305,11 @@ class AtsBoardsSource:
 
 
 def selftest():
+    # the /jobs search endpoint POSTs a query body; a Workday detail page
+    # (same /wday/cxs/ prefix, but not ending in /jobs) must stay a plain GET
+    assert request_for("https://x.wd1.myworkdayjobs.com/wday/cxs/x/Ext/jobs").get_method() == "POST"
+    assert request_for("https://x.wd1.myworkdayjobs.com/wday/cxs/x/Ext/job/y").get_method() == "GET"
+
     assert parse_urls("https://x.io/a (dead) ; https://y.io/b") == \
         [("https://x.io/a", "dead"), ("https://y.io/b", None)]
     assert extract_postings({"jobs": [{"title": "a"}]}) == [{"title": "a"}]
@@ -299,6 +341,24 @@ def selftest():
     wd_loc = job_to_listing("NVIDIA", {"title": "Intern", "externalPath": "/job/x",
                                         "locationsText": "Israel, Yokneam"}, api_url=api_url)
     assert wd_loc.location == "Israel, Yokneam", wd_loc.location
+
+    assert workday_detail_url(api_url, "/job/Toronto/Intern_26WD1") == \
+        "https://autodesk.wd1.myworkdayjobs.com/wday/cxs/autodesk/Ext/job/Toronto/Intern_26WD1"
+    assert workday_detail_url(api_url, "") is None
+    assert workday_detail_url("https://api.ashbyhq.com/posting-api/job-board/openai", "/job/x") is None
+
+    import sys
+    _self = sys.modules[__name__]  # not a fresh dotted import: this file runs
+    # as __main__ under its own selftest, which is a different module object
+    # than "internships.sources.ats_boards" -- patching that one wouldn't
+    # affect the fetch_json name this file's own functions actually look up.
+    orig_fetch_json = _self.fetch_json
+    _self.fetch_json = lambda url: (True, {"jobPostingInfo": {"jobDescription": "full text"}}, "ok")
+    try:
+        assert fetch_workday_description(api_url, "/job/x") == "full text"
+        assert fetch_workday_description(api_url, "") == ""  # no externalPath -> no detail_url
+    finally:
+        _self.fetch_json = orig_fetch_json
     print("ats_boards selftest OK")
 
 
