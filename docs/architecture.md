@@ -82,8 +82,39 @@ Write a class with `.name: str` and `.fetch() -> list[Listing]`, register it
 in `SOURCES` in `internships/__main__.py`. Everything downstream (filtering,
 dedup, output, web UI) is source-agnostic.
 
+## Scheduled scrape
+
+`scripts/` holds a `launchd` LaunchAgent (not `cron` -- cron on macOS doesn't
+reliably catch up a missed run when the machine was asleep/off; `launchd`'s
+`StartInterval` does) that runs `python3 -m internships` roughly every 2
+hours, forever, starting at login:
+
+- `scripts/com.internships.scrape.plist` -- `StartInterval` 7200s + `RunAtLoad`.
+- `scripts/scrape_cron.sh` -- the actual wrapper `launchd` invokes. Sleeps a
+  uniform random `[0, 1200]`s (0-20min) before running, giving a symmetric
+  +/-10min jitter around the 2h mark -- not a one-sided delay, which would
+  bias every run late. Uses absolute paths throughout (`launchd` doesn't
+  source `.zshrc`/`.bash_profile`, so `python3` on `$PATH`/pyenv shims won't
+  resolve). Relies entirely on `internships/__main__.py`'s own `.run.lock`
+  for concurrency -- if a previous run (or a web-UI-triggered one) is still
+  going, this just no-ops.
+- `scripts/install_cron.sh` -- (re)installs the LaunchAgent; safe to re-run
+  after editing the plist or wrapper.
+
+Logs: `~/Library/Logs/internships-scrape.log`. Check status:
+`launchctl list com.internships.scrape` (running with PID = active/recently
+ran; missing = not loaded). Uninstall:
+`launchctl bootout gui/$(id -u)/com.internships.scrape` then delete
+`~/Library/LaunchAgents/com.internships.scrape.plist`.
+
+One-time manual step this needed on this machine: `~/Documents` is under
+macOS's TCC "Full Disk Access" protection, and grants to an interactive
+shell's parent app don't propagate to fresh processes `launchd` spawns --
+both `/bin/bash` and the `python3` interpreter needed to be added to
+System Settings -> Privacy & Security -> Full Disk Access manually before
+the LaunchAgent could read/write the repo.
+
 ## What's deliberately not here
 
-- **No scheduling** — run `python3 -m internships` manually or cron it yourself.
 - **No database** — `data/seen/*.json` + `out/all.json` are the entire persisted state.
 - **No fuzzy cross-source dedup** — `ats_boards` runs first each run and the README-table sources skip anything whose exact (normalized) URL it already found, but the same job reached via different URLs, or found by two README trackers before either sees `ats_boards`'s link, can still appear more than once. Accepted, not a bug.

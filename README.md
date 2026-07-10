@@ -73,8 +73,14 @@ Adding a source = write a class with `.name` and `.fetch() -> list[Listing]`,
 register it in `internships/__main__.py`. The three README-scraping sources
 share table-parsing helpers in `internships/sources/md_table.py`.
 
-No scheduling built in yet — run it manually (or cron it) whenever you want
-fresh results.
+## Scheduled scrape
+
+`scripts/install_cron.sh` sets up a `launchd` LaunchAgent (macOS) that runs
+the scrape roughly every 2 hours, forever, starting at login — with a
+symmetric +/-10min random jitter so it's not perfectly on-the-dot every
+time. See `docs/architecture.md`'s "Scheduled scrape" section for details
+(logs, status/uninstall commands, and a one-time Full Disk Access step it
+needs on this machine since `~/Documents` is TCC-protected).
 
 ## Legacy: boards.csv
 An earlier, separate artifact — a list of Ashby/Lever job boards discovered by
