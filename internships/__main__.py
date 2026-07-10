@@ -22,6 +22,7 @@ from pathlib import Path
 from internships import recompute
 from internships.service import ROOT, run
 from internships.sources.ats_boards import AtsBoardsSource
+from internships.sources.custom_boards import CustomBoardsSource
 from internships.sources.github_readme import GithubReadmeSource
 from internships.sources.sndsh404 import Sndsh404Source
 from internships.sources.speedyapply import SpeedyApplySource
@@ -30,7 +31,7 @@ OUT_DIR = ROOT / "out"
 ALL_JSON_PATH = OUT_DIR / "all.json"
 LOCK_PATH = ROOT / ".run.lock"
 
-SOURCES = [AtsBoardsSource(), GithubReadmeSource(), SpeedyApplySource(), Sndsh404Source()]
+SOURCES = [AtsBoardsSource(), CustomBoardsSource(), GithubReadmeSource(), SpeedyApplySource(), Sndsh404Source()]
 
 FIELDS = ["company", "title", "location", "is_2027", "priority", "source", "posted",
           "scraped_at", "url", "description"]
@@ -89,6 +90,7 @@ def selftest():
 
     modules = ["internships.models", "internships.filters", "internships.seen_store",
                "internships.sources.md_table", "internships.sources.ats_boards",
+               "internships.sources.custom_boards",
                "internships.sources.github_readme", "internships.sources.speedyapply",
                "internships.sources.sndsh404", "internships.service", "internships.recompute"]
     for m in modules:
