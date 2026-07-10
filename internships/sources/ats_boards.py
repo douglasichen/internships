@@ -21,6 +21,7 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
 from internships.models import Listing
+from internships.sources.md_table import clean_text
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 CSV_PATH = ROOT / "companies.csv"
@@ -122,7 +123,8 @@ def _get_location(job):
 
 
 def _get_blob(job):
-    return " ".join(v for k in BODY_KEYS if isinstance((v := job.get(k)), str))
+    # clean_text also handles Greenhouse's "content", which is raw HTML
+    return clean_text(" ".join(v for k in BODY_KEYS if isinstance((v := job.get(k)), str)))
 
 
 def extract_postings(data):

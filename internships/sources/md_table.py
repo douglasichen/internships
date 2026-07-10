@@ -41,12 +41,17 @@ def extract_rows(markdown: str):
 
 def clean_text(cell: str) -> str:
     """Strip a cell down to plain text: drop <details>/<summary> wrappers,
-    turn <br>/</br> into '; ', strip remaining tags, unescape entities."""
+    turn <br>/</br> into '; ', strip remaining tags, unescape entities.
+
+    Unescape runs first -- some sources (e.g. Greenhouse's "content" field)
+    hand back HTML whose tags are themselves entity-escaped (&lt;div&gt;);
+    unescaping after stripping would turn those into literal tags too late
+    and leave them in the output."""
+    cell = html.unescape(cell)
     cell = re.sub(r"<details>.*?</summary>", "", cell, flags=re.S)
     cell = cell.replace("</details>", "")
     cell = BR_RE.sub("; ", cell)
     cell = TAG_RE.sub("", cell)
-    cell = html.unescape(cell)
     cell = re.sub(r"\s*;\s*", "; ", cell).strip("; ")
     return re.sub(r"\s+", " ", cell).strip()
 
@@ -115,6 +120,8 @@ outro
     assert clean_text("<details><summary>2 locations</summary>SF</br>NYC</details>") == "SF; NYC"
     assert clean_text('<a href="https://x"><strong>Acme</strong></a>') == "Acme"
     assert clean_text("San Jose, CA &amp; Remote") == "San Jose, CA & Remote"
+    # Greenhouse's "content" field: tags are themselves entity-escaped
+    assert clean_text("&lt;div&gt;&lt;p&gt;About Us&lt;/p&gt;&lt;/div&gt;") == "About Us"
     assert extract_href('<a href="https://apply/1">Apply</a>') == "https://apply/1"
     assert extract_md_link("[apply](https://apply/3)") == "https://apply/3"
     assert is_closed("🔒")

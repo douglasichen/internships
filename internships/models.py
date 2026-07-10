@@ -1,10 +1,9 @@
 """Shared listing type. Every source emits these; nothing downstream cares
 which source a listing came from beyond the `source` field."""
 import hashlib
-import re
 from dataclasses import dataclass
 
-Y2027_RE = re.compile(r"\b20\s?27\b")
+from internships.filters import year_relevance
 
 
 @dataclass(frozen=True)
@@ -25,7 +24,10 @@ class Listing:
 
     @property
     def is_2027(self) -> bool:
-        return any(Y2027_RE.search(t) for t in (self.title, self.location, self.extra_text) if t)
+        """True unless title/location explicitly name a non-2027 year --
+        same "no year stated = maybe 2027" logic as filters.year_relevance,
+        which is what decides whether this listing was kept at all."""
+        return year_relevance(self.title, self.location, self.extra_text) != "no"
 
 
 def selftest():
@@ -35,11 +37,14 @@ def selftest():
     assert a.id() == b.id()
     assert a.id() != c.id()
     assert Listing("x", "A", "SWE Intern Summer 2027", "SF", "u").is_2027
-    assert not Listing("x", "A", "SWE Intern", "SF", "u").is_2027
+    # no year stated at all -- "maybe 2027" counts as is_2027, same as year_relevance
+    assert Listing("x", "A", "SWE Intern", "SF", "u").is_2027
+    assert not Listing("x", "A", "SWE Intern Summer 2026", "SF", "u").is_2027
     # bounded match: '2027' must be a standalone year, not a substring of a
-    # longer number like a req ID or address
-    assert not Listing("x", "A", "SWE Intern (Req 20271)", "SF", "u").is_2027
-    assert not Listing("x", "A", "SWE Intern", "120275 Main St", "u").is_2027
+    # longer number like a req ID or address -- these count as "no year found"
+    # (i.e. maybe 2027), not a false "definitely 2027" match
+    assert Listing("x", "A", "SWE Intern (Req 20271)", "SF", "u").is_2027
+    assert Listing("x", "A", "SWE Intern", "120275 Main St", "u").is_2027
     print("models selftest OK")
 
 
