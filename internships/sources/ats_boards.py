@@ -15,6 +15,7 @@ import re
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
 from dataclasses import replace
 from pathlib import Path
 from urllib.parse import urlparse
@@ -319,9 +320,9 @@ def fetch_workday_postings(url, throttle):
     for term in WORKDAY_SEARCH_TERMS:
         offset = 0
         for _ in range(WORKDAY_MAX_PAGES):
-            throttle.wait(url)
-            ok, data, note = fetch_json(url, search_text=term, offset=offset,
-                                         limit=WORKDAY_PAGE_LIMIT)
+            with throttle.hold(url):
+                ok, data, note = fetch_json(url, search_text=term, offset=offset,
+                                             limit=WORKDAY_PAGE_LIMIT)
             if not ok:
                 break
             any_ok = True
@@ -338,27 +339,53 @@ def fetch_workday_postings(url, throttle):
 
 
 class DomainThrottle:
-    """Serialize + space requests per netloc so one domain's boards don't get
-    hit concurrently, while different domains still fetch in parallel.
-    ponytail: per-domain lock, fine until one domain needs parallelism
-    within itself (it won't here)."""
+    """Per-domain rate limit: at most one in-flight request per netloc, and a
+    minimum gap between the *end* of one request and the *start* of the next
+    on that domain. Different domains still run fully concurrent.
+
+    Use as a context manager around the actual HTTP call::
+
+        with throttle.hold(url):
+            fetch(url)
+
+    The old wait()-then-fetch pattern released the domain lock *before* the
+    request, so concurrent workers could still stampede the same host.
+    """
     def __init__(self, interval):
-        self.interval = interval
-        self._lock = threading.Lock()
+        self.interval = float(interval)
+        self._guard = threading.Lock()
+        # netloc -> {"lock": Lock, "free_at": monotonic time when next may start}
         self._domains = {}
 
-    def wait(self, url):
-        d = urlparse(url).netloc
-        with self._lock:
-            slot = self._domains.setdefault(d, [threading.Lock(), 0.0])
-        slot[0].acquire()
+    def _slot(self, url):
+        d = urlparse(url).netloc or ""
+        with self._guard:
+            return self._domains.setdefault(d, {
+                "lock": threading.Lock(),
+                "free_at": 0.0,
+            })
+
+    @contextmanager
+    def hold(self, url):
+        """Acquire the domain, wait until free_at, run the request, then
+        schedule free_at = now + interval. Lock is held for the whole body so
+        two workers cannot hit the same netloc at once."""
+        slot = self._slot(url)
+        slot["lock"].acquire()
         try:
-            gap = self.interval - (time.monotonic() - slot[1])
-            if gap > 0:
-                time.sleep(gap)
+            delay = slot["free_at"] - time.monotonic()
+            if delay > 0:
+                time.sleep(delay)
+            yield
         finally:
-            slot[1] = time.monotonic()
-            slot[0].release()
+            slot["free_at"] = time.monotonic() + self.interval
+            slot["lock"].release()
+
+    def wait(self, url):
+        """Deprecated spacing-only helper. Prefer hold() around the request.
+        Kept so interval=0 selftests and any external callers still import."""
+        with self.hold(url):
+            pass
 
 
 def load_rows(csv_path):
@@ -412,8 +439,8 @@ class AtsBoardsSource:
                 if WDAY_CXS_RE.search(url):
                     jobs, ok = fetch_workday_postings(url, throttle)
                 else:
-                    throttle.wait(url)
-                    ok, data, note = fetch_json(url)
+                    with throttle.hold(url):
+                        ok, data, note = fetch_json(url)
                     jobs = extract_postings(data) if ok else []
                 if ok:
                     listings = []
@@ -432,8 +459,8 @@ class AtsBoardsSource:
                             # request volume small.
                             if not l.extra_text and WDAY_CXS_RE.search(url) and is_swe_internship(l.title):
                                 external_path = _first(j, ("externalPath",))
-                                throttle.wait(url)
-                                desc = fetch_workday_description(url, external_path)
+                                with throttle.hold(url):
+                                    desc = fetch_workday_description(url, external_path)
                                 if desc:
                                     l = replace(l, extra_text=desc)
                             listings.append(l)
@@ -640,6 +667,53 @@ def selftest():
         assert not ok and jobs == []
     finally:
         _self.fetch_json = orig_fetch_json
+
+    # DomainThrottle: same netloc never overlaps; min gap after each request ends
+    th = DomainThrottle(0.15)
+    events = []
+    barrier = threading.Barrier(3)
+
+    def hammer(i):
+        barrier.wait()
+        with th.hold("https://example.com/board"):
+            events.append(("start", i, time.monotonic()))
+            time.sleep(0.05)
+            events.append(("end", i, time.monotonic()))
+
+    threads = [threading.Thread(target=hammer, args=(i,)) for i in range(3)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    starts = sorted(t for kind, _, t in events if kind == "start")
+    ends = sorted(t for kind, _, t in events if kind == "end")
+    # no overlap: each start after previous end
+    for i in range(1, 3):
+        assert starts[i] >= ends[i - 1] - 0.001, (starts, ends)
+    # gap between end[i-1] and start[i] at least ~interval
+    for i in range(1, 3):
+        assert starts[i] - ends[i - 1] >= 0.12, (starts[i] - ends[i - 1])
+    # different domains stay concurrent (no cross-domain lock)
+    th2 = DomainThrottle(1.0)
+    order = []
+
+    def a():
+        with th2.hold("https://a.example/x"):
+            order.append("a_in")
+            time.sleep(0.1)
+            order.append("a_out")
+
+    def b():
+        time.sleep(0.02)
+        with th2.hold("https://b.example/x"):
+            order.append("b_in")
+            time.sleep(0.02)
+            order.append("b_out")
+
+    ta, tb = threading.Thread(target=a), threading.Thread(target=b)
+    ta.start(); tb.start(); ta.join(); tb.join()
+    assert order.index("b_in") < order.index("a_out"), order  # b ran during a
+
     print("ats_boards selftest OK")
 
 

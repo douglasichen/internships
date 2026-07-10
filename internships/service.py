@@ -74,11 +74,11 @@ def _fetch_raw_page(url: str) -> str:
     just noise we don't need to also carry around."""
     if not url:
         return ""
-    _PAGE_FETCH_THROTTLE.wait(url)
     try:
-        req = Request(url, headers={"User-Agent": UA})
-        with urlopen(req, timeout=_PAGE_FETCH_TIMEOUT) as r:
-            text = r.read().decode("utf-8", errors="replace")
+        with _PAGE_FETCH_THROTTLE.hold(url):
+            req = Request(url, headers={"User-Agent": UA})
+            with urlopen(req, timeout=_PAGE_FETCH_TIMEOUT) as r:
+                text = r.read().decode("utf-8", errors="replace")
     except Exception:  # noqa: BLE001 - best-effort fallback; any failure just means no description
         return ""
     return _SCRIPT_STYLE_RE.sub("", text)

@@ -13,8 +13,9 @@
 
 ## Fetching external domains
 
-- Any source that hits an external domain must rate-limit itself **per domain**, not globally — different domains should still fetch concurrently. Reuse `DomainThrottle` in `internships/sources/ats_boards.py` (per-netloc lock + minimum interval between requests) rather than writing a new limiter.
-- No need for a strict/hard cap — just something reasonable (the ATS sweep defaults to 1s between requests to the same domain). The goal is not getting IP-blocked by a job board or GitHub, not maximizing throughput.
+- Any source that hits an external domain must rate-limit itself **per domain**, not globally — different domains should still fetch concurrently. Reuse `DomainThrottle` in `internships/sources/ats_boards.py` rather than writing a new limiter.
+- Wrap the actual HTTP call in `with throttle.hold(url):` — that holds a per-netloc lock for the whole request and enforces a minimum gap after it ends before the next request to the same host. Do **not** call `wait()` then fetch unlocked (that allowed same-domain stampedes under a thread pool).
+- Default interval is ~1s between requests to the same domain (ATS / custom_boards / page-fetch / README). The goal is not getting IP-blocked by a job board or GitHub, not maximizing throughput.
 
 ## PR workflow
 
