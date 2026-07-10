@@ -200,6 +200,10 @@ def main():
     out_path = OUT_DIR / f"{ts}.csv"
     write_csv(result.new_listings, scraped_at, out_path)
     append_all_json(result.new_listings, scraped_at)
+    # Only mark ids seen after a successful write -- committing earlier
+    # permanently drops listings if we crash or the write fails (seen forever,
+    # never in out/all.json). See RunResult.commit_seen.
+    result.commit_seen()
     n27 = sum(1 for l in result.new_listings if l.is_2027)
     print(f"{len(result.new_listings)} new SWE internships ({n27} mention 2027) -> {out_path}")
     print(f"web dataset updated -> {ALL_JSON_PATH}")

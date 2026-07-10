@@ -72,6 +72,8 @@ def _run_scrape():
             scraped_at = datetime.now().isoformat(timespec="seconds")
             main_mod.write_csv(result.new_listings, scraped_at, main_mod.OUT_DIR / f"{ts}.csv")
             main_mod.append_all_json(result.new_listings, scraped_at)
+            # After successful write only -- see service.RunResult.commit_seen.
+            result.commit_seen()
         with _scrape_lock:
             _scrape_state["result"] = summary
             _scrape_state["error"] = None

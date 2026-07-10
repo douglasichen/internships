@@ -1,6 +1,9 @@
 """Orchestrator: fetch every source, filter to SWE internships, drop
-anything already seen from a prior run, persist the updated seen-ids,
-return what's new. One run = one call to run().
+anything already seen from a prior run, return what's new. One run = one
+call to run(). Callers must commit_seen() only after new listings have
+been successfully written (out/all.json / CSV) -- otherwise a crash or
+write failure between marking ids seen and persisting listings would
+permanently drop those listings (seen forever, never in the dataset).
 
 ats_boards runs first, alone -- it already carries a full description from
 each ATS's own JSON API, so its listings are the cheapest/most reliable to
@@ -46,6 +49,16 @@ class SourceResult:
 class RunResult:
     new_listings: list = field(default_factory=list)
     per_source: dict = field(default_factory=dict)  # name -> SourceResult
+    # (SeenStore, ids) pairs deferred until commit_seen() -- see module doc.
+    _pending_seen: list = field(default_factory=list)
+
+    def commit_seen(self):
+        """Persist per-source seen-ids. Call only after new_listings have been
+        successfully written to out/all.json (and CSV); skipping that order
+        strands listings as permanently 'seen' but never recorded."""
+        for store, ids in self._pending_seen:
+            store.save(ids)
+        self._pending_seen.clear()
 
 
 def _fetch_raw_page(url: str) -> str:
@@ -77,12 +90,12 @@ def _with_raw_description(l):
 def _run_one(source, data_dir, known_urls=frozenset(), fetch_missing_description=False):
     try:
         listings = source.fetch()
-        # filtering/store also happen inside the try: a bad non-str field
-        # from a misbehaving source (e.g. a list-valued location) can throw
-        # out of year_relevance()'s regex calls, and letting that escape here
-        # would crash the whole ex.map() loop in run() -- after other
-        # sources' SeenStore.save() had already run, stranding their newly
-        # fetched listings as "seen" without ever being written out.
+        # filtering also happens inside the try: a bad non-str field from a
+        # misbehaving source (e.g. a list-valued location) can throw out of
+        # year_relevance()'s regex calls, and letting that escape here would
+        # crash the whole ex.map() loop in run() -- dropping other sources'
+        # already-fetched new listings from the returned RunResult even
+        # though their seen-ids are no longer persisted mid-run.
         swe = [l for l in listings if is_swe_internship(l.title)
                and year_relevance(l.title, l.location, l.extra_text) != "no"]
         swe = list({l.id(): l for l in swe}.values())  # dedupe within this batch (e.g. a listing appearing in 2 README table sections)
@@ -94,10 +107,14 @@ def _run_one(source, data_dir, known_urls=frozenset(), fetch_missing_description
         store = SeenStore(data_dir / "seen" / f"{source.name}.json")
         seen = store.load()
         new = [l for l in swe if l.id() not in seen]
-        store.save(seen | {l.id() for l in swe})
+        # Defer SeenStore.save until RunResult.commit_seen() -- after the
+        # caller has successfully written new listings out. Saving here used
+        # to permanently drop listings whenever the process died (or
+        # append_all_json failed) between run() returning and the write.
+        pending = (store, seen | {l.id() for l in swe})
     except Exception as e:  # noqa: BLE001 - one bad source shouldn't kill the run
-        return source.name, [], [], SourceResult(error=str(e))
-    return source.name, new, swe, SourceResult(fetched=len(listings), swe=len(swe), new=len(new))
+        return source.name, [], [], SourceResult(error=str(e)), None
+    return source.name, new, swe, SourceResult(fetched=len(listings), swe=len(swe), new=len(new)), pending
 
 
 def run(sources, data_dir=DATA_DIR) -> RunResult:
@@ -107,9 +124,11 @@ def run(sources, data_dir=DATA_DIR) -> RunResult:
 
     known_urls = frozenset()
     if ats is not None:
-        name, new, swe, stats = _run_one(ats, data_dir)
+        name, new, swe, stats, pending = _run_one(ats, data_dir)
         result.per_source[name] = stats
         result.new_listings.extend(new)
+        if pending is not None:
+            result._pending_seen.append(pending)
         # exclude empty: normalize_url("") is "", and a url-less ats listing
         # (a job whose JSON had no url key) must not poison known_urls into
         # dropping every url-less fallback-source listing as a false duplicate.
@@ -122,9 +141,11 @@ def run(sources, data_dir=DATA_DIR) -> RunResult:
 
     if rest:
         with ThreadPoolExecutor(max_workers=len(rest)) as ex:
-            for name, new, swe, stats in ex.map(work, rest):
+            for name, new, swe, stats, pending in ex.map(work, rest):
                 result.per_source[name] = stats
                 result.new_listings.extend(new)
+                if pending is not None:
+                    result._pending_seen.append(pending)
 
     result.new_listings.sort(key=lambda l: (not l.is_2027, l.company, l.title))
     return result
@@ -148,10 +169,12 @@ def selftest():
     r1 = run([FakeSource(listings)], data_dir=d)
     assert len(r1.new_listings) == 1 and r1.new_listings[0].company == "Acme"
     assert r1.per_source["fake"] == SourceResult(fetched=3, swe=1, new=1)
+    r1.commit_seen()
 
     r2 = run([FakeSource(listings)], data_dir=d)  # same listings again -> nothing new
     assert r2.new_listings == []
     assert r2.per_source["fake"] == SourceResult(fetched=3, swe=1, new=0)
+    r2.commit_seen()
 
     class BrokenSource:
         name = "broken"
@@ -159,6 +182,7 @@ def selftest():
             raise RuntimeError("boom")
     r3 = run([BrokenSource()], data_dir=d)
     assert r3.new_listings == [] and r3.per_source["broken"].error == "boom"
+    assert r3._pending_seen == []  # failed source must not queue a seen save
 
     # a source returning the same listing twice in one fetch() (e.g. it appears
     # in two README table sections) must not produce duplicate new_listings
@@ -166,11 +190,12 @@ def selftest():
     r4 = run([FakeSource([dupe, dupe])], data_dir=Path(tempfile.mkdtemp()))
     assert len(r4.new_listings) == 1
     assert r4.per_source["fake"] == SourceResult(fetched=2, swe=1, new=1)
+    r4.commit_seen()
 
     # a source returning a listing with a non-str field (e.g. a list-valued
     # location, as ats_boards._get_location can produce from some fallback
     # branches) must degrade to a per-source error, not crash run() and
-    # strand other sources' already-persisted seen-ids.
+    # drop other sources' already-fetched listings from the returned result.
     class BadFieldSource:
         name = "badfield"
         def fetch(self):
@@ -179,6 +204,7 @@ def selftest():
     r5 = run([FakeSource(listings), BadFieldSource()], data_dir=d)
     assert r5.per_source["badfield"].error
     assert r5.per_source["fake"] == SourceResult(fetched=3, swe=1, new=0)  # already seen from r1/r2
+    r5.commit_seen()
 
     # ats_boards runs first and its listings become known_urls: a
     # github_readme listing with the exact same link (tracking param and
@@ -210,6 +236,7 @@ def selftest():
     assert by_company["Beta"].source == "github_readme"
     assert by_company["Beta"].extra_text == "raw page text"  # fell back to raw fetch
     assert calls == ["http://beta/1"]  # never fetched for the skipped duplicate
+    r6.commit_seen()
 
     # a url-less ats listing (ats_boards.job_to_listing emits url="" when a
     # job's JSON has no url key) must NOT poison known_urls: normalize_url("")
@@ -227,6 +254,25 @@ def selftest():
         _self._fetch_raw_page = orig_fetch_raw_page
     assert len(r7.new_listings) == 2, r7.new_listings  # neither url-less listing dropped
     assert {l.company for l in r7.new_listings} == {"Acme", "Gamma"}
+    r7.commit_seen()
+
+    # Crash / write-failure safety: run() must NOT persist seen-ids itself.
+    # If the caller dies (or append_all_json fails) before commit_seen(), the
+    # next run must still surface those listings as new -- otherwise they are
+    # permanently stranded (seen forever, never written to out/all.json).
+    d_crash = Path(tempfile.mkdtemp())
+    crash_listings = [
+        Listing("fake", "CrashCo", "Software Engineer Intern", "SF", "http://crash/1"),
+    ]
+    rc1 = run([FakeSource(crash_listings)], data_dir=d_crash)
+    assert len(rc1.new_listings) == 1
+    # simulate crash: no commit_seen(), no all.json write
+    rc2 = run([FakeSource(crash_listings)], data_dir=d_crash)
+    assert len(rc2.new_listings) == 1, "uncommitted seen must not strand listings"
+    assert rc2.new_listings[0].company == "CrashCo"
+    rc2.commit_seen()  # successful write path would call this after append_all_json
+    rc3 = run([FakeSource(crash_listings)], data_dir=d_crash)
+    assert rc3.new_listings == []
     print("service selftest OK")
 
 
