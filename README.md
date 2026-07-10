@@ -8,19 +8,35 @@ sources and reports whatever's new since the last run.
 ```
 python3 -m internships             # fetch all sources, write out/<timestamp>.csv
 python3 -m internships --selftest  # run every module's inline self-check
+python3 -m internships --recompute is_2027 descriptions dedup  # patch out/all.json, no scrape
 ```
 
-Each run fetches every source, filters to SWE internship/co-op titles that are
-2027 or "maybe 2027" (drops titles that explicitly mention a different year),
-drops anything already seen on a prior run (tracked per-source in
-`data/seen/*.json`), and writes the rest to `out/<timestamp>.csv` and appends
-it to `out/all.json` (the full history, used by the web UI below).
+Each run takes a `.run.lock` flock so two scrapes can't race each other's
+writes (a second concurrent run just prints an error and exits). It fetches
+every source, filters to SWE internship/co-op titles that are 2027 or "maybe
+2027" (drops titles that explicitly mention a different year), drops anything
+already seen on a prior run (tracked per-source in `data/seen/*.json`), and
+writes the rest to `out/<timestamp>.csv` and appends it to `out/all.json`
+(the full history, used by the web UI below) — every row carries a
+`description` (the posting's own body, or a raw-page-fetch fallback for
+sources that don't have one).
+
+`--recompute FIELD [FIELD ...]` (`internships/recompute.py`) patches
+`out/all.json` in place instead of scraping — handy after changing filter
+logic or for backfilling rows scraped before a field existed:
+- `is_2027` — recompute the flag against the current `filters.year_relevance`
+- `descriptions` — re-fetch a description for any row missing one
+- `dedup` — merge rows that are the same job link under today's rules,
+  always keeping the oldest record
 
 ## Web UI
 
 A static page (`internships/web/index.html`) lists every listing ever found,
-newest scrape first, with search + source + "2027 only" filters. It fetches
-`out/all.json`, so it needs a plain static file server run from the repo root:
+newest scrape first, with search + source + "2027 only"/"Hide applied"/
+"Applied only" filters. A checkbox on each row marks it applied — that state
+lives only in the browser's `localStorage`, not the backend, so it survives
+`out/all.json` being regenerated. It fetches `out/all.json`, so it needs a
+plain static file server run from the repo root:
 
 ```
 python3 -m http.server 8765
@@ -28,7 +44,11 @@ python3 -m http.server 8765
 ```
 
 ## Sources (`internships/sources/`)
-- `ats_boards.py` — Ashby/Lever/Greenhouse/Workday JSON APIs listed in `companies.csv`
+- `ats_boards.py` — Ashby/Lever/Greenhouse/Workday JSON APIs listed in
+  `companies.csv`. Workday boards are keyword-searched ("intern"/"co-op",
+  merged + deduped) and paginated instead of grabbing the first unfiltered
+  page, and get a per-job description backfilled from Workday's detail
+  endpoint for postings that already look like an SWE internship by title.
 - `github_readme.py` — [vanshb03/Summer2027-Internships](https://github.com/vanshb03/Summer2027-Internships) README table
 - `speedyapply.py` — [speedyapply/2027-SWE-College-Jobs](https://github.com/speedyapply/2027-SWE-College-Jobs) README table
 - `sndsh404.py` — [sndsh404/summer-2027-internships](https://github.com/sndsh404/summer-2027-internships) README table
