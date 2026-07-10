@@ -44,11 +44,15 @@ default, no badge). A checkbox on each row marks it applied — that state
 lives only in the browser's `localStorage`, not the backend, so it survives
 `out/all.json` being regenerated. A "Recompute" control in the filter panel
 lets you trigger `--recompute dedup`/`is_2027`/`priority`/`descriptions`
-from the page itself instead of the terminal.
+from the page itself instead of the terminal. A "Run scrape" button in the
+header does the same for a full scrape, with a live "scrape running…"
+indicator that polls regardless of whether the scrape was started from this
+page, another tab, or a bare terminal `python3 -m internships`/`--recompute`
+run (they all take the same `.run.lock`).
 
-It fetches `out/all.json` and POSTs to `/api/recompute`, so it needs
-`internships/webserver.py` (not plain `python3 -m http.server`) run from the
-repo root:
+It fetches `out/all.json` and POSTs to `/api/recompute`/`/api/scrape`, so it
+needs `internships/webserver.py` (not plain `python3 -m http.server`) run
+from the repo root:
 
 ```
 python3 -m internships.webserver 8765
