@@ -8,7 +8,7 @@ Meta,https://www.metacareers.com/jobs/,none found,skipped
 Nvidia,https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite,https://nvidia.wd5.myworkdayjobs.com/wday/cxs/nvidia/NVIDIAExternalCareerSite/jobs (unverified),ok
 Amazon,https://www.amazon.jobs/en/search,https://www.amazon.jobs/en/search.json,ok
 Google DeepMind,https://deepmind.google/careers/,https://boards-api.greenhouse.io/v1/boards/deepmind/jobs?content=true,ok
-Netflix,https://explore.jobs.netflix.net/careers,none found,skipped
+Netflix,https://explore.jobs.netflix.net/careers,https://netflix.eightfold.ai/api/apply/v2/jobs?domain=netflix.com&start=0&num=100&query=intern&sort_by=relevance,ok
 Tesla,https://www.tesla.com/careers/search/?query=software%20engineer&site=US,none found,skipped
 Amazon Web Services,https://www.amazon.jobs/en/teams/aws,https://www.amazon.jobs/en/search.json,ok
 xAI,https://job-boards.greenhouse.io/xai,https://boards-api.greenhouse.io/v1/boards/xai/jobs?content=true,ok
@@ -51,7 +51,7 @@ Coinbase,https://www.coinbase.com/careers/positions,https://boards-api.greenhous
 Snowflake,https://careers.snowflake.com/us/en/search-results,https://api.ashbyhq.com/posting-api/job-board/snowflake,ok
 Datadog,https://careers.datadoghq.com/all-jobs/,https://boards-api.greenhouse.io/v1/boards/Datadog/jobs?content=true,ok
 Cloudflare,https://www.cloudflare.com/careers/jobs/,https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs?content=true,ok
-Uber,https://www.uber.com/us/en/careers/list/,https://www.uber.com/api/loadSearchJobsResults (unverified),dead
+Uber,https://www.uber.com/us/en/careers/list/,"https://iaziqy.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_1,limit=100,offset=0,keyword=intern",ok
 Airbnb,https://careers.airbnb.com/,https://boards-api.greenhouse.io/v1/boards/airbnb/jobs?content=true,ok
 Broadcom,https://broadcom.wd1.myworkdayjobs.com/External_Career,https://broadcom.wd1.myworkdayjobs.com/wday/cxs/broadcom/External_Career/jobs (unverified),ok
 AMD,https://careers.amd.com/careers-home/,none found,skipped
@@ -87,7 +87,7 @@ ServiceNow,https://careers.smartrecruiters.com/servicenow,https://api.smartrecru
 Workday,https://workday.wd5.myworkdayjobs.com/Workday,https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday/jobs (unverified),ok
 Atlassian,https://www.atlassian.com/company/careers/all-jobs,none found,skipped
 Intuit,https://jobs.intuit.com/search-jobs,none found,skipped
-Oracle,https://careers.oracle.com/en/sites/jobsearch/jobs,none found,skipped
+Oracle,https://careers.oracle.com/en/sites/jobsearch/jobs,"https://eeho.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_45001,limit=100,offset=0,keyword=intern",ok
 SAP,https://jobs.sap.com/,none found,skipped
 IBM,https://www.ibm.com/careers/search,none found,skipped
 DoorDash,https://careersatdoordash.com/job-search/,https://boards-api.greenhouse.io/v1/boards/doordashusa/jobs?content=true,ok
@@ -125,16 +125,16 @@ Applied Materials,https://amat.wd1.myworkdayjobs.com/External,https://amat.wd1.m
 Lam Research,https://careers.lamresearch.com/careers,none found,skipped
 KLA,https://kla.wd1.myworkdayjobs.com/Search,https://kla.wd1.myworkdayjobs.com/wday/cxs/kla/Search/jobs (unverified),ok
 ARM,https://careers.arm.com/,none found,skipped
-Texas Instruments,https://careers.ti.com/en/sites/CX/jobs,none found,skipped
+Texas Instruments,https://careers.ti.com/en/sites/CX/jobs,"https://edbz.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX,limit=100,offset=0,keyword=intern",ok
 Micron,https://micron.wd1.myworkdayjobs.com/External,https://micron.wd1.myworkdayjobs.com/wday/cxs/micron/External/jobs (unverified),ok
 Marvell,https://marvell.wd1.myworkdayjobs.com/MarvellCareers,https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers/jobs (unverified),ok
 Visa,https://careers.smartrecruiters.com/visa,https://api.smartrecruiters.com/v1/companies/visa/postings ; https://visa.wd5.myworkdayjobs.com/wday/cxs/visa/Visa/jobs (unverified),ok
 Mastercard,https://mastercard.wd1.myworkdayjobs.com/CorporateCareers,https://mastercard.wd1.myworkdayjobs.com/wday/cxs/mastercard/CorporateCareers/jobs (unverified),ok
 Capital One,https://www.capitalonecareers.com/search-jobs,https://capitalone.wd12.myworkdayjobs.com/wday/cxs/capitalone/Capital_One/jobs (unverified),ok
 Goldman Sachs,https://higher.gs.com/,none found,skipped
-JPMorgan Chase,https://careers.jpmorgan.com/us/en/search-jobs,none found,skipped
+JPMorgan Chase,https://careers.jpmorgan.com/us/en/search-jobs,"https://jpmc.fa.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_1001,limit=100,offset=0,keyword=intern",ok
 Morgan Stanley,https://www.morganstanley.com/careers/career-opportunities-search,https://ms.wd5.myworkdayjobs.com/wday/cxs/ms/External/jobs (unverified),ok
-American Express,https://aexp.eightfold.ai/careers,none found,skipped
+American Express,https://aexp.eightfold.ai/careers,"https://egug.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_1,limit=100,offset=0,keyword=intern",ok
 Fidelity Investments,https://jobs.fidelity.com/en/jobs/,none found,skipped
 Renaissance Technologies,https://www.rentec.com/Careers.action?jobs=true,none found,skipped
 WorldQuant,https://www.worldquant.com/career/,https://boards-api.greenhouse.io/v1/boards/worldquant/jobs?content=true,ok
@@ -198,8 +198,8 @@ Rivos,https://jobs.lever.co/rivosinc,https://api.lever.co/v0/postings/rivosinc?m
 Cisco,https://jobs.cisco.com/jobs/SearchJobs,https://cisco.wd5.myworkdayjobs.com/wday/cxs/cisco/Cisco_Careers/jobs,ok
 Analog Devices,https://analogdevices.wd1.myworkdayjobs.com/External,https://analogdevices.wd1.myworkdayjobs.com/wday/cxs/analogdevices/External/jobs (unverified),ok
 NXP Semiconductors,https://nxp.wd3.myworkdayjobs.com/careers,https://nxp.wd3.myworkdayjobs.com/wday/cxs/nxp/careers/jobs (unverified),ok
-Infineon,https://jobs.infineon.com/careers,none found,skipped
-STMicroelectronics,https://stmicroelectronics.eightfold.ai/careers,none found,skipped
+Infineon,https://jobs.infineon.com/careers,https://jobs.infineon.com/api/pcsx/search?domain=infineon.com&query=intern&start=0&num=100,ok
+STMicroelectronics,https://stmicroelectronics.eightfold.ai/careers,https://stmicroelectronics.eightfold.ai/api/apply/v2/jobs?domain=stmicroelectronics.com&start=0&num=100&query=intern&sort_by=relevance,ok
 Siemens EDA,https://jobs.sw.siemens.com/business-structure/eda/jobs/,none found,skipped
 GlobalFoundries,https://globalfoundries.wd1.myworkdayjobs.com/External,https://globalfoundries.wd1.myworkdayjobs.com/wday/cxs/globalfoundries/External/jobs (unverified),ok
 Microchip Technology,https://microchiphr.wd5.myworkdayjobs.com/External,https://microchiphr.wd5.myworkdayjobs.com/wday/cxs/microchiphr/External/jobs (unverified),ok
@@ -222,10 +222,10 @@ Twitch,https://job-boards.greenhouse.io/twitch,https://boards-api.greenhouse.io/
 HubSpot,https://job-boards.greenhouse.io/hubspotjobs,https://boards-api.greenhouse.io/v1/boards/hubspotjobs/jobs?content=true,ok
 Zendesk,https://zendesk.wd1.myworkdayjobs.com/zendesk,https://zendesk.wd1.myworkdayjobs.com/wday/cxs/zendesk/zendesk/jobs (unverified),ok
 Splunk,https://www.splunk.com/en_us/careers.html,none found,skipped
-Akamai,https://jobs.akamai.com/en/sites/CX_1/jobs,none found,skipped
+Akamai,https://jobs.akamai.com/en/sites/CX_1/jobs,"https://fa-extu-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_1,limit=100,offset=0,keyword=intern",ok
 Fastly,https://www.fastly.com/about/careers,https://boards-api.greenhouse.io/v1/boards/fastly/jobs?content=true,ok
 DigitalOcean,https://boards.greenhouse.io/digitalocean98,https://boards-api.greenhouse.io/v1/boards/digitalocean98/jobs?content=true,ok
-Fortinet,https://www.fortinet.com/corporate/careers,none found,skipped
+Fortinet,https://www.fortinet.com/corporate/careers,"https://edel.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_2001,limit=100,offset=0,keyword=intern",ok
 SentinelOne,https://www.sentinelone.com/jobs/,https://boards-api.greenhouse.io/v1/boards/sentinellabs/jobs?content=true,ok
 Tenable,https://job-boards.greenhouse.io/tenableinc,https://boards-api.greenhouse.io/v1/boards/tenableinc/jobs?content=true,ok
 Rapid7,https://mymoose.wd1.myworkdayjobs.com/careers,https://mymoose.wd1.myworkdayjobs.com/wday/cxs/mymoose/careers/jobs (unverified),ok
@@ -235,8 +235,8 @@ Arctic Wolf,https://arcticwolf.wd1.myworkdayjobs.com/External,https://arcticwolf
 Tanium,https://job-boards.greenhouse.io/tanium,https://boards-api.greenhouse.io/v1/boards/tanium/jobs?content=true,ok
 Arista Networks,https://careers.smartrecruiters.com/aristanetworks,https://api.smartrecruiters.com/v1/companies/aristanetworks/postings,ok
 Juniper Networks,https://careers.hpe.com/juniper,none found,skipped
-Nokia,https://jobs.nokia.com/en/sites/CX_1/jobs,none found,skipped
-Ericsson,https://jobs.ericsson.com/careers,none found,skipped
+Nokia,https://jobs.nokia.com/en/sites/CX_1/jobs,"https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_1,limit=100,offset=0,keyword=intern",ok
+Ericsson,https://jobs.ericsson.com/careers,https://jobs.ericsson.com/api/pcsx/search?domain=ericsson.com&start=0&num=100&query=intern,ok
 NetApp,https://careers.netapp.com/search-jobs,none found,skipped
 Pure Storage,https://join.purestorage.com/jobs,https://boards-api.greenhouse.io/v1/boards/purestorage/jobs?content=true,ok
 Western Digital,https://careers.smartrecruiters.com/westerndigital,https://api.smartrecruiters.com/v1/companies/westerndigital/postings,ok
