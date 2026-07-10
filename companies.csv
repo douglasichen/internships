@@ -117,7 +117,7 @@ Harvey,https://jobs.ashbyhq.com/harvey,https://api.ashbyhq.com/posting-api/job-b
 Cresta,https://job-boards.greenhouse.io/cresta,https://boards-api.greenhouse.io/v1/boards/cresta/jobs?content=true,ok
 ElevenLabs,https://jobs.ashbyhq.com/elevenlabs,https://api.ashbyhq.com/posting-api/job-board/elevenlabs,ok
 Runway,https://job-boards.greenhouse.io/runwayml,https://boards-api.greenhouse.io/v1/boards/runwayml/jobs?content=true (dead) ; https://api.ashbyhq.com/posting-api/job-board/runway-ml,ok
-Midjourney,https://midjourney.breezy.hr/,https://midjourney.breezy.hr/json,dead
+Midjourney,https://midjourney.breezy.hr/,https://api.ashbyhq.com/posting-api/job-board/midjourney?includeCompensation=true,ok
 Suno,https://jobs.ashbyhq.com/suno,https://api.ashbyhq.com/posting-api/job-board/suno,ok
 Synopsys,https://careers.synopsys.com/ (https://synopsys.avature.net/careers/SearchJobs),none found,skipped
 Cadence,https://cadence.wd1.myworkdayjobs.com/External_Careers,https://cadence.wd1.myworkdayjobs.com/wday/cxs/cadence/External_Careers/jobs (unverified),ok

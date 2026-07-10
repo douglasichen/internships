@@ -10,6 +10,7 @@ __NEXT_DATA__ etc.), a dotted path to the array of job dicts, and dotted keys
 (or a URL template) for each field. The genuinely un-generalizable shapes get
 a plain callable in CONFIG instead of a spec dict -- see DECODERS.
 """
+import html
 import json
 import re
 import threading
@@ -55,9 +56,15 @@ def _fill(template, job):
 
 
 def fetch_text(spec):
-    """Raw response text for a spec (GET, or POST with an optional body)."""
+    """Raw response text for a spec (GET, or POST with an optional body).
+    HTML-mode specs (row_regex, or extract_regex pulling JSON out of a page)
+    must NOT advertise Accept: application/json -- some sites content-negotiate
+    and return a stripped/error body for it, breaking the parse."""
     method = spec.get("method", "GET").upper()
-    headers = {"User-Agent": UA, "Accept": "application/json", **spec.get("headers", {})}
+    html_mode = spec.get("row_regex") or spec.get("extract_regex")
+    accept = ("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+              if html_mode else "application/json")
+    headers = {"User-Agent": UA, "Accept": accept, **spec.get("headers", {})}
     body = spec.get("body")
     data = body.encode() if (method == "POST" and body) else None
     if data and "Content-Type" not in headers:
@@ -67,6 +74,28 @@ def fetch_text(spec):
         return r.read().decode("utf-8", errors="replace")
 
 
+def _rows_from_html(raw, spec):
+    """row_regex mode: a server-rendered HTML board with a repeating job-card
+    pattern. The regex is applied with finditer; each match's named groups
+    (title required; url/loc/desc optional) become one Listing. url_prefix is
+    prepended to a relative url. This is the generic 'raw HTML' path for sites
+    with no JSON feed at all."""
+    prefix = spec.get("url_prefix", "")
+    out = []
+    for m in re.finditer(spec["row_regex"], raw, re.S):
+        g = m.groupdict()
+        title = html.unescape(_str(re.sub(r"<[^>]+>", "", g.get("title", "") or ""))).strip()
+        if not title:
+            continue
+        url = html.unescape(_str(g.get("url", "")))
+        if url and prefix and url.startswith("/"):
+            url = prefix.rstrip("/") + url
+        loc = html.unescape(_str(re.sub(r"<[^>]+>", "", g.get("loc", "") or ""))).strip()
+        desc = _str(g.get("desc", ""))
+        out.append(Listing(NAME, spec["company"], title, loc, url, extra_text=desc))
+    return out
+
+
 def spec_to_listings(spec):
     """Run one CONFIG spec -> list[Listing]. Any transport/parse failure or a
     shape that no longer matches degrades to [] rather than raising -- one
@@ -74,6 +103,8 @@ def spec_to_listings(spec):
     keeping it here means a stale spec just yields nothing)."""
     try:
         raw = fetch_text(spec)
+        if spec.get("row_regex"):
+            return _rows_from_html(raw, spec)
         rx = spec.get("extract_regex")
         if rx:
             m = re.search(rx, raw, re.S)
@@ -88,7 +119,10 @@ def spec_to_listings(spec):
         return []
     out = []
     for job in arr:
-        if not isinstance(job, dict):
+        # a "job" is usually a dict, but some sites (e.g. Google's cportal)
+        # encode each posting as a positional array -- _dig handles integer
+        # path segments, so allow lists too.
+        if not isinstance(job, (dict, list)):
             continue
         title = _str(_dig(job, spec["title_key"]))
         if not title:
@@ -149,6 +183,27 @@ CONFIG = [
     {'company': 'Yandex', 'url': 'https://yandex.com/jobs/api/publications', 'method': 'GET', 'list_path': 'results', 'title_key': 'title', 'link_template': 'https://yandex.com/jobs/vacancies/{publication_slug_url}', 'loc_key': 'vacancy.cities.0.name', 'desc_key': 'short_summary'},
     {'company': 'Garmin', 'url': 'https://careers.garmin.com/api/jobs?limit=100', 'method': 'GET', 'list_path': 'jobs', 'title_key': 'data.title', 'link_key': 'data.apply_url', 'loc_key': 'data.short_location', 'desc_key': 'data.description'},
     {'company': 'Baidu', 'url': 'https://talent.baidu.com/httservice/getPostListNew', 'method': 'POST', 'headers': {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8', 'Referer': 'https://talent.baidu.com/jobs/campus'}, 'body': 'recruitType=INTERN&pageSize=10&keyWord=&curPage=1&projectType=', 'list_path': 'data.list', 'title_key': 'name', 'link_template': 'https://talent.baidu.com/jobs/detail/INTERN/{postId}', 'loc_key': 'workPlace', 'desc_key': 'workContent'},
+    {'company': 'Two Sigma', 'url': 'https://careers.twosigma.com/careers/OpenRoles', 'method': 'GET', 'row_regex': '<article class="article article--result".*?href="(?P<url>[^"]+)">\s*(?P<title>[^<]+?)\s*</a>.*?<span class="paragraph_inner-span">(?P<loc>[^<]+)</span>', 'url_prefix': 'https://careers.twosigma.com'},
+    {'company': 'Citadel', 'url': 'https://www.citadel.com/career-sitemap.xml', 'method': 'GET', 'row_regex': '<loc>(?P<url>https://www\.citadel\.com/careers/details/(?P<title>[^/<]+))/</loc>'},
+    {'company': 'SAP', 'url': 'https://jobs.sap.com/search/?q=intern', 'method': 'GET', 'row_regex': '<td class="colTitle"[^>]*>\s*<span class="jobTitle hidden-phone">\s*<a href="(?P<url>[^"]+)" class="jobTitle-link">(?P<title>[^<]+)</a>\s*</span>.*?<span class="jobLocation">\s*(?P<loc>[^<]+?)\s*</span>', 'url_prefix': 'https://jobs.sap.com'},
+    {'company': 'Safe Superintelligence (SSI)', 'url': 'https://jobs.ashbyhq.com/ssi/b91659e4-9352-46fa-b3c5-4fb28827eb2e', 'method': 'GET', 'row_regex': '"@type":"JobPosting","title":"(?P<title>[^"]+)"', 'url_prefix': 'https://jobs.ashbyhq.com'},
+    {'company': 'Synopsys', 'url': 'https://synopsys.avature.net/careers/SearchJobs/feed/?jobRecordsPerPage=20', 'method': 'GET', 'row_regex': '<item>\s*<title><!\[CDATA\[(?P<title>.*?)\]\]></title>.*?<link>(?P<url>.*?)</link>', 'url_prefix': 'https://synopsys.avature.net'},
+    {'company': 'Renaissance Technologies', 'url': 'https://www.rentec.com/Careers.action?jobs=true', 'method': 'GET', 'row_regex': '<a class="Link--primary color-fg-default" href="(?P<url>/Careers\.action\?jobs=true&selectedPosition=[^"]+)">(?P<title>[^<]+)</a>\s*</div>\s*<div>(?P<loc>[^<]+)</div>', 'url_prefix': 'https://www.rentec.com'},
+    {'company': 'Intuit', 'url': 'https://jobs.intuit.com/search-jobs?k=intern&p=1&orgIds=27595', 'method': 'GET', 'row_regex': '<a href="(?P<url>/job/[^"]+)" data-job-id="\d+" class="sr-item"[^>]*data-title="(?P<title>[^"]+)"[^>]*>\s*<h2>[^<]*</h2>\s*(?:<span class="job-location">(?P<loc>[^<]*)</span>)?', 'url_prefix': 'https://jobs.intuit.com'},
+    {'company': 'Bloomberg', 'url': 'https://bloomberg.avature.net/careers/SearchJobs/?search=intern&jobRecordsPerPage=50&jobOffset=0', 'method': 'GET', 'row_regex': '<a class="link" href="(?P<url>https://bloomberg\.avature\.net/careers/JobDetail/[^"]+)">\s*(?P<title>[^<]+?)\s*</a>\s*</h3>.*?<span class="list-item-location">(?P<loc>[^<]*)</span>', 'url_prefix': 'https://bloomberg.avature.net'},
+    {'company': 'AMD', 'url': 'https://amd.jibeapply.com/api/jobs?limit=100&keywords=intern', 'method': 'GET', 'list_path': 'jobs', 'title_key': 'data.title', 'link_key': 'data.apply_url', 'loc_key': 'data.short_location', 'desc_key': 'data.description'},
+    {'company': 'Sakana AI', 'url': 'https://sakana.ai/careers/', 'method': 'GET', 'row_regex': '<a class="career-card" href="(?P<url>/careers/[^"]+)">.*?<h3 class="career-card-title">(?P<title>[^<]+)</h3>\s*<p class="career-card-desc">(?P<desc>.*?)</p>\s*<ul class="career-card-meta">\s*<li>(?P<loc>[^<]*)</li>', 'url_prefix': 'https://sakana.ai'},
+    {'company': 'Qualcomm', 'url': 'https://app.eightfold.ai/api/pcsx/search?domain=qualcomm.com&query=intern&location=&start=0&num=50', 'method': 'GET', 'list_path': 'data.positions', 'title_key': 'name', 'link_template': 'https://app.eightfold.ai{positionUrl}', 'loc_key': 'locations'},
+    {'company': 'Lattice Semiconductor', 'url': 'https://careers-latticesemi.icims.com/jobs/search?ss=1&in_iframe=1', 'method': 'GET', 'row_regex': '<li class="iCIMS_JobCardItem">.*?Job Locations</span>\s*<span[^>]*>\s*(?P<loc>.*?)</span>.*?<a href="(?P<url>[^"]+)"[^>]*>.*?<h3[^>]*>\s*(?P<title>.*?)</h3>.*?<div class="col-xs-12 description">(?P<desc>.*?)</div>'},
+    {'company': 'Qorvo', 'url': 'https://careers.qorvo.com/search/?q=intern', 'method': 'GET', 'row_regex': '<tr class="data-row">.*?<a href="(?P<url>/job/[^"]+)" class="jobTitle-link">(?P<title>[^<]+)</a>.*?class="colLocation hidden-phone"[^>]*>\s*<span class="jobLocation">\s*(?P<loc>[^<]+?)\s*</span>', 'url_prefix': 'https://careers.qorvo.com'},
+    {'company': 'Procore', 'url': 'https://careers.procore.com/jobs/search', 'method': 'GET', 'row_regex': 'data-job-url="(?P<url>[^"]+)"[^>]*>\s*<td class="job-search-results-title">\s*<a[^>]*aria-label="Title: (?P<title>[^"]+)"[^>]*href="[^"]*"[^>]*>.*?<td class="job-search-results-location">\s*<ul>\s*<li[^>]*>(?P<loc>[^<]*)</li>', 'url_prefix': 'https://careers.procore.com'},
+    {'company': 'Seagate', 'url': 'https://seagatecareers.com/search/?q=intern', 'method': 'GET', 'row_regex': '<li class="job-tile job-id-\d+[^"]*" data-url="(?P<url>[^"]+)".*?class="jobTitle-link[^"]*"[^>]*>\s*(?P<title>[^<]+?)\s*</a>.*?section-location-value">(?P<loc>[^<]+)', 'url_prefix': 'https://seagatecareers.com'},
+    {'company': 'Microsoft', 'url': 'https://apply.careers.microsoft.com/api/pcsx/search?domain=microsoft.com&start=0&num=10&query=intern', 'method': 'GET', 'list_path': 'data.positions', 'title_key': 'name', 'link_key': 'positionUrl', 'loc_key': 'locations'},
+    {'company': 'Atlassian', 'url': 'https://join.atlassian.com/api/jobs?limit=100&keywords=intern', 'method': 'GET', 'list_path': 'jobs', 'title_key': 'data.title', 'link_key': 'data.apply_url', 'loc_key': 'data.full_location', 'desc_key': 'data.description'},
+    {'company': 'Lam Research', 'url': 'https://lamresearch.eightfold.ai/api/pcsx/search?domain=lamresearch.com&start=0&num=100&query=intern', 'method': 'GET', 'list_path': 'data.positions', 'title_key': 'name', 'link_key': 'positionUrl', 'link_template': 'https://lamresearch.eightfold.ai{positionUrl}', 'loc_key': 'standardizedLocations'},
+    {'company': 'Wise', 'url': 'https://wise.jobs/jobs?q=intern', 'method': 'GET', 'row_regex': 'attrax-vacancy-tile__title[^"]*" href="(?P<url>/job/[^"]+)"[^>]*>(?P<title>[^<]+)</a>.*?attrax-vacancy-tile__location-freetext.*?attrax-vacancy-tile__item-value">\s*(?P<loc>[^<]+?)\s*</p>', 'url_prefix': 'https://wise.jobs'},
+    {'company': 'Fidelity Investments', 'url': 'https://jobs.fidelity.com/en/jobs/', 'method': 'GET', 'headers': {'User-Agent': 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)'}, 'row_regex': '<div class="card card-job"[^>]*>.*?<a class="stretched-link js-view-job" href="(?P<url>/en/jobs/[^"]+)">(?P<title>[^<]+)</a>.*?<li class="list-inline-item">\s*(?P<loc>[A-Za-z][^<]*?)\s*</li>\s*<li class="list-inline-item work-pattern">', 'url_prefix': 'https://jobs.fidelity.com'},
+    {'company': 'Google', 'url': 'https://www.google.com/about/careers/applications/jobs/results/?q=intern', 'method': 'GET', 'extract_regex': "key:\s*'ds:1'.*?data:(\[.*\]),\s*sideChannel", 'list_path': '0', 'title_key': '1', 'link_key': '2', 'loc_key': '9.0.0', 'desc_key': '3.1'},
 ]
 
 
@@ -229,6 +284,34 @@ def selftest():
         assert spec_to_listings({**spec, "list_path": "data.nope"}) == []
     finally:
         _self.fetch_text = orig
+
+    # positional-array jobs (Google cportal shape): list_path lands on a list
+    # of lists, each job addressed by numeric index rather than dict key
+    _self.fetch_text = lambda s: json.dumps([[["x", "SWE Intern", "http://g/1", "SF"]]])
+    try:
+        gg = spec_to_listings({"company": "G", "url": "https://g.test", "list_path": "0",
+                               "title_key": "1", "link_key": "2", "loc_key": "3"})
+    finally:
+        _self.fetch_text = orig
+    assert len(gg) == 1 and gg[0].title == "SWE Intern" and gg[0].url == "http://g/1" and gg[0].location == "SF", gg
+
+    # row_regex mode: parse a repeating job-card pattern out of raw HTML,
+    # strip inner tags from the title, and prepend url_prefix to relative links
+    html2 = ('<li class="card"><a href="/job/1">SWE <b>Intern</b></a>'
+             '<span class="loc">NYC</span></li>'
+             '<li class="card"><a href="/job/2">PM Intern</a>'
+             '<span class="loc">SF</span></li>')
+    spec3 = {"company": "Gamma", "url": "https://gamma.test/jobs", "url_prefix": "https://gamma.test",
+             "row_regex": r'<a href="(?P<url>[^"]+)">(?P<title>.*?)</a>'
+                          r'<span class="loc">(?P<loc>[^<]+)</span>'}
+    _self.fetch_text = lambda s: html2
+    try:
+        g3 = spec_to_listings(spec3)
+    finally:
+        _self.fetch_text = orig
+    assert len(g3) == 2, g3
+    assert g3[0].title == "SWE Intern" and g3[0].url == "https://gamma.test/job/1" and g3[0].location == "NYC", g3[0]
+    assert g3[1].title == "PM Intern", g3[1]
 
     # a link_key that resolves to a non-string leaves url empty, not crashing
     _self.fetch_text = lambda s: json.dumps({"jobs": [{"t": "Intern", "u": {"nested": 1}}]})
