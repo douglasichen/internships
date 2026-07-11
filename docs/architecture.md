@@ -14,12 +14,14 @@ flowchart TD
         GH["GithubReadmeSource"]
         SA["SpeedyApplySource"]
         SN["Sndsh404Source"]
+        JR["JobrightSource\n(jobright.py)"]
     end
 
     CSV[("companies.csv\napi_urls + api_status")] --> ATS
     R1(["vanshb03 README"]) --> GH
     R2(["speedyapply README"]) --> SA
     R3(["sndsh404 README"]) --> SN
+    JRAPI(["jobright.ai\n/swan/mini-sites/list"]) --> JR
 
     GH -.->|md_table + README_THROTTLE| MD["md_table.py"]
     SA -.-> MD
@@ -38,6 +40,7 @@ flowchart TD
     GH --> STEP3
     SA --> STEP3
     SN --> STEP3
+    JR --> STEP3
 
     STEP4 --> MAIN["__main__.py\n.run.lock"]
     MAIN --> CSVOUT[("out/TIMESTAMP.csv\n+ description col")]
@@ -74,9 +77,10 @@ flowchart TD
 | `internships/sources/ats_boards.py` | `companies.csv` ATS sweep + `DomainThrottle` (per-netloc lock + min interval via `hold()`). |
 | `internships/sources/custom_boards.py` | ~50 CONFIG fetch endpoints + Tesla careers state decoder (`DECODERS`). |
 | `internships/sources/{github_readme,speedyapply,sndsh404}.py` | Tracked README job tables. |
+| `internships/sources/jobright.py` | Jobright US SWE intern minisite (`POST /swan/mini-sites/list`, paginated). |
 | `internships/sources/md_table.py` | Shared README table parsing + shared `README_THROTTLE`. |
 | `internships/service.py` | `run(sources)`: ats_boards first, then others in parallel. Per source: filter → batch `Listing.id` dedupe → README-only `known_urls` skip → page-fetch empty `extra_text` → drop already-seen ids (pending write only). |
-| `internships/__main__.py` | CLI + lock. CSV + `append_all_json` (content-key + job-token merge) + `desc_store`; `persist_seen()` only after a successful `all.json` write. Registers all five sources. |
+| `internships/__main__.py` | CLI + lock. CSV + `append_all_json` (content-key + job-token merge) + `desc_store`; `persist_seen()` only after a successful `all.json` write. Registers all sources. |
 | `internships/desc_store.py` | `out/descriptions.json.gz` — `{listing_id: html}`. Legacy migrate from plain JSON / per-id `.html.gz`. |
 | `internships/applied_store.py` | `out/applied.json` — `{listing_id: ISO timestamp}` for the UI applied checkbox. |
 | `internships/recompute.py` | In-place `all.json` patches: `is_2027` (honors `is_2027_override: false`), `priority`, `dedup` (`normalize_url` + content key with job-token guard; same content-key rules as scrape append), `descriptions` backfill, `clear_is_2027(id)`. |

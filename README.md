@@ -107,6 +107,7 @@ No auth — localhost personal tool only.
 - `github_readme.py` — [vanshb03/Summer2027-Internships](https://github.com/vanshb03/Summer2027-Internships)
 - `speedyapply.py` — [speedyapply/2027-SWE-College-Jobs](https://github.com/speedyapply/2027-SWE-College-Jobs)
 - `sndsh404.py` — [sndsh404/summer-2027-internships](https://github.com/sndsh404/summer-2027-internships)
+- `jobright.py` — [Jobright US SWE intern board](https://jobright.ai/minisites-jobs/intern/us/swe) (`POST /swan/mini-sites/list`)
 
 Adding a source = class with `.name` and `.fetch() -> list[Listing]`, register
 in `internships/__main__.py`. README sources share `md_table.py`.

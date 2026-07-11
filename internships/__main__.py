@@ -25,6 +25,7 @@ from internships.service import ROOT, run
 from internships.sources.ats_boards import AtsBoardsSource
 from internships.sources.custom_boards import CustomBoardsSource
 from internships.sources.github_readme import GithubReadmeSource
+from internships.sources.jobright import JobrightSource
 from internships.sources.sndsh404 import Sndsh404Source
 from internships.sources.speedyapply import SpeedyApplySource
 
@@ -32,7 +33,8 @@ OUT_DIR = ROOT / "out"
 ALL_JSON_PATH = OUT_DIR / "all.json"
 LOCK_PATH = ROOT / ".run.lock"
 
-SOURCES = [AtsBoardsSource(), CustomBoardsSource(), GithubReadmeSource(), SpeedyApplySource(), Sndsh404Source()]
+SOURCES = [AtsBoardsSource(), CustomBoardsSource(), GithubReadmeSource(),
+           SpeedyApplySource(), Sndsh404Source(), JobrightSource()]
 
 FIELDS = ["company", "title", "location", "is_2027", "priority", "source", "posted",
           "scraped_at", "url", "description"]
@@ -146,7 +148,8 @@ def selftest():
                "internships.sources.md_table", "internships.sources.ats_boards",
                "internships.sources.custom_boards",
                "internships.sources.github_readme", "internships.sources.speedyapply",
-               "internships.sources.sndsh404", "internships.service", "internships.recompute"]
+               "internships.sources.sndsh404", "internships.sources.jobright",
+               "internships.service", "internships.recompute"]
     for m in modules:
         subprocess.run([sys.executable, "-m", m], cwd=ROOT, check=True)
     # webserver.py's bare `-m` invocation starts the (blocking) real server,
