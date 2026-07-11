@@ -163,20 +163,19 @@
     border-top: 1px solid var(--border);
   }
   .filter-details.open { display: flex; }
-  .recompute-row {
+  #recomputeToggle {
     margin-top: 12px;
-    display: flex;
+  }
+  #recomputeToggle .caret { transition: transform 120ms; font-size: 10px; }
+  #recomputeToggle.open .caret { transform: rotate(180deg); }
+  .recompute-details {
+    display: none;
     flex-wrap: wrap;
     align-items: center;
     gap: 10px;
+    margin-top: 10px;
   }
-  .recompute-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
+  .recompute-details.open { display: flex; }
   .recompute-status {
     font-size: 12px;
     color: var(--text-muted);
@@ -437,8 +436,8 @@
     <button class="toggle" id="runScrape">Run scrape</button>
     <span class="scrape-status" id="scrapeStatus"></span>
   </div>
-  <div class="recompute-row">
-    <span class="recompute-label">Recompute</span>
+  <button type="button" class="toggle" id="recomputeToggle" aria-expanded="false">Recompute <span class="caret">▾</span></button>
+  <div class="recompute-details" id="recomputeDetails">
     <button class="toggle recompute-check" data-field="dedup">dedup</button>
     <button class="toggle recompute-check" data-field="is_2027">is_2027</button>
     <button class="toggle recompute-check" data-field="priority">priority</button>
@@ -745,6 +744,11 @@ document.querySelectorAll('.chip').forEach(chip => {
 });
 document.getElementById('filtersToggle').addEventListener('click', e => {
   const open = document.getElementById('filterDetails').classList.toggle('open');
+  e.currentTarget.classList.toggle('open', open);
+  e.currentTarget.setAttribute('aria-expanded', open);
+});
+document.getElementById('recomputeToggle').addEventListener('click', e => {
+  const open = document.getElementById('recomputeDetails').classList.toggle('open');
   e.currentTarget.classList.toggle('open', open);
   e.currentTarget.setAttribute('aria-expanded', open);
 });
