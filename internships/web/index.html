@@ -606,16 +606,35 @@ const expandedRoles = new Set();
 // id currently open in the "add description" modal (null when closed)
 let descModalId = null;
 
-// "Applied" is manual, per-browser state -- never touched by the scraper,
-// so it survives out/all.json being regenerated/appended on every run.
-// Maps listing id -> ISO timestamp of when it was marked applied.
+// "Applied" is manual -- never touched by the scraper. Durable source of
+// truth is out/applied.json via /api/applied (survives localhost vs
+// 127.0.0.1 origin splits). localStorage is a mirror for static file opens.
 const APPLIED_KEY = 'internships-applied';
-function loadApplied() {
+function loadAppliedLocal() {
   try { return new Map(Object.entries(JSON.parse(localStorage.getItem(APPLIED_KEY) || '{}'))); }
   catch { return new Map(); }
 }
-function saveApplied(m) { localStorage.setItem(APPLIED_KEY, JSON.stringify(Object.fromEntries(m))); }
-let applied = loadApplied();
+function saveAppliedLocal(m) {
+  localStorage.setItem(APPLIED_KEY, JSON.stringify(Object.fromEntries(m)));
+}
+function saveApplied(m) {
+  saveAppliedLocal(m);
+  // Fire-and-forget server write; local already updated.
+  fetch('/api/applied', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(Object.fromEntries(m)),
+  }).catch(() => {});
+}
+function mergeAppliedMaps(a, b) {
+  // Later ISO timestamp wins per id.
+  const out = new Map(a);
+  for (const [k, v] of b) {
+    if (!out.has(k) || v > out.get(k)) out.set(k, v);
+  }
+  return out;
+}
+let applied = loadAppliedLocal();
 
 function companyKey(name) {
   return (name || '').trim().toLowerCase();
@@ -1005,10 +1024,37 @@ function loadDescIds() {
     });
 }
 
+function loadAppliedRemote() {
+  // Merge server + localStorage so neither origin's empty map wipes the other.
+  return fetch('/api/applied')
+    .then(r => r.ok ? r.json() : {})
+    .catch(() => ({}))
+    .then(remote => {
+      const remoteMap = new Map(
+        Object.entries(remote || {}).filter(([k, v]) => k && typeof v === 'string')
+      );
+      const localMap = loadAppliedLocal();
+      const merged = mergeAppliedMaps(localMap, remoteMap);
+      applied = merged;
+      saveAppliedLocal(merged);
+      // If local had marks the server didn't, push the union up.
+      const remoteCount = remoteMap.size;
+      if (merged.size > remoteCount ||
+          [...merged].some(([k, v]) => !remoteMap.has(k) || remoteMap.get(k) !== v)) {
+        fetch('/api/applied?merge=1', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(merged)),
+        }).catch(() => {});
+      }
+    });
+}
+
 function loadAll() {
   return Promise.all([
     fetch('/out/all.json').then(r => r.ok ? r.json() : []).catch(() => []),
     loadDescIds(),
+    loadAppliedRemote(),
   ]).then(([data]) => { ALL = data; render(); });
 }
 
