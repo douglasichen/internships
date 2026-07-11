@@ -68,9 +68,11 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     each stamped with when it was scraped. Grows by appending.
 
     Descriptions are NOT stored here -- they go to out/descriptions.json keyed
-    by the same listing id (see desc_store). Skips rows whose id is already
-    present so a retry after crash-between-append-and-persist_seen cannot
-    double-insert."""
+    by the same listing id (see desc_store). Skips a row when:
+    - its listing id is already present (retry after crash before persist_seen), or
+    - the same company+title+location already exists (cross-source / re-scrape
+      of the same human-visible job with a different URL).
+    """
     from internships import desc_store
 
     existing = json.loads(path.read_text()) if path.exists() else []
@@ -82,17 +84,23 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             descs.setdefault(k, v)
 
     have = {r.get("id") for r in existing}
+    have_content = {recompute.content_key(r) for r in existing}
     for l in listings:
         row = _row(l, scraped_at)  # no description field
         lid = row["id"]
+        ck = recompute.content_key(row)
         if lid in have:
             # retry after crash: row may already be in all.json but desc never
             # saved -- still fill the store when we have body text
             if l.extra_text and not descs.get(lid):
                 descs[lid] = l.extra_text
             continue
+        if ck in have_content:
+            # same company+title+location already recorded under another id
+            continue
         existing.append(row)
         have.add(lid)
+        have_content.add(ck)
         if l.extra_text:
             descs[lid] = l.extra_text
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -194,6 +202,18 @@ def selftest():
         assert "description" not in rows[0]
         descs = desc_store.load(all_json)
         assert descs[listing.id()] == "<p>full body</p>"
+
+    # same company+title+location, different URL/source -- do not double-insert
+    with tempfile.TemporaryDirectory() as td:
+        all_json = Path(td) / "all.json"
+        a = Listing("github_readme", "Point72", "Quantitative Developer Intern",
+                    "New York, NY", "http://readme/p72")
+        b = Listing("ats_boards", "Point72", "Quantitative Developer Intern",
+                    "New York, NY", "http://boards/p72-other")
+        append_all_json([a], "2026-07-09T00:00:00", all_json)
+        append_all_json([b], "2026-07-10T00:00:00", all_json)
+        rows = json.loads(all_json.read_text())
+        assert len(rows) == 1 and rows[0]["id"] == a.id()
 
     # retry: id already in all.json, desc missing -- second append fills store
     with tempfile.TemporaryDirectory() as td:

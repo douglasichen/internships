@@ -10,12 +10,21 @@ Usage:
     python3 -m internships --recompute dedup is_2027 priority descriptions
 """
 import json
+import re
 from concurrent.futures import ThreadPoolExecutor
 
 from internships import desc_store
 from internships.filters import company_priority, year_relevance
 from internships.models import normalize_url
 from internships.service import ROOT, _fetch_raw_page
+
+# Pull a posting id out of an apply URL when present so company+title+location
+# dedup does not merge distinct openings that share a generic title
+# (e.g. three NXP "System Engineer Intern" roles in Bucharest with different R- ids).
+_JOB_TOKEN_RE = re.compile(
+    r"(?:/jobs/|/job/|[?&](?:gh_jid|jr_id|jobId|job_id)=|_R-|JR)([A-Za-z0-9-]{4,})",
+    re.I,
+)
 
 ALL_JSON_PATH = ROOT / "out" / "all.json"
 DESCRIPTIONS_PATH = desc_store.DESCRIPTIONS_PATH
@@ -63,39 +72,90 @@ def recompute_priority(path=ALL_JSON_PATH):
     return changed, len(rows)
 
 
-def dedupe(path=ALL_JSON_PATH):
-    """Merge rows that are the same job posting under today's identity rules
-    but weren't recognized as duplicates when they were scraped -- e.g. a
-    query-string variant of an earlier link (normalize_url wasn't applied
-    yet), or the same job found by both ats_boards and a README-table
-    source before cross-source dedup existed. Rows with no url at all are
-    never merged (nothing reliable to match on).
+def content_key(row):
+    """Exact company + title + location identity (case/whitespace-normalized).
 
-    Always keeps the OLDEST record for a given link and drops the rest --
-    never overwrites an existing record with a newer one, even if the
-    newer one happens to have more/better data (e.g. a backfilled
-    description)."""
+    Used to collapse the same posting scraped from different sources/URLs
+    (e.g. github_readme vs ats_boards) when the human-visible fields match."""
+    return (
+        (row.get("company") or "").strip().lower(),
+        (row.get("title") or "").strip().lower(),
+        (row.get("location") or "").strip().lower(),
+    )
+
+
+def job_token(url):
+    """Best-effort posting id embedded in a URL, or None if none found."""
+    if not url:
+        return None
+    matches = _JOB_TOKEN_RE.findall(url)
+    return matches[-1].lower() if matches else None
+
+
+def _keep_oldest(group):
+    return sorted(group, key=lambda r: r.get("scraped_at") or "")[0]
+
+
+def _collapse(groups_dict, *, mergeable=None):
+    """groups_dict values are row lists; keep oldest per group. Returns
+    (kept_rows, removed_count). If mergeable(group) is False, keep all rows."""
+    kept, removed = [], 0
+    for group in groups_dict.values():
+        if len(group) <= 1:
+            kept.extend(group)
+            continue
+        if mergeable is not None and not mergeable(group):
+            kept.extend(group)
+            continue
+        removed += len(group) - 1
+        kept.append(_keep_oldest(group))
+    return kept, removed
+
+
+def _content_group_mergeable(group):
+    """Do not merge company+title+location groups when every row carries a
+    *different* embedded job id (distinct openings, same generic title)."""
+    tokens = [job_token(r.get("url")) for r in group]
+    present = [t for t in tokens if t]
+    if len(present) >= 2 and len(set(present)) == len(present):
+        return False
+    return True
+
+
+def dedupe(path=ALL_JSON_PATH):
+    """Merge rows that are the same job under today's identity rules:
+
+    1. Same normalized URL (query-string variants, multi-source same link)
+    2. Same company + title + location (exact, case-insensitive) even when
+       URLs differ -- e.g. Point72 "Quantitative Developer Intern" listed
+       twice from vanshb03. Skips groups where URLs embed distinct job ids
+       (multiple NXP "System Engineer Intern" roles in one city).
+
+    Always keeps the OLDEST record per merged group (by scraped_at)."""
     rows = json.loads(path.read_text())
-    groups = {}
-    singles = []
+    total = len(rows)
+
+    # Pass 1: by normalized URL
+    by_url = {}
+    no_url = []
     for row in rows:
         key = normalize_url(row["url"]) if row.get("url") else None
         if key:
-            groups.setdefault(key, []).append(row)
+            by_url.setdefault(key, []).append(row)
         else:
-            singles.append(row)
+            no_url.append(row)
+    after_url, removed_url = _collapse(by_url)
+    after_url.extend(no_url)
 
-    kept = []
-    removed = 0
-    for group in groups.values():
-        if len(group) > 1:
-            group = sorted(group, key=lambda r: r.get("scraped_at", ""))
-            removed += len(group) - 1
-        kept.append(group[0])
+    # Pass 2: by company|title|location on the URL-collapsed set
+    by_content = {}
+    for row in after_url:
+        by_content.setdefault(content_key(row), []).append(row)
+    result_rows, removed_content = _collapse(by_content, mergeable=_content_group_mergeable)
 
-    result_rows = sorted(kept + singles, key=lambda r: r.get("scraped_at", ""))
+    result_rows = sorted(result_rows, key=lambda r: r.get("scraped_at") or "")
     _atomic_write(result_rows, path)
-    return removed, len(rows)
+    return removed_url + removed_content, total
 
 
 def backfill_descriptions(path=ALL_JSON_PATH):
@@ -169,14 +229,19 @@ def selftest():
     finally:
         _self.company_priority = orig_priority
 
-    # dedupe: same link (query string aside), different source/scrape time --
-    # keep the OLDEST record, never overwrite it with a newer one
+    # dedupe pass 1: same link (query string aside), different source/scrape time
+    # -- keep the OLDEST record, never overwrite it with a newer one
     dupe_rows = [
-        {"url": "http://a/1", "source": "ats_boards", "scraped_at": "2026-02-01T00:00:00"},
-        {"url": "http://a/1?utm=x", "source": "github_readme", "scraped_at": "2026-01-01T00:00:00"},
-        {"url": "http://a/2", "source": "ats_boards", "scraped_at": "2026-01-15T00:00:00"},
-        {"source": "ats_boards", "scraped_at": "2026-01-01T00:00:00"},  # no url -- never merged
-        {"source": "github_readme", "scraped_at": "2026-01-02T00:00:00"},  # no url -- never merged
+        {"company": "A", "title": "T1", "location": "SF",
+         "url": "http://a/1", "source": "ats_boards", "scraped_at": "2026-02-01T00:00:00"},
+        {"company": "A", "title": "T1", "location": "SF",
+         "url": "http://a/1?utm=x", "source": "github_readme", "scraped_at": "2026-01-01T00:00:00"},
+        {"company": "A", "title": "T2", "location": "SF",
+         "url": "http://a/2", "source": "ats_boards", "scraped_at": "2026-01-15T00:00:00"},
+        {"company": "B", "title": "NoUrl1", "location": "",
+         "source": "ats_boards", "scraped_at": "2026-01-01T00:00:00"},  # no url
+        {"company": "C", "title": "NoUrl2", "location": "",
+         "source": "github_readme", "scraped_at": "2026-01-02T00:00:00"},  # no url
     ]
     p3 = Path(tempfile.mkdtemp()) / "all.json"
     p3.write_text(json.dumps(dupe_rows))
@@ -188,7 +253,44 @@ def selftest():
     # the older record's own url field is untouched -- still has ?utm=x
     assert by_url["http://a/1?utm=x"]["source"] == "github_readme"
     assert by_url["http://a/2"]["source"] == "ats_boards"
-    assert sum(1 for r in result3 if not r.get("url")) == 2  # both no-url rows kept, untouched
+    assert sum(1 for r in result3 if not r.get("url")) == 2  # both no-url rows kept
+
+    # dedupe pass 2: same company+title+location, different URLs/sources
+    ctl_rows = [
+        {"company": "Point72", "title": "Quantitative Developer Intern", "location": "New York, NY",
+         "url": "http://readme/p72", "source": "github_readme", "scraped_at": "2026-07-10T00:00:00",
+         "id": "new"},
+        {"company": "Point72", "title": "Quantitative Developer Intern", "location": "New York, NY",
+         "url": "http://boards/p72", "source": "github_readme", "scraped_at": "2026-07-09T00:00:00",
+         "id": "old"},
+        {"company": "Point72", "title": "Quantitative Software Developer Intern",
+         "location": "New York, London, or Paris",
+         "url": "http://gh/other", "source": "ats_boards", "scraped_at": "2026-07-09T01:00:00",
+         "id": "different"},
+    ]
+    p_ctl = Path(tempfile.mkdtemp()) / "all.json"
+    p_ctl.write_text(json.dumps(ctl_rows))
+    removed, total = dedupe(p_ctl)
+    assert removed == 1 and total == 3
+    result_ctl = json.loads(p_ctl.read_text())
+    assert len(result_ctl) == 2
+    assert {r["id"] for r in result_ctl} == {"old", "different"}
+    assert next(r for r in result_ctl if r["id"] == "old")["url"] == "http://boards/p72"
+
+    # same title+location but distinct Workday R- job ids -- do NOT merge
+    nxp_rows = [
+        {"company": "NXP", "title": "System Engineer Intern", "location": "Bucharest",
+         "url": "https://nxp.wd3.myworkdayjobs.com/careers/job/Bucharest/System-Engineer-Intern_R-10064103",
+         "scraped_at": "2026-01-01", "id": "n1"},
+        {"company": "NXP", "title": "System Engineer Intern", "location": "Bucharest",
+         "url": "https://nxp.wd3.myworkdayjobs.com/careers/job/Bucharest/System-Engineer-Intern_R-10064102",
+         "scraped_at": "2026-01-02", "id": "n2"},
+    ]
+    p_nxp = Path(tempfile.mkdtemp()) / "all.json"
+    p_nxp.write_text(json.dumps(nxp_rows))
+    removed, total = dedupe(p_nxp)
+    assert removed == 0 and total == 2
+    assert len(json.loads(p_nxp.read_text())) == 2
 
     import sys
     _self = sys.modules[__name__]  # module-level patch, not a fresh dotted
