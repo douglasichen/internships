@@ -144,6 +144,10 @@
     color: var(--text-muted);
     cursor: pointer;
   }
+  .toggle:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
   .toggle.active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
   #filtersToggle {
     flex-shrink: 0;
@@ -1089,69 +1093,106 @@ document.getElementById('runRecompute').addEventListener('click', async e => {
   }
 });
 
-// Polls whether .run.lock is held by ANYONE -- this tab's own "Run scrape"
-// click, another tab, or a bare terminal `python3 -m internships` /
-// --recompute run -- so the live indicator is accurate regardless of who
-// started it.
+// Keep "Run scrape" disabled for the whole run so the FE can't fire two POSTs.
+// Busy if any of:
+//   - scrapePostInFlight: click handler's fetch still in flight
+//   - /api/scrape/status.running: this server's scrape thread
+//   - /api/status.active: .run.lock (this tab, other tab, CLI scrape/recompute)
+// pendingUiScrape: we got 202 from this tab and still need to show the result
+// once the server goes idle again (does NOT alone keep the button disabled
+// after the run ends — that would stick forever).
 let scrapeWasActive = false;
-// Set when THIS tab's POST /api/scrape returns 202; cleared when we surface
-// that run's result/error. Without this, /api/scrape/status keeps the last
-// server-side result forever, so a later recompute/CLI scrape releasing the
-// lock would re-show a stale "done — N new listings" from an earlier scrape.
 let pendingUiScrape = false;
+let scrapePostInFlight = false;
+
+function setScrapeButtonBusy(busy) {
+  document.getElementById('runScrape').disabled = !!busy;
+}
+
 function pollScrapeActive() {
-  fetch('/api/status').then(r => r.json()).then(s => {
-    const statusEl = document.getElementById('scrapeStatus');
-    const btn = document.getElementById('runScrape');
-    if (s.active) {
+  const statusEl = document.getElementById('scrapeStatus');
+  Promise.all([
+    fetch('/api/status').then(r => r.json()),
+    fetch('/api/scrape/status').then(r => r.json()).catch(() => ({ running: false })),
+  ]).then(([s, scrape]) => {
+    const lockHeld = !!s.active;
+    const scrapeRunning = !!scrape.running;
+    const serverBusy = lockHeld || scrapeRunning;
+
+    // This-tab scrape finished (or failed to take the lock): surface result once.
+    if (pendingUiScrape && !scrapeRunning && !scrapePostInFlight && !lockHeld) {
+      pendingUiScrape = false;
+      scrapeWasActive = false;
+      loadAll();
+      statusEl.classList.remove('live');
+      if (scrape.result) statusEl.textContent = `done — ${scrape.result.new_listings} new listings`;
+      else if (scrape.error) statusEl.textContent = 'error: ' + scrape.error;
+      else statusEl.textContent = '';
+      setScrapeButtonBusy(false);
+      return;
+    }
+
+    const busy = scrapePostInFlight || serverBusy;
+    if (busy) {
       scrapeWasActive = true;
-      statusEl.textContent = 'scrape running…';
+      setScrapeButtonBusy(true);
       statusEl.classList.add('live');
-      btn.disabled = true;
+      if (scrapeRunning || pendingUiScrape || scrapePostInFlight) {
+        if (!scrapePostInFlight || scrapeRunning) {
+          statusEl.textContent = 'scrape running…';
+        }
+        // else leave "starting…" from the click handler
+      } else if (lockHeld) {
+        statusEl.textContent = 'run in progress…'; // recompute / CLI holding the lock
+      }
     } else {
       statusEl.classList.remove('live');
-      btn.disabled = false;
+      setScrapeButtonBusy(false);
       if (scrapeWasActive) {
+        // CLI / other-tab / recompute finished — refresh list, no stale scrape blurb.
         scrapeWasActive = false;
         loadAll();
-        if (pendingUiScrape) {
-          pendingUiScrape = false;
-          fetch('/api/scrape/status').then(r => r.json()).then(s2 => {
-            if (s2.result) statusEl.textContent = `done — ${s2.result.new_listings} new listings`;
-            else if (s2.error) statusEl.textContent = 'error: ' + s2.error;
-            else statusEl.textContent = '';
-          }).catch(() => { statusEl.textContent = ''; });
-        } else {
-          // CLI scrape / --recompute / other tab: refresh data, don't invent a
-          // completion line from a previous /api/scrape result.
-          statusEl.textContent = '';
-        }
+        statusEl.textContent = '';
       }
     }
   }).catch(() => {});
-  setTimeout(pollScrapeActive, 4000);
+  const interval = (scrapeWasActive || pendingUiScrape || scrapePostInFlight) ? 1000 : 4000;
+  setTimeout(pollScrapeActive, interval);
 }
 
-document.getElementById('runScrape').addEventListener('click', async e => {
+document.getElementById('runScrape').addEventListener('click', async () => {
   const statusEl = document.getElementById('scrapeStatus');
-  const btn = e.target;
-  btn.disabled = true;
+  const btn = document.getElementById('runScrape');
+  // Hard gate: no concurrent POSTs (disabled can lag a paint frame).
+  if (btn.disabled || scrapePostInFlight || pendingUiScrape) return;
+  scrapePostInFlight = true;
+  setScrapeButtonBusy(true);
   statusEl.textContent = 'starting…';
+  statusEl.classList.add('live');
   try {
     const res = await fetch('/api/scrape', { method: 'POST' });
     if (res.status === 202) {
       statusEl.textContent = 'scrape running…';
-      statusEl.classList.add('live');
       scrapeWasActive = true;
       pendingUiScrape = true;
       return;
     }
+    if (res.status === 409) {
+      // Another tab already started a scrape — stay disabled; poll tracks it.
+      statusEl.textContent = 'scrape already running…';
+      scrapeWasActive = true;
+      return;
+    }
     const err = await res.json().catch(() => ({}));
     statusEl.textContent = err.error || `failed (${res.status})`;
-    btn.disabled = false;
+    statusEl.classList.remove('live');
+    setScrapeButtonBusy(false);
   } catch {
     statusEl.textContent = 'no server running -- start with: python3 -m internships.webserver';
-    btn.disabled = false;
+    statusEl.classList.remove('live');
+    setScrapeButtonBusy(false);
+  } finally {
+    scrapePostInFlight = false;
   }
 });
 
