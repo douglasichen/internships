@@ -202,13 +202,16 @@ def backfill_descriptions(path=ALL_JSON_PATH):
     Does not modify all.json rows (except peeling legacy inline description
     fields into the store once)."""
     rows = json.loads(path.read_text())
-    # peel any legacy inline description fields into the gzip store first
+    # Load existing store FIRST. Peeling must merge into it -- never save only
+    # the peeled map (that would wipe every previously stored description).
+    descs = desc_store.load(path)
     peeled = desc_store.peel_from_rows(rows)
     if peeled:
-        desc_store.save(peeled, path)
+        for k, v in peeled.items():
+            descs.setdefault(k, v)
+        desc_store.save(descs, path)
         _atomic_write(rows, path)
 
-    descs = desc_store.load(path)
     stale = [r for r in rows if r.get("id") and not descs.get(r["id"])]
     with ThreadPoolExecutor(max_workers=8) as ex:
         texts = list(ex.map(lambda r: _fetch_raw_page(r.get("url")), stale))
@@ -371,6 +374,22 @@ def selftest():
         assert desc_store.get("b", p2) == "fetched: http://x/2"
         assert desc_store.get("c", p2) == "fetched: http://x/3"
         assert not desc_store.has("d", p2)
+
+        # peel merge: legacy inline description must NOT wipe the rest of the store
+        p_peel = Path(tempfile.mkdtemp()) / "all.json"
+        p_peel.write_text(json.dumps([
+            {"id": "keep", "title": "k", "url": "http://x/keep"},
+            {"id": "legacy", "title": "l", "url": "http://x/legacy",
+             "description": "from all.json inline"},
+            {"id": "need", "title": "n", "url": "http://x/need"},
+        ]))
+        desc_store.put("keep", "pre-existing body", p_peel)
+        changed, stale_count = backfill_descriptions(p_peel)
+        assert desc_store.get("keep", p_peel) == "pre-existing body"  # not wiped
+        assert desc_store.get("legacy", p_peel) == "from all.json inline"
+        assert desc_store.get("need", p_peel) == "fetched: http://x/need"
+        assert "description" not in json.loads(p_peel.read_text())[1]
+        assert stale_count == 1 and changed == 1  # only "need" was missing
     finally:
         _self._fetch_raw_page = orig_fetch
     print("recompute selftest OK")

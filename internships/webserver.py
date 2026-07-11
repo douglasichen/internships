@@ -55,14 +55,28 @@ def _is_lock_held():
         probe.close()
 
 
-def _run_scrape():
-    # same lock as --recompute and a terminal scrape -- see _run_recompute's
-    # comment on why (out/all.json shouldn't be rewritten by two processes
-    # at once).
+def _try_acquire_run_lock():
+    """Non-blocking exclusive acquire of .run.lock.
+
+    Returns an open file object holding the lock, or None if another
+    scrape/recompute/writer already holds it. Caller must .close() the
+    file to release (flock is tied to the fd).
+    """
     lock_file = open(LOCK_PATH, "w")
     try:
         fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError:
+        lock_file.close()
+        return None
+    return lock_file
+
+
+def _run_scrape():
+    # same lock as --recompute and a terminal scrape -- see _run_recompute's
+    # comment on why (out/all.json shouldn't be rewritten by two processes
+    # at once).
+    lock_file = _try_acquire_run_lock()
+    if lock_file is None:
         with _scrape_lock:
             _scrape_state["running"] = False
             _scrape_state["error"] = "a scrape or recompute is already running"
@@ -97,10 +111,8 @@ def _run_recompute(fields):
     # shouldn't be rewritten by two processes (or a scrape + a recompute) at
     # once. held for the fields loop; ponytail: released via file close in
     # `finally`, not by name, since flock ties to the fd.
-    lock_file = open(LOCK_PATH, "w")
-    try:
-        fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except BlockingIOError:
+    lock_file = _try_acquire_run_lock()
+    if lock_file is None:
         with _state_lock:
             _state["running"] = False
             _state["error"] = "a scrape or recompute is already running"
@@ -187,6 +199,9 @@ class Handler(SimpleHTTPRequestHandler):
             return
         if path == "/api/descriptions":
             # Manual submit of a missing job description (HTML or plain text).
+            # desc_store.put is load-merge-save of the whole map -- must not
+            # interleave with scrape/recompute append_all_json / backfill
+            # which rewrite the same file under .run.lock.
             data, err = self._read_json_body()
             if err:
                 self._json(400, {"error": err})
@@ -199,12 +214,19 @@ class Handler(SimpleHTTPRequestHandler):
             if not isinstance(text, str) or not text.strip():
                 self._json(400, {"error": "text required"})
                 return
-            try:
-                desc_store.put(lid.strip(), text)
-            except (OSError, ValueError) as e:
-                self._json(500, {"error": str(e)})
+            lock_file = _try_acquire_run_lock()
+            if lock_file is None:
+                self._json(409, {"error": "a scrape or recompute is already running"})
                 return
-            self._json(200, {"ok": True, "id": lid.strip()})
+            try:
+                try:
+                    desc_store.put(lid.strip(), text)
+                except (OSError, ValueError, EOFError) as e:
+                    self._json(500, {"error": str(e)})
+                    return
+                self._json(200, {"ok": True, "id": lid.strip()})
+            finally:
+                lock_file.close()
             return
         if path == "/api/applied":
             # Full map replace or merge of applied marks {id: ISO timestamp}.
@@ -230,6 +252,10 @@ class Handler(SimpleHTTPRequestHandler):
             return
         if path == "/api/listings/clear-2027":
             # Manual clear of is_2027 (UI confirmation happens client-side).
+            # clear_is_2027 is a full read-modify-write of out/all.json --
+            # same file scrape/recompute rewrite under .run.lock. Without
+            # the lock a clear can clobber a concurrent append (lose new
+            # rows) or have its override wiped by a concurrent recompute.
             data, err = self._read_json_body()
             if err:
                 self._json(400, {"error": err})
@@ -238,15 +264,22 @@ class Handler(SimpleHTTPRequestHandler):
             if not isinstance(lid, str) or not lid.strip():
                 self._json(400, {"error": "id required"})
                 return
+            lock_file = _try_acquire_run_lock()
+            if lock_file is None:
+                self._json(409, {"error": "a scrape or recompute is already running"})
+                return
             try:
-                result = recompute_mod.clear_is_2027(lid.strip())
-            except KeyError:
-                self._json(404, {"error": "listing not found"})
-                return
-            except (OSError, ValueError) as e:
-                self._json(500, {"error": str(e)})
-                return
-            self._json(200, result)
+                try:
+                    result = recompute_mod.clear_is_2027(lid.strip())
+                except KeyError:
+                    self._json(404, {"error": "listing not found"})
+                    return
+                except (OSError, ValueError) as e:
+                    self._json(500, {"error": str(e)})
+                    return
+                self._json(200, result)
+            finally:
+                lock_file.close()
             return
         self.send_error(404)
 
@@ -507,6 +540,36 @@ def selftest():
                 raise AssertionError("expected 404")
             except urllib.error.HTTPError as e:
                 assert e.code == 404
+
+            # clear-2027 / descriptions must 409 when .run.lock is held
+            # (same lock scrape/recompute use) -- otherwise RMW races wipe
+            # concurrent all.json / descriptions writes.
+            held = open(LOCK_PATH, "w")
+            fcntl.flock(held, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            try:
+                busy_clear = urllib.request.Request(
+                    f"http://127.0.0.1:{port}/api/listings/clear-2027",
+                    data=json.dumps({"id": "c1"}).encode(), method="POST",
+                    headers={"Content-Type": "application/json"})
+                try:
+                    urllib.request.urlopen(busy_clear, timeout=5)
+                    raise AssertionError("expected 409 while lock held")
+                except urllib.error.HTTPError as e:
+                    assert e.code == 409
+
+                busy_desc = urllib.request.Request(
+                    f"http://127.0.0.1:{port}/api/descriptions",
+                    data=json.dumps({"id": "job1", "text": "nope"}).encode(),
+                    method="POST",
+                    headers={"Content-Type": "application/json"})
+                try:
+                    urllib.request.urlopen(busy_desc, timeout=5)
+                    raise AssertionError("expected 409 while lock held")
+                except urllib.error.HTTPError as e:
+                    assert e.code == 409
+            finally:
+                fcntl.flock(held, fcntl.LOCK_UN)
+                held.close()
         finally:
             recompute_mod.clear_is_2027 = orig_clear
     finally:
