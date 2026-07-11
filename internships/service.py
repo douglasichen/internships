@@ -15,12 +15,24 @@ strand new listings as "already seen" without ever recording them.
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field, replace
 from pathlib import Path
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from internships.filters import is_swe_internship, year_relevance
 from internships.models import Listing, normalize_url
 from internships.seen_store import SeenStore
 from internships.sources.ats_boards import DomainThrottle, UA
+
+
+class _Redirect308(HTTPRedirectHandler):
+    """Python 3.10's urllib follows 301/302/303/307 but not 308. Many career
+    sites (Instacart, SentinelOne, D.E. Shaw, …) use 308 Permanent Redirect;
+    without this, description fetches raise and we store nothing."""
+
+    def http_error_308(self, req, fp, code, msg, headers):
+        return self.http_error_302(req, fp, code, msg, headers)
+
+
+_OPENER = build_opener(_Redirect308)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
@@ -65,13 +77,17 @@ def _fetch_raw_page(url: str) -> str:
 
     Stores whatever HTML/text the server returns (whole page) for later use
     (e.g. paste into an AI). Empty string on any failure. Per-domain throttle
-    via DomainThrottle.hold so we don't stampede boards."""
+    via DomainThrottle.hold so we don't stampede boards. Follows 308 redirects
+    (not handled by Python 3.10's default urllib opener)."""
     if not url:
         return ""
     try:
         with _PAGE_FETCH_THROTTLE.hold(url):
-            req = Request(url, headers={"User-Agent": UA, "Accept": "text/html,application/xhtml+xml,*/*;q=0.8"})
-            with urlopen(req, timeout=_PAGE_FETCH_TIMEOUT) as r:
+            req = Request(url, headers={
+                "User-Agent": UA,
+                "Accept": "text/html,application/xhtml+xml,*/*;q=0.8",
+            })
+            with _OPENER.open(req, timeout=_PAGE_FETCH_TIMEOUT) as r:
                 return r.read().decode("utf-8", errors="replace")
     except Exception:  # noqa: BLE001 - best-effort; missing page just means no description
         return ""
@@ -283,6 +299,10 @@ def selftest():
     assert SeenStore(d_defer / "seen" / "fake.json").load() == {listing.id()}
     r10 = run([FakeSource([listing])], data_dir=d_defer, persist_seen=False)
     assert r10.new_listings == []
+
+    # 308 Permanent Redirect is handled (Python 3.10 default opener is not)
+    assert callable(getattr(_Redirect308, "http_error_308", None))
+
     print("service selftest OK")
 
 
