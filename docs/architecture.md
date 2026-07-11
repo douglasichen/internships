@@ -25,11 +25,11 @@ flowchart TD
     SA -.-> MD
     SN -.-> MD
 
-    subgraph Orchestrator["service.py — run()"]
+    subgraph Orchestrator["service.py — run() / _run_one per source"]
         STEP1["1. ats_boards alone first"]
-        STEP2["2. known_urls from its listings"]
-        STEP3["3. custom_boards + README sources in parallel\nREADME only: skip known_urls\nall: page-fetch empty extra_text"]
-        STEP4["4. filter SWE + year_relevance\n5. batch dedupe by Listing.id\n6. drop SeenStore ids (read only)\n7. caller writes CSV/all.json + descriptions"]
+        STEP2["2. build known_urls from its listings"]
+        STEP3["3. custom_boards + README in parallel\nper source _run_one order:\nfilter SWE+year → batch Listing.id dedupe\n→ README-only known_urls skip\n→ page-fetch empty extra_text\n→ drop SeenStore ids (read only)"]
+        STEP4["4. return new listings + pending seen\n(caller writes CSV/all.json/descriptions)"]
         STEP1 --> STEP2 --> STEP3 --> STEP4
     end
 
@@ -68,14 +68,14 @@ flowchart TD
 
 | File | Responsibility |
 |---|---|
-| `internships/models.py` | `Listing` dataclass. `normalize_url()` for dedup identity. `is_2027` / `priority` are properties from filters. |
+| `internships/models.py` | `Listing` dataclass. `id()` = sha1 of `source\|company\|normalize_url(url) or title\|location` (source is in the hash → same apply URL from two sources = two ids). `normalize_url` strips tracking params, keeps identity query (`gh_jid`, `token`, …). `is_2027` / `priority` are properties from filters. |
 | `internships/filters.py` | `is_swe_internship`, `year_relevance` (2027 / maybe / no), `company_priority` tiers 1–3. |
 | `internships/seen_store.py` | Per-source JSON of already-reported listing ids. Cross-run dedup. Persist deferred until after `all.json` write succeeds. |
 | `internships/sources/ats_boards.py` | `companies.csv` ATS sweep + `DomainThrottle` (per-netloc lock + min interval via `hold()`). |
 | `internships/sources/custom_boards.py` | ~50 CONFIG fetch endpoints + Tesla careers state decoder (`DECODERS`). |
 | `internships/sources/{github_readme,speedyapply,sndsh404}.py` | Tracked README job tables. |
 | `internships/sources/md_table.py` | Shared README table parsing + shared `README_THROTTLE`. |
-| `internships/service.py` | `run(sources)`: ats_boards first, then others in parallel; README sources skip ats `known_urls`; filters; seen (read); page-fetch when `extra_text` empty (all sources). |
+| `internships/service.py` | `run(sources)`: ats_boards first, then others in parallel. Per source: filter → batch `Listing.id` dedupe → README-only `known_urls` skip → page-fetch empty `extra_text` → drop already-seen ids (pending write only). |
 | `internships/__main__.py` | CLI + lock. CSV + `append_all_json` (content-key + job-token merge) + `desc_store`; `persist_seen()` only after a successful `all.json` write. Registers all five sources. |
 | `internships/desc_store.py` | `out/descriptions.json.gz` — `{listing_id: html}`. Legacy migrate from plain JSON / per-id `.html.gz`. |
 | `internships/applied_store.py` | `out/applied.json` — `{listing_id: ISO timestamp}` for the UI applied checkbox. |
