@@ -1062,113 +1062,161 @@ function loadAll() {
   ]).then(([data]) => { ALL = data; render(); });
 }
 
-function pollRecompute() {
-  const statusEl = document.getElementById('recomputeStatus');
-  const btn = document.getElementById('runRecompute');
-  fetch('/api/recompute/status').then(r => r.json()).then(s => {
-    if (s.running) { setTimeout(pollRecompute, 1500); return; }
-    btn.disabled = false;
-    if (s.error) { statusEl.textContent = 'error: ' + s.error; return; }
-    statusEl.textContent = Object.entries(s.result || {}).map(([k, v]) => `${k}: ${v}`).join(' · ') || 'done';
-    loadAll();
-  }).catch(() => { statusEl.textContent = 'lost connection while polling'; btn.disabled = false; });
-}
-
-document.getElementById('runRecompute').addEventListener('click', async e => {
-  const fields = [...document.querySelectorAll('.recompute-check.active')].map(b => b.dataset.field);
-  const statusEl = document.getElementById('recomputeStatus');
-  const btn = e.target;
-  if (!fields.length) { statusEl.textContent = 'pick at least one field'; return; }
-  btn.disabled = true;
-  statusEl.textContent = 'starting…';
-  try {
-    const res = await fetch(`/api/recompute?fields=${fields.join(',')}`, { method: 'POST' });
-    if (res.status === 202) { statusEl.textContent = 'running…'; pollRecompute(); return; }
-    const err = await res.json().catch(() => ({}));
-    statusEl.textContent = err.error || `failed (${res.status})`;
-    btn.disabled = false;
-  } catch {
-    statusEl.textContent = 'no server running -- start with: python3 -m internships.webserver';
-    btn.disabled = false;
-  }
-});
-
-// Keep "Run scrape" disabled for the whole run so the FE can't fire two POSTs.
-// Busy if any of:
-//   - scrapePostInFlight: click handler's fetch still in flight
-//   - /api/scrape/status.running: this server's scrape thread
-//   - /api/status.active: .run.lock (this tab, other tab, CLI scrape/recompute)
-// pendingUiScrape: we got 202 from this tab and still need to show the result
-// once the server goes idle again (does NOT alone keep the button disabled
-// after the run ends — that would stick forever).
+// Shared busy gate: scrape and recompute share .run.lock on the server, so
+// the FE only allows one at a time. Both "Run scrape" and "Run" (recompute)
+// disable whenever either is in flight or the lock is held.
 let scrapeWasActive = false;
+let recomputeWasActive = false;
 let pendingUiScrape = false;
+let pendingUiRecompute = false;
 let scrapePostInFlight = false;
+let recomputePostInFlight = false;
 
-function setScrapeButtonBusy(busy) {
-  document.getElementById('runScrape').disabled = !!busy;
+function setRunButtonsBusy(busy) {
+  const on = !!busy;
+  document.getElementById('runScrape').disabled = on;
+  document.getElementById('runRecompute').disabled = on;
 }
 
-function pollScrapeActive() {
-  const statusEl = document.getElementById('scrapeStatus');
+function anyRunPending() {
+  return scrapePostInFlight || recomputePostInFlight
+    || pendingUiScrape || pendingUiRecompute
+    || scrapeWasActive || recomputeWasActive;
+}
+
+function pollRunBusy() {
+  const scrapeStatusEl = document.getElementById('scrapeStatus');
+  const recomputeStatusEl = document.getElementById('recomputeStatus');
   Promise.all([
     fetch('/api/status').then(r => r.json()),
     fetch('/api/scrape/status').then(r => r.json()).catch(() => ({ running: false })),
-  ]).then(([s, scrape]) => {
+    fetch('/api/recompute/status').then(r => r.json()).catch(() => ({ running: false })),
+  ]).then(([s, scrape, recompute]) => {
     const lockHeld = !!s.active;
     const scrapeRunning = !!scrape.running;
-    const serverBusy = lockHeld || scrapeRunning;
+    const recomputeRunning = !!recompute.running;
+    const serverBusy = lockHeld || scrapeRunning || recomputeRunning;
 
-    // This-tab scrape finished (or failed to take the lock): surface result once.
-    if (pendingUiScrape && !scrapeRunning && !scrapePostInFlight && !lockHeld) {
+    // This-tab scrape finished: surface result once.
+    if (pendingUiScrape && !scrapeRunning && !scrapePostInFlight && !lockHeld && !recomputeRunning) {
       pendingUiScrape = false;
       scrapeWasActive = false;
       loadAll();
-      statusEl.classList.remove('live');
-      if (scrape.result) statusEl.textContent = `done — ${scrape.result.new_listings} new listings`;
-      else if (scrape.error) statusEl.textContent = 'error: ' + scrape.error;
-      else statusEl.textContent = '';
-      setScrapeButtonBusy(false);
-      return;
+      scrapeStatusEl.classList.remove('live');
+      if (scrape.result) scrapeStatusEl.textContent = `done — ${scrape.result.new_listings} new listings`;
+      else if (scrape.error) scrapeStatusEl.textContent = 'error: ' + scrape.error;
+      else scrapeStatusEl.textContent = '';
+      // fall through so recompute button can re-enable if fully idle
     }
 
-    const busy = scrapePostInFlight || serverBusy;
-    if (busy) {
-      scrapeWasActive = true;
-      setScrapeButtonBusy(true);
-      statusEl.classList.add('live');
-      if (scrapeRunning || pendingUiScrape || scrapePostInFlight) {
-        if (!scrapePostInFlight || scrapeRunning) {
-          statusEl.textContent = 'scrape running…';
-        }
-        // else leave "starting…" from the click handler
-      } else if (lockHeld) {
-        statusEl.textContent = 'run in progress…'; // recompute / CLI holding the lock
+    // This-tab recompute finished: surface result once.
+    if (pendingUiRecompute && !recomputeRunning && !recomputePostInFlight && !lockHeld && !scrapeRunning) {
+      pendingUiRecompute = false;
+      recomputeWasActive = false;
+      loadAll();
+      if (recompute.error) recomputeStatusEl.textContent = 'error: ' + recompute.error;
+      else {
+        recomputeStatusEl.textContent = Object.entries(recompute.result || {})
+          .map(([k, v]) => `${k}: ${v}`).join(' · ') || 'done';
       }
+    }
+
+    const busy = scrapePostInFlight || recomputePostInFlight || serverBusy;
+    setRunButtonsBusy(busy);
+
+    if (scrapeRunning || (pendingUiScrape && scrapePostInFlight) || scrapePostInFlight) {
+      scrapeWasActive = true;
+      scrapeStatusEl.classList.add('live');
+      if (!scrapePostInFlight || scrapeRunning) scrapeStatusEl.textContent = 'scrape running…';
+      // else leave "starting…"
+      if (!recomputeRunning && !recomputePostInFlight && !pendingUiRecompute) {
+        recomputeStatusEl.textContent = 'wait for scrape…';
+      }
+    } else if (recomputeRunning || recomputePostInFlight || pendingUiRecompute) {
+      recomputeWasActive = true;
+      scrapeStatusEl.classList.add('live');
+      if (recomputeRunning || pendingUiRecompute) {
+        scrapeStatusEl.textContent = 'recompute running…';
+        if (!recomputePostInFlight) recomputeStatusEl.textContent = 'running…';
+      }
+    } else if (lockHeld) {
+      // CLI scrape/recompute — lock held, neither API flag set yet
+      scrapeWasActive = true;
+      scrapeStatusEl.classList.add('live');
+      scrapeStatusEl.textContent = 'run in progress…';
+      recomputeStatusEl.textContent = 'wait for run…';
     } else {
-      statusEl.classList.remove('live');
-      setScrapeButtonBusy(false);
-      if (scrapeWasActive) {
-        // CLI / other-tab / recompute finished — refresh list, no stale scrape blurb.
+      scrapeStatusEl.classList.remove('live');
+      if (scrapeWasActive && !pendingUiScrape) {
+        // Other tab / CLI finished without this tab starting it
         scrapeWasActive = false;
         loadAll();
-        statusEl.textContent = '';
+        scrapeStatusEl.textContent = '';
+      }
+      if (recomputeWasActive && !pendingUiRecompute) {
+        recomputeWasActive = false;
+      }
+      // Clear cross-disable hints when idle (don't wipe a just-shown result)
+      if (recomputeStatusEl.textContent === 'wait for scrape…'
+          || recomputeStatusEl.textContent === 'wait for run…') {
+        recomputeStatusEl.textContent = '';
+      }
+      if (scrapeStatusEl.textContent === 'recompute running…'
+          || scrapeStatusEl.textContent === 'run in progress…') {
+        scrapeStatusEl.textContent = '';
       }
     }
   }).catch(() => {});
-  const interval = (scrapeWasActive || pendingUiScrape || scrapePostInFlight) ? 1000 : 4000;
-  setTimeout(pollScrapeActive, interval);
+  setTimeout(pollRunBusy, anyRunPending() || scrapePostInFlight || recomputePostInFlight ? 1000 : 4000);
 }
+
+document.getElementById('runRecompute').addEventListener('click', async () => {
+  const fields = [...document.querySelectorAll('.recompute-check.active')].map(b => b.dataset.field);
+  const statusEl = document.getElementById('recomputeStatus');
+  const btn = document.getElementById('runRecompute');
+  if (!fields.length) { statusEl.textContent = 'pick at least one field'; return; }
+  if (btn.disabled || recomputePostInFlight || scrapePostInFlight
+      || pendingUiScrape || pendingUiRecompute) return;
+  recomputePostInFlight = true;
+  setRunButtonsBusy(true);
+  statusEl.textContent = 'starting…';
+  try {
+    const res = await fetch(`/api/recompute?fields=${fields.join(',')}`, { method: 'POST' });
+    if (res.status === 202) {
+      statusEl.textContent = 'running…';
+      recomputeWasActive = true;
+      pendingUiRecompute = true;
+      document.getElementById('scrapeStatus').textContent = 'recompute running…';
+      document.getElementById('scrapeStatus').classList.add('live');
+      return;
+    }
+    if (res.status === 409) {
+      statusEl.textContent = 'already running…';
+      recomputeWasActive = true;
+      return;
+    }
+    const err = await res.json().catch(() => ({}));
+    statusEl.textContent = err.error || `failed (${res.status})`;
+    setRunButtonsBusy(false);
+  } catch {
+    statusEl.textContent = 'no server running -- start with: python3 -m internships.webserver';
+    setRunButtonsBusy(false);
+  } finally {
+    recomputePostInFlight = false;
+  }
+});
 
 document.getElementById('runScrape').addEventListener('click', async () => {
   const statusEl = document.getElementById('scrapeStatus');
   const btn = document.getElementById('runScrape');
-  // Hard gate: no concurrent POSTs (disabled can lag a paint frame).
-  if (btn.disabled || scrapePostInFlight || pendingUiScrape) return;
+  // Hard gate: no concurrent scrape/recompute POSTs from this tab.
+  if (btn.disabled || scrapePostInFlight || recomputePostInFlight
+      || pendingUiScrape || pendingUiRecompute) return;
   scrapePostInFlight = true;
-  setScrapeButtonBusy(true);
+  setRunButtonsBusy(true);
   statusEl.textContent = 'starting…';
   statusEl.classList.add('live');
+  document.getElementById('recomputeStatus').textContent = 'wait for scrape…';
   try {
     const res = await fetch('/api/scrape', { method: 'POST' });
     if (res.status === 202) {
@@ -1178,7 +1226,6 @@ document.getElementById('runScrape').addEventListener('click', async () => {
       return;
     }
     if (res.status === 409) {
-      // Another tab already started a scrape — stay disabled; poll tracks it.
       statusEl.textContent = 'scrape already running…';
       scrapeWasActive = true;
       return;
@@ -1186,18 +1233,20 @@ document.getElementById('runScrape').addEventListener('click', async () => {
     const err = await res.json().catch(() => ({}));
     statusEl.textContent = err.error || `failed (${res.status})`;
     statusEl.classList.remove('live');
-    setScrapeButtonBusy(false);
+    document.getElementById('recomputeStatus').textContent = '';
+    setRunButtonsBusy(false);
   } catch {
     statusEl.textContent = 'no server running -- start with: python3 -m internships.webserver';
     statusEl.classList.remove('live');
-    setScrapeButtonBusy(false);
+    document.getElementById('recomputeStatus').textContent = '';
+    setRunButtonsBusy(false);
   } finally {
     scrapePostInFlight = false;
   }
 });
 
 loadAll();
-pollScrapeActive();
+pollRunBusy();
 </script>
 </body>
 </html>
