@@ -19,7 +19,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
 from internships import __main__ as main_mod
-from internships import recompute as recompute_mod
+from internships import desc_store, recompute as recompute_mod
 from internships.service import ROOT, run as run_sources
 
 LOCK_PATH = ROOT / ".run.lock"
@@ -138,6 +138,23 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _read_json_body(self):
+        """Parse a JSON request body. Returns (obj, None) or (None, error_str)."""
+        try:
+            n = int(self.headers.get("Content-Length") or 0)
+        except ValueError:
+            return None, "bad Content-Length"
+        if n <= 0 or n > 2_000_000:  # ~2MB cap for pasted HTML/text
+            return None, "body too large or empty"
+        try:
+            raw = self.rfile.read(n)
+            data = json.loads(raw.decode("utf-8"))
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError) as e:
+            return None, f"invalid JSON: {e}"
+        if not isinstance(data, dict):
+            return None, "JSON object required"
+        return data, None
+
     def do_POST(self):
         path = urlparse(self.path).path
         if path == "/api/recompute":
@@ -163,6 +180,27 @@ class Handler(SimpleHTTPRequestHandler):
             threading.Thread(target=_run_scrape, daemon=True).start()
             self._json(202, {"started": True})
             return
+        if path == "/api/descriptions":
+            # Manual submit of a missing job description (HTML or plain text).
+            data, err = self._read_json_body()
+            if err:
+                self._json(400, {"error": err})
+                return
+            lid = data.get("id")
+            text = data.get("text")
+            if not isinstance(lid, str) or not lid.strip():
+                self._json(400, {"error": "id required"})
+                return
+            if not isinstance(text, str) or not text.strip():
+                self._json(400, {"error": "text required"})
+                return
+            try:
+                desc_store.put(lid.strip(), text)
+            except (OSError, ValueError) as e:
+                self._json(500, {"error": str(e)})
+                return
+            self._json(200, {"ok": True, "id": lid.strip()})
+            return
         self.send_error(404)
 
     def do_GET(self):
@@ -178,6 +216,16 @@ class Handler(SimpleHTTPRequestHandler):
         if path == "/api/status":
             self._json(200, {"active": _is_lock_held()})
             return
+        if path == "/api/descriptions/ids":
+            # Lightweight set of listing ids that already have a description
+            # so the FE can badge rows missing one without loading full HTML.
+            try:
+                ids = list(desc_store.load().keys())
+            except (OSError, ValueError) as e:
+                self._json(500, {"error": str(e)})
+                return
+            self._json(200, {"ids": ids})
+            return
         super().do_GET()
 
     def log_message(self, fmt, *args):
@@ -185,9 +233,16 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 def selftest():
+    import tempfile
     import time
     import urllib.error
     import urllib.request
+    from pathlib import Path
+
+    # Isolate from a live webserver/scrape that may hold ROOT/.run.lock.
+    global LOCK_PATH
+    orig_lock = LOCK_PATH
+    LOCK_PATH = Path(tempfile.mkdtemp()) / ".run.lock"
 
     httpd = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
     port = httpd.server_address[1]
@@ -206,10 +261,13 @@ def selftest():
         except urllib.error.HTTPError as e:
             assert e.code == 400
 
-        # monkeypatch the actual recompute functions so this hits no network/disk
+        # monkeypatch recompute + hold .run.lock only inside the worker path so
+        # a live scrape elsewhere doesn't make the 409 race flake. Gate the
+        # slow work on an Event so the second POST is guaranteed in-flight.
         orig = recompute_mod.dedupe
+        hold = threading.Event()
         def slow_dedupe():
-            time.sleep(0.2)  # wide enough to reliably observe running=True below
+            hold.wait(timeout=2)
             return 3, 10
         recompute_mod.dedupe = slow_dedupe
         try:
@@ -219,21 +277,25 @@ def selftest():
             assert r.status == 202
             assert json.loads(r.read())["started"] == ["dedup"]
 
-            # a second recompute while one's running -> 409
-            req2 = urllib.request.Request(f"http://127.0.0.1:{port}/api/recompute?fields=dedup",
-                                           method="POST")
-            for _ in range(50):  # give the background thread a moment to set running=True
+            for _ in range(100):
                 with _state_lock:
                     if _state["running"]:
                         break
                 time.sleep(0.01)
+            else:
+                raise AssertionError("recompute never set running=True")
+
+            # a second recompute while one's running -> 409
+            req2 = urllib.request.Request(f"http://127.0.0.1:{port}/api/recompute?fields=dedup",
+                                           method="POST")
             try:
                 urllib.request.urlopen(req2, timeout=5)
                 raise AssertionError("expected HTTPError 409")
             except urllib.error.HTTPError as e:
                 assert e.code == 409
 
-            for _ in range(200):  # poll status until the background thread finishes
+            hold.set()
+            for _ in range(200):
                 status = json.loads(urllib.request.urlopen(
                     f"http://127.0.0.1:{port}/api/recompute/status", timeout=5).read())
                 if not status["running"]:
@@ -241,6 +303,7 @@ def selftest():
                 time.sleep(0.01)
             assert status["result"] == {"dedup": "3/10 rows merged"}, status
         finally:
+            hold.set()
             recompute_mod.dedupe = orig
 
         # /api/status: reflects .run.lock state regardless of what's holding
@@ -286,8 +349,48 @@ def selftest():
             assert s["result"]["fake"] == {"fetched": 1, "swe": 1, "new": 1, "error": ""}, s
         finally:
             run_sources = orig_run_sources
+
+        # /api/descriptions/ids + POST /api/descriptions (in-memory, no disk)
+        fake = {}
+        orig_load, orig_put = desc_store.load, desc_store.put
+        desc_store.load = lambda all_json_path=None: dict(fake)
+        def _fake_put(lid, text, all_json_path=None):
+            if lid and isinstance(text, str) and text:
+                fake[lid] = text
+        desc_store.put = _fake_put
+        try:
+            ids = json.loads(urllib.request.urlopen(
+                f"http://127.0.0.1:{port}/api/descriptions/ids", timeout=5).read())
+            assert ids == {"ids": []}, ids
+
+            bad = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/descriptions",
+                data=b'{"id":"x"}', method="POST",
+                headers={"Content-Type": "application/json"})
+            try:
+                urllib.request.urlopen(bad, timeout=5)
+                raise AssertionError("expected 400 for missing text")
+            except urllib.error.HTTPError as e:
+                assert e.code == 400
+
+            body = json.dumps({"id": "job1", "text": "hello world"}).encode()
+            req = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/descriptions",
+                data=body, method="POST",
+                headers={"Content-Type": "application/json"})
+            r = urllib.request.urlopen(req, timeout=5)
+            assert r.status == 200
+            assert json.loads(r.read()) == {"ok": True, "id": "job1"}
+            assert fake.get("job1") == "hello world"
+
+            ids = json.loads(urllib.request.urlopen(
+                f"http://127.0.0.1:{port}/api/descriptions/ids", timeout=5).read())
+            assert ids == {"ids": ["job1"]}, ids
+        finally:
+            desc_store.load, desc_store.put = orig_load, orig_put
     finally:
         httpd.shutdown()
+        LOCK_PATH = orig_lock
     print("webserver selftest OK")
 
 
