@@ -12,6 +12,9 @@ from __future__ import annotations
 
 import gzip
 import json
+import os
+import tempfile
+import threading
 from pathlib import Path
 
 from internships.service import ROOT
@@ -20,6 +23,10 @@ DESCRIPTIONS_PATH = ROOT / "out" / "descriptions.json.gz"
 # Legacy layouts we still import once, then leave alone (or as .bak).
 LEGACY_JSON = ROOT / "out" / "descriptions.json"
 LEGACY_DIR = ROOT / "out" / "descriptions"
+
+# put/save are full-map rewrites. ThreadingHTTPServer + concurrent puts (or put
+# racing a same-process caller) must not share one fixed *.tmp name or drop keys.
+_lock = threading.Lock()
 
 
 def path_for(all_json_path=None) -> Path:
@@ -50,12 +57,22 @@ def _read_gz_json(p: Path) -> dict:
 
 
 def _write_gz_json(p: Path, descs: dict) -> None:
+    """Atomically rewrite gzip JSON (caller holds _lock for put/save paths)."""
     clean = {k: v for k, v in descs.items() if k and isinstance(v, str) and v}
     payload = json.dumps(clean, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     p.parent.mkdir(parents=True, exist_ok=True)
-    tmp = p.with_suffix(p.suffix + ".tmp")  # .json.gz.tmp
-    tmp.write_bytes(gzip.compress(payload, compresslevel=6))
-    tmp.replace(p)
+    # Unique tmp: concurrent writers must not share descriptions.json.gz.tmp.
+    fd, tmp_name = tempfile.mkstemp(prefix=p.name + ".", suffix=".tmp", dir=str(p.parent))
+    try:
+        with os.fdopen(fd, "wb") as f:
+            f.write(gzip.compress(payload, compresslevel=6))
+        Path(tmp_name).replace(p)
+    except Exception:
+        try:
+            os.unlink(tmp_name)
+        except OSError:
+            pass
+        raise
 
 
 def migrate_legacy(all_json_path=None) -> int:
@@ -65,14 +82,15 @@ def migrate_legacy(all_json_path=None) -> int:
     1. Existing descriptions.json.gz (base)
     2. Plain descriptions.json / .json.bak
     3. Per-id out/descriptions/<id>.html.gz folder
+
+    If the primary gzip exists but is unreadable, raises (does not rebuild from
+    legacy alone — that would silently drop primary-only keys).
     """
     p = path_for(all_json_path)
     merged = {}
     if p.is_file():
-        try:
-            merged.update(_read_gz_json(p))
-        except (OSError, ValueError):
-            pass
+        # Do not swallow corrupt primary: rewriting from legacy-only is data loss.
+        merged.update(_read_gz_json(p))
 
     before = len(merged)
     for leg in (_legacy_json(all_json_path),
@@ -103,7 +121,8 @@ def migrate_legacy(all_json_path=None) -> int:
 
     added = len(merged) - before
     if merged and (added or not p.is_file()):
-        _write_gz_json(p, merged)
+        with _lock:
+            _write_gz_json(p, merged)
     return max(0, added)
 
 
@@ -122,7 +141,8 @@ def load(all_json_path=None) -> dict:
 
 def save(descs: dict, all_json_path=None) -> None:
     """Atomically rewrite the full id -> HTML map (gzip JSON)."""
-    _write_gz_json(path_for(all_json_path), descs or {})
+    with _lock:
+        _write_gz_json(path_for(all_json_path), descs or {})
 
 
 def has(listing_id: str, all_json_path=None) -> bool:
@@ -142,9 +162,14 @@ def put(listing_id: str, text: str, all_json_path=None) -> None:
     a few hundred listings)."""
     if not listing_id or not isinstance(text, str) or not text:
         return
-    descs = load(all_json_path)
-    descs[listing_id] = text
-    save(descs, all_json_path)
+    # migrate_legacy may write; run it outside the write lock first so we don't
+    # nest _lock. Re-read under lock so concurrent puts cannot drop each other.
+    migrate_legacy(all_json_path)
+    with _lock:
+        p = path_for(all_json_path)
+        descs = _read_gz_json(p) if p.is_file() else {}
+        descs[listing_id] = text
+        _write_gz_json(p, descs)
 
 
 def peel_from_rows(rows: list) -> dict:
@@ -192,6 +217,7 @@ def migrate_all_json(all_json_path=None) -> int:
 
 def selftest():
     import tempfile
+    import threading
 
     td = Path(tempfile.mkdtemp())
     all_p = td / "all.json"
@@ -240,7 +266,7 @@ def selftest():
     assert migrate_legacy(p2) == 1
     assert get("z9", p2) == "folder only"
 
-    # corrupt primary must not fail-open (no legacy folder to re-import from)
+    # corrupt primary must not fail-open — with or without legacy present
     td3 = Path(tempfile.mkdtemp())
     all3 = td3 / "all.json"
     all3.write_text("[]")
@@ -250,6 +276,45 @@ def selftest():
         raise AssertionError("expected error on corrupt store")
     except (OSError, ValueError, gzip.BadGzipFile, json.JSONDecodeError, EOFError):
         pass
+
+    # corrupt primary + legacy must NOT rewrite primary from legacy alone
+    # (that silently drops keys that only lived in the gzip)
+    td4 = Path(tempfile.mkdtemp())
+    all4 = td4 / "all.json"
+    all4.write_text("[]")
+    save({"only_primary": "must not be wiped", "shared": "from primary"}, all4)
+    primary4 = path_for(all4)
+    primary4.write_bytes(b"not gzip")
+    _legacy_json(all4).write_text(json.dumps({"shared": "from legacy", "only_legacy": "x"}))
+    try:
+        migrate_legacy(all4)
+        raise AssertionError("expected error on corrupt primary with legacy present")
+    except (OSError, ValueError, gzip.BadGzipFile, json.JSONDecodeError, EOFError):
+        pass
+    # primary left untouched (still corrupt) — no silent rewrite
+    assert primary4.read_bytes() == b"not gzip", "corrupt primary was rewritten"
+
+    # concurrent puts must not lose keys
+    td5 = Path(tempfile.mkdtemp())
+    all5 = td5 / "all.json"
+    all5.write_text("[]")
+    put("seed", "seed", all5)
+    put_errors = []
+
+    def put_many(start, n):
+        try:
+            for i in range(start, start + n):
+                put(f"id{i}", f"text{i}", all5)
+        except Exception as e:  # noqa: BLE001
+            put_errors.append(e)
+
+    threads = [threading.Thread(target=put_many, args=(i * 20, 20)) for i in range(5)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert not put_errors, put_errors
+    assert len(load(all5)) == 101, len(load(all5))
 
     print("desc_store selftest OK")
 
