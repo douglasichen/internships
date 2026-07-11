@@ -26,10 +26,18 @@ from internships.sources.ats_boards import DomainThrottle, UA
 class _Redirect308(HTTPRedirectHandler):
     """Python 3.10's urllib follows 301/302/303/307 but not 308. Many career
     sites (Instacart, SentinelOne, D.E. Shaw, …) use 308 Permanent Redirect;
-    without this, description fetches raise and we store nothing."""
+    without this, description fetches raise and we store nothing.
+
+    Must also allow 308 in redirect_request — calling http_error_302 alone is
+    not enough because redirect_request rejects code 308 on 3.10."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        if code == 308:
+            code = 307  # same semantics for our GET fetches
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
 
     def http_error_308(self, req, fp, code, msg, headers):
-        return self.http_error_302(req, fp, code, msg, headers)
+        return self.http_error_302(req, fp, 307, msg, headers)
 
 
 _OPENER = build_opener(_Redirect308)
