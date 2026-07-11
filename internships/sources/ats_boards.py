@@ -38,7 +38,9 @@ TITLE_KEYS = ("title", "text", "name", "jobTitle", "job_title", "Title")
 # that are login/apply redirects rather than the public posting page.
 # canonicalPositionUrl: Eightfold /api/apply/v2/jobs rows.
 URL_KEYS = ("absolute_url", "hostedUrl", "jobUrl", "applyUrl", "externalPath",
-            "job_path", "url", "canonicalUrl", "canonicalPositionUrl")
+            "job_path", "url", "canonicalUrl", "canonicalPositionUrl",
+            # Eightfold /pcsx/search rows: relative "/careers/job/<id>"
+            "positionUrl")
 # PrimaryLocation: Oracle Fusion requisitionList rows.
 LOC_KEYS = ("location", "city", "locationName", "primaryLocation", "locationsText",
             "PrimaryLocation")
@@ -138,6 +140,14 @@ def _str_field(*values):
     return ""
 
 
+def _join_loc_list(values):
+    """Join a list of location strings; ignore non-str junk so list-valued
+    fields never TypeError into Listing.location (year_relevance + regex)."""
+    if not isinstance(values, list):
+        return ""
+    return "; ".join(x.strip() for x in values if isinstance(x, str) and x.strip())
+
+
 def _get_location(job):
     v = _first(job, LOC_KEYS)
     if v:
@@ -147,19 +157,34 @@ def _get_location(job):
         # Greenhouse: {name}; SmartRecruiters: {city, fullLocation} (no name)
         return _str_field(loc.get("name"), loc.get("locationName"),
                           loc.get("city"), loc.get("fullLocation"))
+    if isinstance(loc, list):
+        joined = _join_loc_list(loc)
+        if joined:
+            return joined
+    # Eightfold pcsx/apply rows: locations / standardizedLocations are lists
+    # of strings (no singular "location" string). Without this, Ericsson /
+    # Infineon / similar boards ship every listing with a blank location.
+    for key in ("locations", "standardizedLocations"):
+        joined = _join_loc_list(job.get(key))
+        if joined:
+            return joined
     cats = job.get("categories")
     if isinstance(cats, dict):
         cl = cats.get("location")
         if isinstance(cl, str) and cl.strip():
             return cl.strip()
         if isinstance(cl, list):
-            return "; ".join(x.strip() for x in cl if isinstance(x, str) and x.strip())
+            return _join_loc_list(cl)
     addr = job.get("address")
     if isinstance(addr, dict):
         pa = addr.get("postalAddress", {})
         if isinstance(pa, dict):
-            return ", ".join(x for x in (pa.get("addressLocality", ""),
-                                          pa.get("addressCountry", "")) if x)
+            # locality/country must be strings -- a list-valued locality used
+            # to TypeError join and (pre try/except) kill the whole batch.
+            return ", ".join(x for x in (
+                _str_field(pa.get("addressLocality")),
+                _str_field(pa.get("addressCountry")),
+            ) if x)
         if isinstance(pa, str):
             return pa.strip()
     return ""
@@ -435,6 +460,12 @@ class AtsBoardsSource:
         def work(item):
             row, urls = item
             company = row["company"]
+            # Aggregate every live endpoint. companies.csv often lists 2+
+            # boards for one company (e.g. Radix experienced + university,
+            # CTC main + campus); returning on the first ok used to silently
+            # drop every job on later boards -- including the internship ones.
+            listings = []
+            any_ok = False
             for url in urls:
                 if WDAY_CXS_RE.search(url):
                     jobs, ok = fetch_workday_postings(url, throttle)
@@ -442,29 +473,31 @@ class AtsBoardsSource:
                     with throttle.hold(url):
                         ok, data, note = fetch_json(url)
                     jobs = extract_postings(data) if ok else []
-                if ok:
-                    listings = []
-                    for j in jobs:
-                        try:
-                            l = job_to_listing(company, j, api_url=url)
-                        except Exception:  # noqa: BLE001 - one malformed
-                            # record from a company's board shouldn't sink
-                            # the whole batch; skip just that job.
-                            continue
-                        if l is not None:
-                            # Workday's list endpoint has no description --
-                            # only fetch the per-job detail page (one extra
-                            # request each) for postings that already look
-                            # like an SWE internship, to keep the added
-                            # request volume small.
-                            if not l.extra_text and WDAY_CXS_RE.search(url) and is_swe_internship(l.title):
-                                external_path = _first(j, ("externalPath",))
-                                with throttle.hold(url):
-                                    desc = fetch_workday_description(url, external_path)
-                                if desc:
-                                    l = replace(l, extra_text=desc)
-                            listings.append(l)
-                    return company, "ok", listings
+                if not ok:
+                    continue
+                any_ok = True
+                for j in jobs:
+                    try:
+                        l = job_to_listing(company, j, api_url=url)
+                    except Exception:  # noqa: BLE001 - one malformed
+                        # record from a company's board shouldn't sink
+                        # the whole batch; skip just that job.
+                        continue
+                    if l is not None:
+                        # Workday's list endpoint has no description --
+                        # only fetch the per-job detail page (one extra
+                        # request each) for postings that already look
+                        # like an SWE internship, to keep the added
+                        # request volume small.
+                        if not l.extra_text and WDAY_CXS_RE.search(url) and is_swe_internship(l.title):
+                            external_path = _first(j, ("externalPath",))
+                            with throttle.hold(url):
+                                desc = fetch_workday_description(url, external_path)
+                            if desc:
+                                l = replace(l, extra_text=desc)
+                        listings.append(l)
+            if any_ok:
+                return company, "ok", listings
             return company, "dead", []
 
         listings = []
@@ -534,6 +567,23 @@ def selftest():
     ej = job_to_listing("Ericsson", {"name": "SWE Intern", "id": 99},
                         api_url="https://jobs.ericsson.com/api/pcsx/search?domain=ericsson.com")
     assert ej.url == "https://jobs.ericsson.com/careers/job/99", ej.url
+    # pcsx positionUrl is relative; resolve against the API origin (preferred
+    # over id-reconstruction when the path is present)
+    ej_pos = job_to_listing(
+        "Ericsson",
+        {"name": "SWE Intern", "id": 99, "positionUrl": "/careers/job/99",
+         "locations": ["Beijing,Beijing,China"]},
+        api_url="https://jobs.ericsson.com/api/pcsx/search?domain=ericsson.com",
+    )
+    assert ej_pos.url == "https://jobs.ericsson.com/careers/job/99", ej_pos.url
+    assert ej_pos.location == "Beijing,Beijing,China", ej_pos.location
+    # multi-location Eightfold list
+    ej_multi = job_to_listing(
+        "Infineon",
+        {"name": "SWE Intern", "id": 1, "locations": ["Munich", "Xi'an"]},
+        api_url="https://jobs.infineon.com/api/pcsx/search?domain=infineon.com",
+    )
+    assert ej_multi.location == "Munich; Xi'an", ej_multi.location
     # Eightfold /apply/v2 row already carries canonicalPositionUrl -> keep it
     ej2 = job_to_listing("Netflix", {"name": "SWE Intern",
                                       "canonicalPositionUrl": "https://x/careers/job/7"},
@@ -550,6 +600,13 @@ def selftest():
     weird = job_to_listing("Weird Co", {"title": "SWE Intern",
                                          "address": {"postalAddress": "123 Main St"}})
     assert weird.title == "SWE Intern" and weird.location == "123 Main St", weird
+    # list-valued addressLocality must not TypeError join (skip/blank, not crash)
+    weird2 = job_to_listing("Weird Co", {
+        "title": "SWE Intern",
+        "address": {"postalAddress": {"addressLocality": ["SF"], "addressCountry": "US"}},
+    })
+    assert weird2 is not None and isinstance(weird2.location, str), weird2
+    assert weird2.location == "US", weird2.location  # non-str locality ignored
 
     # SmartRecruiters location is {city, fullLocation} with no "name" -- was
     # blanking every SR location. Also reconstruct the public apply URL from
@@ -665,6 +722,40 @@ def selftest():
         _self.fetch_json = lambda url, search_text="", offset=0, limit=20: (False, None, "http 403")
         jobs, ok = fetch_workday_postings(api_url, throttle)
         assert not ok and jobs == []
+    finally:
+        _self.fetch_json = orig_fetch_json
+
+    # Multi-URL companies must aggregate every live board, not return after the
+    # first ok (Radix experienced+university, CTC main+campus, etc.).
+    import tempfile
+    import csv as _csv
+    tmp_dir = tempfile.mkdtemp()
+    tmp_csv = Path(tmp_dir) / "companies.csv"
+    with open(tmp_csv, "w", newline="") as f:
+        w = _csv.DictWriter(f, fieldnames=["company", "career_url", "api_urls", "api_status"])
+        w.writeheader()
+        w.writerow({
+            "company": "Radix Trading",
+            "career_url": "https://x",
+            "api_urls": ("https://boards-api.greenhouse.io/v1/boards/radixexperienced/jobs ; "
+                         "https://boards-api.greenhouse.io/v1/boards/radixuniversity/jobs"),
+            "api_status": "",
+        })
+
+    def fake_multi(url, search_text="", offset=0, limit=20):
+        if "radixexperienced" in url:
+            return True, {"jobs": [{"title": "Senior SWE", "absolute_url": "http://e/1",
+                                     "location": {"name": "Chi"}}]}, "ok"
+        if "radixuniversity" in url:
+            return True, {"jobs": [{"title": "SWE Intern", "absolute_url": "http://u/1",
+                                     "location": {"name": "Chi"}}]}, "ok"
+        return False, None, "err"
+
+    _self.fetch_json = fake_multi
+    try:
+        got = AtsBoardsSource(csv_path=tmp_csv, interval=0, workers=1).fetch()
+        titles = sorted(l.title for l in got)
+        assert titles == ["SWE Intern", "Senior SWE"], titles
     finally:
         _self.fetch_json = orig_fetch_json
 

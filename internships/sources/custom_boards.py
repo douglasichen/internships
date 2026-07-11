@@ -216,7 +216,16 @@ def listings_from_tesla_state(payload):
         if not isinstance(row, dict):
             continue
         title = _str(row.get("t"))
-        job_id = _str(row.get("id"))
+        # Live payloads have used both string and numeric ids; _str alone
+        # dropped every row when id was an int (and would yield zero Tesla
+        # listings for the whole run).
+        raw_id = row.get("id")
+        if isinstance(raw_id, str):
+            job_id = raw_id.strip()
+        elif isinstance(raw_id, (int, float)) and not isinstance(raw_id, bool):
+            job_id = str(int(raw_id)) if isinstance(raw_id, float) and raw_id == int(raw_id) else str(raw_id)
+        else:
+            job_id = ""
         if not title or not job_id:
             continue
         raw_l = row.get("l")
@@ -477,6 +486,13 @@ def selftest():
     assert listings_from_tesla_state({"cpr_chlge": "true"}) == []
     assert listings_from_tesla_state({"listings": "nope"}) == []
     assert "Tesla" in DECODERS and DECODERS["Tesla"][0] == _TESLA_STATE_URL
+    # numeric id (JSON number) must still produce a listing + stable URL
+    tg_num = listings_from_tesla_state({
+        "lookup": {"locations": {"1": "Austin, Texas"}, "departments": {}},
+        "listings": [{"id": 260509, "t": "Firmware Intern", "dp": None, "l": 1, "y": 3}],
+    })
+    assert len(tg_num) == 1 and tg_num[0].url.endswith("-260509"), tg_num
+    assert tg_num[0].location == "Austin, Texas", tg_num[0].location
 
     print("custom_boards selftest OK")
 
