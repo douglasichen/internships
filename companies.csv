@@ -9,7 +9,7 @@ Nvidia,https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite,https://nvi
 Amazon,https://www.amazon.jobs/en/search,https://www.amazon.jobs/en/search.json,ok
 Google DeepMind,https://deepmind.google/careers/,https://boards-api.greenhouse.io/v1/boards/deepmind/jobs?content=true,ok
 Netflix,https://explore.jobs.netflix.net/careers,https://netflix.eightfold.ai/api/apply/v2/jobs?domain=netflix.com&start=0&num=100&query=intern&sort_by=relevance,ok
-Tesla,https://www.tesla.com/careers/search/?query=software%20engineer&site=US,https://www.tesla.com/cua-api/apps/careers/state (custom_boards decoder; Akamai often blocks bare clients),skipped
+Tesla,https://www.tesla.com/careers/search/?query=software%20engineer&site=US,https://www.tesla.com/cua-api/apps/careers/state (custom_boards decoder; Akamai often blocks bare clients),dead
 Amazon Web Services,https://www.amazon.jobs/en/teams/aws,https://www.amazon.jobs/en/search.json,ok
 xAI,https://job-boards.greenhouse.io/xai,https://boards-api.greenhouse.io/v1/boards/xai/jobs?content=true,ok
 SpaceX,https://job-boards.greenhouse.io/spacex,https://boards-api.greenhouse.io/v1/boards/spacex/jobs?content=true,ok
