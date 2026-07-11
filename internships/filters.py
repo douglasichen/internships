@@ -2,14 +2,22 @@
 import re
 
 INTERN_RE = re.compile(r"\b(intern(ship)?|co[\- ]?op)\b", re.I)
-# Note: bare "development" is intentionally NOT matched -- it false-positives
-# Business/Sales/Talent/Learning & Development internships. Prefer developer /
-# software development / development engineer (plus the other SWE terms).
+# Note: bare "development" / "ai" / "platform" / "systems" are intentionally
+# NOT matched alone -- they false-positive Marketing/AI Product/Electrical
+# Platform/Systems Admin roles. Prefer software/SWE/SDE/developer + ML/data/
+# security engineer / firmware / embedded / full-stack, etc.
 SWE_RE = re.compile(
-    r"\b(software|swe|developer|software\s+development|development\s+engineer|"
-    r"programmer|full[\- ]?stack|back[\- ]?end|"
-    r"front[\- ]?end|infrastructure|platform|systems?|embedded|"
-    r"machine learning|\bml\b|\bai\b|data engineer|security engineer)\b", re.I)
+    r"\b("
+    r"software|swe|\bsde\b|developer|software\s+development|development\s+engineer|"
+    r"programmer|full[\- ]?stack|back[\- ]?end|front[\- ]?end|"
+    r"infrastructure|firmware|embedded|"
+    r"machine[\- ]?learning|\bml\b|data\s+engineer|security\s+engineer|"
+    r"site\s+reliability|\bsre\b|"
+    r"(?:software|cloud|data|ml|ai)\s+platform|"
+    r"(?:software|computer|distributed)\s+systems?"
+    r")\b",
+    re.I,
+)
 YEAR_RE = re.compile(r"\b20\d{2}\b")
 # Street-address years ("2026 Market Street", "2019 Mission St") must not count
 # as posting-year signals -- otherwise a no-year title at that address becomes
@@ -146,6 +154,18 @@ def selftest():
     assert not is_swe_internship("Learning & Development (Instructional Design) Intern")
     assert not is_swe_internship("Human Resources Intern, Talent Development")
     assert not is_swe_internship("Strategy and Business Development Intern")
+    # bare ai / platform / systems — not SWE
+    assert not is_swe_internship("B2B Marketing Content & AI Intern")
+    assert not is_swe_internship("AI Product Manager Intern")
+    assert not is_swe_internship("Electrical Platform Intern")
+    assert not is_swe_internship("Systems Administrator Intern")
+    assert not is_swe_internship("Platform Support Intern")
+    # real SWE short forms / firmware
+    assert is_swe_internship("SDE Intern")
+    assert is_swe_internship("Co-op Firmware Engineer")
+    assert is_swe_internship("Firmware Intern")
+    assert is_swe_internship("Machine Learning Intern")
+    assert is_swe_internship("Software Platform Intern")
 
     assert year_relevance("SWE Intern Summer 2027") == "yes"
     assert year_relevance("SWE Intern", "", "mentions 2027 in body") == "yes"

@@ -67,8 +67,10 @@ localhost (applied marks / filters are origin-scoped in `localStorage`).
 - Live status line for scrape/recompute progress.
 
 ### Filters (persisted in `localStorage`)
-Search; source chips; **2027 only** / **North America** (default on); P1+P2 /
-P1; hide applied / applied only. Filter panel open/closed is saved too.
+Search; source chips; **SWE only** / **2027 only** / **North America**
+(default on); P1+P2 / P1; hide applied / applied only. Filter panel
+open/closed is saved too. SWE only re-applies the software-engineering title
+filter on already-scraped rows (hides marketing/AI-PM false positives).
 
 ### Per listing
 - **Applied** checkbox — durable on disk as `out/applied.json` via
