@@ -10,7 +10,7 @@ no external dependencies.
 flowchart TD
     subgraph Sources["internships/sources/"]
         ATS["AtsBoardsSource\n(ats_boards.py)\nAshby/Lever/GH/Workday/Oracle/Eightfold/…"]
-        CB["CustomBoardsSource\n(custom_boards.py)\ne.g. Tesla state decoder"]
+        CB["CustomBoardsSource\n(custom_boards.py)\n~50 CONFIG + Tesla decoder"]
         GH["GithubReadmeSource"]
         SA["SpeedyApplySource"]
         SN["Sndsh404Source"]
@@ -29,7 +29,7 @@ flowchart TD
         STEP1["1. ats_boards alone first"]
         STEP2["2. known_urls from its listings"]
         STEP3["3. custom_boards + README sources in parallel\nREADME only: skip known_urls\nall: page-fetch empty extra_text"]
-        STEP4["4. filter SWE + year_relevance\n5. batch dedupe by Listing.id\n6. drop SeenStore ids\n7. caller writes CSV/all.json + descriptions"]
+        STEP4["4. filter SWE + year_relevance\n5. batch dedupe by Listing.id\n6. drop SeenStore ids (read only)\n7. caller writes CSV/all.json + descriptions"]
         STEP1 --> STEP2 --> STEP3 --> STEP4
     end
 
@@ -39,13 +39,11 @@ flowchart TD
     SA --> STEP3
     SN --> STEP3
 
-    SEEN[("data/seen/SOURCE.json")]
-    STEP4 <--> SEEN
-
     STEP4 --> MAIN["__main__.py\n.run.lock"]
     MAIN --> CSVOUT[("out/TIMESTAMP.csv\n+ description col")]
-    MAIN --> ALLJSON[("out/all.json\nmetadata only")]
+    MAIN --> ALLJSON[("out/all.json\nmetadata only\n+ content-key merge")]
     MAIN --> DESCS[("out/descriptions.json.gz\n{id: html}")]
+    ALLJSON -->|persist_seen after write| SEEN[("data/seen/SOURCE.json")]
 
     RECOMPUTE["recompute.py"] -.->|patches| ALLJSON
     RECOMPUTE -.->|backfill| DESCS
@@ -74,14 +72,14 @@ flowchart TD
 | `internships/filters.py` | `is_swe_internship`, `year_relevance` (2027 / maybe / no), `company_priority` tiers 1–3. |
 | `internships/seen_store.py` | Per-source JSON of already-reported listing ids. Cross-run dedup. Persist deferred until after `all.json` write succeeds. |
 | `internships/sources/ats_boards.py` | `companies.csv` ATS sweep + `DomainThrottle` (per-netloc lock + min interval via `hold()`). |
-| `internships/sources/custom_boards.py` | Non-generic boards (Tesla, etc.) with per-company decoders. |
+| `internships/sources/custom_boards.py` | ~50 CONFIG fetch endpoints + Tesla careers state decoder (`DECODERS`). |
 | `internships/sources/{github_readme,speedyapply,sndsh404}.py` | Tracked README job tables. |
 | `internships/sources/md_table.py` | Shared README table parsing + shared `README_THROTTLE`. |
-| `internships/service.py` | `run(sources)`: ats_boards first, then others in parallel; README sources skip ats `known_urls`; filters; seen; page-fetch when `extra_text` empty (all sources). |
-| `internships/__main__.py` | CLI + lock. CSV + append `all.json` + `desc_store` put. Registers all five sources. |
+| `internships/service.py` | `run(sources)`: ats_boards first, then others in parallel; README sources skip ats `known_urls`; filters; seen (read); page-fetch when `extra_text` empty (all sources). |
+| `internships/__main__.py` | CLI + lock. CSV + `append_all_json` (content-key + job-token merge) + `desc_store`; `persist_seen()` only after a successful `all.json` write. Registers all five sources. |
 | `internships/desc_store.py` | `out/descriptions.json.gz` — `{listing_id: html}`. Legacy migrate from plain JSON / per-id `.html.gz`. |
 | `internships/applied_store.py` | `out/applied.json` — `{listing_id: ISO timestamp}` for the UI applied checkbox. |
-| `internships/recompute.py` | In-place `all.json` patches: `is_2027` (honors `is_2027_override: false`), `priority`, `dedup` (URL + company/title/location with job-token guard), `descriptions` backfill, `clear_is_2027(id)`. |
+| `internships/recompute.py` | In-place `all.json` patches: `is_2027` (honors `is_2027_override: false`), `priority`, `dedup` (`normalize_url` + content key with job-token guard; same content-key rules as scrape append), `descriptions` backfill, `clear_is_2027(id)`. |
 | `internships/webserver.py` | Static files + scrape/recompute/status + descriptions + applied + clear-2027 APIs. Background threads; shared `.run.lock`. |
 | `internships/web/index.html` | Vanilla FE: filters (persisted), Scrape/Recompute (mutex + recompute field popup), applied (server∪localStorage), last-opened Apply highlight, clear-2027 confirm, missing-desc submit, company applied siblings. |
 
@@ -95,10 +93,10 @@ flowchart TD
 | `GET` | `/api/recompute/status` | `{running, result, error}` |
 | `GET` | `/api/status` | `{active}` — any holder of `.run.lock` |
 | `GET` | `/api/descriptions/ids` | `{ids: [...]}` |
-| `POST` | `/api/descriptions` | body `{id, text}` |
+| `POST` | `/api/descriptions` | body `{id, text}` — 409 if `.run.lock` held |
 | `GET` | `/api/applied` | full map |
 | `POST` | `/api/applied` | replace map; `?merge=1` unions (later ISO wins) |
-| `POST` | `/api/listings/clear-2027` | body `{id}` → `is_2027=false`, `is_2027_override=false` |
+| `POST` | `/api/listings/clear-2027` | body `{id}` → `is_2027=false`, `is_2027_override=false` — 409 if `.run.lock` held |
 
 ## Adding a source
 
@@ -131,7 +129,8 @@ the `python3` binary used by the agent (TCC does not inherit shell grants).
   and `applied.json` are the persisted state.
 - **No fuzzy cross-source dedup of all URL variants** — `ats_boards` runs first
   and README sources skip exact normalized URLs it found (`custom_boards` does
-  not); recompute `dedup` also collapses same company+title+location (with
-  job-token guard). Distinct URLs for the same human job can still appear;
-  accepted, not always a bug.
+  not). Scrape `append_all_json` and recompute `dedup` both merge same
+  company+title+location when embedded job tokens agree (recompute also
+  collapses by `normalize_url`). Distinct URLs for the same human job can
+  still appear; accepted, not always a bug.
 - **No auth on webserver** — localhost personal tool only.

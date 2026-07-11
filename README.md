@@ -15,8 +15,18 @@ python3 -m internships --recompute is_2027 descriptions dedup priority  # patch 
 Each run takes a `.run.lock` flock so two scrapes (or a scrape + recompute)
 can't race each other's writes. It fetches every source, filters to SWE
 internship/co-op titles that are 2027 or "maybe 2027" (drops titles that
-explicitly mention a different year), drops anything already seen on a prior
-run (tracked per-source in `data/seen/*.json`), and:
+explicitly mention a different year), then applies the scrape identity stack
+and writes:
+
+- **within-batch** — dedupe by `Listing.id`
+- **`known_urls`** — README sources only skip URLs already found by this run's
+  `ats_boards` (`custom_boards` does not)
+- **seen** — drop ids already in per-source `data/seen/*.json` (read during fetch)
+- **append content-key** — `append_all_json` skips company+title+location
+  duplicates when job tokens agree (same merge rules as recompute `dedup`)
+- **`persist_seen`** — write seen ids only after a successful `all.json` write
+
+Outputs:
 
 - writes new rows to `out/<timestamp>.csv` (includes description text for the run)
 - **appends metadata** to `out/all.json` (the web UI dataset — **no** description bodies)
@@ -34,7 +44,7 @@ throttled fetch of the apply page (see `service.py` / `desc_store.py`).
 |---|---|
 | `is_2027` | recompute against `filters.year_relevance` (skips rows with `is_2027_override: false`) |
 | `descriptions` | re-fetch page HTML into `descriptions.json.gz` for ids missing a body |
-| `dedup` | merge same-job rows (URL path / company+title+location), keep oldest |
+| `dedup` | merge same-job rows (`normalize_url` + content key with job-token guard), keep oldest |
 | `priority` | recompute 1/2/3 tier against current company lists |
 
 ## Web UI
@@ -79,9 +89,9 @@ P1; hide applied / applied only. Filter panel open/closed is saved too.
 | `GET` | `/api/recompute/status` | recompute thread state |
 | `GET` | `/api/status` | `{active}` if `.run.lock` held |
 | `GET` | `/api/descriptions/ids` | ids that have a description body |
-| `POST` | `/api/descriptions` | `{id, text}` upsert one description |
+| `POST` | `/api/descriptions` | `{id, text}` upsert one description (409 if `.run.lock` held) |
 | `GET`/`POST` | `/api/applied` | applied map `id → ISO` (`?merge=1` to union) |
-| `POST` | `/api/listings/clear-2027` | `{id}` clear 2027 + set override |
+| `POST` | `/api/listings/clear-2027` | `{id}` clear 2027 + set override (409 if `.run.lock` held) |
 
 No auth — localhost personal tool only.
 
@@ -90,8 +100,8 @@ No auth — localhost personal tool only.
   Eightfold / SmartRecruiters / Pinpoint, etc. from `companies.csv`. Workday
   boards are keyword-searched ("intern"/"co-op"), paginated, and often get a
   detail-page description when the title already looks SWE-intern.
-- `custom_boards.py` — one-off boards that don’t fit the generic ATS parsers
-  (e.g. Tesla careers state decoder).
+- `custom_boards.py` — ~50 CONFIG fetch endpoints for boards that don’t fit
+  the generic ATS parsers, plus a Tesla careers state decoder.
 - `github_readme.py` — [vanshb03/Summer2027-Internships](https://github.com/vanshb03/Summer2027-Internships)
 - `speedyapply.py` — [speedyapply/2027-SWE-College-Jobs](https://github.com/speedyapply/2027-SWE-College-Jobs)
 - `sndsh404.py` — [sndsh404/summer-2027-internships](https://github.com/sndsh404/summer-2027-internships)
