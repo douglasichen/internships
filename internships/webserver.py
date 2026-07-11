@@ -223,6 +223,26 @@ class Handler(SimpleHTTPRequestHandler):
                 return
             self._json(200, {"ok": True, "count": len(marks), "marks": marks})
             return
+        if path == "/api/listings/clear-2027":
+            # Manual clear of is_2027 (UI confirmation happens client-side).
+            data, err = self._read_json_body()
+            if err:
+                self._json(400, {"error": err})
+                return
+            lid = data.get("id")
+            if not isinstance(lid, str) or not lid.strip():
+                self._json(400, {"error": "id required"})
+                return
+            try:
+                result = recompute_mod.clear_is_2027(lid.strip())
+            except KeyError:
+                self._json(404, {"error": "listing not found"})
+                return
+            except (OSError, ValueError) as e:
+                self._json(500, {"error": str(e)})
+                return
+            self._json(200, result)
+            return
         self.send_error(404)
 
     def do_GET(self):
@@ -453,6 +473,37 @@ def selftest():
             assert got2["bbb"] == "2026-02-01T00:00:00Z", got2
         finally:
             applied_store.path_for = orig_app_path
+
+        # /api/listings/clear-2027
+        td_clear = Path(tempfile.mkdtemp())
+        clear_path = td_clear / "all.json"
+        clear_path.write_text(json.dumps([
+            {"id": "c1", "title": "SWE Intern Summer 2027", "location": "SF", "is_2027": True},
+        ]))
+        orig_clear = recompute_mod.clear_is_2027
+        recompute_mod.clear_is_2027 = lambda lid, path=None: orig_clear(lid, clear_path)
+        try:
+            body = json.dumps({"id": "c1"}).encode()
+            req = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/listings/clear-2027",
+                data=body, method="POST",
+                headers={"Content-Type": "application/json"})
+            r = urllib.request.urlopen(req, timeout=5)
+            assert r.status == 200
+            assert json.loads(r.read())["is_2027"] is False
+            row = json.loads(clear_path.read_text())[0]
+            assert row["is_2027"] is False and row["is_2027_override"] is False
+            miss = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/listings/clear-2027",
+                data=b'{"id":"nope"}', method="POST",
+                headers={"Content-Type": "application/json"})
+            try:
+                urllib.request.urlopen(miss, timeout=5)
+                raise AssertionError("expected 404")
+            except urllib.error.HTTPError as e:
+                assert e.code == 404
+        finally:
+            recompute_mod.clear_is_2027 = orig_clear
     finally:
         httpd.shutdown()
         LOCK_PATH = orig_lock

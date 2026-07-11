@@ -271,6 +271,28 @@
     border-radius: 4px;
     vertical-align: middle;
   }
+  /* Clickable 2027 badge (main rows only) — remove status after confirm. */
+  button.y2027 {
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 1px 6px;
+    border-radius: 4px;
+    vertical-align: middle;
+  }
+  button.y2027:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+  button.y2027:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
   .role-title .p1, .role-title .p2,
   .sibling-title .p1, .sibling-title .p2 {
     display: inline-block;
@@ -612,6 +634,18 @@
   </div>
 </div>
 
+<div class="desc-modal-backdrop" id="clear2027Modal" hidden>
+  <div class="desc-modal" role="dialog" aria-modal="true" aria-labelledby="clear2027Title">
+    <h2 id="clear2027Title">Remove 2027 status?</h2>
+    <div class="desc-modal-sub" id="clear2027Sub"></div>
+    <div class="desc-modal-actions">
+      <button type="button" class="toggle primary" id="clear2027Confirm">Remove</button>
+      <button type="button" class="toggle" id="clear2027Cancel">Cancel</button>
+      <span class="desc-modal-status" id="clear2027Status"></span>
+    </div>
+  </div>
+</div>
+
 <script>
 const SOURCE_COLOR = {
   ats_boards: 'var(--teal)',
@@ -722,6 +756,8 @@ let descIds = new Set();
 const expandedRoles = new Set();
 // id currently open in the "add description" modal (null when closed)
 let descModalId = null;
+// id pending "clear is_2027" confirmation (null when modal closed)
+let clear2027Id = null;
 
 // "Applied" is manual -- never touched by the scraper. Durable source of
 // truth is out/applied.json via /api/applied (survives localhost vs
@@ -853,8 +889,15 @@ function isWorkdayUrl(u) {
   return s.includes('myworkdayjobs.com') || s.includes('/wday/cxs/');
 }
 
-function titleBadges(r) {
-  return (r.is_2027 ? '<span class="y2027">2027</span>' : '')
+function titleBadges(r, { clearable = false } = {}) {
+  // clearable: main rows get a button to strip is_2027 (with confirm).
+  // Sibling rows stay read-only spans.
+  const y2027 = r.is_2027
+    ? (clearable
+      ? `<button type="button" class="y2027" data-id="${escapeHtml(r.id)}" title="Remove 2027 status">2027</button>`
+      : '<span class="y2027">2027</span>')
+    : '';
+  return y2027
     + (r.priority === 1 ? '<span class="p1">P1</span>' : r.priority === 2 ? '<span class="p2">P2</span>' : '')
     + (isWorkdayUrl(r.url) ? '<span class="workday" title="Workday application">Workday</span>' : '');
 }
@@ -970,7 +1013,7 @@ function render() {
         <div class="role${appliedAt ? ' applied' : ''}${isLastApply ? ' last-apply' : ''}">
           <input type="checkbox" class="applied-checkbox" data-id="${r.id}" ${appliedAt ? 'checked' : ''} title="Mark applied">
           <div class="role-main">
-            <div class="role-title">${escapeHtml(r.title)}${titleBadges(r)}</div>
+            <div class="role-title">${escapeHtml(r.title)}${titleBadges(r, { clearable: true })}</div>
             <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}${isLastApply ? ' · <span class="last-apply-label">Last opened</span>' : ''}${appliedCta}</div>
           </div>
           ${!descIds.has(r.id)
@@ -1120,9 +1163,72 @@ document.getElementById('main').addEventListener('click', e => {
     }
     return;
   }
+  const y2027 = e.target.closest('button.y2027');
+  if (y2027) {
+    openClear2027Modal(y2027.dataset.id);
+    return;
+  }
   const noDesc = e.target.closest('.no-desc');
   if (noDesc) {
     openDescModal(noDesc.dataset.id);
+  }
+});
+
+function openClear2027Modal(id) {
+  const row = ALL.find(r => r.id === id);
+  if (!row || !row.is_2027) return;
+  clear2027Id = id;
+  document.getElementById('clear2027Sub').textContent = row
+    ? `${row.company || '—'} · ${row.title || ''}`.trim()
+    : id;
+  const status = document.getElementById('clear2027Status');
+  status.textContent = 'Stays cleared even if you recompute is_2027 later.';
+  status.classList.remove('err');
+  document.getElementById('clear2027Confirm').disabled = false;
+  document.getElementById('clear2027Modal').hidden = false;
+}
+
+function closeClear2027Modal() {
+  clear2027Id = null;
+  document.getElementById('clear2027Modal').hidden = true;
+}
+
+document.getElementById('clear2027Cancel').addEventListener('click', closeClear2027Modal);
+document.getElementById('clear2027Modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeClear2027Modal();
+});
+document.getElementById('clear2027Confirm').addEventListener('click', async () => {
+  const id = clear2027Id;
+  if (!id) return;
+  const status = document.getElementById('clear2027Status');
+  const btn = document.getElementById('clear2027Confirm');
+  btn.disabled = true;
+  status.textContent = 'removing…';
+  status.classList.remove('err');
+  try {
+    const res = await fetch('/api/listings/clear-2027', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      status.textContent = err.error || `failed (${res.status})`;
+      status.classList.add('err');
+      btn.disabled = false;
+      return;
+    }
+    const row = ALL.find(r => r.id === id);
+    if (row) {
+      row.is_2027 = false;
+      row.is_2027_override = false;
+    }
+    closeClear2027Modal();
+    render();
+  } catch {
+    status.textContent = 'no server — start: python3 -m internships.webserver';
+    status.classList.add('err');
+    btn.disabled = false;
   }
 });
 
@@ -1154,6 +1260,7 @@ document.getElementById('descModal').addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
   if (descModalId) closeDescModal();
+  else if (!document.getElementById('clear2027Modal').hidden) closeClear2027Modal();
   else if (!document.getElementById('recomputeModal').hidden) closeRecomputeModal();
 });
 document.getElementById('descModalSave').addEventListener('click', async () => {
