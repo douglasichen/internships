@@ -167,15 +167,9 @@
     border-top: 1px solid var(--border);
   }
   .filter-details.open { display: flex; }
-  /* Scrape | Recompute | status; recompute field chips underneath. */
+  /* Scrape | Recompute | status. Field options open in a popup on Recompute. */
   .run-actions {
     margin-top: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .run-actions-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -188,23 +182,14 @@
   }
   .run-actions .toggle.primary:hover:not(:disabled) { filter: brightness(0.96); }
   .run-actions .toggle.primary:disabled { filter: none; }
-  .recompute-fields {
+  .recompute-modal-fields {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-  }
-  .recompute-fields .label {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-right: 2px;
+    gap: 8px;
+    margin: 4px 0 4px;
   }
   .recompute-check {
-    font-size: 12px;
-    padding: 4px 10px;
+    font-size: 13px;
   }
   .run-status {
     font-family: var(--mono);
@@ -563,18 +548,9 @@
   <div class="hero-label" id="heroLabel">roles found</div>
   <div class="hero-sub" id="heroSub"></div>
   <div class="run-actions">
-    <div class="run-actions-row">
-      <button type="button" class="toggle primary" id="runScrape" title="Fetch new listings from all sources">Scrape</button>
-      <button type="button" class="toggle" id="runRecompute" title="Run selected recompute fields">Recompute</button>
-      <span class="run-status" id="runStatus"></span>
-    </div>
-    <div class="recompute-fields" id="recomputeFields" title="Which fields Recompute will run">
-      <span class="label">fields</span>
-      <button type="button" class="toggle recompute-check active" data-field="dedup">dedup</button>
-      <button type="button" class="toggle recompute-check active" data-field="is_2027">is_2027</button>
-      <button type="button" class="toggle recompute-check active" data-field="priority">priority</button>
-      <button type="button" class="toggle recompute-check active" data-field="descriptions">descriptions</button>
-    </div>
+    <button type="button" class="toggle primary" id="runScrape" title="Fetch new listings from all sources">Scrape</button>
+    <button type="button" class="toggle" id="runRecompute" title="Choose fields and recompute">Recompute</button>
+    <span class="run-status" id="runStatus"></span>
   </div>
 </header>
 
@@ -611,6 +587,24 @@
       <button type="button" class="toggle primary" id="descModalSave">Save</button>
       <button type="button" class="toggle" id="descModalCancel">Cancel</button>
       <span class="desc-modal-status" id="descModalStatus"></span>
+    </div>
+  </div>
+</div>
+
+<div class="desc-modal-backdrop" id="recomputeModal" hidden>
+  <div class="desc-modal" role="dialog" aria-modal="true" aria-labelledby="recomputeModalTitle">
+    <h2 id="recomputeModalTitle">Recompute</h2>
+    <div class="desc-modal-sub">Pick which fields to refresh, then run.</div>
+    <div class="recompute-modal-fields">
+      <button type="button" class="toggle recompute-check active" data-field="dedup">dedup</button>
+      <button type="button" class="toggle recompute-check active" data-field="is_2027">is_2027</button>
+      <button type="button" class="toggle recompute-check active" data-field="priority">priority</button>
+      <button type="button" class="toggle recompute-check active" data-field="descriptions">descriptions</button>
+    </div>
+    <div class="desc-modal-actions">
+      <button type="button" class="toggle primary" id="recomputeModalRun">Run</button>
+      <button type="button" class="toggle" id="recomputeModalCancel">Cancel</button>
+      <span class="desc-modal-status" id="recomputeModalStatus"></span>
     </div>
   </div>
 </div>
@@ -1067,7 +1061,9 @@ document.getElementById('descModal').addEventListener('click', e => {
   if (e.target === e.currentTarget) closeDescModal();
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && descModalId) closeDescModal();
+  if (e.key !== 'Escape') return;
+  if (descModalId) closeDescModal();
+  else if (!document.getElementById('recomputeModal').hidden) closeRecomputeModal();
 });
 document.getElementById('descModalSave').addEventListener('click', async () => {
   const id = descModalId;
@@ -1192,7 +1188,6 @@ function setRunButtonsBusy(busy) {
   const on = !!busy;
   document.getElementById('runScrape').disabled = on;
   document.getElementById('runRecompute').disabled = on;
-  document.querySelectorAll('.recompute-check').forEach(b => { b.disabled = on; });
 }
 
 function setRunStatus(text, live) {
@@ -1266,24 +1261,57 @@ function pollRunBusy() {
   setTimeout(pollRunBusy, anyRunPending() ? 1000 : 4000);
 }
 
+function openRecomputeModal() {
+  loadRecomputeFields();
+  const status = document.getElementById('recomputeModalStatus');
+  status.textContent = '';
+  status.classList.remove('err');
+  document.getElementById('recomputeModalRun').disabled = false;
+  document.getElementById('recomputeModal').hidden = false;
+}
+
+function closeRecomputeModal() {
+  document.getElementById('recomputeModal').hidden = true;
+}
+
 document.querySelectorAll('.recompute-check').forEach(btn => {
   btn.addEventListener('click', () => {
-    if (btn.disabled) return;
     btn.classList.toggle('active');
     saveRecomputeFields();
   });
 });
 loadRecomputeFields();
 
-document.getElementById('runRecompute').addEventListener('click', async () => {
+document.getElementById('recomputeModalCancel').addEventListener('click', closeRecomputeModal);
+document.getElementById('recomputeModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeRecomputeModal();
+});
+
+// Click Recompute → pick fields in popup, then Run starts the job.
+document.getElementById('runRecompute').addEventListener('click', () => {
   const btn = document.getElementById('runRecompute');
   if (btn.disabled || recomputePostInFlight || scrapePostInFlight
       || pendingUiScrape || pendingUiRecompute) return;
+  openRecomputeModal();
+});
+
+document.getElementById('recomputeModalRun').addEventListener('click', async () => {
   const fields = selectedRecomputeFields();
+  const modalStatus = document.getElementById('recomputeModalStatus');
   if (!fields.length) {
-    setRunStatus('pick at least one field', false);
+    modalStatus.textContent = 'pick at least one field';
+    modalStatus.classList.add('err');
     return;
   }
+  if (recomputePostInFlight || scrapePostInFlight || pendingUiScrape || pendingUiRecompute) {
+    modalStatus.textContent = 'another run is in progress';
+    modalStatus.classList.add('err');
+    return;
+  }
+  modalStatus.classList.remove('err');
+  saveRecomputeFields();
+  closeRecomputeModal();
+
   recomputePostInFlight = true;
   setRunButtonsBusy(true);
   setRunStatus(`starting recompute (${fields.join(', ')})…`, true);
