@@ -137,10 +137,33 @@ def _keep_oldest(group):
     return sorted(group, key=lambda r: r.get("scraped_at") or "")[0]
 
 
-def _collapse(groups_dict, *, mergeable=None):
+def _fill_desc_from_dropped(descs, keep, group):
+    """If the kept id has no description, copy one from any dropped sibling.
+
+    Mirrors append_all_json's _fill_desc_for_group: only fill missing keys,
+    never overwrite an existing body under the kept id. Returns True when a
+    description was migrated.
+    """
+    kid = keep.get("id") if isinstance(keep, dict) else None
+    if not kid or descs.get(kid):
+        return False
+    for r in group:
+        if r is keep:
+            continue
+        rid = r.get("id") if isinstance(r, dict) else None
+        text = descs.get(rid) if rid else None
+        if text:
+            descs[kid] = text
+            return True
+    return False
+
+
+def _collapse(groups_dict, *, mergeable=None, descs=None):
     """groups_dict values are row lists; keep oldest per group. Returns
-    (kept_rows, removed_count). If mergeable(group) is False, keep all rows."""
-    kept, removed = [], 0
+    (kept_rows, removed_count, migrated_count). If mergeable(group) is False,
+    keep all rows. When descs is provided, migrate a dropped id's body onto
+    the kept id if the kept id still lacks one (setdefault semantics)."""
+    kept, removed, migrated = [], 0, 0
     for group in groups_dict.values():
         if len(group) <= 1:
             kept.extend(group)
@@ -149,8 +172,11 @@ def _collapse(groups_dict, *, mergeable=None):
             kept.extend(group)
             continue
         removed += len(group) - 1
-        kept.append(_keep_oldest(group))
-    return kept, removed
+        keep = _keep_oldest(group)
+        kept.append(keep)
+        if descs is not None and _fill_desc_from_dropped(descs, keep, group):
+            migrated += 1
+    return kept, removed, migrated
 
 
 def _content_group_mergeable(group):
@@ -176,9 +202,16 @@ def dedupe(path=ALL_JSON_PATH):
        twice from vanshb03. Skips groups where URLs embed distinct job ids
        (multiple NXP "System Engineer Intern" roles in one city).
 
-    Always keeps the OLDEST record per merged group (by scraped_at)."""
+    Always keeps the OLDEST record per merged group (by scraped_at).
+
+    Description store: when a group collapses and the kept id has no body but
+    a dropped id does, copy that body onto the kept id (load once, setdefault
+    per group, save once). Same idea as append_all_json's _fill_desc_for_group
+    so dual-write bodies are not stranded on discarded listing ids.
+    """
     rows = json.loads(path.read_text())
     total = len(rows)
+    descs = desc_store.load(path)
 
     # Pass 1: by normalized URL
     by_url = {}
@@ -189,16 +222,22 @@ def dedupe(path=ALL_JSON_PATH):
             by_url.setdefault(key, []).append(row)
         else:
             no_url.append(row)
-    after_url, removed_url = _collapse(by_url)
+    after_url, removed_url, migrated_url = _collapse(by_url, descs=descs)
     after_url.extend(no_url)
 
     # Pass 2: by company|title|location on the URL-collapsed set
     by_content = {}
     for row in after_url:
         by_content.setdefault(content_key(row), []).append(row)
-    result_rows, removed_content = _collapse(by_content, mergeable=_content_group_mergeable)
+    result_rows, removed_content, migrated_content = _collapse(
+        by_content, mergeable=_content_group_mergeable, descs=descs
+    )
 
     result_rows = sorted(result_rows, key=lambda r: r.get("scraped_at") or "")
+    # descriptions first, then all.json: crash between leaves bodies under the
+    # kept id even if duplicate rows still exist (re-dedupe is a no-op fill).
+    if migrated_url + migrated_content:
+        desc_store.save(descs, path)
     _atomic_write(result_rows, path)
     return removed_url + removed_content, total
 
