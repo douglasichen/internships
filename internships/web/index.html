@@ -840,7 +840,7 @@ function indexByCompany(rows) {
   }
   for (const list of map.values()) {
     list.sort((a, b) => (b.scraped_at || '').localeCompare(a.scraped_at || '')
-      || a.title.localeCompare(b.title));
+      || (a.title || '').localeCompare(b.title || ''));
   }
   return map;
 }
@@ -953,7 +953,7 @@ function applyFilters(rows) {
     if (state.priorityFilter === 'p12' && r.priority > 2) return false;
     if (state.hideApplied && applied.has(r.id)) return false;
     if (state.appliedOnly && !applied.has(r.id)) return false;
-    if (q && !(r.company.toLowerCase().includes(q) || r.title.toLowerCase().includes(q) || (r.location || '').toLowerCase().includes(q))) return false;
+    if (q && !((r.company || '').toLowerCase().includes(q) || (r.title || '').toLowerCase().includes(q) || (r.location || '').toLowerCase().includes(q))) return false;
     return true;
   });
 }
@@ -994,7 +994,7 @@ function render() {
   const runs = [...groups.keys()].sort().reverse();
 
   main.innerHTML = runs.map(run => {
-    const items = groups.get(run).sort((a, b) => a.company.localeCompare(b.company));
+    const items = groups.get(run).sort((a, b) => (a.company || '').localeCompare(b.company || ''));
     const roleHtml = items.map(r => {
       const appliedAt = applied.get(r.id);
       const url = safeUrl(r.url);
@@ -1009,14 +1009,14 @@ function render() {
       const nApplied = appliedOthers.length;
       const open = nApplied > 0 && expandedRoles.has(r.id);
       const appliedCta = nApplied > 0
-        ? ` · <button type="button" class="company-more${open ? ' open' : ''}" data-role-id="${escapeHtml(r.id)}" aria-expanded="${open}" title="Roles at ${escapeHtml(r.company)} you've already applied to"><span class="caret">▸</span>${nApplied} applied</button>`
+        ? ` · <button type="button" class="company-more${open ? ' open' : ''}" data-role-id="${escapeHtml(r.id)}" aria-expanded="${open}" title="Roles at ${escapeHtml(r.company || '')} you've already applied to"><span class="caret">▸</span>${nApplied} applied</button>`
         : '';
 
       const isLastApply = lastApplyId && r.id === lastApplyId;
       return `
       <li class="role-wrap"${isLastApply ? ' id="last-apply-row"' : ''}>
         <div class="role${appliedAt ? ' applied' : ''}${isLastApply ? ' last-apply' : ''}">
-          <input type="checkbox" class="applied-checkbox" data-id="${r.id}" ${appliedAt ? 'checked' : ''} title="Mark applied">
+          <input type="checkbox" class="applied-checkbox" data-id="${escapeHtml(r.id)}" ${appliedAt ? 'checked' : ''} title="Mark applied">
           <div class="role-main">
             <div class="role-title">${escapeHtml(r.title)}${titleBadges(r, { clearable: true })}</div>
             <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}${isLastApply ? ' · <span class="last-apply-label">Last opened</span>' : ''}${appliedCta}</div>
@@ -1320,8 +1320,10 @@ function loadAppliedRemote() {
     .then(r => r.ok ? r.json() : {})
     .catch(() => ({}))
     .then(remote => {
+      // Only plain objects — arrays / null must not become remote map entries.
+      const obj = remote && typeof remote === 'object' && !Array.isArray(remote) ? remote : {};
       const remoteMap = new Map(
-        Object.entries(remote || {}).filter(([k, v]) => k && typeof v === 'string')
+        Object.entries(obj).filter(([k, v]) => k && typeof v === 'string')
       );
       const localMap = loadAppliedLocal();
       const merged = mergeAppliedMaps(localMap, remoteMap);
@@ -1345,7 +1347,23 @@ function loadAll() {
     fetch('/out/all.json').then(r => r.ok ? r.json() : []).catch(() => []),
     loadDescIds(),
     loadAppliedRemote(),
-  ]).then(([data]) => { ALL = data; render(); });
+  ]).then(([data]) => {
+    ALL = Array.isArray(data) ? data : [];
+    render();
+  }).catch(err => {
+    // First paint must never stay on "Loading…" if a loader throws.
+    ALL = [];
+    const main = document.getElementById('main');
+    if (main) {
+      main.innerHTML = `<div class="empty">
+        <div class="headline">Could not load listings</div>
+        ${escapeHtml(err && err.message ? err.message : 'Unknown error')}
+      </div>`;
+    }
+    document.getElementById('heroCount').textContent = '0';
+    document.getElementById('heroLabel').textContent = 'roles found';
+    document.getElementById('heroSub').textContent = '';
+  });
 }
 
 // Shared busy gate: scrape and recompute share .run.lock. Both buttons disable
@@ -1389,6 +1407,17 @@ function setRunStatus(text, live) {
   const el = runStatusEl();
   el.textContent = text || '';
   el.classList.toggle('live', !!live);
+}
+
+// Timeout for scrape/recompute POST (start only — job continues server-side).
+// Prefer AbortSignal.timeout; polyfill with AbortController + setTimeout.
+function postTimeoutSignal(ms) {
+  if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
+    return AbortSignal.timeout(ms);
+  }
+  const ctrl = new AbortController();
+  setTimeout(() => ctrl.abort(), ms);
+  return ctrl.signal;
 }
 
 function anyRunPending() {
@@ -1508,7 +1537,10 @@ document.getElementById('recomputeModalRun').addEventListener('click', async () 
   setRunButtonsBusy(true);
   setRunStatus(`starting recompute (${fields.join(', ')})…`, true);
   try {
-    const res = await fetch(`/api/recompute?fields=${fields.join(',')}`, { method: 'POST' });
+    const res = await fetch(`/api/recompute?fields=${fields.join(',')}`, {
+      method: 'POST',
+      signal: postTimeoutSignal(60000),
+    });
     if (res.status === 202) {
       setRunStatus(`recomputing ${fields.join(', ')}…`, true);
       recomputeWasActive = true;
@@ -1523,8 +1555,12 @@ document.getElementById('recomputeModalRun').addEventListener('click', async () 
     const err = await res.json().catch(() => ({}));
     setRunStatus(err.error || `failed (${res.status})`, false);
     setRunButtonsBusy(false);
-  } catch {
-    setRunStatus('no server — python3 -m internships.webserver', false);
+  } catch (e) {
+    if (e && e.name === 'AbortError') {
+      setRunStatus('recompute request timed out', false);
+    } else {
+      setRunStatus('no server — python3 -m internships.webserver', false);
+    }
     setRunButtonsBusy(false);
   } finally {
     recomputePostInFlight = false;
@@ -1539,7 +1575,10 @@ document.getElementById('runScrape').addEventListener('click', async () => {
   setRunButtonsBusy(true);
   setRunStatus('starting scrape…', true);
   try {
-    const res = await fetch('/api/scrape', { method: 'POST' });
+    const res = await fetch('/api/scrape', {
+      method: 'POST',
+      signal: postTimeoutSignal(60000),
+    });
     if (res.status === 202) {
       setRunStatus('scraping…', true);
       scrapeWasActive = true;
@@ -1554,8 +1593,12 @@ document.getElementById('runScrape').addEventListener('click', async () => {
     const err = await res.json().catch(() => ({}));
     setRunStatus(err.error || `failed (${res.status})`, false);
     setRunButtonsBusy(false);
-  } catch {
-    setRunStatus('no server — python3 -m internships.webserver', false);
+  } catch (e) {
+    if (e && e.name === 'AbortError') {
+      setRunStatus('scrape request timed out', false);
+    } else {
+      setRunStatus('no server — python3 -m internships.webserver', false);
+    }
     setRunButtonsBusy(false);
   } finally {
     scrapePostInFlight = false;
