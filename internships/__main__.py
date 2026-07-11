@@ -2,14 +2,15 @@
 """Run every source once and print/write whatever's new since the last run.
 
 Usage:
-    python3 -m internships              # run all sources, write out/<ts>.csv + out/all.json
+    python3 -m internships              # run all sources -> out/<ts>.csv + all.json + descriptions
     python3 -m internships --selftest   # run every module's inline self-check
-    python3 -m internships --recompute is_2027 descriptions dedup  # fix stale out/all.json fields
+    python3 -m internships --recompute is_2027 descriptions dedup priority
 
-Serving the web UI (internships/web/index.html) needs internships/webserver.py
-(not plain http.server -- it also backs the UI's "Recompute" button) -- from
-the repo root: `python3 -m internships.webserver 8765`, then open
-http://localhost:8765/internships/web/
+Serving the web UI needs internships.webserver (static files + scrape/recompute/
+descriptions/applied/clear-2027 APIs), not plain http.server:
+
+    python3 -m internships.webserver 8765
+    # open http://localhost:8765/internships/web/
 """
 import argparse
 import csv

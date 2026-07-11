@@ -8,6 +8,9 @@ Usage:
     python3 -m internships --recompute dedup
     python3 -m internships --recompute priority
     python3 -m internships --recompute dedup is_2027 priority descriptions
+
+Also: clear_is_2027(id) for the UI — sets is_2027=False and is_2027_override=False
+so a later is_2027 recompute does not restore the flag.
 """
 import json
 import re

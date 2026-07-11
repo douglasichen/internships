@@ -14,9 +14,9 @@ Refresh internship listings and view them in the browser.
    python3 -m internships
    ```
 2. Make sure `internships.webserver` is serving the repo root on port 8765
-   (it's a static file server *and* backs the web UI's "Recompute" button --
-   the web UI does `fetch('out/all.json')`, which fails over `file://`, and
-   `POST /api/recompute`, which plain `http.server` can't do). Check first,
+   (static files + scrape/recompute/descriptions/applied APIs — plain
+   `http.server` is not enough). Prefer **localhost** over 127.0.0.1 so
+   browser `localStorage` / applied state match prior sessions. Check first,
    only start if it's not already up:
    ```bash
    curl -s -o /dev/null -w "%{http_code}" http://localhost:8765/internships/web/ || true
@@ -36,7 +36,7 @@ Refresh internship listings and view them in the browser.
   there's nothing new — that's not an error, the web UI still has the full
   history in `out/all.json`.
 - Don't kill or restart the server if it's already serving — just reuse it.
-- If a plain `python3 -m http.server` is already bound to 8765 from before
-  this feature existed, the web UI's "Recompute" button won't work (POST
-  fails with 501) even though everything else looks fine -- kill that
-  process and start `internships.webserver` instead.
+- If a plain `python3 -m http.server` is already bound to 8765, kill it and
+  start `internships.webserver` instead (API POSTs will 404/501 otherwise).
+- Descriptions live in `out/descriptions.json.gz`; applied marks in
+  `out/applied.json` — both gitignored.

@@ -5,17 +5,24 @@
 - When the user tells you to do something, just do it. Don't stop to ask for approval or confirmation first.
 - Exception: pause and check only if the action is genuinely likely to break something badly or is irreversible (e.g. destructive git ops, deleting data, force-push).
 
-## out/all.json history
+## out/ data
 
-- `out/all.json` (listing **metadata** the web UI reads — no description bodies) is tracked in git deliberately, specifically so its edit history is preserved — see `.gitignore` (`out/*` + `!out/all.json`; the per-run timestamped CSVs stay untracked).
-- Full apply-page HTML lives in `out/descriptions.json.gz` (`{listing_id: html}`). That file is **gitignored**. Don't commit it.
-- Whenever a scrape or `--recompute` run changes `out/all.json`, commit that change **on its own** — don't bundle it into a code commit. Write a message that says what actually happened to the data (e.g. "Scrape: 12 new listings", "Recompute: deduped 15 rows"), not a generic "update data".
+- `out/all.json` (listing **metadata** the web UI reads — no description bodies) is tracked in git deliberately — see `.gitignore` (`out/*` + `!out/all.json`; per-run CSVs stay untracked).
+- Full apply-page HTML: `out/descriptions.json.gz` (`{listing_id: html}`). **Gitignored.** Don't commit it.
+- Applied checkbox marks: `out/applied.json` (`{listing_id: ISO}`). **Gitignored.** Server is source of truth; FE also mirrors `localStorage` (prefer serving as `http://localhost:…` not `127.0.0.1` so browser state matches).
+- Whenever a scrape, `--recompute`, or UI clear-2027 changes `out/all.json`, commit that change **on its own** — don't bundle it into a code commit. Message what happened to the data (e.g. "Scrape: 12 new listings", "Recompute: deduped 15 rows", "Clear is_2027 on N listings"), not a generic "update data".
 
 ## Fetching external domains
 
 - Any source that hits an external domain must rate-limit itself **per domain**, not globally — different domains should still fetch concurrently. Reuse `DomainThrottle` in `internships/sources/ats_boards.py` rather than writing a new limiter.
 - Wrap the actual HTTP call in `with throttle.hold(url):` — that holds a per-netloc lock for the whole request and enforces a minimum gap after it ends before the next request to the same host. Do **not** call `wait()` then fetch unlocked (that allowed same-domain stampedes under a thread pool).
 - Default interval is ~1s between requests to the same domain (ATS / custom_boards / page-fetch / README). The goal is not getting IP-blocked by a job board or GitHub, not maximizing throughput.
+
+## Web UI / API notes
+
+- Serve with `python3 -m internships.webserver` (not plain `http.server`) — static files plus scrape/recompute/descriptions/applied/clear-2027.
+- Scrape and recompute are mutually exclusive (shared `.run.lock`); FE disables both buttons while either is live.
+- Manual clear of 2027 sets `is_2027_override: false` on the row; `recompute is_2027` must not flip those rows back on.
 
 ## PR workflow
 
