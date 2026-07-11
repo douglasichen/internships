@@ -41,19 +41,54 @@ def recompute(path=ALL_JSON_PATH):
     """Recompute the stored `is_2027` flag against the current
     filters.year_relevance logic -- run after changing that logic, since
     is_2027 is baked into each row at scrape time and otherwise never
-    revisited."""
+    revisited.
+
+    Rows with is_2027_override=false were manually cleared in the UI; leave
+    them off (and keep the override) so a bulk recompute does not undo it.
+    """
     rows = json.loads(path.read_text())
     changed = 0
     for row in rows:
+        if row.get("is_2027_override") is False:
+            if row.get("is_2027"):
+                row["is_2027"] = False
+                changed += 1
+            continue
         # extra_text (description body) isn't persisted in all.json, only
         # title/location -- fine, since those alone are authoritative and
         # extra_text can only ever turn a "maybe" into a "yes".
         is_2027 = year_relevance(row["title"], row["location"]) != "no"
-        if row["is_2027"] != is_2027:
+        if row.get("is_2027") != is_2027:
             row["is_2027"] = is_2027
             changed += 1
     _atomic_write(rows, path)
     return changed, len(rows)
+
+
+def clear_is_2027(listing_id: str, path=ALL_JSON_PATH) -> dict:
+    """Manually clear is_2027 on one listing. Returns {ok, id} or raises KeyError.
+
+    Sets is_2027=False and is_2027_override=False so later --recompute is_2027
+    does not flip it back on.
+    """
+    if not listing_id or not isinstance(listing_id, str):
+        raise ValueError("id required")
+    if not path.is_file():
+        raise FileNotFoundError(str(path))
+    rows = json.loads(path.read_text())
+    found = None
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        if row.get("id") == listing_id:
+            found = row
+            break
+    if found is None:
+        raise KeyError(listing_id)
+    found["is_2027"] = False
+    found["is_2027_override"] = False
+    _atomic_write(rows, path)
+    return {"ok": True, "id": listing_id, "is_2027": False}
 
 
 def recompute_priority(path=ALL_JSON_PATH):
@@ -187,6 +222,24 @@ def backfill_descriptions(path=ALL_JSON_PATH):
 def selftest():
     import tempfile
     from pathlib import Path
+
+    # clear_is_2027 + override holds across recompute
+    td = Path(tempfile.mkdtemp())
+    p = td / "all.json"
+    p.write_text(json.dumps([
+        {"id": "a1", "title": "SWE Intern Summer 2027", "location": "SF", "is_2027": True},
+        {"id": "a2", "title": "SWE Intern", "location": "SF", "is_2027": True},
+    ]))
+    assert clear_is_2027("a1", p)["is_2027"] is False
+    try:
+        clear_is_2027("missing", p)
+        raise AssertionError("expected KeyError")
+    except KeyError:
+        pass
+    recompute(p)
+    cleared = json.loads(p.read_text())
+    assert cleared[0]["is_2027"] is False and cleared[0]["is_2027_override"] is False
+    assert cleared[1]["is_2027"] is True  # maybe intern still True after recompute
 
     rows = [
         {"title": "SWE Intern", "location": "SF", "is_2027": False},  # maybe -> now True
