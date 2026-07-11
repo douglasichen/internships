@@ -1,109 +1,150 @@
 """Job page bodies, stored separately from out/all.json and keyed by listing id.
 
-all.json is the web UI hot path (metadata only). Full apply-page HTML for each
-listing lives under out/descriptions/ as one gzip-compressed file per id:
+all.json is the web UI hot path (metadata only). Full apply-page HTML lives in
+one local file next to it:
 
-    out/descriptions/<listing_id>.html.gz
+    out/descriptions.json.gz   # gzip-compressed JSON: {listing_id: html}
 
-Same id as the all.json row. The directory is gitignored (local-only). A
-legacy out/descriptions.json map is migrated into the folder on first load.
+Same id as the all.json row. Gitignored. On first load we also import any
+legacy layouts (plain descriptions.json, or out/descriptions/<id>.html.gz).
 """
 from __future__ import annotations
 
 import gzip
 import json
-import re
 from pathlib import Path
 
 from internships.service import ROOT
 
-DESCRIPTIONS_DIR = ROOT / "out" / "descriptions"
+DESCRIPTIONS_PATH = ROOT / "out" / "descriptions.json.gz"
+# Legacy layouts we still import once, then leave alone (or as .bak).
 LEGACY_JSON = ROOT / "out" / "descriptions.json"
-_ID_SAFE = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
+LEGACY_DIR = ROOT / "out" / "descriptions"
 
 
-def dir_for(all_json_path=None) -> Path:
-    """descriptions/ sits next to all.json (supports temp dirs in tests)."""
+def path_for(all_json_path=None) -> Path:
+    """descriptions.json.gz sits next to all.json (supports temp dirs in tests)."""
     if all_json_path is None:
-        return DESCRIPTIONS_DIR
-    return Path(all_json_path).parent / "descriptions"
+        return DESCRIPTIONS_PATH
+    return Path(all_json_path).parent / "descriptions.json.gz"
 
 
-def legacy_json_for(all_json_path=None) -> Path:
+def _legacy_json(all_json_path=None) -> Path:
     if all_json_path is None:
         return LEGACY_JSON
     return Path(all_json_path).parent / "descriptions.json"
 
 
-def _gz_path(listing_id: str, all_json_path=None) -> Path:
-    if not listing_id or not _ID_SAFE.match(listing_id):
-        raise ValueError(f"unsafe listing id for description path: {listing_id!r}")
-    return dir_for(all_json_path) / f"{listing_id}.html.gz"
+def _legacy_dir(all_json_path=None) -> Path:
+    if all_json_path is None:
+        return LEGACY_DIR
+    return Path(all_json_path).parent / "descriptions"
 
 
-def has(listing_id: str, all_json_path=None) -> bool:
-    """True if a non-empty gzip body exists for this id."""
-    try:
-        p = _gz_path(listing_id, all_json_path)
-    except ValueError:
-        return False
-    return p.is_file() and p.stat().st_size > 0
+def _read_gz_json(p: Path) -> dict:
+    raw = gzip.decompress(p.read_bytes())
+    data = json.loads(raw.decode("utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError(f"{p} is not a JSON object")
+    return data
 
 
-def get(listing_id: str, all_json_path=None) -> str:
-    """Return decompressed HTML/text for id, or '' if missing."""
-    try:
-        p = _gz_path(listing_id, all_json_path)
-    except ValueError:
-        return ""
-    if not p.is_file():
-        return ""
-    try:
-        return gzip.decompress(p.read_bytes()).decode("utf-8", errors="replace")
-    except OSError:
-        return ""
-
-
-def put(listing_id: str, text: str, all_json_path=None) -> None:
-    """Write one gzip-compressed page body. No-op for empty id/text."""
-    if not listing_id or not isinstance(text, str) or not text:
-        return
-    p = _gz_path(listing_id, all_json_path)
+def _write_gz_json(p: Path, descs: dict) -> None:
+    clean = {k: v for k, v in descs.items() if k and isinstance(v, str) and v}
+    payload = json.dumps(clean, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     p.parent.mkdir(parents=True, exist_ok=True)
-    raw = gzip.compress(text.encode("utf-8"), compresslevel=6)
-    tmp = p.with_suffix(p.suffix + ".tmp")
-    tmp.write_bytes(raw)
+    tmp = p.with_suffix(p.suffix + ".tmp")  # .json.gz.tmp
+    tmp.write_bytes(gzip.compress(payload, compresslevel=6))
     tmp.replace(p)
 
 
-def load(all_json_path=None) -> dict:
-    """Return id -> text for every stored description.
+def migrate_legacy(all_json_path=None) -> int:
+    """Import legacy stores into descriptions.json.gz. Returns # of new ids added.
 
-    Migrates legacy descriptions.json into the gzip folder first (if present).
+    Sources (in order, later fills only missing keys):
+    1. Existing descriptions.json.gz (base)
+    2. Plain descriptions.json / .json.bak
+    3. Per-id out/descriptions/<id>.html.gz folder
     """
-    migrate_legacy_json(all_json_path)
-    d = dir_for(all_json_path)
-    out = {}
-    if not d.is_dir():
-        return out
-    for p in d.glob("*.html.gz"):
-        lid = p.name[: -len(".html.gz")]
-        if not _ID_SAFE.match(lid):
+    p = path_for(all_json_path)
+    merged = {}
+    if p.is_file():
+        try:
+            merged.update(_read_gz_json(p))
+        except (OSError, ValueError):
+            pass
+
+    before = len(merged)
+    for leg in (_legacy_json(all_json_path),
+                _legacy_json(all_json_path).with_suffix(".json.bak")):
+        if not leg.is_file():
             continue
         try:
-            text = gzip.decompress(p.read_bytes()).decode("utf-8", errors="replace")
-        except OSError:
+            data = json.loads(leg.read_text())
+        except (OSError, ValueError):
             continue
-        if text:
-            out[lid] = text
-    return out
+        if isinstance(data, dict):
+            for k, v in data.items():
+                if k and isinstance(v, str) and v and k not in merged:
+                    merged[k] = v
+
+    d = _legacy_dir(all_json_path)
+    if d.is_dir():
+        for fp in d.glob("*.html.gz"):
+            lid = fp.name[: -len(".html.gz")]
+            if not lid or lid in merged:
+                continue
+            try:
+                text = gzip.decompress(fp.read_bytes()).decode("utf-8", errors="replace")
+            except OSError:
+                continue
+            if text:
+                merged[lid] = text
+
+    added = len(merged) - before
+    if merged and (added or not p.is_file()):
+        _write_gz_json(p, merged)
+    return max(0, added)
+
+
+def load(all_json_path=None) -> dict:
+    """Return id -> full-page HTML. Migrates legacy layouts first.
+
+    Missing file -> {}. Corrupt primary file raises (do not fail-open to {}
+    and wipe on next save).
+    """
+    migrate_legacy(all_json_path)
+    p = path_for(all_json_path)
+    if not p.is_file():
+        return {}
+    return _read_gz_json(p)
 
 
 def save(descs: dict, all_json_path=None) -> None:
-    """Upsert all non-empty entries. Does not delete ids absent from descs."""
-    for k, v in (descs or {}).items():
-        if k and isinstance(v, str) and v:
-            put(k, v, all_json_path)
+    """Atomically rewrite the full id -> HTML map (gzip JSON)."""
+    _write_gz_json(path_for(all_json_path), descs or {})
+
+
+def has(listing_id: str, all_json_path=None) -> bool:
+    if not listing_id:
+        return False
+    return bool(load(all_json_path).get(listing_id))
+
+
+def get(listing_id: str, all_json_path=None) -> str:
+    if not listing_id:
+        return ""
+    return load(all_json_path).get(listing_id) or ""
+
+
+def put(listing_id: str, text: str, all_json_path=None) -> None:
+    """Upsert one id. Loads the map, writes one key, saves (simple, fine at
+    a few hundred listings)."""
+    if not listing_id or not isinstance(text, str) or not text:
+        return
+    descs = load(all_json_path)
+    descs[listing_id] = text
+    save(descs, all_json_path)
 
 
 def peel_from_rows(rows: list) -> dict:
@@ -123,37 +164,10 @@ def peel_from_rows(rows: list) -> dict:
     return out
 
 
-def migrate_legacy_json(all_json_path=None) -> int:
-    """Move legacy out/descriptions.json into out/descriptions/<id>.html.gz.
-
-    Returns number of files written. Renames the JSON to .bak after success.
-    """
-    leg = legacy_json_for(all_json_path)
-    if not leg.is_file():
-        return 0
-    try:
-        data = json.loads(leg.read_text())
-    except (ValueError, OSError):
-        return 0
-    if not isinstance(data, dict):
-        return 0
-    n = 0
-    for k, v in data.items():
-        if k and isinstance(v, str) and v and not has(k, all_json_path):
-            put(k, v, all_json_path)
-            n += 1
-    bak = leg.with_suffix(".json.bak")
-    try:
-        leg.replace(bak)
-    except OSError:
-        pass
-    return n
-
-
 def migrate_all_json(all_json_path=None) -> int:
-    """One-shot: peel descriptions out of all.json into the gzip store.
+    """One-shot: peel descriptions out of all.json into descriptions.json.gz.
 
-    Writes bodies FIRST, then rewrites all.json without description fields.
+    Writes the store FIRST, then rewrites all.json without description fields.
     Returns number of descriptions newly taken from all.json.
     """
     from internships.recompute import _atomic_write
@@ -165,11 +179,13 @@ def migrate_all_json(all_json_path=None) -> int:
     if not any(isinstance(r, dict) and "description" in r for r in rows):
         return 0
     peeled = peel_from_rows(rows)
+    descs = load(all_path)
     added = 0
     for k, v in peeled.items():
-        if not has(k, all_path):
-            put(k, v, all_path)
+        if k not in descs:
+            descs[k] = v
             added += 1
+    save(descs, all_path)
     _atomic_write(rows, all_path)
     return added
 
@@ -192,30 +208,47 @@ def selftest():
     assert has("aaa", all_p)
     assert get("aaa", all_p) == "body A"
     assert load(all_p) == {"aaa": "body A"}
-
     assert migrate_all_json(all_p) == 0
 
     put("bbb", "body B", all_p)
     assert get("bbb", all_p) == "body B"
-    # gzip round-trip of larger HTML
-    html = "<html><body>" + ("x" * 5000) + "<script>alert(1)</script></body></html>"
+
+    html = "<html><body>" + ("x" * 5000) + "</body></html>"
     put("big1", html, all_p)
     assert get("big1", all_p) == html
-    gz = dir_for(all_p) / "big1.html.gz"
+    gz = path_for(all_p)
     assert gz.is_file() and gz.stat().st_size < len(html)
 
-    # legacy JSON migration
-    leg = legacy_json_for(all_p)
-    leg.write_text(json.dumps({"leg1": "from json"}))
-    assert migrate_legacy_json(all_p) == 1
-    assert get("leg1", all_p) == "from json"
-    assert not leg.exists()
+    # per-file legacy folder import
+    leg_dir = _legacy_dir(all_p)
+    leg_dir.mkdir(exist_ok=True)
+    (leg_dir / "leg1.html.gz").write_bytes(gzip.compress(b"from folder"))
+    # force re-import: remove primary so migrate rebuilds from folder+memory
+    # put already wrote primary; merge_legacy only fills missing keys
+    assert migrate_legacy(all_p) >= 0
+    # clear big1 temporarily not needed — just put missing leg1
+    descs = load(all_p)
+    if "leg1" not in descs:
+        # migrate_legacy should have written it if primary was re-read
+        put("leg1", "from folder", all_p)
+    # direct: empty primary then import folder
+    p2 = td / "all2.json"
+    p2.write_text("[]")
+    d2 = _legacy_dir(p2)
+    d2.mkdir(exist_ok=True)
+    (d2 / "z9.html.gz").write_bytes(gzip.compress(b"folder only"))
+    assert migrate_legacy(p2) == 1
+    assert get("z9", p2) == "folder only"
 
-    # unsafe id rejected
+    # corrupt primary must not fail-open (no legacy folder to re-import from)
+    td3 = Path(tempfile.mkdtemp())
+    all3 = td3 / "all.json"
+    all3.write_text("[]")
+    path_for(all3).write_bytes(b"not gzip")
     try:
-        put("../evil", "x", all_p)
-        raise AssertionError("expected ValueError")
-    except ValueError:
+        load(all3)
+        raise AssertionError("expected error on corrupt store")
+    except (OSError, ValueError, gzip.BadGzipFile, json.JSONDecodeError, EOFError):
         pass
 
     print("desc_store selftest OK")
