@@ -628,15 +628,92 @@ const SOURCE_LABEL = {
   sndsh404: 'sndsh404',
 };
 
-const state = {
+const FILTERS_KEY = 'internships-filters';
+const FILTER_DEFAULTS = {
   query: '',
-  sources: new Set(Object.keys(SOURCE_COLOR)),
+  sources: Object.keys(SOURCE_COLOR),
   only2027: true,
   onlyNA: true, // US or Canada locations only
   priorityFilter: 'all', // 'all' | 'p12' | 'p1'
   hideApplied: false,
   appliedOnly: false,
+  filtersOpen: false,
 };
+
+function loadFilterState() {
+  const s = { ...FILTER_DEFAULTS, sources: [...FILTER_DEFAULTS.sources] };
+  try {
+    const raw = JSON.parse(localStorage.getItem(FILTERS_KEY) || 'null');
+    if (!raw || typeof raw !== 'object') return s;
+    if (typeof raw.query === 'string') s.query = raw.query;
+    if (Array.isArray(raw.sources)) {
+      const known = new Set(Object.keys(SOURCE_COLOR));
+      const picked = raw.sources.filter(x => known.has(x));
+      // Empty array is valid (user turned all sources off).
+      if (raw.sources.length === 0 || picked.length) s.sources = picked.length ? picked : [];
+    }
+    if (typeof raw.only2027 === 'boolean') s.only2027 = raw.only2027;
+    if (typeof raw.onlyNA === 'boolean') s.onlyNA = raw.onlyNA;
+    if (raw.priorityFilter === 'all' || raw.priorityFilter === 'p12' || raw.priorityFilter === 'p1') {
+      s.priorityFilter = raw.priorityFilter;
+    }
+    if (typeof raw.hideApplied === 'boolean') s.hideApplied = raw.hideApplied;
+    if (typeof raw.appliedOnly === 'boolean') s.appliedOnly = raw.appliedOnly;
+    if (typeof raw.filtersOpen === 'boolean') s.filtersOpen = raw.filtersOpen;
+    // Mutually exclusive applied filters.
+    if (s.hideApplied && s.appliedOnly) s.appliedOnly = false;
+  } catch { /* keep defaults */ }
+  return s;
+}
+
+function saveFilterState() {
+  try {
+    localStorage.setItem(FILTERS_KEY, JSON.stringify({
+      query: state.query,
+      sources: [...state.sources],
+      only2027: state.only2027,
+      onlyNA: state.onlyNA,
+      priorityFilter: state.priorityFilter,
+      hideApplied: state.hideApplied,
+      appliedOnly: state.appliedOnly,
+      filtersOpen: state.filtersOpen,
+    }));
+  } catch { /* private mode etc. */ }
+}
+
+const _loaded = loadFilterState();
+const state = {
+  query: _loaded.query,
+  sources: new Set(_loaded.sources),
+  only2027: _loaded.only2027,
+  onlyNA: _loaded.onlyNA,
+  priorityFilter: _loaded.priorityFilter,
+  hideApplied: _loaded.hideApplied,
+  appliedOnly: _loaded.appliedOnly,
+  filtersOpen: _loaded.filtersOpen,
+};
+
+function applyFilterControls() {
+  // Sync DOM controls to `state` (after load, or if something rewrote state).
+  const search = document.getElementById('search');
+  if (search) search.value = state.query || '';
+
+  document.querySelectorAll('.chip[data-source]').forEach(chip => {
+    chip.classList.toggle('active', state.sources.has(chip.dataset.source));
+  });
+  document.getElementById('toggle2027').classList.toggle('active', state.only2027);
+  document.getElementById('toggleNA').classList.toggle('active', state.onlyNA);
+  document.getElementById('toggleP12').classList.toggle('active', state.priorityFilter === 'p12');
+  document.getElementById('toggleP1').classList.toggle('active', state.priorityFilter === 'p1');
+  document.getElementById('toggleHideApplied').classList.toggle('active', state.hideApplied);
+  document.getElementById('toggleAppliedOnly').classList.toggle('active', state.appliedOnly);
+
+  const details = document.getElementById('filterDetails');
+  const toggle = document.getElementById('filtersToggle');
+  details.classList.toggle('open', !!state.filtersOpen);
+  toggle.classList.toggle('open', !!state.filtersOpen);
+  toggle.setAttribute('aria-expanded', !!state.filtersOpen);
+}
 
 let ALL = [];
 // listing ids that already have a description body in out/descriptions.json.gz
@@ -926,11 +1003,11 @@ function render() {
 }
 
 document.querySelectorAll('.chip').forEach(chip => {
-  chip.classList.add('active');
   chip.addEventListener('click', () => {
     const src = chip.dataset.source;
     if (state.sources.has(src)) { state.sources.delete(src); chip.classList.remove('active'); }
     else { state.sources.add(src); chip.classList.add('active'); }
+    saveFilterState();
     render();
   });
 });
@@ -938,27 +1015,33 @@ document.getElementById('filtersToggle').addEventListener('click', e => {
   const open = document.getElementById('filterDetails').classList.toggle('open');
   e.currentTarget.classList.toggle('open', open);
   e.currentTarget.setAttribute('aria-expanded', open);
+  state.filtersOpen = open;
+  saveFilterState();
 });
 document.getElementById('toggle2027').addEventListener('click', e => {
   state.only2027 = !state.only2027;
   e.target.classList.toggle('active', state.only2027);
+  saveFilterState();
   render();
 });
 document.getElementById('toggleNA').addEventListener('click', e => {
   state.onlyNA = !state.onlyNA;
   e.target.classList.toggle('active', state.onlyNA);
+  saveFilterState();
   render();
 });
 document.getElementById('toggleP12').addEventListener('click', e => {
   state.priorityFilter = state.priorityFilter === 'p12' ? 'all' : 'p12';
   e.target.classList.toggle('active', state.priorityFilter === 'p12');
   document.getElementById('toggleP1').classList.remove('active');
+  saveFilterState();
   render();
 });
 document.getElementById('toggleP1').addEventListener('click', e => {
   state.priorityFilter = state.priorityFilter === 'p1' ? 'all' : 'p1';
   e.target.classList.toggle('active', state.priorityFilter === 'p1');
   document.getElementById('toggleP12').classList.remove('active');
+  saveFilterState();
   render();
 });
 document.getElementById('toggleHideApplied').addEventListener('click', e => {
@@ -968,6 +1051,7 @@ document.getElementById('toggleHideApplied').addEventListener('click', e => {
     state.appliedOnly = false;
     document.getElementById('toggleAppliedOnly').classList.remove('active');
   }
+  saveFilterState();
   render();
 });
 document.getElementById('toggleAppliedOnly').addEventListener('click', e => {
@@ -977,12 +1061,16 @@ document.getElementById('toggleAppliedOnly').addEventListener('click', e => {
     state.hideApplied = false;
     document.getElementById('toggleHideApplied').classList.remove('active');
   }
+  saveFilterState();
   render();
 });
 document.getElementById('search').addEventListener('input', e => {
   state.query = e.target.value;
+  saveFilterState();
   render();
 });
+
+applyFilterControls();
 document.getElementById('main').addEventListener('change', e => {
   const cb = e.target.closest('.applied-checkbox');
   if (!cb) return;
