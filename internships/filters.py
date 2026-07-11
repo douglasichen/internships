@@ -2,15 +2,36 @@
 import re
 
 INTERN_RE = re.compile(r"\b(intern(ship)?|co[\- ]?op)\b", re.I)
+# Note: bare "development" is intentionally NOT matched -- it false-positives
+# Business/Sales/Talent/Learning & Development internships. Prefer developer /
+# software development / development engineer (plus the other SWE terms).
 SWE_RE = re.compile(
-    r"\b(software|swe|develop(er|ment)|programmer|full[\- ]?stack|back[\- ]?end|"
+    r"\b(software|swe|developer|software\s+development|development\s+engineer|"
+    r"programmer|full[\- ]?stack|back[\- ]?end|"
     r"front[\- ]?end|infrastructure|platform|systems?|embedded|"
     r"machine learning|\bml\b|\bai\b|data engineer|security engineer)\b", re.I)
 YEAR_RE = re.compile(r"\b20\d{2}\b")
+# Street-address years ("2026 Market Street", "2019 Mission St") must not count
+# as posting-year signals -- otherwise a no-year title at that address becomes
+# year_relevance "no" and the listing is dropped.
+_ADDRESS_YEAR_RE = re.compile(
+    r"\b20\d{2}\s+(?:[A-Za-z0-9.#'\-]+\s+){0,4}"
+    r"(?:St|Street|Ave|Avenue|Blvd|Boulevard|Rd|Road|Ln|Lane|Dr|Drive|"
+    r"Way|Ct|Court|Pl|Place|Plaza|Pkwy|Parkway|Hwy|Highway)\b",
+    re.I,
+)
 
 
 def is_swe_internship(title: str) -> bool:
     return bool(title) and bool(INTERN_RE.search(title)) and bool(SWE_RE.search(title))
+
+
+def _years_in(text: str) -> list:
+    """4-digit 20xx years in text, ignoring street-address numbers."""
+    if not text:
+        return []
+    cleaned = _ADDRESS_YEAR_RE.sub(" ", text)
+    return YEAR_RE.findall(cleaned)
 
 
 # Priority 1 = big tech / the absolute top tier (think Google, Meta, Apple,
@@ -22,16 +43,21 @@ def is_swe_internship(title: str) -> bool:
 # real company names in companies.csv (case-insensitive, trimmed match --
 # same naming-variant caveat as the old is_important_company: "Amazon Web
 # Services" vs "AWS" etc. won't match unless spelled the same way).
+# Include common source-name variants (spacing/abbreviation) so scrape labels
+# like "D. E. Shaw" / "Susquehanna" / "TikTok" still land in the right tier.
 PRIORITY_1_COMPANIES = {
     "google", "openai", "anthropic", "apple", "microsoft", "meta", "nvidia", "amazon",
     "google deepmind", "netflix", "tesla", "amazon web services", "xai", "spacex",
     "jane street", "citadel", "citadel securities", "two sigma", "hudson river trading",
     "stripe", "databricks", "palantir",
-    "jump trading", "d.e. shaw", "optiver", "susquehanna international group", "drw",
-    "imc trading", "five rings", "xtx markets", "point72", "millennium",
-    "tsmc", "asml", "waymo", "goldman sachs", "jpmorgan chase", "morgan stanley",
+    "jump trading", "d.e. shaw", "d. e. shaw", "d. e. shaw & co.", "de shaw",
+    "optiver", "susquehanna international group", "susquehanna",
+    "susquehanna investment group", "drw",
+    "imc trading", "imc", "five rings", "xtx markets", "point72", "millennium",
+    "tsmc", "tsmc arizona", "asml", "waymo", "goldman sachs", "jpmorgan chase",
+    "morgan stanley",
     "renaissance technologies", "bridgewater associates", "samsung",
-    "bytedance", "tencent", "alibaba", "alphabet (waymo)", "deepseek",
+    "bytedance", "tiktok", "tencent", "alibaba", "alphabet (waymo)", "deepseek",
 }
 
 PRIORITY_2_COMPANIES = {
@@ -92,21 +118,34 @@ def year_relevance(title: str, location: str = "", extra_text: str = "") -> str:
     of years unrelated to the posting's own year (copyright footers,
     academic-year ranges, other programs' dates). It can only settle things
     when title/location are silent -- it must never veto an explicit
-    title/location year, and must never override one either."""
-    core_years = {y for t in (title, location) if t for y in YEAR_RE.findall(t)}
+    title/location year, and must never override one either.
+
+    Street-address numbers that look like years (e.g. "2026 Market Street")
+    in title/location are ignored -- they are not posting-year signals."""
+    core_years = {y for t in (title, location) if t for y in _years_in(t)}
     if "2027" in core_years:
         return "yes"
     if core_years:
         return "no"
-    return "yes" if extra_text and "2027" in YEAR_RE.findall(extra_text) else "maybe"
+    return "yes" if extra_text and "2027" in _years_in(extra_text) else "maybe"
 
 
 def selftest():
     assert is_swe_internship("Software Engineer Intern, Summer 2027")
     assert is_swe_internship("Backend Engineering Co-op")
+    assert is_swe_internship("Software Development Intern")
+    assert is_swe_internship("Developer Intern")
+    assert is_swe_internship("Network Development Engineer Intern")
     assert not is_swe_internship("Marketing Intern")
     assert not is_swe_internship("Staff Software Engineer")  # not an internship
     assert not is_swe_internship("")
+    # bare "development" is NOT SWE -- Business/Talent/Learning & Development
+    assert not is_swe_internship("Business Development Intern")
+    assert not is_swe_internship("Business Development Representative Intern")
+    assert not is_swe_internship("Sales Development Intern")
+    assert not is_swe_internship("Learning & Development (Instructional Design) Intern")
+    assert not is_swe_internship("Human Resources Intern, Talent Development")
+    assert not is_swe_internship("Strategy and Business Development Intern")
 
     assert year_relevance("SWE Intern Summer 2027") == "yes"
     assert year_relevance("SWE Intern", "", "mentions 2027 in body") == "yes"
@@ -121,10 +160,26 @@ def selftest():
     # explicit non-2027 year in the title either -- title/location are
     # authoritative in both directions
     assert year_relevance("SWE Intern Summer 2026", "SF", "mentions 2027 somewhere") == "no"
+    # street-address years are not posting years (would false-"no" otherwise)
+    assert year_relevance("SWE Intern", "2026 Market Street, SF") == "maybe"
+    assert year_relevance("SWE Intern", "2019 Mission St, San Francisco") == "maybe"
+    assert year_relevance("SWE Intern Summer 2027", "2026 Market Street") == "yes"
+    # real program year in location still counts
+    assert year_relevance("SWE Intern", "Summer 2026") == "no"
+    assert year_relevance("SWE Intern", "United States - 2027") == "yes"
 
     assert company_priority("Google") == 1
     assert company_priority("  google  ") == 1  # trimmed + case-insensitive
     assert company_priority("Jane Street") == 1
+    assert company_priority("D.E. Shaw") == 1
+    assert company_priority("D. E. Shaw") == 1  # spacing variant from sources
+    assert company_priority("D. E. Shaw & Co.") == 1
+    assert company_priority("Susquehanna") == 1
+    assert company_priority("Susquehanna International Group") == 1
+    assert company_priority("IMC") == 1
+    assert company_priority("IMC Trading") == 1
+    assert company_priority("TikTok") == 1
+    assert company_priority("TSMC Arizona") == 1
     assert company_priority("Figma") == 2
     assert company_priority("Totally Unknown LLC") == 3  # default bucket
     assert company_priority("") == 3
