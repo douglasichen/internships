@@ -28,7 +28,7 @@ flowchart TD
     subgraph Orchestrator["service.py — run()"]
         STEP1["1. ats_boards alone first"]
         STEP2["2. known_urls from its listings"]
-        STEP3["3. custom_boards + README sources in parallel\nskip known_urls; page-fetch empty extra_text"]
+        STEP3["3. custom_boards + README sources in parallel\nREADME only: skip known_urls\nall: page-fetch empty extra_text"]
         STEP4["4. filter SWE + year_relevance\n5. batch dedupe by Listing.id\n6. drop SeenStore ids\n7. caller writes CSV/all.json + descriptions"]
         STEP1 --> STEP2 --> STEP3 --> STEP4
     end
@@ -77,7 +77,7 @@ flowchart TD
 | `internships/sources/custom_boards.py` | Non-generic boards (Tesla, etc.) with per-company decoders. |
 | `internships/sources/{github_readme,speedyapply,sndsh404}.py` | Tracked README job tables. |
 | `internships/sources/md_table.py` | Shared README table parsing + shared `README_THROTTLE`. |
-| `internships/service.py` | `run(sources)`: ats_boards first, then others in parallel; filters; seen; page-fetch when `extra_text` empty (all sources). |
+| `internships/service.py` | `run(sources)`: ats_boards first, then others in parallel; README sources skip ats `known_urls`; filters; seen; page-fetch when `extra_text` empty (all sources). |
 | `internships/__main__.py` | CLI + lock. CSV + append `all.json` + `desc_store` put. Registers all five sources. |
 | `internships/desc_store.py` | `out/descriptions.json.gz` — `{listing_id: html}`. Legacy migrate from plain JSON / per-id `.html.gz`. |
 | `internships/applied_store.py` | `out/applied.json` — `{listing_id: ISO timestamp}` for the UI applied checkbox. |
@@ -130,7 +130,8 @@ the `python3` binary used by the agent (TCC does not inherit shell grants).
 - **No database** — `data/seen/*.json`, `out/all.json`, `descriptions.json.gz`,
   and `applied.json` are the persisted state.
 - **No fuzzy cross-source dedup of all URL variants** — `ats_boards` runs first
-  and other sources skip exact normalized URLs it found; recompute `dedup` also
-  collapses same company+title+location (with job-token guard). Distinct URLs
-  for the same human job can still appear; accepted, not always a bug.
+  and README sources skip exact normalized URLs it found (`custom_boards` does
+  not); recompute `dedup` also collapses same company+title+location (with
+  job-token guard). Distinct URLs for the same human job can still appear;
+  accepted, not always a bug.
 - **No auth on webserver** — localhost personal tool only.
