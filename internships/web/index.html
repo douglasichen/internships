@@ -784,7 +784,12 @@ function loadAppliedLocal() {
   catch { return new Map(); }
 }
 function saveAppliedLocal(m) {
-  localStorage.setItem(APPLIED_KEY, JSON.stringify(Object.fromEntries(m)));
+  // Must not throw: loadAppliedRemote calls this on every loadAll. An uncaught
+  // QuotaExceededError / private-mode SecurityError would reject Promise.all
+  // and leave the page stuck on "Loading…".
+  try {
+    localStorage.setItem(APPLIED_KEY, JSON.stringify(Object.fromEntries(m)));
+  } catch { /* private mode / quota */ }
 }
 function saveApplied(m) {
   saveAppliedLocal(m);
@@ -1394,7 +1399,9 @@ function anyRunPending() {
 
 function pollRunBusy() {
   Promise.all([
-    fetch('/api/status').then(r => r.json()),
+    // Match scrape/recompute status: one failed endpoint must not no-op the
+    // whole poll (that left Run buttons stuck disabled after a status blip).
+    fetch('/api/status').then(r => r.json()).catch(() => ({ active: false })),
     fetch('/api/scrape/status').then(r => r.json()).catch(() => ({ running: false })),
     fetch('/api/recompute/status').then(r => r.json()).catch(() => ({ running: false })),
   ]).then(([s, scrape, recompute]) => {
@@ -1444,7 +1451,9 @@ function pollRunBusy() {
       // Don't clear a result line that was just set above.
       if (runStatusEl().classList.contains('live')) setRunStatus('', false);
     } else if (recomputeWasActive && !pendingUiRecompute) {
+      // Other tab / 409 observer: refresh list (mirror scrapeWasActive path).
       recomputeWasActive = false;
+      loadAll();
       if (runStatusEl().classList.contains('live')) setRunStatus('', false);
     }
   }).catch(() => {});
