@@ -164,14 +164,11 @@
   }
   .filter-details.open { display: flex; }
   .recompute-row {
-    flex-basis: 100%;
+    margin-top: 12px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 10px;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
   }
   .recompute-label {
     font-family: var(--mono);
@@ -440,6 +437,15 @@
     <button class="toggle" id="runScrape">Run scrape</button>
     <span class="scrape-status" id="scrapeStatus"></span>
   </div>
+  <div class="recompute-row">
+    <span class="recompute-label">Recompute</span>
+    <button class="toggle recompute-check active" data-field="dedup">dedup</button>
+    <button class="toggle recompute-check" data-field="is_2027">is_2027</button>
+    <button class="toggle recompute-check" data-field="priority">priority</button>
+    <button class="toggle recompute-check" data-field="descriptions">descriptions</button>
+    <button class="toggle" id="runRecompute">Run</button>
+    <span class="recompute-status" id="recomputeStatus"></span>
+  </div>
 </header>
 
 <div class="filters">
@@ -458,15 +464,6 @@
       <button class="toggle" id="toggleP1">P1 only</button>
       <button class="toggle" id="toggleHideApplied">Hide applied</button>
       <button class="toggle" id="toggleAppliedOnly">Applied only</button>
-      <div class="recompute-row">
-        <span class="recompute-label">Recompute</span>
-        <button class="toggle recompute-check active" data-field="dedup">dedup</button>
-        <button class="toggle recompute-check" data-field="is_2027">is_2027</button>
-        <button class="toggle recompute-check" data-field="priority">priority</button>
-        <button class="toggle recompute-check" data-field="descriptions">descriptions</button>
-        <button class="toggle" id="runRecompute">Run</button>
-        <span class="recompute-status" id="recomputeStatus"></span>
-      </div>
     </div>
   </div>
 </div>
