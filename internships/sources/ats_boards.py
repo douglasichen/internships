@@ -498,6 +498,13 @@ class AtsBoardsSource:
                         listings.append(l)
             if any_ok:
                 return company, "ok", listings
+            # All endpoints failed this run. Do NOT demote a previously-ok
+            # board to dead -- Workday/rate-limit blips would permanently
+            # park the company (dead rows are skipped until retry_dead).
+            # First-seen failures (empty/skipped/dead already) still mark dead.
+            prev = (row.get("api_status") or "").strip()
+            if prev == "ok":
+                return company, "ok", listings
             return company, "dead", []
 
         listings = []
