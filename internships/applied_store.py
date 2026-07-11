@@ -29,16 +29,17 @@ def path_for(all_json_path=None) -> Path:
 
 
 def _load_unlocked(all_json_path=None) -> dict:
-    """Return id -> ISO timestamp. Missing/empty file -> {}."""
+    """Return id -> ISO timestamp. Missing file -> {}.
+
+    Corrupt / non-dict primary raises (do not fail-open to {} and wipe on next
+    save/merge — same data-loss class as desc_store).
+    """
     p = path_for(all_json_path)
     if not p.is_file():
         return {}
-    try:
-        data = json.loads(p.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return {}
+    data = json.loads(p.read_text(encoding="utf-8"))
     if not isinstance(data, dict):
-        return {}
+        raise ValueError(f"{p} is not a JSON object")
     out = {}
     for k, v in data.items():
         if isinstance(k, str) and k and isinstance(v, str) and v:
@@ -47,7 +48,10 @@ def _load_unlocked(all_json_path=None) -> dict:
 
 
 def load(all_json_path=None) -> dict:
-    """Return id -> ISO timestamp. Missing/empty file -> {}."""
+    """Return id -> ISO timestamp. Missing file -> {}.
+
+    Corrupt / non-dict primary raises (do not fail-open to {}).
+    """
     # Reads are atomic relative to os.replace of the final path; no lock needed.
     return _load_unlocked(all_json_path)
 
@@ -100,7 +104,7 @@ def selftest():
     td = Path(tmpmod.mkdtemp())
     all_p = td / "all.json"
     all_p.write_text("[]")
-    assert load(all_p) == {}
+    assert load(all_p) == {}  # missing applied.json next to all.json
     save({"aaa": "2026-01-01T00:00:00Z"}, all_p)
     assert load(all_p) == {"aaa": "2026-01-01T00:00:00Z"}
     m = merge({"aaa": "2025-01-01T00:00:00Z", "bbb": "2026-02-01T00:00:00Z"}, all_p)
@@ -110,6 +114,24 @@ def selftest():
     # replace (save) drops keys not in the payload
     save({"bbb": "2026-02-01T00:00:00Z"}, all_p)
     assert load(all_p) == {"bbb": "2026-02-01T00:00:00Z"}
+
+    # corrupt primary must not fail-open to {} (would wipe on next save/merge)
+    applied_p = path_for(all_p)
+    applied_p.write_text("not json{{{", encoding="utf-8")
+    try:
+        load(all_p)
+        raise AssertionError("expected error on corrupt applied store")
+    except (OSError, ValueError, json.JSONDecodeError):
+        pass
+    # non-dict primary must raise
+    applied_p.write_text("[]", encoding="utf-8")
+    try:
+        load(all_p)
+        raise AssertionError("expected error on non-dict applied store")
+    except ValueError:
+        pass
+    # restore valid so later tests can reuse if needed
+    save({"bbb": "2026-02-01T00:00:00Z"}, all_p)
 
     # concurrent merges must not lose keys or crash on shared tmp
     td2 = Path(tmpmod.mkdtemp())

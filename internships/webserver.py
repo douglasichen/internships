@@ -72,16 +72,10 @@ def _try_acquire_run_lock():
     return lock_file
 
 
-def _run_scrape():
-    # same lock as --recompute and a terminal scrape -- see _run_recompute's
-    # comment on why (out/all.json shouldn't be rewritten by two processes
-    # at once).
-    lock_file = _try_acquire_run_lock()
-    if lock_file is None:
-        with _scrape_lock:
-            _scrape_state["running"] = False
-            _scrape_state["error"] = "a scrape or recompute is already running"
-        return
+def _run_scrape(lock_file):
+    # lock_file already held by POST /api/scrape (non-blocking acquire) so we
+    # 409 at request time when CLI or another job holds .run.lock — same as
+    # clear-2027 / descriptions. Released via file close in `finally`.
     try:
         # persist_seen=False: don't mark ids seen until out/all.json has the
         # rows -- same ordering as the CLI path in __main__.main().
@@ -101,23 +95,17 @@ def _run_scrape():
     except Exception as e:  # noqa: BLE001 - report to the frontend, don't crash the server
         with _scrape_lock:
             _scrape_state["error"] = str(e)
+            _scrape_state["result"] = None  # drop stale success from a prior run
     finally:
         with _scrape_lock:
             _scrape_state["running"] = False
         lock_file.close()
 
 
-def _run_recompute(fields):
-    # same lock the CLI scrape/--recompute path uses -- out/all.json
-    # shouldn't be rewritten by two processes (or a scrape + a recompute) at
-    # once. held for the fields loop; ponytail: released via file close in
-    # `finally`, not by name, since flock ties to the fd.
-    lock_file = _try_acquire_run_lock()
-    if lock_file is None:
-        with _state_lock:
-            _state["running"] = False
-            _state["error"] = "a scrape or recompute is already running"
-        return
+def _run_recompute(fields, lock_file):
+    # lock_file already held by POST /api/recompute — out/all.json shouldn't be
+    # rewritten by two processes (or a scrape + a recompute) at once. Released
+    # via file close in `finally` (flock ties to the fd).
     try:
         summary = {}
         if "dedup" in fields:
@@ -138,6 +126,7 @@ def _run_recompute(fields):
     except Exception as e:  # noqa: BLE001 - report to the frontend, don't crash the server
         with _state_lock:
             _state["error"] = str(e)
+            _state["result"] = None  # drop stale success from a prior run
     finally:
         with _state_lock:
             _state["running"] = False
@@ -178,15 +167,22 @@ class Handler(SimpleHTTPRequestHandler):
         if path == "/api/recompute":
             qs = parse_qs(urlparse(self.path).query)
             fields = [f for f in VALID_FIELDS if f in qs.get("fields", [""])[0].split(",")]
+            if not fields:
+                self._json(400, {"error": f"no valid fields (expected any of {VALID_FIELDS})"})
+                return
             with _state_lock:
                 if _state["running"]:
                     self._json(409, {"error": "a recompute is already running"})
                     return
-                if not fields:
-                    self._json(400, {"error": f"no valid fields (expected any of {VALID_FIELDS})"})
+                # Acquire .run.lock here (not only in the worker) so a CLI
+                # scrape/--recompute holding the lock gets 409 immediately
+                # instead of 202 then async failure. Pass fd to the thread.
+                lock_file = _try_acquire_run_lock()
+                if lock_file is None:
+                    self._json(409, {"error": "a scrape or recompute is already running"})
                     return
                 _state["running"], _state["result"], _state["error"] = True, None, None
-            threading.Thread(target=_run_recompute, args=(fields,), daemon=True).start()
+            threading.Thread(target=_run_recompute, args=(fields, lock_file), daemon=True).start()
             self._json(202, {"started": fields})
             return
         if path == "/api/scrape":
@@ -194,8 +190,12 @@ class Handler(SimpleHTTPRequestHandler):
                 if _scrape_state["running"]:
                     self._json(409, {"error": "a scrape is already running"})
                     return
+                lock_file = _try_acquire_run_lock()
+                if lock_file is None:
+                    self._json(409, {"error": "a scrape or recompute is already running"})
+                    return
                 _scrape_state["running"], _scrape_state["result"], _scrape_state["error"] = True, None, None
-            threading.Thread(target=_run_scrape, daemon=True).start()
+            threading.Thread(target=_run_scrape, args=(lock_file,), daemon=True).start()
             self._json(202, {"started": True})
             return
         if path == "/api/descriptions":
@@ -554,8 +554,9 @@ def selftest():
             except urllib.error.HTTPError as e:
                 assert e.code == 404
 
-            # while .run.lock is held, clear-2027 and descriptions must 409
-            # (not clobber all.json / descriptions mid-scrape)
+            # while .run.lock is held, clear-2027 / descriptions / scrape /
+            # recompute must 409 (not clobber all.json mid-scrape, and not
+            # return 202 then fail async when CLI holds the lock)
             held = open(LOCK_PATH, "w")
             fcntl.flock(held, fcntl.LOCK_EX | fcntl.LOCK_NB)
             try:
@@ -572,6 +573,19 @@ def selftest():
                         raise AssertionError(f"expected 409 for {path} under lock")
                     except urllib.error.HTTPError as e:
                         assert e.code == 409, (path, e.code)
+                for path in ("/api/scrape", "/api/recompute?fields=dedup"):
+                    busy = urllib.request.Request(
+                        f"http://127.0.0.1:{port}{path}", method="POST")
+                    try:
+                        urllib.request.urlopen(busy, timeout=5)
+                        raise AssertionError(f"expected 409 for {path} under lock")
+                    except urllib.error.HTTPError as e:
+                        assert e.code == 409, (path, e.code)
+                # must not leave running=True when lock acquire fails
+                assert not json.loads(urllib.request.urlopen(
+                    f"http://127.0.0.1:{port}/api/scrape/status", timeout=5).read())["running"]
+                assert not json.loads(urllib.request.urlopen(
+                    f"http://127.0.0.1:{port}/api/recompute/status", timeout=5).read())["running"]
             finally:
                 fcntl.flock(held, fcntl.LOCK_UN)
                 held.close()

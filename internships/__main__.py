@@ -142,7 +142,7 @@ def selftest():
     from internships.models import Listing
 
     modules = ["internships.models", "internships.filters", "internships.seen_store",
-               "internships.desc_store",
+               "internships.desc_store", "internships.applied_store",
                "internships.sources.md_table", "internships.sources.ats_boards",
                "internships.sources.custom_boards",
                "internships.sources.github_readme", "internships.sources.speedyapply",
