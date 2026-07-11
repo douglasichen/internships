@@ -1,10 +1,15 @@
-"""Static file server for the web UI, plus a few local-only endpoints so the
-frontend can trigger a scrape or a --recompute run itself instead of needing
-the terminal, and show whether one is currently live (started from here or
-from a plain terminal `python3 -m internships`/`--recompute` -- both take
-the same .run.lock, so a lock probe catches either). No auth -- this is a
-personal tool meant to be run on localhost, not exposed beyond your own
-machine.
+"""Static file server for the web UI, plus local-only JSON APIs.
+
+Endpoints:
+    POST /api/scrape, GET /api/scrape/status
+    POST /api/recompute?fields=…, GET /api/recompute/status
+    GET  /api/status                 # .run.lock held by anyone?
+    GET  /api/descriptions/ids, POST /api/descriptions
+    GET  /api/applied, POST /api/applied[?merge=1]
+    POST /api/listings/clear-2027
+
+Scrape/recompute share .run.lock with the CLI. No auth -- localhost personal
+tool only; do not expose beyond your machine.
 
 Usage:
     python3 -m internships.webserver [PORT]   # defaults to 8765, blocks
@@ -516,7 +521,7 @@ def main():
         return
     port = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else 8765
     httpd = ThreadingHTTPServer(("", port), Handler)
-    print(f"serving {ROOT} on :{port} (static files + POST /api/recompute + /api/scrape)")
+    print(f"serving {ROOT} on :{port} (static + scrape/recompute/descriptions/applied/clear-2027)")
     httpd.serve_forever()
 
 

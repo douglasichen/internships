@@ -3,9 +3,11 @@ __pycache__/
 data/
 # out/all.json is tracked deliberately -- metadata listing history for the
 # web UI, kept under git so that history survives scrapes/recomputes.
-# Full apply-page HTML: out/descriptions.json.gz ({id: html}) -- local-only.
-# Legacy per-file out/descriptions/ and plain descriptions.json also ignored
-# via out/*. Per-run CSV snapshots aren't tracked either.
+# Gitignored under out/* (local-only):
+#   descriptions.json.gz  — {id: full apply-page HTML}
+#   applied.json          — {id: ISO} applied checkbox marks
+#   *.csv                 — per-run snapshots
+# Legacy per-file out/descriptions/ and plain descriptions.json also ignored.
 out/*
 !out/all.json
 .run.lock

@@ -1,7 +1,8 @@
 # internships
 
 A backend service that hunts for **SWE internships (esp. 2027)** across multiple
-sources and reports whatever's new since the last run.
+sources and reports whatever's new since the last run, plus a local web UI
+(“Internship Radar”) over the full history.
 
 ## Running it
 
@@ -11,101 +12,127 @@ python3 -m internships --selftest  # run every module's inline self-check
 python3 -m internships --recompute is_2027 descriptions dedup priority  # patch out/all.json, no scrape
 ```
 
-Each run takes a `.run.lock` flock so two scrapes can't race each other's
-writes (a second concurrent run just prints an error and exits). It fetches
-every source, filters to SWE internship/co-op titles that are 2027 or "maybe
-2027" (drops titles that explicitly mention a different year), drops anything
-already seen on a prior run (tracked per-source in `data/seen/*.json`), and
-writes the rest to `out/<timestamp>.csv` and appends it to `out/all.json`
-(the full history, used by the web UI below) — every row carries a
-`description` (the posting's own body, or a raw-page-fetch fallback for
-sources that don't have one) and a `priority` tier (1 = big tech/absolute
-top tier, 2 = solid mid tech, 3 = everything else/default, from a
-hand-curated classification of company names — see
-`filters.company_priority`).
+Each run takes a `.run.lock` flock so two scrapes (or a scrape + recompute)
+can't race each other's writes. It fetches every source, filters to SWE
+internship/co-op titles that are 2027 or "maybe 2027" (drops titles that
+explicitly mention a different year), drops anything already seen on a prior
+run (tracked per-source in `data/seen/*.json`), and:
+
+- writes new rows to `out/<timestamp>.csv` (includes description text for the run)
+- **appends metadata** to `out/all.json` (the web UI dataset — **no** description bodies)
+- stores full apply-page HTML in `out/descriptions.json.gz` keyed by listing `id`
+  (`{id: html}`; gitignored)
+
+Every listing gets a `priority` tier (1 = big tech / top, 2 = solid mid, 3 =
+default — see `filters.company_priority`). Empty bodies are filled by a
+throttled fetch of the apply page (see `service.py` / `desc_store.py`).
 
 `--recompute FIELD [FIELD ...]` (`internships/recompute.py`) patches
-`out/all.json` in place instead of scraping — handy after changing filter
-logic or for backfilling rows scraped before a field existed:
-- `is_2027` — recompute the flag against the current `filters.year_relevance`
-- `descriptions` — re-fetch a description for any row missing one
-- `dedup` — merge rows that are the same job link under today's rules,
-  always keeping the oldest record
-- `priority` — recompute the 1/2/3 tier against the current
-  `filters.company_priority` classification
+`out/all.json` in place instead of scraping:
+
+| field | effect |
+|---|---|
+| `is_2027` | recompute against `filters.year_relevance` (skips rows with `is_2027_override: false`) |
+| `descriptions` | re-fetch page HTML into `descriptions.json.gz` for ids missing a body |
+| `dedup` | merge same-job rows (URL path / company+title+location), keep oldest |
+| `priority` | recompute 1/2/3 tier against current company lists |
 
 ## Web UI
 
-A static page (`internships/web/index.html`) lists every listing ever found,
-newest scrape first, with search + source + "2027 only"/"P1+P2 only"/"P1
-only"/"Hide applied"/"Applied only" filters. Priority-1 and priority-2
-listings get a "P1"/"P2" badge next to the title (priority 3 is the silent
-default, no badge). A checkbox on each row marks it applied — that state
-lives only in the browser's `localStorage`, not the backend, so it survives
-`out/all.json` being regenerated. A "Recompute" control in the filter panel
-lets you trigger `--recompute dedup`/`is_2027`/`priority`/`descriptions`
-from the page itself instead of the terminal. A "Run scrape" button in the
-header does the same for a full scrape, with a live "scrape running…"
-indicator that polls regardless of whether the scrape was started from this
-page, another tab, or a bare terminal `python3 -m internships`/`--recompute`
-run (they all take the same `.run.lock`).
-
-It fetches `out/all.json` and POSTs to `/api/recompute`/`/api/scrape`, so it
-needs `internships/webserver.py` (not plain `python3 -m http.server`) run
-from the repo root:
-
 ```
 python3 -m internships.webserver 8765
-# then open http://localhost:8765/internships/web/
+# open http://localhost:8765/internships/web/
 ```
 
-## Sources (`internships/sources/`)
-- `ats_boards.py` — Ashby/Lever/Greenhouse/Workday JSON APIs listed in
-  `companies.csv`. Workday boards are keyword-searched ("intern"/"co-op",
-  merged + deduped) and paginated instead of grabbing the first unfiltered
-  page, and get a per-job description backfilled from Workday's detail
-  endpoint for postings that already look like an SWE internship by title.
-- `github_readme.py` — [vanshb03/Summer2027-Internships](https://github.com/vanshb03/Summer2027-Internships) README table
-- `speedyapply.py` — [speedyapply/2027-SWE-College-Jobs](https://github.com/speedyapply/2027-SWE-College-Jobs) README table
-- `sndsh404.py` — [sndsh404/summer-2027-internships](https://github.com/sndsh404/summer-2027-internships) README table
+Use **`localhost`**, not `127.0.0.1`, if you already have browser state under
+localhost (applied marks / filters are origin-scoped in `localStorage`).
 
-Adding a source = write a class with `.name` and `.fetch() -> list[Listing]`,
-register it in `internships/__main__.py`. The three README-scraping sources
-share table-parsing helpers in `internships/sources/md_table.py`.
+`internships/web/index.html` is a single static file. It needs
+`internships.webserver` (not plain `http.server`) for the API routes below.
+
+### Actions
+- **Scrape** / **Recompute** — mutually exclusive; both disable while either
+  (or a terminal scrape) holds `.run.lock`. Recompute opens a popup to pick
+  fields (none selected by default; **Run** disabled until you pick ≥1).
+- Live status line for scrape/recompute progress.
+
+### Filters (persisted in `localStorage`)
+Search; source chips; **2027 only** / **North America** (default on); P1+P2 /
+P1; hide applied / applied only. Filter panel open/closed is saved too.
+
+### Per listing
+- **Applied** checkbox — durable on disk as `out/applied.json` via
+  `GET/POST /api/applied`, mirrored to `localStorage` (survives origin quirks).
+- **Apply →** — opens the job; marks the row **Last opened** (local only).
+- **2027** badge — click → confirm → clear `is_2027` (writes
+  `is_2027_override: false` so recompute won’t put it back).
+- **No desc** — missing body in the description store; click to paste/submit
+  via `POST /api/descriptions`.
+- Company **N applied** expander for other applied roles at the same company.
+
+### API surface (`webserver.py`)
+| method | path | purpose |
+|---|---|---|
+| `POST` | `/api/scrape` | start scrape (202) |
+| `GET` | `/api/scrape/status` | scrape thread state |
+| `POST` | `/api/recompute?fields=…` | start recompute (202) |
+| `GET` | `/api/recompute/status` | recompute thread state |
+| `GET` | `/api/status` | `{active}` if `.run.lock` held |
+| `GET` | `/api/descriptions/ids` | ids that have a description body |
+| `POST` | `/api/descriptions` | `{id, text}` upsert one description |
+| `GET`/`POST` | `/api/applied` | applied map `id → ISO` (`?merge=1` to union) |
+| `POST` | `/api/listings/clear-2027` | `{id}` clear 2027 + set override |
+
+No auth — localhost personal tool only.
+
+## Sources (`internships/sources/`)
+- `ats_boards.py` — Ashby / Lever / Greenhouse / Workday / Oracle Fusion /
+  Eightfold / SmartRecruiters / Pinpoint, etc. from `companies.csv`. Workday
+  boards are keyword-searched ("intern"/"co-op"), paginated, and often get a
+  detail-page description when the title already looks SWE-intern.
+- `custom_boards.py` — one-off boards that don’t fit the generic ATS parsers
+  (e.g. Tesla careers state decoder).
+- `github_readme.py` — [vanshb03/Summer2027-Internships](https://github.com/vanshb03/Summer2027-Internships)
+- `speedyapply.py` — [speedyapply/2027-SWE-College-Jobs](https://github.com/speedyapply/2027-SWE-College-Jobs)
+- `sndsh404.py` — [sndsh404/summer-2027-internships](https://github.com/sndsh404/summer-2027-internships)
+
+Adding a source = class with `.name` and `.fetch() -> list[Listing]`, register
+in `internships/__main__.py`. README sources share `md_table.py`.
+
+External fetches are **per-domain** throttled (`DomainThrottle.hold` in
+`ats_boards.py`) so the same host doesn’t get stampeded under the thread pool.
+
+## Data layout
+
+| path | tracked? | contents |
+|---|---|---|
+| `out/all.json` | **yes** | listing metadata history for the UI |
+| `out/descriptions.json.gz` | no | `{id: full page HTML}` |
+| `out/applied.json` | no | `{id: ISO timestamp}` applied marks |
+| `out/<timestamp>.csv` | no | per-run new listings |
+| `data/seen/*.json` | no (`data/`) | per-source seen ids |
+| `companies.csv` | yes | company → board URL / API / `api_status` |
+
+`api_status`: `ok` | `dead` | `skipped` (no API wired). Dead/skipped with no
+rows in `all.json` are coverage gaps (see companies list + scrape results).
 
 ## Scheduled scrape
 
-`scripts/install_cron.sh` sets up a `launchd` LaunchAgent (macOS) that runs
-the scrape roughly every 2 hours, forever, starting at login — with a
-symmetric +/-10min random jitter so it's not perfectly on-the-dot every
-time. See `docs/architecture.md`'s "Scheduled scrape" section for details
-(logs, status/uninstall commands, and a one-time Full Disk Access step it
-needs on this machine since `~/Documents` is TCC-protected).
+`scripts/install_cron.sh` installs a macOS `launchd` LaunchAgent that runs
+the scrape about every 2 hours with ±10min jitter. Details (logs, uninstall,
+Full Disk Access for `~/Documents`): `docs/architecture.md` → **Scheduled scrape**.
 
 ## Legacy: boards.csv
-An earlier, separate artifact — a list of Ashby/Lever job boards discovered by
-probing their APIs directly. Not read by the `internships` service above.
-- [`boards.csv`](boards.csv) — every valid board found, with live counts.
 
-## CSV columns
+Earlier Ashby/Lever board discovery artifact — **not** read by the
+`internships` service. Columns / re-sweep notes are historical only.
+
 | column | meaning |
 |---|---|
 | `platform` | `ashby` or `lever` |
 | `company` | board slug |
-| `board_url` | human job board (click to browse) |
-| `api_url` | JSON posting API (used for sweeping) |
-| `total_jobs` | total open roles at sweep time |
-| `intern_roles` | roles with "intern"/"co-op" in title |
-| `swe_internships_open` | intern roles that look software-engineering |
-| `swe_intern_2027` | SWE intern roles mentioning **2027** |
-| `sample_swe_intern` | up to 3 example SWE-intern titles |
+| `board_url` | human job board |
+| `api_url` | JSON posting API |
+| `total_jobs` / `intern_roles` / … | snapshot counts from the old sweep |
 
-## How to re-sweep
-Ashby: `curl -s https://api.ashbyhq.com/posting-api/job-board/<slug>`
-Lever: `curl -s "https://api.lever.co/v0/postings/<slug>?mode=json"`
-
-## Notable as of last sweep (June 2026)
-- **Skydio** — `Software Engineer Intern Fall 2026 / Winter 2027` (real 2027 start).
-- Most other boards are Fall-2026 cohorts; 2027 reqs not posted yet.
-
-_Counts are a point-in-time snapshot; re-run the sweep to refresh._
+More detail: [`docs/architecture.md`](docs/architecture.md).
