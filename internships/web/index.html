@@ -404,6 +404,94 @@
     border-radius: 4px;
     white-space: nowrap;
   }
+  /* Missing description: compact badge that is also the submit CTA. */
+  .no-desc {
+    flex-shrink: 0;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--rose);
+    background: #F3E4E7;
+    border: none;
+    padding: 3px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .no-desc:hover { background: #E9D0D6; color: #7A3E4B; }
+  .no-desc:focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 2px;
+  }
+
+  .desc-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(42, 39, 35, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .desc-modal-backdrop[hidden] { display: none; }
+  .desc-modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: min(520px, 100%);
+    padding: 20px 22px;
+    box-shadow: 0 12px 40px rgba(42, 39, 35, 0.18);
+  }
+  .desc-modal h2 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 4px;
+  }
+  .desc-modal .desc-modal-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .desc-modal textarea {
+    width: 100%;
+    min-height: 180px;
+    resize: vertical;
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .desc-modal textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  .desc-modal-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 12px;
+  }
+  .desc-modal-actions .toggle { cursor: pointer; }
+  .desc-modal-actions .primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .desc-modal-actions .primary:hover { filter: brightness(0.95); }
+  .desc-modal-actions .primary:disabled { opacity: 0.55; cursor: default; }
+  .desc-modal-status {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: auto;
+  }
+  .desc-modal-status.err { color: var(--rose); }
 
   .empty {
     text-align: center;
@@ -471,6 +559,19 @@
   <div class="empty">Loading…</div>
 </main>
 
+<div class="desc-modal-backdrop" id="descModal" hidden>
+  <div class="desc-modal" role="dialog" aria-modal="true" aria-labelledby="descModalTitle">
+    <h2 id="descModalTitle">Add description</h2>
+    <div class="desc-modal-sub" id="descModalSub"></div>
+    <textarea id="descModalText" placeholder="Paste the job description (plain text or HTML)…"></textarea>
+    <div class="desc-modal-actions">
+      <button type="button" class="toggle primary" id="descModalSave">Save</button>
+      <button type="button" class="toggle" id="descModalCancel">Cancel</button>
+      <span class="desc-modal-status" id="descModalStatus"></span>
+    </div>
+  </div>
+</div>
+
 <script>
 const SOURCE_COLOR = {
   ats_boards: 'var(--teal)',
@@ -498,8 +599,12 @@ const state = {
 };
 
 let ALL = [];
+// listing ids that already have a description body in out/descriptions.json.gz
+let descIds = new Set();
 // listing id -> open/closed for "N more at Company" expanders (survives re-render)
 const expandedRoles = new Set();
+// id currently open in the "add description" modal (null when closed)
+let descModalId = null;
 
 // "Applied" is manual, per-browser state -- never touched by the scraper,
 // so it survives out/all.json being regenerated/appended on every run.
@@ -715,6 +820,9 @@ function render() {
             <div class="role-title">${escapeHtml(r.title)}${titleBadges(r)}</div>
             <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}${appliedCta}</div>
           </div>
+          ${!descIds.has(r.id)
+            ? `<button type="button" class="no-desc" data-id="${escapeHtml(r.id)}" title="Description missing — click to submit one">No desc</button>`
+            : ''}
           <span class="source-badge" style="background:${SOURCE_COLOR[r.source] || 'var(--text-muted)'}">${SOURCE_LABEL[r.source] || escapeHtml(r.source || '')}</span>
           ${url ? `<a class="apply-link" href="${escapeHtml(url)}" target="_blank" rel="noopener">Apply →</a>` : ''}
         </div>
@@ -809,19 +917,99 @@ document.getElementById('main').addEventListener('change', e => {
   render();
 });
 document.getElementById('main').addEventListener('click', e => {
-  const btn = e.target.closest('.company-more');
-  if (!btn) return;
-  const id = btn.dataset.roleId;
-  if (expandedRoles.has(id)) expandedRoles.delete(id);
-  else expandedRoles.add(id);
-  render();
+  const more = e.target.closest('.company-more');
+  if (more) {
+    const id = more.dataset.roleId;
+    if (expandedRoles.has(id)) expandedRoles.delete(id);
+    else expandedRoles.add(id);
+    render();
+    return;
+  }
+  const noDesc = e.target.closest('.no-desc');
+  if (noDesc) {
+    openDescModal(noDesc.dataset.id);
+  }
 });
 
+function openDescModal(id) {
+  const row = ALL.find(r => r.id === id);
+  descModalId = id;
+  const modal = document.getElementById('descModal');
+  document.getElementById('descModalSub').textContent = row
+    ? `${row.company || ''} — ${row.title || ''}`.replace(/^ — | — $/g, '')
+    : id;
+  document.getElementById('descModalText').value = '';
+  const status = document.getElementById('descModalStatus');
+  status.textContent = '';
+  status.classList.remove('err');
+  document.getElementById('descModalSave').disabled = false;
+  modal.hidden = false;
+  document.getElementById('descModalText').focus();
+}
+
+function closeDescModal() {
+  descModalId = null;
+  document.getElementById('descModal').hidden = true;
+}
+
+document.getElementById('descModalCancel').addEventListener('click', closeDescModal);
+document.getElementById('descModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeDescModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && descModalId) closeDescModal();
+});
+document.getElementById('descModalSave').addEventListener('click', async () => {
+  const id = descModalId;
+  if (!id) return;
+  const text = document.getElementById('descModalText').value;
+  const status = document.getElementById('descModalStatus');
+  const btn = document.getElementById('descModalSave');
+  if (!text.trim()) {
+    status.textContent = 'paste something first';
+    status.classList.add('err');
+    return;
+  }
+  btn.disabled = true;
+  status.textContent = 'saving…';
+  status.classList.remove('err');
+  try {
+    const res = await fetch('/api/descriptions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, text }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      status.textContent = err.error || `failed (${res.status})`;
+      status.classList.add('err');
+      btn.disabled = false;
+      return;
+    }
+    descIds.add(id);
+    closeDescModal();
+    render();
+  } catch {
+    status.textContent = 'no server — start: python3 -m internships.webserver';
+    status.classList.add('err');
+    btn.disabled = false;
+  }
+});
+
+function loadDescIds() {
+  return fetch('/api/descriptions/ids')
+    .then(r => r.ok ? r.json() : { ids: [] })
+    .catch(() => ({ ids: [] }))
+    .then(data => {
+      descIds = new Set(Array.isArray(data.ids) ? data.ids : []);
+    });
+}
+
 function loadAll() {
-  return fetch('/out/all.json')
-    .then(r => r.ok ? r.json() : [])
-    .catch(() => [])
-    .then(data => { ALL = data; render(); });
+  return Promise.all([
+    fetch('/out/all.json').then(r => r.ok ? r.json() : []).catch(() => []),
+    loadDescIds(),
+  ]).then(([data]) => { ALL = data; render(); });
 }
 
 function pollRecompute() {
