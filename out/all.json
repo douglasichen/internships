@@ -2262,19 +2262,6 @@
     "priority": 3
   },
   {
-    "id": "db42f3326e282804",
-    "company": "TikTok",
-    "title": "Security Software Engineer Project Intern - Product Security - 2026 Start - BS/MS",
-    "location": "San Jose, CA",
-    "is_2027": false,
-    "source": "speedyapply",
-    "posted": "160d",
-    "scraped_at": "2026-07-09T01:42:28",
-    "url": "https://lifeattiktok.com/search/7600536394771564853",
-    "important": false,
-    "priority": 3
-  },
-  {
     "id": "edd87c37779feb3f",
     "company": "TikTok",
     "title": "Software Development Engineer in Test Intern - TikTok-Growth- 2026 Summer- BS/MS",
@@ -3778,18 +3765,6 @@
     "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/United-Kindom-London/Software-Engineering-Intern_R107162-1"
   },
   {
-    "id": "0845a4634098cf9a",
-    "company": "Aquatic Capital",
-    "title": "Software Engineer Intern",
-    "location": "Chicago, IL",
-    "is_2027": true,
-    "priority": 3,
-    "source": "github_readme",
-    "posted": "May 22",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://job-boards.greenhouse.io/embed/job_app?for=aquaticcapitalmanagement&jr_id=6a06fd77152f493123c4b595&token=8489233002&utm_source=github-vansh-ouckah"
-  },
-  {
     "id": "3504e5ac6879ff1c",
     "company": "Citadel",
     "title": "software-engineer-intern-us",
@@ -3980,18 +3955,6 @@
     "posted": "",
     "scraped_at": "2026-07-10T16:58:43",
     "url": "https://jobs.smartrecruiters.com/Grab/744000134684719"
-  },
-  {
-    "id": "e8be949681dc2244",
-    "company": "H&CO",
-    "title": "Software Development Intern",
-    "location": "Coral Gables, FL",
-    "is_2027": true,
-    "priority": 3,
-    "source": "github_readme",
-    "posted": "Apr 22",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://career41.sapsf.com/career?career_ns=job_listing&company=hcollp&career_job_req_id=3507&utm_source=github-vansh-ouckah"
   },
   {
     "id": "a116dfae291bd2cd",
@@ -4186,18 +4149,6 @@
     "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_45001/job/334345"
   },
   {
-    "id": "30eb737058b5fe82",
-    "company": "Point72",
-    "title": "Quantitative Developer Intern",
-    "location": "New York, NY",
-    "is_2027": true,
-    "priority": 1,
-    "source": "github_readme",
-    "posted": "Apr 19",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://careers.point72.com/CSJobDetail?jobName=summer-2027-quantitative-developer-internship&jobCode=CSS-0012293&utm_source=github-vansh-ouckah"
-  },
-  {
     "id": "6b5c01a1605d0d44",
     "company": "Qorvo",
     "title": "Software Engineering Intern, SWR",
@@ -4378,18 +4329,6 @@
     "url": "https://seagatecareers.com/job/Wuxi-Software-Engineering-Intern-Factory-AI-and-Automation/1405178600/"
   },
   {
-    "id": "ceaefe1d804905ca",
-    "company": "Seagate",
-    "title": "Software Engineering Intern - Factory AI and Automation",
-    "location": "Wuxi, CN",
-    "is_2027": true,
-    "priority": 3,
-    "source": "custom_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://seagatecareers.com/job/Wuxi-Software-Engineering-Intern-Factory-AI-and-Automation/1405179600/"
-  },
-  {
     "id": "78d726c986bf1a2e",
     "company": "Siemens EDA",
     "title": "Aerospace Engineer Intern (Software)",
@@ -4498,30 +4437,6 @@
     "url": "https://sonyglobal.wd1.myworkdayjobs.com/SonyGlobalCareers/job/San-Diego/Software-Engineer-Intern_JR-119282"
   },
   {
-    "id": "dcda40a766342fb0",
-    "company": "Stoke Space",
-    "title": "Software Engineer Intern",
-    "location": "Kent, WA",
-    "is_2027": true,
-    "priority": 3,
-    "source": "github_readme",
-    "posted": "May 22",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://www.stokespace.com/careers/current-openings/?gh_jid=5987663004&jr_id=69fae0acd21cf86d1e3cd79c&utm_source=github-vansh-ouckah"
-  },
-  {
-    "id": "2af3e1d4a5c30d7a",
-    "company": "Stripe",
-    "title": "Software Engineer, Intern",
-    "location": "Bengaluru",
-    "is_2027": true,
-    "priority": 1,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://stripe.com/jobs/search?gh_jid=8031833"
-  },
-  {
     "id": "d70ff66a10d5c73a",
     "company": "Susquehanna International Group",
     "title": "Equity Options AI Co-op with Drexel University",
@@ -4568,42 +4483,6 @@
     "posted": "",
     "scraped_at": "2026-07-10T16:58:43",
     "url": "https://careers-sig.icims.com/jobs/11169/login"
-  },
-  {
-    "id": "be3a61b8d2b01868",
-    "company": "TETRAMEM",
-    "title": "Software Engineer Intern, Embedded",
-    "location": "San Jose, CA",
-    "is_2027": true,
-    "priority": 3,
-    "source": "github_readme",
-    "posted": "Apr 20",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://tetramem.hrmdirect.com/employment/job-opening.php?req=3491042#job&utm_source=github-vansh-ouckah"
-  },
-  {
-    "id": "46e83e0e349854e7",
-    "company": "Tower Research",
-    "title": "Quantitative Developer Intern",
-    "location": "Chicago, IL; New York, NY",
-    "is_2027": true,
-    "priority": 3,
-    "source": "github_readme",
-    "posted": "Jul 07",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://tower-research.com/open-positions/?gh_jid=8044334&utm_source=github-vansh-ouckah"
-  },
-  {
-    "id": "a40b3a49ec488acd",
-    "company": "Two Sigma",
-    "title": "AI Research Scientist - Internship [2027 Summer]",
-    "location": "United States - NY New York",
-    "is_2027": true,
-    "priority": 1,
-    "source": "custom_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://careers.twosigma.com/careers/JobDetail/New-York-New-York-United-States-AI-Research-Scientist-Internship-2027-Summer/14022"
   },
   {
     "id": "4f81e6fa20597420",
@@ -4664,30 +4543,6 @@
     "posted": "",
     "scraped_at": "2026-07-10T16:58:43",
     "url": "https://jobs.smartrecruiters.com/WesternDigital/744000136959345"
-  },
-  {
-    "id": "e4cb107d16a2876c",
-    "company": "Western Digital",
-    "title": "Intern - Automation Development Engineer (Studying Master's Degree)",
-    "location": "BangPa-in",
-    "is_2027": true,
-    "priority": 3,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://jobs.smartrecruiters.com/WesternDigital/744000136954658"
-  },
-  {
-    "id": "2407f93a68760da3",
-    "company": "Workato",
-    "title": "Intern, AI Engineering",
-    "location": "San Francisco, California",
-    "is_2027": true,
-    "priority": 3,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-07-10T16:58:43",
-    "url": "https://www.workato.com/careers?gh_jid=8492935002#open-roles"
   },
   {
     "id": "5afd828e1d51f682",
@@ -4763,5 +4618,57 @@
     "scraped_at": "2026-07-10T17:24:08",
     "url": "https://jobs.ashbyhq.com/simular/063f177b-c3f2-44d2-8eeb-622a977e7d5a",
     "important": false
+  },
+  {
+    "id": "67b3e726d5544ff2",
+    "company": "Palantir",
+    "title": "Forward Deployed Infrastructure Engineer, Internship - US Government",
+    "location": "Washington, D.C.",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-10T18:52:22",
+    "url": "https://jobs.lever.co/palantir/3db7e40a-28e0-4ad1-96c5-93de5bc96aa9",
+    "description": "A World-Changing Company\n\u00a0\nPalantir builds the world\u2019s leading software for data-driven decisions and operations. By bringing the right data to the people who need it, our platforms empower our partners to develop lifesaving drugs, forecast supply chain disruptions, locate missing children, and more.\n\n\nThe Role\nForward Deployed Infrastructure Engineers (FDIEs) build, operate, and maintain the infrastructure that powers Palantir\u2019s platforms and production deployments. As an FDIE intern, you\u2019ll work alongside full-time FDIEs to deploy and operate Palantir software across real production environments, automate manual processes, and develop novel solutions to infrastructure challenges using tools like Foundry and Apollo. Every day looks different \u2014 you might be debugging a distributed systems issue, building automation to replace a manual runbook, or designing infrastructure improvements that scale across multiple deployments. You\u2019ll be treated as a full member of the team, with real ownership over the work you take on.\n The Role\nForward Deployed Infrastructure Engineers (FDIEs) build, operate, and maintain the infrastructure that powers Palantir\u2019s platforms and production deployments. As an FDIE intern, you\u2019ll work alongside full-time FDIEs to deploy and operate Palantir software across real production environments, automate manual processes, and develop novel solutions to infrastructure challenges using tools like Foundry and Apollo. Every day looks different \u2014 you might be debugging a distributed systems issue, building automation to replace a manual runbook, or designing infrastructure improvements that scale across multiple deployments. You\u2019ll be treated as a full member of the team, with real ownership over the work you take on.\n <div><strong><span style=\"font-size: 18px;\">A World-Changing Company</span></strong></div>\n<div>&nbsp;</div>\n<div>Palantir builds the world\u2019s leading software for data-driven decisions and operations. By bringing the right data to the people who need it, our platforms empower our partners to develop lifesaving drugs, forecast supply chain disruptions, locate missing children, and more.</div><div><br></div><div>\n<h3>The Role</h3>\n<div>Forward Deployed Infrastructure Engineers (FDIEs) build, operate, and maintain the infrastructure that powers Palantir\u2019s platforms and production deployments. As an FDIE intern, you\u2019ll work alongside full-time FDIEs to deploy and operate Palantir software across real production environments, automate manual processes, and develop novel solutions to infrastructure challenges using tools like Foundry and Apollo. Every day looks different \u2014 you might be debugging a distributed systems issue, building automation to replace a manual runbook, or designing infrastructure improvements that scale across multiple deployments. You\u2019ll be treated as a full member of the team, with real ownership over the work you take on.</div>\n</div> A World-Changing Company\n\u00a0\nPalantir builds the world\u2019s leading software for data-driven decisions and operations. By bringing the right data to the people who need it, our platforms empower our partners to develop lifesaving drugs, forecast supply chain disruptions, locate missing children, and more.\n"
+  },
+  {
+    "id": "892162b2b140b4d9",
+    "company": "Palantir",
+    "title": "Forward Deployed Infrastructure Engineer, Internship - US Government",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-10T18:52:22",
+    "url": "https://jobs.lever.co/palantir/8f362a1f-1eff-4327-94c1-ff46e2101c69",
+    "description": "A World-Changing Company\n\u00a0\nPalantir builds the world\u2019s leading software for data-driven decisions and operations. By bringing the right data to the people who need it, our platforms empower our partners to develop lifesaving drugs, forecast supply chain disruptions, locate missing children, and more.\n\n\nThe Role\nForward Deployed Infrastructure Engineers (FDIEs) build, operate, and maintain the infrastructure that powers Palantir\u2019s platforms and production deployments. As an FDIE intern, you\u2019ll work alongside full-time FDIEs to deploy and operate Palantir software across real production environments, automate manual processes, and develop novel solutions to infrastructure challenges using tools like Foundry and Apollo. Every day looks different \u2014 you might be debugging a distributed systems issue, building automation to replace a manual runbook, or designing infrastructure improvements that scale across multiple deployments. You\u2019ll be treated as a full member of the team, with real ownership over the work you take on.\n The Role\nForward Deployed Infrastructure Engineers (FDIEs) build, operate, and maintain the infrastructure that powers Palantir\u2019s platforms and production deployments. As an FDIE intern, you\u2019ll work alongside full-time FDIEs to deploy and operate Palantir software across real production environments, automate manual processes, and develop novel solutions to infrastructure challenges using tools like Foundry and Apollo. Every day looks different \u2014 you might be debugging a distributed systems issue, building automation to replace a manual runbook, or designing infrastructure improvements that scale across multiple deployments. You\u2019ll be treated as a full member of the team, with real ownership over the work you take on.\n <div><strong><span style=\"font-size: 18px;\">A World-Changing Company</span></strong></div>\n<div>&nbsp;</div>\n<div>Palantir builds the world\u2019s leading software for data-driven decisions and operations. By bringing the right data to the people who need it, our platforms empower our partners to develop lifesaving drugs, forecast supply chain disruptions, locate missing children, and more.</div><div><br></div><div>\n<h3>The Role</h3>\n<div>Forward Deployed Infrastructure Engineers (FDIEs) build, operate, and maintain the infrastructure that powers Palantir\u2019s platforms and production deployments. As an FDIE intern, you\u2019ll work alongside full-time FDIEs to deploy and operate Palantir software across real production environments, automate manual processes, and develop novel solutions to infrastructure challenges using tools like Foundry and Apollo. Every day looks different \u2014 you might be debugging a distributed systems issue, building automation to replace a manual runbook, or designing infrastructure improvements that scale across multiple deployments. You\u2019ll be treated as a full member of the team, with real ownership over the work you take on.</div>\n</div> A World-Changing Company\n\u00a0\nPalantir builds the world\u2019s leading software for data-driven decisions and operations. By bringing the right data to the people who need it, our platforms empower our partners to develop lifesaving drugs, forecast supply chain disruptions, locate missing children, and more.\n"
+  },
+  {
+    "id": "4cc859bef8cf0ea1",
+    "company": "Palantir",
+    "title": "Forward Deployed Infrastructure Engineer, Internship - US Government",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-10T18:52:22",
+    "url": "https://jobs.lever.co/palantir/cf5f44ff-1b0b-4752-bcd4-2dc88798f25b",
+    "description": "A World-Changing Company\n\u00a0\nPalantir builds the world\u2019s leading software for data-driven decisions and operations. By bringing the right data to the people who need it, our platforms empower our partners to develop lifesaving drugs, forecast supply chain disruptions, locate missing children, and more.\n\n\nThe Role\nForward Deployed Infrastructure Engineers (FDIEs) build, operate, and maintain the infrastructure that powers Palantir\u2019s platforms and production deployments. As an FDIE intern, you\u2019ll work alongside full-time FDIEs to deploy and operate Palantir software across real production environments, automate manual processes, and develop novel solutions to infrastructure challenges using tools like Foundry and Apollo. Every day looks different \u2014 you might be debugging a distributed systems issue, building automation to replace a manual runbook, or designing infrastructure improvements that scale across multiple deployments. You\u2019ll be treated as a full member of the team, with real ownership over the work you take on.\n The Role\nForward Deployed Infrastructure Engineers (FDIEs) build, operate, and maintain the infrastructure that powers Palantir\u2019s platforms and production deployments. As an FDIE intern, you\u2019ll work alongside full-time FDIEs to deploy and operate Palantir software across real production environments, automate manual processes, and develop novel solutions to infrastructure challenges using tools like Foundry and Apollo. Every day looks different \u2014 you might be debugging a distributed systems issue, building automation to replace a manual runbook, or designing infrastructure improvements that scale across multiple deployments. You\u2019ll be treated as a full member of the team, with real ownership over the work you take on.\n <div><strong><span style=\"font-size: 18px;\">A World-Changing Company</span></strong></div>\n<div>&nbsp;</div>\n<div>Palantir builds the world\u2019s leading software for data-driven decisions and operations. By bringing the right data to the people who need it, our platforms empower our partners to develop lifesaving drugs, forecast supply chain disruptions, locate missing children, and more.</div><div><br></div><div>\n<h3>The Role</h3>\n<div>Forward Deployed Infrastructure Engineers (FDIEs) build, operate, and maintain the infrastructure that powers Palantir\u2019s platforms and production deployments. As an FDIE intern, you\u2019ll work alongside full-time FDIEs to deploy and operate Palantir software across real production environments, automate manual processes, and develop novel solutions to infrastructure challenges using tools like Foundry and Apollo. Every day looks different \u2014 you might be debugging a distributed systems issue, building automation to replace a manual runbook, or designing infrastructure improvements that scale across multiple deployments. You\u2019ll be treated as a full member of the team, with real ownership over the work you take on.</div>\n</div> A World-Changing Company\n\u00a0\nPalantir builds the world\u2019s leading software for data-driven decisions and operations. By bringing the right data to the people who need it, our platforms empower our partners to develop lifesaving drugs, forecast supply chain disruptions, locate missing children, and more.\n"
+  },
+  {
+    "id": "26d5e1147be8b6c5",
+    "company": "Intel",
+    "title": "System Validation Intern (Power and Performance)",
+    "location": "Mexico, Guadalajara",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-10T21:04:39",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Mexico-Guadalajara/System-Validation-Intern--Power-and-Performance-_JR0285548",
+    "description": "<h1><b>Job Details:</b></h1><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><h2>Job Description:&nbsp;</h2><p></p><p>Join Intel as a Silicon Validation Engineering Intern and embark on a unique opportunity to learn, grow, and make an impact in the semiconductor industry. In this role, you will contribute directly to the validation of Intel&#39;s next generation high-performance CPU and interconnected interfaces, ensuring they meet Intel&#39;s high standards for quality, power, thermal, and performance.</p><p></p><p>You will play a key role in shaping Intel&#39;s next-generation technologies, supporting the development of cutting-edge innovations used by millions worldwide.</p><p>Gain hands-on experience in a collaborative, fast-paced environment as you apply your technical skills to real-world challenges while exploring potential career paths within Intel.</p><p><br />You will have the unique opportunity to team up with architects, designers and cross-functional teams to set up post-Silicon validation environments, define test content, execute validation plans, and measure, analyze and report CPU&#39;s power and performance validation results.</p><p><br /><br /><b>Key Responsibilities:</b></p><p></p><ul><li>Support power, thermal and performance validation of silicon products.</li><li>Assist in debugging efforts, identifying root causes, and proposing effective solutions to ensure product quality.</li><li>Perform data analysis for validation metrics to assess coverage and product readiness.</li><li>Contribute to the development and implementation of validation infrastructure and test environments.</li><li>Participate in test automation efforts to enhance validation efficiency and scalability.</li><li>Collaborate with cross-functional teams to build a cohesive validation workflow.</li><li>Develop technical expertise by exploring system architecture and SoC microarchitecture.</li></ul><p></p><p></p><p><b>The ideal candidate should demonstrate the following professional traits:</b></p><p></p><ul><li>Willing to tolerate ambiguity and confident to ask clarifying questions to understand the next steps.</li><li>Self-motivated and eager to learn new tools and methodologies to enhance technical expertise.</li><li>Excellent interpersonal and team player skills willing to interact in cross-functional teams.</li></ul><p></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><h2><b>Qualifications:</b></h2><p><b>Minimum Qualifications </b>are required to be initially considered for this position.</p><p></p><ul><li>Currently pursuing a BSc, MSc or PhD degree in Electrical/Mechatronics Engineering, Computer Engineering, Computer Science, or a related discipline (with at least 1 year remaining before graduation).</li></ul><p></p><ul><li>Advanced English level.</li></ul><p></p><ul><li>6&#43; months of experience in:<ul><li>Programming skills in Python or C/C&#43;&#43;.</li><li>Analog Electronics, circuit analysis, and data analysis techniques.</li><li>Foundational knowledge of system architecture and/or SoC microarchitecture.</li><li>Root cause analysis and problem-solving experience applied to electronic circuits and/or computer systems.</li></ul></li></ul><p></p><p>Must have unrestricted, permanent right to work in Mexico (this role is not eligible for visa or immigration sponsorship).</p><p></p><p></p><p><b>Preferred Qualifications</b> are in addition to the minimum requirements and are considered a plus factor in identifying top candidates.</p><p></p><ul><li>Experience using electronic lab test equipment (e.g., oscilloscopes, data acquisition systems).</li><li>Debug skills and experience using scripting languages.</li><li>Experience with test automation and/or writing validation scripts.</li><li>Knowledge of post-silicon validation, power and performance characterization, or post-silicon debug methodologies.</li></ul><p></p><p>Requirements listed would be obtained through a combination of industry relevant job experience, internship experience, and/or schoolwork/classes/research</p><p></p><p>We are excited to see what you can achieve. Apply today and take the next step toward a rewarding future at Intel.</p><p></p><p>\u00a0 \u00a0 \u00a0 \u00a0 \u00a0\u00a0</p><p></p><p></p>A candidate who accepts an offer of employment in Mexico is required to present their own personal identification information and numbers for the following:  Mexican Security Number (NSS), Tax Identification Number (RFC) and CURP identification number.<p style=\"text-align:inherit\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p><h2>Job Type:</h2>Student / Intern<p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><h2>Shift:</h2>Shift 1 (Mexico)<p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><h2>Primary Location:&nbsp;</h2>Mexico, Guadalajara<p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><h2>Additional Locations:</h2><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><h2>Business group:</h2>Intel makes possible the most amazing experiences of the future. You may know us for our processors. But we do so much more. Intel invents at the boundaries of technology to make amazing experiences possible for business and society, and for every person on Earth. Harnessing the capability of the cloud, the ubiquity of the Internet of Things, the latest advances in memory and programmable solutions, and the promise of always-on 5G connectivity, Intel is disrupting industries and solving global challenges. Leading on policy, diversity, inclusion, education and sustainability, we create value for our stockholders, customers, and society.<p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><h2>Posting Statement:</h2>All qualified applicants will receive consideration for employment without regard to race, color, religion, religious creed, sex, national origin, ancestry, age, physical or mental disability, medical condition, genetic information, military and veteran status, marital status, pregnancy, gender, gender expression, gender identity, sexual orientation, or any other characteristic protected by local law, regulation, or ordinance.<h2></h2><h2>Position of Trust</h2>N/A<p></p><p><b>Work Model for this Role</b></p>This role will be eligible for our hybrid work model which allows employees to split their time between working on-site at their assigned Intel site and off-site. * Job posting details (such as work model, location or time type) are subject to change.<p></p><p>*</p><p></p>ADDITIONAL INFORMATION:  Intel is committed to Responsible Business Alliance (RBA) compliance and ethical hiring practices. We do not charge any fees during our hiring process. Candidates should never be required to pay recruitment fees, medical examination fees, or any other charges as a condition of employment. If you are asked to pay any fees during our hiring process, please report this immediately to your recruiter."
   }
 ]
