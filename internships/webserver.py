@@ -19,7 +19,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
 from internships import __main__ as main_mod
-from internships import desc_store, recompute as recompute_mod
+from internships import applied_store, desc_store, recompute as recompute_mod
 from internships.service import ROOT, run as run_sources
 
 LOCK_PATH = ROOT / ".run.lock"
@@ -201,6 +201,28 @@ class Handler(SimpleHTTPRequestHandler):
                 return
             self._json(200, {"ok": True, "id": lid.strip()})
             return
+        if path == "/api/applied":
+            # Full map replace or merge of applied marks {id: ISO timestamp}.
+            # ?merge=1 unions with disk (later timestamp wins); default replaces.
+            data, err = self._read_json_body()
+            if err:
+                self._json(400, {"error": err})
+                return
+            if not isinstance(data, dict):
+                self._json(400, {"error": "object of id->ISO required"})
+                return
+            qs = parse_qs(urlparse(self.path).query)
+            try:
+                if qs.get("merge", ["0"])[0] in ("1", "true", "yes"):
+                    marks = applied_store.merge(data)
+                else:
+                    applied_store.save(data)
+                    marks = applied_store.load()
+            except (OSError, ValueError) as e:
+                self._json(500, {"error": str(e)})
+                return
+            self._json(200, {"ok": True, "count": len(marks), "marks": marks})
+            return
         self.send_error(404)
 
     def do_GET(self):
@@ -225,6 +247,14 @@ class Handler(SimpleHTTPRequestHandler):
                 self._json(500, {"error": str(e)})
                 return
             self._json(200, {"ids": ids})
+            return
+        if path == "/api/applied":
+            try:
+                marks = applied_store.load()
+            except (OSError, ValueError) as e:
+                self._json(500, {"error": str(e)})
+                return
+            self._json(200, marks)
             return
         super().do_GET()
 
@@ -388,6 +418,41 @@ def selftest():
             assert ids == {"ids": ["job1"]}, ids
         finally:
             desc_store.load, desc_store.put = orig_load, orig_put
+
+        # /api/applied: isolated temp store
+        td_app = Path(tempfile.mkdtemp())
+        orig_app_path = applied_store.path_for
+        applied_store.path_for = lambda all_json_path=None: td_app / "applied.json"
+        try:
+            empty = json.loads(urllib.request.urlopen(
+                f"http://127.0.0.1:{port}/api/applied", timeout=5).read())
+            assert empty == {}, empty
+            body = json.dumps({"aaa": "2026-01-01T00:00:00Z"}).encode()
+            req = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/applied",
+                data=body, method="POST",
+                headers={"Content-Type": "application/json"})
+            r = urllib.request.urlopen(req, timeout=5)
+            assert r.status == 200
+            got = json.loads(urllib.request.urlopen(
+                f"http://127.0.0.1:{port}/api/applied", timeout=5).read())
+            assert got == {"aaa": "2026-01-01T00:00:00Z"}, got
+            # merge keeps later timestamp
+            body2 = json.dumps({
+                "aaa": "2025-01-01T00:00:00Z",
+                "bbb": "2026-02-01T00:00:00Z",
+            }).encode()
+            req2 = urllib.request.Request(
+                f"http://127.0.0.1:{port}/api/applied?merge=1",
+                data=body2, method="POST",
+                headers={"Content-Type": "application/json"})
+            urllib.request.urlopen(req2, timeout=5)
+            got2 = json.loads(urllib.request.urlopen(
+                f"http://127.0.0.1:{port}/api/applied", timeout=5).read())
+            assert got2["aaa"] == "2026-01-01T00:00:00Z", got2
+            assert got2["bbb"] == "2026-02-01T00:00:00Z", got2
+        finally:
+            applied_store.path_for = orig_app_path
     finally:
         httpd.shutdown()
         LOCK_PATH = orig_lock
