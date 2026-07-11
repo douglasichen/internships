@@ -167,9 +167,15 @@
     border-top: 1px solid var(--border);
   }
   .filter-details.open { display: flex; }
-  /* One row: Scrape | Recompute | shared status. Mutual exclusion via disabled. */
+  /* Scrape | Recompute | status; recompute field chips underneath. */
   .run-actions {
     margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .run-actions-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -182,6 +188,24 @@
   }
   .run-actions .toggle.primary:hover:not(:disabled) { filter: brightness(0.96); }
   .run-actions .toggle.primary:disabled { filter: none; }
+  .recompute-fields {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .recompute-fields .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-right: 2px;
+  }
+  .recompute-check {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
   .run-status {
     font-family: var(--mono);
     font-size: 12px;
@@ -539,9 +563,18 @@
   <div class="hero-label" id="heroLabel">roles found</div>
   <div class="hero-sub" id="heroSub"></div>
   <div class="run-actions">
-    <button type="button" class="toggle primary" id="runScrape" title="Fetch new listings from all sources">Scrape</button>
-    <button type="button" class="toggle" id="runRecompute" title="Dedupe + refresh 2027 / priority / descriptions">Recompute</button>
-    <span class="run-status" id="runStatus"></span>
+    <div class="run-actions-row">
+      <button type="button" class="toggle primary" id="runScrape" title="Fetch new listings from all sources">Scrape</button>
+      <button type="button" class="toggle" id="runRecompute" title="Run selected recompute fields">Recompute</button>
+      <span class="run-status" id="runStatus"></span>
+    </div>
+    <div class="recompute-fields" id="recomputeFields" title="Which fields Recompute will run">
+      <span class="label">fields</span>
+      <button type="button" class="toggle recompute-check active" data-field="dedup">dedup</button>
+      <button type="button" class="toggle recompute-check active" data-field="is_2027">is_2027</button>
+      <button type="button" class="toggle recompute-check active" data-field="priority">priority</button>
+      <button type="button" class="toggle recompute-check active" data-field="descriptions">descriptions</button>
+    </div>
   </div>
 </header>
 
@@ -1118,8 +1151,9 @@ function loadAll() {
 
 // Shared busy gate: scrape and recompute share .run.lock. Both buttons disable
 // whenever either is in flight. One status line covers both.
-// Recompute always runs every field (dedup, is_2027, priority, descriptions).
-const RECOMPUTE_FIELDS = 'dedup,is_2027,priority,descriptions';
+// Recompute fields are user-configurable chips (default: all on).
+const RECOMPUTE_FIELD_KEY = 'internships-recompute-fields';
+const RECOMPUTE_ALL = ['dedup', 'is_2027', 'priority', 'descriptions'];
 let scrapeWasActive = false;
 let recomputeWasActive = false;
 let pendingUiScrape = false;
@@ -1129,10 +1163,36 @@ let recomputePostInFlight = false;
 
 function runStatusEl() { return document.getElementById('runStatus'); }
 
+function selectedRecomputeFields() {
+  return [...document.querySelectorAll('.recompute-check.active')]
+    .map(b => b.dataset.field)
+    .filter(f => RECOMPUTE_ALL.includes(f));
+}
+
+function saveRecomputeFields() {
+  try {
+    localStorage.setItem(RECOMPUTE_FIELD_KEY, JSON.stringify(selectedRecomputeFields()));
+  } catch { /* ignore */ }
+}
+
+function loadRecomputeFields() {
+  // Restore last selection; if missing/invalid, keep HTML defaults (all active).
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(RECOMPUTE_FIELD_KEY) || 'null'); }
+  catch { saved = null; }
+  if (!Array.isArray(saved)) return;
+  const want = new Set(saved.filter(f => RECOMPUTE_ALL.includes(f)));
+  // Empty saved array is valid ("user cleared all") — still apply.
+  document.querySelectorAll('.recompute-check').forEach(btn => {
+    btn.classList.toggle('active', want.has(btn.dataset.field));
+  });
+}
+
 function setRunButtonsBusy(busy) {
   const on = !!busy;
   document.getElementById('runScrape').disabled = on;
   document.getElementById('runRecompute').disabled = on;
+  document.querySelectorAll('.recompute-check').forEach(b => { b.disabled = on; });
 }
 
 function setRunStatus(text, live) {
@@ -1206,17 +1266,31 @@ function pollRunBusy() {
   setTimeout(pollRunBusy, anyRunPending() ? 1000 : 4000);
 }
 
+document.querySelectorAll('.recompute-check').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.disabled) return;
+    btn.classList.toggle('active');
+    saveRecomputeFields();
+  });
+});
+loadRecomputeFields();
+
 document.getElementById('runRecompute').addEventListener('click', async () => {
   const btn = document.getElementById('runRecompute');
   if (btn.disabled || recomputePostInFlight || scrapePostInFlight
       || pendingUiScrape || pendingUiRecompute) return;
+  const fields = selectedRecomputeFields();
+  if (!fields.length) {
+    setRunStatus('pick at least one field', false);
+    return;
+  }
   recomputePostInFlight = true;
   setRunButtonsBusy(true);
-  setRunStatus('starting recompute…', true);
+  setRunStatus(`starting recompute (${fields.join(', ')})…`, true);
   try {
-    const res = await fetch(`/api/recompute?fields=${RECOMPUTE_FIELDS}`, { method: 'POST' });
+    const res = await fetch(`/api/recompute?fields=${fields.join(',')}`, { method: 'POST' });
     if (res.status === 202) {
-      setRunStatus('recomputing…', true);
+      setRunStatus(`recomputing ${fields.join(', ')}…`, true);
       recomputeWasActive = true;
       pendingUiRecompute = true;
       return;
