@@ -331,6 +331,28 @@
   }
   .role.applied { opacity: 0.55; }
   .role.applied .role-title { text-decoration: line-through; }
+  /* Last row where you clicked Apply — survives refresh so you can find it again. */
+  .role.last-apply {
+    background: var(--accent-soft);
+    border-radius: 8px;
+    box-shadow: inset 3px 0 0 var(--accent);
+    opacity: 1; /* keep visible even if also .applied */
+  }
+  .role.last-apply .role-title { text-decoration: none; }
+  .role.last-apply .apply-link {
+    color: #fff;
+    background: var(--accent);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .last-apply-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
 
   .role-wrap { border-bottom: 1px solid var(--border); }
   .role-wrap > .role { border-bottom: none; }
@@ -598,6 +620,22 @@ let descModalId = null;
 // truth is out/applied.json via /api/applied (survives localhost vs
 // 127.0.0.1 origin splits). localStorage is a mirror for static file opens.
 const APPLIED_KEY = 'internships-applied';
+// Listing id of the most recent "Apply →" click (local only; find-your-place marker).
+const LAST_APPLY_KEY = 'internships-last-apply';
+function loadLastApplyId() {
+  try { return localStorage.getItem(LAST_APPLY_KEY) || ''; }
+  catch { return ''; }
+}
+function saveLastApplyId(id) {
+  try {
+    if (id) localStorage.setItem(LAST_APPLY_KEY, id);
+    else localStorage.removeItem(LAST_APPLY_KEY);
+  } catch { /* private mode etc. */ }
+}
+let lastApplyId = loadLastApplyId();
+// Scroll to last-apply row once after load (and when the marker moves).
+let lastApplyShouldScroll = !!lastApplyId;
+
 function loadAppliedLocal() {
   try { return new Map(Object.entries(JSON.parse(localStorage.getItem(APPLIED_KEY) || '{}'))); }
   catch { return new Map(); }
@@ -819,19 +857,20 @@ function render() {
         ? ` · <button type="button" class="company-more${open ? ' open' : ''}" data-role-id="${escapeHtml(r.id)}" aria-expanded="${open}" title="Roles at ${escapeHtml(r.company)} you've already applied to"><span class="caret">▸</span>${nApplied} applied</button>`
         : '';
 
+      const isLastApply = lastApplyId && r.id === lastApplyId;
       return `
-      <li class="role-wrap">
-        <div class="role${appliedAt ? ' applied' : ''}">
+      <li class="role-wrap"${isLastApply ? ' id="last-apply-row"' : ''}>
+        <div class="role${appliedAt ? ' applied' : ''}${isLastApply ? ' last-apply' : ''}">
           <input type="checkbox" class="applied-checkbox" data-id="${r.id}" ${appliedAt ? 'checked' : ''} title="Mark applied">
           <div class="role-main">
             <div class="role-title">${escapeHtml(r.title)}${titleBadges(r)}</div>
-            <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}${appliedCta}</div>
+            <div class="role-meta">${escapeHtml(r.company)}${r.location ? ' · ' + escapeHtml(r.location) : ''}${appliedAt ? ` · <span title="${new Date(appliedAt).toLocaleString()}">Applied ${relativeTime(appliedAt)}</span>` : ''}${isLastApply ? ' · <span class="last-apply-label">Last opened</span>' : ''}${appliedCta}</div>
           </div>
           ${!descIds.has(r.id)
             ? `<button type="button" class="no-desc" data-id="${escapeHtml(r.id)}" title="Description missing — click to submit one">No desc</button>`
             : ''}
           <span class="source-badge" style="background:${SOURCE_COLOR[r.source] || 'var(--text-muted)'}">${SOURCE_LABEL[r.source] || escapeHtml(r.source || '')}</span>
-          ${url ? `<a class="apply-link" href="${escapeHtml(url)}" target="_blank" rel="noopener">Apply →</a>` : ''}
+          ${url ? `<a class="apply-link" href="${escapeHtml(url)}" target="_blank" rel="noopener" data-id="${escapeHtml(r.id)}">Apply →</a>` : ''}
         </div>
         ${open ? renderSiblings(appliedOthers) : ''}
       </li>`;
@@ -846,6 +885,14 @@ function render() {
         <ul class="roles">${roleHtml}</ul>
       </section>`;
   }).join('');
+
+  // After a full re-render, keep the last Apply row in view if it exists.
+  // Only scroll on first paint after load / when the marker moves (not every filter tick).
+  if (lastApplyId && lastApplyShouldScroll) {
+    lastApplyShouldScroll = false;
+    const el = document.getElementById('last-apply-row');
+    if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }
 }
 
 document.querySelectorAll('.chip').forEach(chip => {
@@ -922,6 +969,37 @@ document.getElementById('main').addEventListener('click', e => {
     if (expandedRoles.has(id)) expandedRoles.delete(id);
     else expandedRoles.add(id);
     render();
+    return;
+  }
+  const applyLink = e.target.closest('.apply-link');
+  if (applyLink) {
+    // Mark this row as last-opened Apply so it's obvious when you come back.
+    // Don't preventDefault / re-render — that can cancel the new-tab navigation.
+    const id = applyLink.dataset.id;
+    if (!id) return;
+    lastApplyId = id;
+    saveLastApplyId(id);
+    // In-place highlight update (no full render).
+    document.querySelectorAll('#last-apply-row').forEach(el => el.removeAttribute('id'));
+    document.querySelectorAll('.role.last-apply').forEach(el => {
+      el.classList.remove('last-apply');
+      el.querySelectorAll('.last-apply-label').forEach(lab => {
+        // strip leading " · " text node if present
+        const prev = lab.previousSibling;
+        if (prev && prev.nodeType === 3 && /^\s*·\s*$/.test(prev.textContent)) prev.remove();
+        lab.remove();
+      });
+    });
+    const row = applyLink.closest('.role');
+    const wrap = applyLink.closest('.role-wrap');
+    if (wrap) wrap.id = 'last-apply-row';
+    if (row) {
+      row.classList.add('last-apply');
+      const meta = row.querySelector('.role-meta');
+      if (meta && !meta.querySelector('.last-apply-label')) {
+        meta.insertAdjacentHTML('beforeend', ' · <span class="last-apply-label">Last opened</span>');
+      }
+    }
     return;
   }
   const noDesc = e.target.closest('.no-desc');
