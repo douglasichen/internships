@@ -453,7 +453,7 @@
       <button class="chip" data-source="speedyapply"><span class="dot" style="background:var(--gold)"></span>speedyapply</button>
       <button class="chip" data-source="sndsh404"><span class="dot" style="background:var(--slate)"></span>sndsh404</button>
       <button class="toggle active" id="toggle2027">2027 only</button>
-      <button class="toggle" id="toggleNA">North America</button>
+      <button class="toggle active" id="toggleNA">North America</button>
       <button class="toggle" id="toggleP12">P1+P2 only</button>
       <button class="toggle" id="toggleP1">P1 only</button>
       <button class="toggle" id="toggleHideApplied">Hide applied</button>
@@ -495,7 +495,7 @@ const state = {
   query: '',
   sources: new Set(Object.keys(SOURCE_COLOR)),
   only2027: true,
-  onlyNA: false, // US or Canada locations only
+  onlyNA: true, // US or Canada locations only
   priorityFilter: 'all', // 'all' | 'p12' | 'p1'
   hideApplied: false,
   appliedOnly: false,
