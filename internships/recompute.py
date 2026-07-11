@@ -27,7 +27,7 @@ _JOB_TOKEN_RE = re.compile(
 )
 
 ALL_JSON_PATH = ROOT / "out" / "all.json"
-DESCRIPTIONS_PATH = desc_store.DESCRIPTIONS_PATH
+DESCRIPTIONS_DIR = desc_store.DESCRIPTIONS_DIR
 
 
 def _atomic_write(obj, path):
@@ -159,32 +159,25 @@ def dedupe(path=ALL_JSON_PATH):
 
 
 def backfill_descriptions(path=ALL_JSON_PATH):
-    """Re-fetch a description for any listing that doesn't have one in
-    out/descriptions.json -- e.g. scraped before description-capture, or a
-    prior fetch failed. Same best-effort raw-page fetch as service.py.
-    Does not touch all.json rows (descriptions are keyed by listing id).
-    Skips rows that already have a description, even a short one."""
+    """Download the full apply-page HTML for any listing missing a stored body
+    under out/descriptions/<id>.html.gz. Same throttled raw-page fetch as
+    service.py. Does not modify all.json rows (except peeling legacy inline
+    description fields into the store once)."""
     rows = json.loads(path.read_text())
-    # peel any legacy inline description fields into the store first.
-    # Save store BEFORE rewriting all.json so a crash can't drop bodies.
-    descs = desc_store.load(path)
+    # peel any legacy inline description fields into the gzip store first
     peeled = desc_store.peel_from_rows(rows)
     if peeled:
-        for k, v in peeled.items():
-            descs.setdefault(k, v)
-        desc_store.save(descs, path)
+        desc_store.save(peeled, path)
         _atomic_write(rows, path)
 
-    stale = [r for r in rows if r.get("id") and not descs.get(r["id"])]
+    stale = [r for r in rows if r.get("id") and not desc_store.has(r["id"], path)]
     with ThreadPoolExecutor(max_workers=8) as ex:
         texts = list(ex.map(lambda r: _fetch_raw_page(r.get("url")), stale))
     changed = 0
     for row, text in zip(stale, texts):
         if text:
-            descs[row["id"]] = text
+            desc_store.put(row["id"], text, path)
             changed += 1
-    if changed:
-        desc_store.save(descs, path)
     return changed, len(stale)
 
 
@@ -309,17 +302,16 @@ def selftest():
         p2 = Path(tempfile.mkdtemp()) / "all.json"
         p2.write_text(json.dumps(rows2))
         # seed store: a already has a description
-        desc_store.save({"a": "already have one"}, p2)
+        desc_store.put("a", "already have one", p2)
         changed, stale_count = backfill_descriptions(p2)
         assert stale_count == 3 and changed == 2  # b,c fetched; d no url -> empty
         # all.json stays description-free
         result2 = json.loads(p2.read_text())
         assert all("description" not in r for r in result2)
-        descs = desc_store.load(p2)
-        assert descs["a"] == "already have one"  # untouched
-        assert descs["b"] == "fetched: http://x/2"
-        assert descs["c"] == "fetched: http://x/3"
-        assert "d" not in descs
+        assert desc_store.get("a", p2) == "already have one"  # untouched
+        assert desc_store.get("b", p2) == "fetched: http://x/2"
+        assert desc_store.get("c", p2) == "fetched: http://x/3"
+        assert not desc_store.has("d", p2)
     finally:
         _self._fetch_raw_page = orig_fetch
     print("recompute selftest OK")
