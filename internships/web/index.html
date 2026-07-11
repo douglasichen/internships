@@ -453,6 +453,7 @@
       <button class="chip" data-source="speedyapply"><span class="dot" style="background:var(--gold)"></span>speedyapply</button>
       <button class="chip" data-source="sndsh404"><span class="dot" style="background:var(--slate)"></span>sndsh404</button>
       <button class="toggle active" id="toggle2027">2027 only</button>
+      <button class="toggle" id="toggleNA">North America</button>
       <button class="toggle" id="toggleP12">P1+P2 only</button>
       <button class="toggle" id="toggleP1">P1 only</button>
       <button class="toggle" id="toggleHideApplied">Hide applied</button>
@@ -494,6 +495,7 @@ const state = {
   query: '',
   sources: new Set(Object.keys(SOURCE_COLOR)),
   only2027: true,
+  onlyNA: false, // US or Canada locations only
   priorityFilter: 'all', // 'all' | 'p12' | 'p1'
   hideApplied: false,
   appliedOnly: false,
@@ -604,6 +606,25 @@ function titleBadges(r) {
     + (isWorkdayUrl(r.url) ? '<span class="workday" title="Workday application">Workday</span>' : '');
 }
 
+// True if location looks like US and/or Canada. Multi-site strings match if
+// any segment is NA. Empty/unknown location does not match (filter stays strict).
+function isNorthAmericaLocation(loc) {
+  if (!loc || !String(loc).trim()) return false;
+  const s = String(loc);
+  // Country / region
+  if (/\b(united states|u\.s\.a?\.?|\busa\b|canada|canadian|north america)\b/i.test(s)) return true;
+  // US state codes (e.g. "Seattle, WA") + DC
+  if (/\b(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY|DC)\b/.test(s)) return true;
+  // Canadian province codes (e.g. "Toronto, ON")
+  if (/\b(ON|BC|AB|QC|MB|SK|NS|NB|NL|PE|YT|NT|NU)\b/.test(s)) return true;
+  // Full state / province names
+  if (/\b(California|New York|Texas|Washington|Massachusetts|Illinois|Georgia|Florida|Colorado|Oregon|Arizona|Pennsylvania|Virginia|North Carolina|South Carolina|Michigan|Ohio|New Jersey|Maryland|Minnesota|Wisconsin|Missouri|Tennessee|Indiana|Nevada|Utah|Connecticut|Kentucky|Louisiana|Alabama|Oklahoma|Iowa|Arkansas|Kansas|Mississippi|New Mexico|Nebraska|Idaho|Hawaii|New Hampshire|Maine|Montana|Rhode Island|Delaware|Alaska|Vermont|Wyoming|District of Columbia)\b/i.test(s)) return true;
+  if (/\b(Ontario|Quebec|British Columbia|Alberta|Manitoba|Saskatchewan|Nova Scotia|New Brunswick|Newfoundland|Prince Edward Island)\b/i.test(s)) return true;
+  // Common cities / remote phrasing
+  if (/\b(Toronto|Vancouver|Montreal|Ottawa|Calgary|Edmonton|Waterloo|Kitchener|Seattle|San Francisco|\bSF\b|NYC|Bay Area|Palo Alto|Mountain View|Menlo Park|Sunnyvale|Cupertino|Redmond|Austin|Boston|Chicago|Los Angeles|\bLA\b|San Jose|San Diego|Denver|Atlanta|Miami|Dallas|Houston|Bellevue|Brooklyn|Manhattan|Remote\s*US|US\s*Remote|multiple US)\b/i.test(s)) return true;
+  return false;
+}
+
 // escapeHtml alone does NOT neutralize a scraped `javascript:`/`data:` URL --
 // those schemes contain no HTML metacharacters, so they'd survive untouched
 // into href= and execute on click. Listing URLs come from arbitrary external
@@ -626,6 +647,7 @@ function applyFilters(rows) {
   return rows.filter(r => {
     if (!state.sources.has(r.source)) return false;
     if (state.only2027 && !r.is_2027) return false;
+    if (state.onlyNA && !isNorthAmericaLocation(r.location)) return false;
     if (state.priorityFilter === 'p1' && r.priority !== 1) return false;
     if (state.priorityFilter === 'p12' && r.priority > 2) return false;
     if (state.hideApplied && applied.has(r.id)) return false;
@@ -732,6 +754,11 @@ document.getElementById('filtersToggle').addEventListener('click', e => {
 document.getElementById('toggle2027').addEventListener('click', e => {
   state.only2027 = !state.only2027;
   e.target.classList.toggle('active', state.only2027);
+  render();
+});
+document.getElementById('toggleNA').addEventListener('click', e => {
+  state.onlyNA = !state.onlyNA;
+  e.target.classList.toggle('active', state.onlyNA);
   render();
 });
 document.getElementById('toggleP12').addEventListener('click', e => {
