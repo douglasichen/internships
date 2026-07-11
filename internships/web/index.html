@@ -596,13 +596,13 @@
     <h2 id="recomputeModalTitle">Recompute</h2>
     <div class="desc-modal-sub">Pick which fields to refresh, then run.</div>
     <div class="recompute-modal-fields">
-      <button type="button" class="toggle recompute-check active" data-field="dedup">dedup</button>
-      <button type="button" class="toggle recompute-check active" data-field="is_2027">is_2027</button>
-      <button type="button" class="toggle recompute-check active" data-field="priority">priority</button>
-      <button type="button" class="toggle recompute-check active" data-field="descriptions">descriptions</button>
+      <button type="button" class="toggle recompute-check" data-field="dedup">dedup</button>
+      <button type="button" class="toggle recompute-check" data-field="is_2027">is_2027</button>
+      <button type="button" class="toggle recompute-check" data-field="priority">priority</button>
+      <button type="button" class="toggle recompute-check" data-field="descriptions">descriptions</button>
     </div>
     <div class="desc-modal-actions">
-      <button type="button" class="toggle primary" id="recomputeModalRun">Run</button>
+      <button type="button" class="toggle primary" id="recomputeModalRun" disabled>Run</button>
       <button type="button" class="toggle" id="recomputeModalCancel">Cancel</button>
       <span class="desc-modal-status" id="recomputeModalStatus"></span>
     </div>
@@ -1147,8 +1147,7 @@ function loadAll() {
 
 // Shared busy gate: scrape and recompute share .run.lock. Both buttons disable
 // whenever either is in flight. One status line covers both.
-// Recompute fields are user-configurable chips (default: all on).
-const RECOMPUTE_FIELD_KEY = 'internships-recompute-fields';
+// Recompute fields: none selected by default; Run disabled until ≥1 picked.
 const RECOMPUTE_ALL = ['dedup', 'is_2027', 'priority', 'descriptions'];
 let scrapeWasActive = false;
 let recomputeWasActive = false;
@@ -1165,23 +1164,16 @@ function selectedRecomputeFields() {
     .filter(f => RECOMPUTE_ALL.includes(f));
 }
 
-function saveRecomputeFields() {
-  try {
-    localStorage.setItem(RECOMPUTE_FIELD_KEY, JSON.stringify(selectedRecomputeFields()));
-  } catch { /* ignore */ }
+function updateRecomputeRunEnabled() {
+  const run = document.getElementById('recomputeModalRun');
+  if (!run) return;
+  run.disabled = selectedRecomputeFields().length === 0;
 }
 
-function loadRecomputeFields() {
-  // Restore last selection; if missing/invalid, keep HTML defaults (all active).
-  let saved = null;
-  try { saved = JSON.parse(localStorage.getItem(RECOMPUTE_FIELD_KEY) || 'null'); }
-  catch { saved = null; }
-  if (!Array.isArray(saved)) return;
-  const want = new Set(saved.filter(f => RECOMPUTE_ALL.includes(f)));
-  // Empty saved array is valid ("user cleared all") — still apply.
-  document.querySelectorAll('.recompute-check').forEach(btn => {
-    btn.classList.toggle('active', want.has(btn.dataset.field));
-  });
+function clearRecomputeFields() {
+  // Default: nothing selected; Run stays disabled until the user picks something.
+  document.querySelectorAll('.recompute-check').forEach(btn => btn.classList.remove('active'));
+  updateRecomputeRunEnabled();
 }
 
 function setRunButtonsBusy(busy) {
@@ -1262,11 +1254,10 @@ function pollRunBusy() {
 }
 
 function openRecomputeModal() {
-  loadRecomputeFields();
+  clearRecomputeFields();
   const status = document.getElementById('recomputeModalStatus');
   status.textContent = '';
   status.classList.remove('err');
-  document.getElementById('recomputeModalRun').disabled = false;
   document.getElementById('recomputeModal').hidden = false;
 }
 
@@ -1277,10 +1268,9 @@ function closeRecomputeModal() {
 document.querySelectorAll('.recompute-check').forEach(btn => {
   btn.addEventListener('click', () => {
     btn.classList.toggle('active');
-    saveRecomputeFields();
+    updateRecomputeRunEnabled();
   });
 });
-loadRecomputeFields();
 
 document.getElementById('recomputeModalCancel').addEventListener('click', closeRecomputeModal);
 document.getElementById('recomputeModal').addEventListener('click', e => {
@@ -1298,18 +1288,13 @@ document.getElementById('runRecompute').addEventListener('click', () => {
 document.getElementById('recomputeModalRun').addEventListener('click', async () => {
   const fields = selectedRecomputeFields();
   const modalStatus = document.getElementById('recomputeModalStatus');
-  if (!fields.length) {
-    modalStatus.textContent = 'pick at least one field';
-    modalStatus.classList.add('err');
-    return;
-  }
+  if (!fields.length) return; // Run is disabled when empty
   if (recomputePostInFlight || scrapePostInFlight || pendingUiScrape || pendingUiRecompute) {
     modalStatus.textContent = 'another run is in progress';
     modalStatus.classList.add('err');
     return;
   }
   modalStatus.classList.remove('err');
-  saveRecomputeFields();
   closeRecomputeModal();
 
   recomputePostInFlight = true;
