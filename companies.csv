@@ -5,11 +5,11 @@ Anthropic,https://www.anthropic.com/jobs,https://boards-api.greenhouse.io/v1/boa
 Apple,https://jobs.apple.com/en-us/search,none found,skipped
 Microsoft,https://jobs.careers.microsoft.com/global/en/search,https://gcsservices.careers.microsoft.com/search/api/v1/search (unverified),dead
 Meta,https://www.metacareers.com/jobs/,none found,skipped
-Nvidia,https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite,https://nvidia.wd5.myworkdayjobs.com/wday/cxs/nvidia/NVIDIAExternalCareerSite/jobs (unverified),dead
+Nvidia,https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite,https://nvidia.wd5.myworkdayjobs.com/wday/cxs/nvidia/NVIDIAExternalCareerSite/jobs (unverified),ok
 Amazon,https://www.amazon.jobs/en/search,https://www.amazon.jobs/en/search.json,ok
 Google DeepMind,https://deepmind.google/careers/,https://boards-api.greenhouse.io/v1/boards/deepmind/jobs?content=true,ok
 Netflix,https://explore.jobs.netflix.net/careers,https://netflix.eightfold.ai/api/apply/v2/jobs?domain=netflix.com&start=0&num=100&query=intern&sort_by=relevance,ok
-Tesla,https://www.tesla.com/careers/search/?query=software%20engineer&site=US,https://www.tesla.com/cua-api/apps/careers/state (custom_boards decoder; Akamai often blocks bare clients),dead
+Tesla,https://www.tesla.com/careers/search/?query=software%20engineer&site=US,https://www.tesla.com/cua-api/apps/careers/state (custom_boards decoder; Akamai often blocks bare clients),skipped
 Amazon Web Services,https://www.amazon.jobs/en/teams/aws,https://www.amazon.jobs/en/search.json,ok
 xAI,https://job-boards.greenhouse.io/xai,https://boards-api.greenhouse.io/v1/boards/xai/jobs?content=true,ok
 SpaceX,https://job-boards.greenhouse.io/spacex,https://boards-api.greenhouse.io/v1/boards/spacex/jobs?content=true,ok
@@ -44,8 +44,8 @@ IMC Trading,https://www.imc.com/us/careers,https://boards-api.greenhouse.io/v1/b
 Five Rings,https://job-boards.greenhouse.io/fiveringsllc,https://boards-api.greenhouse.io/v1/boards/fiveringsllc/jobs?content=true,ok
 XTX Markets,https://job-boards.greenhouse.io/xtxmarketstechnologies,https://boards-api.greenhouse.io/v1/boards/xtxmarketstechnologies/jobs?content=true,ok
 Point72,https://job-boards.greenhouse.io/point72,https://boards-api.greenhouse.io/v1/boards/point72/jobs?content=true,ok
-Millennium,https://career.mlp.com/careers,https://mlp.wd5.myworkdayjobs.com/wday/cxs/mlp/mlpcareers/jobs (unverified),dead
-Adobe,https://careers.adobe.com/us/en/search-results,https://adobe.wd5.myworkdayjobs.com/wday/cxs/adobe/external_experienced/jobs (unverified),dead
+Millennium,https://career.mlp.com/careers,https://mlp.wd5.myworkdayjobs.com/wday/cxs/mlp/mlpcareers/jobs (unverified),ok
+Adobe,https://careers.adobe.com/us/en/search-results,https://adobe.wd5.myworkdayjobs.com/wday/cxs/adobe/external_experienced/jobs (unverified),ok
 Salesforce,https://salesforce.wd12.myworkdayjobs.com/External_Career_Site,https://salesforce.wd12.myworkdayjobs.com/wday/cxs/salesforce/External_Career_Site/jobs (unverified),ok
 Coinbase,https://www.coinbase.com/careers/positions,https://boards-api.greenhouse.io/v1/boards/coinbase/jobs?content=true,ok
 Snowflake,https://careers.snowflake.com/us/en/search-results,https://api.ashbyhq.com/posting-api/job-board/snowflake,ok
@@ -53,17 +53,17 @@ Datadog,https://careers.datadoghq.com/all-jobs/,https://boards-api.greenhouse.io
 Cloudflare,https://www.cloudflare.com/careers/jobs/,https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs?content=true,ok
 Uber,https://www.uber.com/us/en/careers/list/,"https://iaziqy.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_1,limit=100,offset=0,keyword=intern",ok
 Airbnb,https://careers.airbnb.com/,https://boards-api.greenhouse.io/v1/boards/airbnb/jobs?content=true,ok
-Broadcom,https://broadcom.wd1.myworkdayjobs.com/External_Career,https://broadcom.wd1.myworkdayjobs.com/wday/cxs/broadcom/External_Career/jobs (unverified),dead
+Broadcom,https://broadcom.wd1.myworkdayjobs.com/External_Career,https://broadcom.wd1.myworkdayjobs.com/wday/cxs/broadcom/External_Career/jobs (unverified),ok
 AMD,https://careers.amd.com/careers-home/,none found,skipped
 Qualcomm,https://qualcomm.wd5.myworkdayjobs.com/External,https://qualcomm.wd5.myworkdayjobs.com/wday/cxs/qualcomm/External/jobs (unverified),dead
-Intel,https://intel.wd1.myworkdayjobs.com/External,https://intel.wd1.myworkdayjobs.com/wday/cxs/intel/External/jobs (unverified),dead
+Intel,https://intel.wd1.myworkdayjobs.com/External,https://intel.wd1.myworkdayjobs.com/wday/cxs/intel/External/jobs (unverified),ok
 TSMC,https://careers.tsmc.com/en_US/careers/SearchJobs,none found,skipped
 ASML,https://careers.smartrecruiters.com/ASML1,https://api.smartrecruiters.com/v1/companies/ASML1/postings,ok
 Waymo,https://job-boards.greenhouse.io/waymo,https://boards-api.greenhouse.io/v1/boards/waymo/jobs?content=true,ok
 Spotify,https://www.lifeatspotify.com/jobs,https://api.lever.co/v0/postings/spotify?mode=json,ok
 Shopify,https://www.shopify.com/careers,none found,skipped
 Block,https://block.xyz/careers/jobs,https://api.smartrecruiters.com/v1/companies/Square/postings,ok
-PayPal,https://careers.pypl.com/home/,https://paypal.wd1.myworkdayjobs.com/wday/cxs/paypal/jobs/jobs (unverified),dead
+PayPal,https://careers.pypl.com/home/,https://paypal.wd1.myworkdayjobs.com/wday/cxs/paypal/jobs/jobs (unverified),ok
 Robinhood,https://careers.robinhood.com/,https://boards-api.greenhouse.io/v1/boards/robinhood/jobs?content=true,ok
 Plaid,https://plaid.com/careers/ (https://jobs.ashbyhq.com/plaid),https://api.ashbyhq.com/posting-api/job-board/plaid,ok
 Brex,https://job-boards.greenhouse.io/brex,https://boards-api.greenhouse.io/v1/boards/brex/jobs?content=true,ok
@@ -78,13 +78,13 @@ Airtable,https://job-boards.greenhouse.io/airtable,https://boards-api.greenhouse
 Discord,https://job-boards.greenhouse.io/discord,https://boards-api.greenhouse.io/v1/boards/discord/jobs?content=true,ok
 Reddit,https://www.redditinc.com/careers,https://boards-api.greenhouse.io/v1/boards/reddit/jobs?content=true,ok
 Pinterest,https://www.pinterestcareers.com/jobs/,https://boards-api.greenhouse.io/v1/boards/pinterest/jobs?content=true,ok
-Snap,https://careers.snap.com/jobs,https://snapchat.wd1.myworkdayjobs.com/wday/cxs/snapchat/snap/jobs (unverified),dead
+Snap,https://careers.snap.com/jobs,https://snapchat.wd1.myworkdayjobs.com/wday/cxs/snapchat/snap/jobs (unverified),ok
 Roblox,https://careers.roblox.com/jobs,https://boards-api.greenhouse.io/v1/boards/roblox/jobs?content=true,ok
-Unity,https://job-boards.greenhouse.io/unity3d,https://unitytech.wd1.myworkdayjobs.com/wday/cxs/unitytech/Unity/jobs,dead
+Unity,https://job-boards.greenhouse.io/unity3d,https://unitytech.wd1.myworkdayjobs.com/wday/cxs/unitytech/Unity/jobs,ok
 Epic Games,https://www.epicgames.com/site/careers/jobs,https://boards-api.greenhouse.io/v1/boards/epicgames/jobs?content=true,ok
 Riot Games,https://www.riotgames.com/en/work-with-us/jobs,https://boards-api.greenhouse.io/v1/boards/riotgames/jobs?content=true,ok
 ServiceNow,https://careers.smartrecruiters.com/servicenow,https://api.smartrecruiters.com/v1/companies/servicenow/postings,ok
-Workday,https://workday.wd5.myworkdayjobs.com/Workday,https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday/jobs (unverified),dead
+Workday,https://workday.wd5.myworkdayjobs.com/Workday,https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday/jobs (unverified),ok
 Atlassian,https://www.atlassian.com/company/careers/all-jobs,none found,skipped
 Intuit,https://jobs.intuit.com/search-jobs,none found,skipped
 Oracle,https://careers.oracle.com/en/sites/jobsearch/jobs,"https://eeho.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_45001,limit=100,offset=0,keyword=intern",ok
@@ -98,7 +98,7 @@ MongoDB,https://www.mongodb.com/careers,https://boards-api.greenhouse.io/v1/boar
 Confluent,https://jobs.ashbyhq.com/confluent,https://api.ashbyhq.com/posting-api/job-board/confluent,ok
 GitHub,https://www.github.careers/careers-home/jobs,none found,skipped
 GitLab,https://job-boards.greenhouse.io/gitlab,https://boards-api.greenhouse.io/v1/boards/gitlab/jobs?content=true,ok
-CrowdStrike,https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers,https://crowdstrike.wd5.myworkdayjobs.com/wday/cxs/crowdstrike/crowdstrikecareers/jobs (unverified),dead
+CrowdStrike,https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers,https://crowdstrike.wd5.myworkdayjobs.com/wday/cxs/crowdstrike/crowdstrikecareers/jobs (unverified),ok
 Palo Alto Networks,https://jobs.smartrecruiters.com/PaloAltoNetworks2,https://api.smartrecruiters.com/v1/companies/PaloAltoNetworks2/postings,ok
 Zscaler,https://www.zscaler.com/careers/search,https://boards-api.greenhouse.io/v1/boards/zscaler/jobs?content=true,ok
 Okta,https://boards.greenhouse.io/okta,https://boards-api.greenhouse.io/v1/boards/okta/jobs?content=true,ok
@@ -120,20 +120,20 @@ Runway,https://job-boards.greenhouse.io/runwayml,https://boards-api.greenhouse.i
 Midjourney,https://midjourney.breezy.hr/,https://api.ashbyhq.com/posting-api/job-board/midjourney?includeCompensation=true,ok
 Suno,https://jobs.ashbyhq.com/suno,https://api.ashbyhq.com/posting-api/job-board/suno,ok
 Synopsys,https://careers.synopsys.com/ (https://synopsys.avature.net/careers/SearchJobs),none found,skipped
-Cadence,https://cadence.wd1.myworkdayjobs.com/External_Careers,https://cadence.wd1.myworkdayjobs.com/wday/cxs/cadence/External_Careers/jobs (unverified),dead
-Applied Materials,https://amat.wd1.myworkdayjobs.com/External,https://amat.wd1.myworkdayjobs.com/wday/cxs/amat/External/jobs (unverified),dead
+Cadence,https://cadence.wd1.myworkdayjobs.com/External_Careers,https://cadence.wd1.myworkdayjobs.com/wday/cxs/cadence/External_Careers/jobs (unverified),ok
+Applied Materials,https://amat.wd1.myworkdayjobs.com/External,https://amat.wd1.myworkdayjobs.com/wday/cxs/amat/External/jobs (unverified),ok
 Lam Research,https://careers.lamresearch.com/careers,none found,skipped
-KLA,https://kla.wd1.myworkdayjobs.com/Search,https://kla.wd1.myworkdayjobs.com/wday/cxs/kla/Search/jobs (unverified),dead
+KLA,https://kla.wd1.myworkdayjobs.com/Search,https://kla.wd1.myworkdayjobs.com/wday/cxs/kla/Search/jobs (unverified),ok
 ARM,https://careers.arm.com/,none found,skipped
 Texas Instruments,https://careers.ti.com/en/sites/CX/jobs,"https://edbz.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX,limit=100,offset=0,keyword=intern",ok
-Micron,https://micron.wd1.myworkdayjobs.com/External,https://micron.wd1.myworkdayjobs.com/wday/cxs/micron/External/jobs (unverified),dead
-Marvell,https://marvell.wd1.myworkdayjobs.com/MarvellCareers,https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers/jobs (unverified),dead
+Micron,https://micron.wd1.myworkdayjobs.com/External,https://micron.wd1.myworkdayjobs.com/wday/cxs/micron/External/jobs (unverified),ok
+Marvell,https://marvell.wd1.myworkdayjobs.com/MarvellCareers,https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers/jobs (unverified),ok
 Visa,https://careers.smartrecruiters.com/visa,https://api.smartrecruiters.com/v1/companies/visa/postings ; https://visa.wd5.myworkdayjobs.com/wday/cxs/visa/Visa/jobs (unverified),ok
-Mastercard,https://mastercard.wd1.myworkdayjobs.com/CorporateCareers,https://mastercard.wd1.myworkdayjobs.com/wday/cxs/mastercard/CorporateCareers/jobs (unverified),dead
+Mastercard,https://mastercard.wd1.myworkdayjobs.com/CorporateCareers,https://mastercard.wd1.myworkdayjobs.com/wday/cxs/mastercard/CorporateCareers/jobs (unverified),ok
 Capital One,https://www.capitalonecareers.com/search-jobs,https://capitalone.wd12.myworkdayjobs.com/wday/cxs/capitalone/Capital_One/jobs (unverified),ok
 Goldman Sachs,https://higher.gs.com/,none found,skipped
 JPMorgan Chase,https://careers.jpmorgan.com/us/en/search-jobs,"https://jpmc.fa.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_1001,limit=100,offset=0,keyword=intern",ok
-Morgan Stanley,https://www.morganstanley.com/careers/career-opportunities-search,https://ms.wd5.myworkdayjobs.com/wday/cxs/ms/External/jobs (unverified),dead
+Morgan Stanley,https://www.morganstanley.com/careers/career-opportunities-search,https://ms.wd5.myworkdayjobs.com/wday/cxs/ms/External/jobs (unverified),ok
 American Express,https://aexp.eightfold.ai/careers,"https://egug.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_1,limit=100,offset=0,keyword=intern",ok
 Fidelity Investments,https://jobs.fidelity.com/en/jobs/,none found,skipped
 Renaissance Technologies,https://www.rentec.com/Careers.action?jobs=true,none found,skipped
@@ -145,24 +145,24 @@ Virtu Financial,https://job-boards.greenhouse.io/virtu,https://boards-api.greenh
 Akuna Capital,https://akunacapital.com/careers/,https://boards-api.greenhouse.io/v1/boards/akunacapital/jobs?content=true,ok
 Marshall Wace,https://job-boards.greenhouse.io/marshallwace,https://boards-api.greenhouse.io/v1/boards/marshallwace/jobs?content=true,ok
 AQR Capital,https://boards.greenhouse.io/aqr,https://boards-api.greenhouse.io/v1/boards/aqr/jobs?content=true,ok
-Boston Dynamics,https://bostondynamics.com/careers/,https://bostondynamics.wd1.myworkdayjobs.com/wday/cxs/bostondynamics/Boston_Dynamics/jobs (unverified),dead
+Boston Dynamics,https://bostondynamics.com/careers/,https://bostondynamics.wd1.myworkdayjobs.com/wday/cxs/bostondynamics/Boston_Dynamics/jobs (unverified),ok
 Figure AI,https://job-boards.greenhouse.io/figureai,https://boards-api.greenhouse.io/v1/boards/figureai/jobs?content=true,ok
 Physical Intelligence,https://jobs.ashbyhq.com/physicalintelligence,https://api.ashbyhq.com/posting-api/job-board/physicalintelligence,ok
 Skydio,https://www.skydio.com/careers,https://api.ashbyhq.com/posting-api/job-board/skydio?includeCompensation=true,ok
 Shield AI,https://jobs.lever.co/shieldai,https://api.lever.co/v0/postings/shieldai?mode=json,ok
 Applied Intuition,https://job-boards.greenhouse.io/appliedintuition,https://api.ashbyhq.com/posting-api/job-board/applied?includeCompensation=true,ok
 Zipline,https://flyzipline.com/careers/,https://boards-api.greenhouse.io/v1/boards/flyzipline/jobs?content=true,ok
-Blue Origin,https://www.blueorigin.com/careers/search,https://blueorigin.wd5.myworkdayjobs.com/wday/cxs/blueorigin/BlueOrigin/jobs (unverified),dead
+Blue Origin,https://www.blueorigin.com/careers/search,https://blueorigin.wd5.myworkdayjobs.com/wday/cxs/blueorigin/BlueOrigin/jobs (unverified),ok
 Rocket Lab,https://job-boards.greenhouse.io/rocketlab,https://boards-api.greenhouse.io/v1/boards/rocketlab/jobs?content=true,ok
 Relativity Space,https://www.relativityspace.com/careers,https://boards-api.greenhouse.io/v1/boards/relativity/jobs?content=true,ok
 Rivian,https://careers.rivian.com/,none found,skipped
 Cruise,https://getcruise.com/careers,none found,skipped
 Zoox,https://zoox.com/careers,https://api.lever.co/v0/postings/zoox?mode=json,ok
 Aurora,https://job-boards.greenhouse.io/aurorainnovation,https://boards-api.greenhouse.io/v1/boards/aurorainnovation/jobs?content=true,ok
-Samsung,https://sec.wd3.myworkdayjobs.com/Samsung_Jobs,https://sec.wd3.myworkdayjobs.com/wday/cxs/sec/Samsung_Jobs/jobs (unverified),dead
-Sony,https://www.sonyjobs.com/find-a-job.html,https://sonyglobal.wd1.myworkdayjobs.com/wday/cxs/sonyglobal/SonyGlobalCareers/jobs,dead
+Samsung,https://sec.wd3.myworkdayjobs.com/Samsung_Jobs,https://sec.wd3.myworkdayjobs.com/wday/cxs/sec/Samsung_Jobs/jobs (unverified),ok
+Sony,https://www.sonyjobs.com/find-a-job.html,https://sonyglobal.wd1.myworkdayjobs.com/wday/cxs/sonyglobal/SonyGlobalCareers/jobs,ok
 ByteDance,https://jobs.bytedance.com/en/position,none found,skipped
-Tencent,https://careers.tencent.com/en-us/search.html,https://tencent.wd1.myworkdayjobs.com/wday/cxs/tencent/Tencent_Careers/jobs (unverified),dead
+Tencent,https://careers.tencent.com/en-us/search.html,https://tencent.wd1.myworkdayjobs.com/wday/cxs/tencent/Tencent_Careers/jobs (unverified),ok
 Alibaba,https://careers.alibaba.com/,none found,skipped
 Sea Limited,https://career.sea.com/jobs,none found,skipped
 Nubank,https://job-boards.greenhouse.io/nubank,https://boards-api.greenhouse.io/v1/boards/nubank/jobs?content=true,ok
@@ -195,32 +195,32 @@ Etched,https://www.etched.com/careers (https://jobs.ashbyhq.com/Etched),https://
 Lightmatter,https://job-boards.greenhouse.io/lightmatter,https://boards-api.greenhouse.io/v1/boards/lightmatter/jobs?content=true,ok
 d-Matrix,https://www.d-matrix.ai/careers/,https://api.ashbyhq.com/posting-api/job-board/d-Matrix,ok
 Rivos,https://jobs.lever.co/rivosinc,https://api.lever.co/v0/postings/rivosinc?mode=json (dead),dead
-Cisco,https://jobs.cisco.com/jobs/SearchJobs,https://cisco.wd5.myworkdayjobs.com/wday/cxs/cisco/Cisco_Careers/jobs,dead
-Analog Devices,https://analogdevices.wd1.myworkdayjobs.com/External,https://analogdevices.wd1.myworkdayjobs.com/wday/cxs/analogdevices/External/jobs (unverified),dead
-NXP Semiconductors,https://nxp.wd3.myworkdayjobs.com/careers,https://nxp.wd3.myworkdayjobs.com/wday/cxs/nxp/careers/jobs (unverified),dead
+Cisco,https://jobs.cisco.com/jobs/SearchJobs,https://cisco.wd5.myworkdayjobs.com/wday/cxs/cisco/Cisco_Careers/jobs,ok
+Analog Devices,https://analogdevices.wd1.myworkdayjobs.com/External,https://analogdevices.wd1.myworkdayjobs.com/wday/cxs/analogdevices/External/jobs (unverified),ok
+NXP Semiconductors,https://nxp.wd3.myworkdayjobs.com/careers,https://nxp.wd3.myworkdayjobs.com/wday/cxs/nxp/careers/jobs (unverified),ok
 Infineon,https://jobs.infineon.com/careers,https://jobs.infineon.com/api/pcsx/search?domain=infineon.com&query=intern&start=0&num=100,ok
 STMicroelectronics,https://stmicroelectronics.eightfold.ai/careers,https://stmicroelectronics.eightfold.ai/api/apply/v2/jobs?domain=stmicroelectronics.com&start=0&num=100&query=intern&sort_by=relevance,ok
 Siemens EDA,https://jobs.sw.siemens.com/business-structure/eda/jobs/,none found,skipped
-GlobalFoundries,https://globalfoundries.wd1.myworkdayjobs.com/External,https://globalfoundries.wd1.myworkdayjobs.com/wday/cxs/globalfoundries/External/jobs (unverified),dead
-Microchip Technology,https://microchiphr.wd5.myworkdayjobs.com/External,https://microchiphr.wd5.myworkdayjobs.com/wday/cxs/microchiphr/External/jobs (unverified),dead
+GlobalFoundries,https://globalfoundries.wd1.myworkdayjobs.com/External,https://globalfoundries.wd1.myworkdayjobs.com/wday/cxs/globalfoundries/External/jobs (unverified),ok
+Microchip Technology,https://microchiphr.wd5.myworkdayjobs.com/External,https://microchiphr.wd5.myworkdayjobs.com/wday/cxs/microchiphr/External/jobs (unverified),ok
 Renesas,https://jobs.renesas.com/jobs,https://api.smartrecruiters.com/v1/companies/renesaselectronics/postings,ok
 Skyworks,https://careers.skyworksinc.com/viewalljobs/,none found,skipped
 Qorvo,https://careers.qorvo.com/,none found,skipped
 Lattice Semiconductor,https://careers-latticesemi.icims.com/,none found,skipped
-Dell Technologies,https://dell.wd1.myworkdayjobs.com/External,https://dell.wd1.myworkdayjobs.com/wday/cxs/dell/External/jobs (unverified),dead
-HP,https://hp.wd5.myworkdayjobs.com/ExternalCareerSite,https://hp.wd5.myworkdayjobs.com/wday/cxs/hp/ExternalCareerSite/jobs (unverified),dead
-Hewlett Packard Enterprise,https://hpe.wd5.myworkdayjobs.com/Jobsathpe,https://hpe.wd5.myworkdayjobs.com/wday/cxs/hpe/Jobsathpe/jobs (unverified),dead
+Dell Technologies,https://dell.wd1.myworkdayjobs.com/External,https://dell.wd1.myworkdayjobs.com/wday/cxs/dell/External/jobs (unverified),ok
+HP,https://hp.wd5.myworkdayjobs.com/ExternalCareerSite,https://hp.wd5.myworkdayjobs.com/wday/cxs/hp/ExternalCareerSite/jobs (unverified),ok
+Hewlett Packard Enterprise,https://hpe.wd5.myworkdayjobs.com/Jobsathpe,https://hpe.wd5.myworkdayjobs.com/wday/cxs/hpe/Jobsathpe/jobs (unverified),ok
 VMware,https://vmware.wd1.myworkdayjobs.com/VMware,https://vmware.wd1.myworkdayjobs.com/wday/cxs/vmware/VMware/jobs (unverified),dead
-Autodesk,https://autodesk.wd1.myworkdayjobs.com/Ext,https://autodesk.wd1.myworkdayjobs.com/wday/cxs/autodesk/Ext/jobs (unverified),dead
+Autodesk,https://autodesk.wd1.myworkdayjobs.com/Ext,https://autodesk.wd1.myworkdayjobs.com/wday/cxs/autodesk/Ext/jobs (unverified),ok
 Elastic,https://www.elastic.co/careers,https://boards-api.greenhouse.io/v1/boards/elastic/jobs?content=true,ok
-Zoom,https://careers.zoom.us/,https://zoom.wd5.myworkdayjobs.com/wday/cxs/zoom/Zoom/jobs (unverified),dead
+Zoom,https://careers.zoom.us/,https://zoom.wd5.myworkdayjobs.com/wday/cxs/zoom/Zoom/jobs (unverified),ok
 DocuSign,https://careers.docusign.com/jobs,none found,skipped
 Dropbox,https://job-boards.greenhouse.io/dropbox,https://boards-api.greenhouse.io/v1/boards/dropbox/jobs?content=true,ok
 Box,https://job-boards.greenhouse.io/boxinc,https://boards-api.greenhouse.io/v1/boards/boxinc/jobs?content=true,ok
 Asana,https://asana.com/jobs/all,https://boards-api.greenhouse.io/v1/boards/asana/jobs?content=true,ok
 Twitch,https://job-boards.greenhouse.io/twitch,https://boards-api.greenhouse.io/v1/boards/twitch/jobs?content=true,ok
 HubSpot,https://job-boards.greenhouse.io/hubspotjobs,https://boards-api.greenhouse.io/v1/boards/hubspotjobs/jobs?content=true,ok
-Zendesk,https://zendesk.wd1.myworkdayjobs.com/zendesk,https://zendesk.wd1.myworkdayjobs.com/wday/cxs/zendesk/zendesk/jobs (unverified),dead
+Zendesk,https://zendesk.wd1.myworkdayjobs.com/zendesk,https://zendesk.wd1.myworkdayjobs.com/wday/cxs/zendesk/zendesk/jobs (unverified),ok
 Splunk,https://www.splunk.com/en_us/careers.html,none found,skipped
 Akamai,https://jobs.akamai.com/en/sites/CX_1/jobs,"https://fa-extu-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_1,limit=100,offset=0,keyword=intern",ok
 Fastly,https://www.fastly.com/about/careers,https://boards-api.greenhouse.io/v1/boards/fastly/jobs?content=true,ok
@@ -228,10 +228,10 @@ DigitalOcean,https://boards.greenhouse.io/digitalocean98,https://boards-api.gree
 Fortinet,https://www.fortinet.com/corporate/careers,"https://edel.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder=findReqs;siteNumber=CX_2001,limit=100,offset=0,keyword=intern",ok
 SentinelOne,https://www.sentinelone.com/jobs/,https://boards-api.greenhouse.io/v1/boards/sentinellabs/jobs?content=true,ok
 Tenable,https://job-boards.greenhouse.io/tenableinc,https://boards-api.greenhouse.io/v1/boards/tenableinc/jobs?content=true,ok
-Rapid7,https://mymoose.wd1.myworkdayjobs.com/careers,https://mymoose.wd1.myworkdayjobs.com/wday/cxs/mymoose/careers/jobs (unverified),dead
+Rapid7,https://mymoose.wd1.myworkdayjobs.com/careers,https://mymoose.wd1.myworkdayjobs.com/wday/cxs/mymoose/careers/jobs (unverified),ok
 Netskope,https://www.netskope.com/careers,https://boards-api.greenhouse.io/v1/boards/Netskope/jobs?content=true,ok
 Sysdig,https://jobs.lever.co/sysdig,https://api.lever.co/v0/postings/sysdig?mode=json,ok
-Arctic Wolf,https://arcticwolf.wd1.myworkdayjobs.com/External,https://arcticwolf.wd1.myworkdayjobs.com/wday/cxs/arcticwolf/External/jobs (unverified),dead
+Arctic Wolf,https://arcticwolf.wd1.myworkdayjobs.com/External,https://arcticwolf.wd1.myworkdayjobs.com/wday/cxs/arcticwolf/External/jobs (unverified),ok
 Tanium,https://job-boards.greenhouse.io/tanium,https://boards-api.greenhouse.io/v1/boards/tanium/jobs?content=true,ok
 Arista Networks,https://careers.smartrecruiters.com/aristanetworks,https://api.smartrecruiters.com/v1/companies/aristanetworks/postings,ok
 Juniper Networks,https://careers.hpe.com/juniper,none found,skipped
@@ -243,7 +243,7 @@ Western Digital,https://careers.smartrecruiters.com/westerndigital,https://api.s
 Seagate,https://seagatecareers.com/,none found,skipped
 Nutanix,https://careers.nutanix.com/en/jobs/,none found,skipped
 Teradata,https://careers.teradata.com/jobs,none found,skipped
-Cloudera,https://cloudera.wd5.myworkdayjobs.com/External_Career,https://cloudera.wd5.myworkdayjobs.com/wday/cxs/cloudera/External_Career/jobs (unverified),dead
+Cloudera,https://cloudera.wd5.myworkdayjobs.com/External_Career,https://cloudera.wd5.myworkdayjobs.com/wday/cxs/cloudera/External_Career/jobs (unverified),ok
 Dynatrace,https://www.dynatrace.com/careers/jobs/,https://api.smartrecruiters.com/v1/companies/Dynatrace1/postings,ok
 New Relic,https://job-boards.greenhouse.io/newrelic,https://boards-api.greenhouse.io/v1/boards/newrelic/jobs?content=true,ok
 PagerDuty,https://job-boards.greenhouse.io/pagerduty,https://boards-api.greenhouse.io/v1/boards/pagerduty/jobs?content=true,ok
@@ -260,9 +260,9 @@ Melio,https://careers.meliopayments.com/,https://boards-api.greenhouse.io/v1/boa
 Coupa,https://jobs.lever.co/coupa,https://api.lever.co/v0/postings/coupa?mode=json,ok
 Anaplan,https://job-boards.greenhouse.io/anaplan,https://boards-api.greenhouse.io/v1/boards/anaplan/jobs?content=true,ok
 Smartsheet,https://job-boards.greenhouse.io/smartsheet,https://boards-api.greenhouse.io/v1/boards/smartsheet/jobs?content=true,ok
-RingCentral,https://ringcentral.wd1.myworkdayjobs.com/RingCentral_Careers,https://ringcentral.wd1.myworkdayjobs.com/wday/cxs/ringcentral/RingCentral_Careers/jobs (unverified),dead
+RingCentral,https://ringcentral.wd1.myworkdayjobs.com/RingCentral_Careers,https://ringcentral.wd1.myworkdayjobs.com/wday/cxs/ringcentral/RingCentral_Careers/jobs (unverified),ok
 Five9,https://job-boards.greenhouse.io/five9,https://boards-api.greenhouse.io/v1/boards/five9/jobs?content=true,ok
-Sprinklr,https://sprinklr.wd1.myworkdayjobs.com/careers,https://sprinklr.wd1.myworkdayjobs.com/wday/cxs/sprinklr/careers/jobs (unverified),dead
+Sprinklr,https://sprinklr.wd1.myworkdayjobs.com/careers,https://sprinklr.wd1.myworkdayjobs.com/wday/cxs/sprinklr/careers/jobs (unverified),ok
 Braze,https://job-boards.greenhouse.io/braze,https://boards-api.greenhouse.io/v1/boards/braze/jobs?content=true,ok
 Klaviyo,https://job-boards.greenhouse.io/klaviyojobs,https://boards-api.greenhouse.io/v1/boards/klaviyojobs/jobs?content=true,ok
 Amplitude,https://amplitude.com/careers,https://boards-api.greenhouse.io/v1/boards/amplitude/jobs?content=true,ok
@@ -271,16 +271,16 @@ Squarespace,https://job-boards.greenhouse.io/squarespace,https://boards-api.gree
 Wix,https://job-boards.greenhouse.io/Wizinc,https://boards-api.greenhouse.io/v1/boards/Wizinc/jobs?content=true,ok
 GoDaddy,https://boards.greenhouse.io/godaddy,https://boards-api.greenhouse.io/v1/boards/godaddy/jobs?content=true,ok
 Etsy,https://jobs.smartrecruiters.com/Etsy,https://api.smartrecruiters.com/v1/companies/Etsy/postings,ok
-eBay,https://jobs.ebayinc.com/us/en/search-results,https://ebay.wd5.myworkdayjobs.com/wday/cxs/ebay/apply/jobs,dead
+eBay,https://jobs.ebayinc.com/us/en/search-results,https://ebay.wd5.myworkdayjobs.com/wday/cxs/ebay/apply/jobs,ok
 Booking.com,https://careers.smartrecruiters.com/Bookingcom1,https://api.smartrecruiters.com/v1/companies/Bookingcom1/postings,ok
 Expedia,https://careers.expediagroup.com/jobs,https://expedia.wd108.myworkdayjobs.com/wday/cxs/expedia/search/jobs (unverified),ok
 Tripadvisor,https://careers.tripadvisor.com/all-jobs,https://boards-api.greenhouse.io/v1/boards/tripadvisor/jobs?content=true,ok
 Yelp,https://www.yelp.careers/us/en/search-results,none found,skipped
-Zillow,https://zillow.wd5.myworkdayjobs.com/Zillow_Group_External,https://zillow.wd5.myworkdayjobs.com/wday/cxs/zillow/Zillow_Group_External/jobs (unverified),dead
+Zillow,https://zillow.wd5.myworkdayjobs.com/Zillow_Group_External,https://zillow.wd5.myworkdayjobs.com/wday/cxs/zillow/Zillow_Group_External/jobs (unverified),ok
 Redfin,https://careers.redfin.com/us/en,none found,skipped
 Opendoor,https://job-boards.greenhouse.io/opendoor,https://boards-api.greenhouse.io/v1/boards/opendoor/jobs?content=true (dead),dead
 Carvana,https://boards.greenhouse.io/carvana,https://boards-api.greenhouse.io/v1/boards/carvana/jobs?content=true,ok
-Chewy,https://careers.chewy.com/us/en/c/technology-jobs,https://chewy.wd5.myworkdayjobs.com/wday/cxs/chewy/External/jobs,dead
+Chewy,https://careers.chewy.com/us/en/c/technology-jobs,https://chewy.wd5.myworkdayjobs.com/wday/cxs/chewy/External/jobs,ok
 Wayfair,https://www.wayfair.com/careers/jobs,none found,skipped
 Peloton,https://boards.greenhouse.io/peloton,https://boards-api.greenhouse.io/v1/boards/peloton/jobs?content=true,ok
 Adyen,https://careers.adyen.com/vacancies,https://boards-api.greenhouse.io/v1/boards/adyen/jobs?content=true,ok
@@ -293,7 +293,7 @@ Revolut,https://www.revolut.com/en-US/careers/,none found,skipped
 Klarna,https://jobs.deel.com/job-boards/klarna,none found,skipped
 Gemini,https://job-boards.greenhouse.io/gemini,https://boards-api.greenhouse.io/v1/boards/gemini/jobs?content=true,ok
 Kraken,https://www.kraken.com/careers,https://api.ashbyhq.com/posting-api/job-board/kraken.com,ok
-Circle,https://careers.circle.com/us/en/search-results,https://circle.wd1.myworkdayjobs.com/wday/cxs/circle/Circle/jobs,dead
+Circle,https://careers.circle.com/us/en/search-results,https://circle.wd1.myworkdayjobs.com/wday/cxs/circle/Circle/jobs,ok
 Ripple,https://ripple.com/careers/all-jobs/,https://boards-api.greenhouse.io/v1/boards/ripple/jobs?content=true,ok
 Chainalysis,https://jobs.ashbyhq.com/chainalysis-careers,https://api.ashbyhq.com/posting-api/job-board/chainalysis-careers,ok
 Fireblocks,https://job-boards.greenhouse.io/fireblocks,https://boards-api.greenhouse.io/v1/boards/fireblocks/jobs?content=true,ok
@@ -362,7 +362,7 @@ Flow Traders,https://job-boards.greenhouse.io/flowtraders,https://boards-api.gre
 Squarepoint Capital,https://www.squarepoint-capital.com/open-opportunities,https://boards-api.greenhouse.io/v1/boards/squarepointcapital/jobs?content=true,ok
 Headlands Technologies,https://job-boards.greenhouse.io/headlandstechnologiesllc,https://boards-api.greenhouse.io/v1/boards/headlandstechnologiesllc/jobs?content=true,ok
 Group One Trading,https://group1.applicantpro.com/jobs/,none found,skipped
-PEAK6,https://peak6group.wd1.myworkdayjobs.com/apexfintechsolutions,https://peak6group.wd1.myworkdayjobs.com/wday/cxs/peak6group/apexfintechsolutions/jobs (unverified),dead
+PEAK6,https://peak6group.wd1.myworkdayjobs.com/apexfintechsolutions,https://peak6group.wd1.myworkdayjobs.com/wday/cxs/peak6group/apexfintechsolutions/jobs (unverified),ok
 Maven Securities,https://job-boards.greenhouse.io/mavensecuritiesholdingltd,https://boards-api.greenhouse.io/v1/boards/mavensecuritiesholdingltd/jobs?content=true,ok
 Quadrature Capital,https://quadrature.ai/careers/,https://boards-api.greenhouse.io/v1/boards/quadraturecapital/jobs?content=true,ok
 G-Research,https://www.gresearch.com/vacancies/,none found,skipped
@@ -394,15 +394,15 @@ Rockstar Games,https://job-boards.greenhouse.io/rockstargames,https://boards-api
 Bungie,https://careers.bungie.com/jobs,https://boards-api.greenhouse.io/v1/boards/bungie/jobs?content=true,ok
 Naughty Dog,https://www.naughtydog.com/openings,https://boards-api.greenhouse.io/v1/boards/naughtydog/jobs?content=true,ok
 Disney,https://jobs.disneycareers.com/technology,none found,skipped
-Warner Bros Discovery,https://careers.wbd.com/,https://warnerbros.wd5.myworkdayjobs.com/wday/cxs/warnerbros/global/jobs (unverified),dead
+Warner Bros Discovery,https://careers.wbd.com/,https://warnerbros.wd5.myworkdayjobs.com/wday/cxs/warnerbros/global/jobs (unverified),ok
 Roku,https://www.weareroku.com/,https://boards-api.greenhouse.io/v1/boards/roku/jobs?content=true,ok
-Tempus,https://tempus.wd5.myworkdayjobs.com/Tempus_Careers,https://tempus.wd5.myworkdayjobs.com/wday/cxs/tempus/Tempus_Careers/jobs (unverified),dead
-Verily,https://verily.com/careers,https://verily.wd1.myworkdayjobs.com/wday/cxs/verily/Verily_Careers/jobs (unverified),dead
+Tempus,https://tempus.wd5.myworkdayjobs.com/Tempus_Careers,https://tempus.wd5.myworkdayjobs.com/wday/cxs/tempus/Tempus_Careers/jobs (unverified),ok
+Verily,https://verily.com/careers,https://verily.wd1.myworkdayjobs.com/wday/cxs/verily/Verily_Careers/jobs (unverified),ok
 Flatiron Health,https://flatiron.com/careers/open-positions,https://boards-api.greenhouse.io/v1/boards/flatironhealth/jobs?content=true,ok
 Benchling,https://jobs.ashbyhq.com/benchling,https://api.ashbyhq.com/posting-api/job-board/benchling,ok
 Color Health,https://www.color.com/careers,none found,skipped
 Komodo Health,https://job-boards.greenhouse.io/komodohealth,https://boards-api.greenhouse.io/v1/boards/komodohealth/jobs?content=true,ok
-Devoted Health,https://devoted.wd1.myworkdayjobs.com/Devoted,https://devoted.wd1.myworkdayjobs.com/wday/cxs/devoted/Devoted/jobs (unverified),dead
+Devoted Health,https://devoted.wd1.myworkdayjobs.com/Devoted,https://devoted.wd1.myworkdayjobs.com/wday/cxs/devoted/Devoted/jobs (unverified),ok
 Oscar Health,https://boards.greenhouse.io/oscar,https://boards-api.greenhouse.io/v1/boards/oscar/jobs?content=true,ok
 Cedar,https://www.cedar.com/careers,https://boards-api.greenhouse.io/v1/boards/careportalinc/jobs?content=true,ok
 Ro,https://jobs.lever.co/ro,https://api.lever.co/v0/postings/ro?mode=json,ok
@@ -416,8 +416,8 @@ Epic Systems,https://careers.epic.com/jobs/,none found,skipped
 Oracle Health,https://www.oracle.com/careers/opportunities/health-careers/,none found,skipped
 Veeva Systems,https://jobs.lever.co/veeva,https://api.lever.co/v0/postings/veeva?mode=json,ok
 Doximity,https://workat.doximity.com/positions,https://boards-api.greenhouse.io/v1/boards/doximity/jobs?content=true,ok
-GoodRx,https://goodrx.wd1.myworkdayjobs.com/Careers,https://goodrx.wd1.myworkdayjobs.com/wday/cxs/goodrx/Careers/jobs (unverified),dead
-Illumina,https://illumina.wd1.myworkdayjobs.com/illumina-careers,https://illumina.wd1.myworkdayjobs.com/wday/cxs/illumina/illumina-careers/jobs (unverified),dead
+GoodRx,https://goodrx.wd1.myworkdayjobs.com/Careers,https://goodrx.wd1.myworkdayjobs.com/wday/cxs/goodrx/Careers/jobs (unverified),ok
+Illumina,https://illumina.wd1.myworkdayjobs.com/illumina-careers,https://illumina.wd1.myworkdayjobs.com/wday/cxs/illumina/illumina-careers/jobs (unverified),ok
 Recursion Pharmaceuticals,https://www.recursion.com/careers,https://boards-api.greenhouse.io/v1/boards/recursionpharmaceuticals/jobs?content=true,ok
 Insitro,https://jobs.ashbyhq.com/insitro,https://api.ashbyhq.com/posting-api/job-board/insitro,ok
 Isomorphic Labs,https://job-boards.greenhouse.io/isomorphiclabs,https://boards-api.greenhouse.io/v1/boards/isomorphiclabs/jobs?content=true,ok
@@ -427,7 +427,7 @@ JD.com,https://corporate.jd.com/careers,https://jd.wd103.myworkdayjobs.com/wday/
 Shein,https://careers.shein.com/All-Jobs,none found,skipped
 Grab,https://careers.smartrecruiters.com/Grab,https://api.smartrecruiters.com/v1/companies/Grab/postings ; https://grab.wd3.myworkdayjobs.com/wday/cxs/grab/Careers/jobs (unverified),ok
 Gojek,https://jobs.lever.co/GoToGroup,https://api.lever.co/v0/postings/GoToGroup?mode=json,ok
-Rakuten,https://rakuten.wd1.myworkdayjobs.com/RakutenInc,https://rakuten.wd1.myworkdayjobs.com/wday/cxs/rakuten/RakutenInc/jobs (unverified),dead
+Rakuten,https://rakuten.wd1.myworkdayjobs.com/RakutenInc,https://rakuten.wd1.myworkdayjobs.com/wday/cxs/rakuten/RakutenInc/jobs (unverified),ok
 LINE,https://careers.linecorp.com/jobs,none found,skipped
 Naver,https://recruit.navercorp.com/index.jsp?lang=en,none found,skipped
 DeepSeek,https://www.deepseek.com/,none found,skipped
@@ -436,11 +436,11 @@ Faire,https://job-boards.greenhouse.io/faire,https://boards-api.greenhouse.io/v1
 Whatnot,https://jobs.ashbyhq.com/whatnot,https://api.ashbyhq.com/posting-api/job-board/whatnot (dead),dead
 StockX,https://job-boards.greenhouse.io/stockx,https://boards-api.greenhouse.io/v1/boards/stockx/jobs?content=true,ok
 Mercari,https://job-boards.greenhouse.io/mercari,https://boards-api.greenhouse.io/v1/boards/mercari/jobs?content=true,ok
-Logitech,https://logitech.wd5.myworkdayjobs.com/Logitech,https://logitech.wd5.myworkdayjobs.com/wday/cxs/logitech/Logitech/jobs (unverified),dead
-Sonos,https://sonos.wd1.myworkdayjobs.com/Sonos,https://sonos.wd1.myworkdayjobs.com/wday/cxs/sonos/Sonos/jobs (unverified),dead
+Logitech,https://logitech.wd5.myworkdayjobs.com/Logitech,https://logitech.wd5.myworkdayjobs.com/wday/cxs/logitech/Logitech/jobs (unverified),ok
+Sonos,https://sonos.wd1.myworkdayjobs.com/Sonos,https://sonos.wd1.myworkdayjobs.com/wday/cxs/sonos/Sonos/jobs (unverified),ok
 Garmin,https://careers.garmin.com/jobs,none found,skipped
 GoPro,https://jobs.gopro.com/en/us,https://boards-api.greenhouse.io/v1/boards/goprocareers/jobs?content=true,ok
-Dyson,https://dyson.wd3.myworkdayjobs.com/dyson_careers,https://dyson.wd3.myworkdayjobs.com/wday/cxs/dyson/dyson_careers/jobs (unverified),dead
+Dyson,https://dyson.wd3.myworkdayjobs.com/dyson_careers,https://dyson.wd3.myworkdayjobs.com/wday/cxs/dyson/dyson_careers/jobs (unverified),ok
 Quantlab,https://www.quantlab.com/careers,none found,skipped
 Radix Trading,https://job-boards.greenhouse.io/radixexperienced,https://boards-api.greenhouse.io/v1/boards/radixexperienced/jobs?content=true ; https://boards-api.greenhouse.io/v1/boards/radixuniversity/jobs?content=true,ok
 Cubist Systematic Strategies,https://careers.point72.com/,none found (Cubist posts on Point72 Greenhouse board; no separate Cubist board),skipped
@@ -454,7 +454,7 @@ Clay,https://jobs.ashbyhq.com/claylabs,https://api.ashbyhq.com/posting-api/job-b
 Hebbia,https://careers.hebbia.ai/,https://api.ashbyhq.com/posting-api/job-board/hebbia-ai ; https://boards-api.greenhouse.io/v1/boards/hebbia/jobs?content=true (dead),ok
 Cartesia,https://jobs.ashbyhq.com/cartesia,https://api.ashbyhq.com/posting-api/job-board/cartesia,ok
 Rubrik,https://boards.greenhouse.io/rubrik,https://boards-api.greenhouse.io/v1/boards/rubrik/jobs?content=true,ok
-Cohesity,https://www.cohesity.com/careers/open-positions/,https://cohesity.wd5.myworkdayjobs.com/wday/cxs/cohesity/Cohesity_Careers/jobs,dead
+Cohesity,https://www.cohesity.com/careers/open-positions/,https://cohesity.wd5.myworkdayjobs.com/wday/cxs/cohesity/Cohesity_Careers/jobs,ok
 Veeam,https://careers.veeam.com/search-jobs,https://api.smartrecruiters.com/v1/companies/Veeam2/postings ; https://boards-api.eu.greenhouse.io/v1/boards/veeamsoftware/jobs?content=true (unverified),ok
 Duolingo,https://careers.duolingo.com/,https://boards-api.greenhouse.io/v1/boards/duolingo/jobs?content=true,ok
 Coursera,https://job-boards.greenhouse.io/coursera,https://boards-api.greenhouse.io/v1/boards/coursera/jobs?content=true,ok
@@ -470,7 +470,7 @@ Solana Labs,https://jobs.ashbyhq.com/solanalabs,https://api.ashbyhq.com/posting-
 Phantom,https://jobs.ashbyhq.com/phantom,https://api.ashbyhq.com/posting-api/job-board/phantom,ok
 Polygon Labs,https://jobs.ashbyhq.com/polygon-labs,https://api.ashbyhq.com/posting-api/job-board/polygon-labs,ok
 Maven Clinic,https://www.mavenclinic.com/careers,https://boards-api.greenhouse.io/v1/boards/mavenclinic/jobs?content=true,ok
-ServiceTitan,https://boards.greenhouse.io/servicetitan,https://servicetitan.wd1.myworkdayjobs.com/wday/cxs/servicetitan/ServiceTitan/jobs,dead
+ServiceTitan,https://boards.greenhouse.io/servicetitan,https://servicetitan.wd1.myworkdayjobs.com/wday/cxs/servicetitan/ServiceTitan/jobs,ok
 UiPath,https://jobs.ashbyhq.com/uipath,https://api.ashbyhq.com/posting-api/job-board/uipath,ok
 Workato,https://www.workato.com/careers,https://boards-api.greenhouse.io/v1/boards/workato/jobs?content=true,ok
 Automation Anywhere,https://www.automationanywhere.com/company/careers,https://api.smartrecruiters.com/v1/companies/AutomationAnywhere1/postings ; https://automationanywhere.wd5.myworkdayjobs.com/wday/cxs/automationanywhere/AutomationAnywhereJobs/jobs (unverified),ok
