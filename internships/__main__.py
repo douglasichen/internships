@@ -85,7 +85,14 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             descs.setdefault(k, v)
 
     have = {r.get("id") for r in existing}
-    have_content = {recompute.content_key(r) for r in existing}
+    # content_key -> first listing id already in all.json (for desc fill on skip)
+    content_to_id = {}
+    for r in existing:
+        ck0 = recompute.content_key(r)
+        rid = r.get("id")
+        if ck0 not in content_to_id and rid:
+            content_to_id[ck0] = rid
+    have_content = set(content_to_id)
     for l in listings:
         row = _row(l, scraped_at)  # no description field
         lid = row["id"]
@@ -97,11 +104,19 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
                 descs[lid] = l.extra_text
             continue
         if ck in have_content:
-            # same company+title+location already recorded under another id
+            # same company+title+location already recorded under another id --
+            # do not double-insert, but still attach body text to the kept
+            # row's id when the store is missing it (cross-source skip used
+            # to drop descriptions from the later source entirely).
+            if l.extra_text:
+                keep_id = content_to_id.get(ck)
+                if keep_id and not descs.get(keep_id):
+                    descs[keep_id] = l.extra_text
             continue
         existing.append(row)
         have.add(lid)
         have_content.add(ck)
+        content_to_id[ck] = lid
         if l.extra_text:
             descs[lid] = l.extra_text
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -215,6 +230,22 @@ def selftest():
         append_all_json([b], "2026-07-10T00:00:00", all_json)
         rows = json.loads(all_json.read_text())
         assert len(rows) == 1 and rows[0]["id"] == a.id()
+
+    # content-key skip must still attach the later source's body to the kept id
+    # when the store is empty (cross-source dedup used to drop that HTML).
+    with tempfile.TemporaryDirectory() as td:
+        from internships import desc_store
+        all_json = Path(td) / "all.json"
+        bare = Listing("github_readme", "Acme", "SWE Intern", "SF",
+                       "http://readme/acme", extra_text="")
+        with_body = Listing("ats_boards", "Acme", "SWE Intern", "SF",
+                            "http://boards/acme", extra_text="<p>from ATS</p>")
+        append_all_json([bare], "2026-07-09T00:00:00", all_json)
+        assert bare.id() not in desc_store.load(all_json)
+        append_all_json([with_body], "2026-07-10T00:00:00", all_json)
+        rows = json.loads(all_json.read_text())
+        assert len(rows) == 1 and rows[0]["id"] == bare.id()
+        assert desc_store.load(all_json)[bare.id()] == "<p>from ATS</p>"
 
     # retry: id already in all.json, desc missing -- second append fills store
     with tempfile.TemporaryDirectory() as td:

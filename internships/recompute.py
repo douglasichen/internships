@@ -202,13 +202,17 @@ def backfill_descriptions(path=ALL_JSON_PATH):
     Does not modify all.json rows (except peeling legacy inline description
     fields into the store once)."""
     rows = json.loads(path.read_text())
-    # peel any legacy inline description fields into the gzip store first
+    # Load existing store FIRST. Peeling must merge into it -- never
+    # desc_store.save(peeled) alone (that rewrites the whole map and wipes
+    # every previously stored description).
+    descs = desc_store.load(path)
     peeled = desc_store.peel_from_rows(rows)
     if peeled:
-        desc_store.save(peeled, path)
+        for k, v in peeled.items():
+            descs.setdefault(k, v)
+        desc_store.save(descs, path)
         _atomic_write(rows, path)
 
-    descs = desc_store.load(path)
     stale = [r for r in rows if r.get("id") and not descs.get(r["id"])]
     with ThreadPoolExecutor(max_workers=8) as ex:
         texts = list(ex.map(lambda r: _fetch_raw_page(r.get("url")), stale))
@@ -371,6 +375,25 @@ def selftest():
         assert desc_store.get("b", p2) == "fetched: http://x/2"
         assert desc_store.get("c", p2) == "fetched: http://x/3"
         assert not desc_store.has("d", p2)
+
+        # peel must MERGE into existing store, not rewrite-only-peeled (which
+        # wiped every other id when recompute descriptions hit a legacy row).
+        p_peel = Path(tempfile.mkdtemp()) / "all.json"
+        p_peel.write_text(json.dumps([
+            {"id": "keep", "title": "k", "url": "http://x/k"},
+            {"id": "leg", "title": "l", "url": "http://x/l", "description": "from all.json"},
+            {"id": "miss", "title": "m", "url": "http://x/m"},
+        ]))
+        desc_store.save({"keep": "preexisting body", "orphan": "untouched"}, p_peel)
+        _self._fetch_raw_page = lambda url: "fetched: " + url if url else ""
+        changed, stale_count = backfill_descriptions(p_peel)
+        peeled_store = desc_store.load(p_peel)
+        assert peeled_store.get("keep") == "preexisting body", peeled_store
+        assert peeled_store.get("orphan") == "untouched", peeled_store
+        assert peeled_store.get("leg") == "from all.json", peeled_store
+        assert peeled_store.get("miss") == "fetched: http://x/m", peeled_store
+        assert all("description" not in r for r in json.loads(p_peel.read_text()))
+        assert stale_count == 1 and changed == 1  # only miss was stale
     finally:
         _self._fetch_raw_page = orig_fetch
     print("recompute selftest OK")
