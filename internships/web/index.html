@@ -340,14 +340,17 @@
   }
   .role.applied { opacity: 0.55; }
   .role.applied .role-title { text-decoration: line-through; }
-  /* Last row where you clicked Apply — survives refresh so you can find it again. */
+  /* Last row where you clicked Apply — survives refresh so you can find it again.
+     Does not override .applied strikethrough / dim when the checkbox is checked. */
   .role.last-apply {
     background: var(--accent-soft);
     border-radius: 8px;
     box-shadow: inset 3px 0 0 var(--accent);
-    opacity: 1; /* keep visible even if also .applied */
   }
-  .role.last-apply .role-title { text-decoration: none; }
+  .role.last-apply.applied {
+    /* Keep last-opened highlight but still look applied (strikethrough via .applied). */
+    opacity: 0.7;
+  }
   .role.last-apply .apply-link {
     color: #fff;
     background: var(--accent);
