@@ -24,8 +24,11 @@ from internships.service import ROOT, _fetch_raw_page
 # Pull a posting id out of an apply URL when present so company+title+location
 # dedup does not merge distinct openings that share a generic title
 # (e.g. three NXP "System Engineer Intern" roles in Bucharest with different R- ids).
+# Identity-bearing only: gh_jid / jobId / job_id / Greenhouse token= / Workday R- / JR.
+# Do NOT include jr_id — that is a README-list click tracker (stripped by
+# normalize_url) and would steal the last-match slot from a real gh_jid.
 _JOB_TOKEN_RE = re.compile(
-    r"(?:/jobs/|/job/|[?&](?:gh_jid|jr_id|jobId|job_id)=|_R-|JR)([A-Za-z0-9-]{4,})",
+    r"(?:/jobs/|/job/|[?&](?:gh_jid|jobId|job_id|token)=|_R-|JR)([A-Za-z0-9-]{4,})",
     re.I,
 )
 
@@ -151,11 +154,15 @@ def _collapse(groups_dict, *, mergeable=None):
 
 
 def _content_group_mergeable(group):
-    """Do not merge company+title+location groups when every row carries a
-    *different* embedded job id (distinct openings, same generic title)."""
+    """Do not merge company+title+location groups when embedded job ids conflict.
+
+    Any disagreement among present tokens means the group is not a single
+    opening (e.g. tokens A,A,B must not collapse and drop B). Only merge when
+    every extracted token agrees (or fewer than two rows carry a token).
+    """
     tokens = [job_token(r.get("url")) for r in group]
     present = [t for t in tokens if t]
-    if len(present) >= 2 and len(set(present)) == len(present):
+    if len(set(present)) > 1:
         return False
     return True
 
@@ -202,13 +209,18 @@ def backfill_descriptions(path=ALL_JSON_PATH):
     Does not modify all.json rows (except peeling legacy inline description
     fields into the store once)."""
     rows = json.loads(path.read_text())
-    # peel any legacy inline description fields into the gzip store first
+    # peel any legacy inline description fields into the gzip store first —
+    # merge into the existing store (never save(peeled) alone: that would
+    # wipe every other id's body).
     peeled = desc_store.peel_from_rows(rows)
+    descs = desc_store.load(path)
     if peeled:
-        desc_store.save(peeled, path)
+        for k, v in peeled.items():
+            if k not in descs:
+                descs[k] = v
+        desc_store.save(descs, path)
         _atomic_write(rows, path)
 
-    descs = desc_store.load(path)
     stale = [r for r in rows if r.get("id") and not descs.get(r["id"])]
     with ThreadPoolExecutor(max_workers=8) as ex:
         texts = list(ex.map(lambda r: _fetch_raw_page(r.get("url")), stale))
@@ -344,6 +356,71 @@ def selftest():
     assert removed == 0 and total == 2
     assert len(json.loads(p_nxp.read_text())) == 2
 
+    # Greenhouse embed ?token= is identity-bearing (models.normalize_url keeps it);
+    # content-key dedup must not collapse two tokens into one row.
+    assert job_token(
+        "https://boards.greenhouse.io/embed/job_app?for=gemini&token=1111111"
+    ) == "1111111"
+    gh_rows = [
+        {"company": "Gemini", "title": "SWE Intern", "location": "NYC",
+         "url": "https://boards.greenhouse.io/embed/job_app?for=gemini&token=1111111",
+         "scraped_at": "2026-01-01", "id": "g1"},
+        {"company": "Gemini", "title": "SWE Intern", "location": "NYC",
+         "url": "https://boards.greenhouse.io/embed/job_app?for=gemini&token=2222222",
+         "scraped_at": "2026-01-02", "id": "g2"},
+    ]
+    p_gh = Path(tempfile.mkdtemp()) / "all.json"
+    p_gh.write_text(json.dumps(gh_rows))
+    removed, total = dedupe(p_gh)
+    assert removed == 0 and total == 2
+    assert {r["id"] for r in json.loads(p_gh.read_text())} == {"g1", "g2"}
+
+    # Conflicting tokens in one content-key group (A,A,B): must not drop B.
+    # Previous guard only refused merge when *all* present tokens were unique,
+    # so [A,A,B] merged and deleted the distinct opening.
+    mixed_rows = [
+        {"company": "NXP", "title": "SE Intern", "location": "X",
+         "url": "https://x.example/careers/job/Loc/Role_R-1001",
+         "scraped_at": "2026-01-01", "id": "a1"},
+        {"company": "NXP", "title": "SE Intern", "location": "X",
+         "url": "https://x.example/careers/job/Loc/Role_R-1001?utm=1",
+         "scraped_at": "2026-01-02", "id": "a2"},
+        {"company": "NXP", "title": "SE Intern", "location": "X",
+         "url": "https://x.example/careers/job/Loc/Role_R-1002",
+         "scraped_at": "2026-01-03", "id": "b1"},
+    ]
+    assert _content_group_mergeable(mixed_rows) is False
+    p_mix = Path(tempfile.mkdtemp()) / "all.json"
+    p_mix.write_text(json.dumps(mixed_rows))
+    removed, total = dedupe(p_mix)
+    # pass-1 URL-normalizes a1/a2 (utm stripped) -> merge to a1; pass-2 keeps
+    # a1 vs b1 (distinct R- ids). Net: one URL dupe removed, B survives.
+    assert removed == 1 and total == 3
+    assert {r["id"] for r in json.loads(p_mix.read_text())} == {"a1", "b1"}
+
+    # same embedded job id, different URL surface -- still mergeable
+    same_tok = [
+        {"company": "Co", "title": "Intern", "location": "SF",
+         "url": "https://boards.greenhouse.io/co/jobs/99999",
+         "scraped_at": "2026-01-01", "id": "s1"},
+        {"company": "Co", "title": "Intern", "location": "SF",
+         "url": "https://boards.greenhouse.io/embed/job_app?for=co&token=99999",
+         "scraped_at": "2026-01-02", "id": "s2"},
+    ]
+    assert job_token(same_tok[0]["url"]) == job_token(same_tok[1]["url"]) == "99999"
+    assert _content_group_mergeable(same_tok) is True
+    p_same = Path(tempfile.mkdtemp()) / "all.json"
+    p_same.write_text(json.dumps(same_tok))
+    removed, total = dedupe(p_same)
+    assert removed == 1 and total == 2
+    assert json.loads(p_same.read_text())[0]["id"] == "s1"
+
+    # jr_id is a click tracker, not a job id -- must not be preferred over gh_jid
+    assert job_token(
+        "https://www.jumptrading.com/hr/job?gh_jid=7565728&jr_id=tracker99"
+    ) == "7565728"
+    assert job_token("https://example.com/apply?jr_id=onlytracker") is None
+
     import sys
     _self = sys.modules[__name__]  # module-level patch, not a fresh dotted
     # import -- see ats_boards.py's own selftest for why that matters when
@@ -371,6 +448,28 @@ def selftest():
         assert desc_store.get("b", p2) == "fetched: http://x/2"
         assert desc_store.get("c", p2) == "fetched: http://x/3"
         assert not desc_store.has("d", p2)
+
+        # peel of a legacy inline description must MERGE into the store, never
+        # replace it (save(peeled) alone wiped every other id).
+        p_peel = Path(tempfile.mkdtemp()) / "all.json"
+        p_peel.write_text(json.dumps([
+            {"id": "keep_me", "title": "a", "url": "http://x/1"},
+            {"id": "peel_me", "title": "b", "url": "http://x/2",
+             "description": "inline body"},
+            {"id": "fetch_me", "title": "c", "url": "http://x/3"},
+        ]))
+        desc_store.put("keep_me", "IMPORTANT EXISTING DESC", p_peel)
+        desc_store.put("fetch_me", "ALREADY FETCHED", p_peel)
+        # fetch returns empty so we only exercise the peel/merge path
+        _self._fetch_raw_page = lambda url: ""
+        changed, stale_count = backfill_descriptions(p_peel)
+        assert changed == 0
+        store = desc_store.load(p_peel)
+        assert store.get("keep_me") == "IMPORTANT EXISTING DESC"
+        assert store.get("fetch_me") == "ALREADY FETCHED"
+        assert store.get("peel_me") == "inline body"
+        slim = json.loads(p_peel.read_text())
+        assert all("description" not in r for r in slim)
     finally:
         _self._fetch_raw_page = orig_fetch
     print("recompute selftest OK")
