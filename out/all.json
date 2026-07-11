@@ -10666,5 +10666,29 @@
     "posted": "2026-07-11",
     "scraped_at": "2026-07-11T17:11:29",
     "url": "https://jobright.ai/jobs/info/6a529167e726ec56126a3a57"
+  },
+  {
+    "id": "5ec6d7a925ea7c22",
+    "company": "Predicate",
+    "title": "Full Stack Engineer - Internship",
+    "location": "Brooklyn, NY, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-11",
+    "scraped_at": "2026-07-11T19:25:05",
+    "url": "https://jobright.ai/jobs/info/6a52a2cc8576ec69c014cc36"
+  },
+  {
+    "id": "e47972b8b3ec76a8",
+    "company": "WaveWorks Technologies",
+    "title": "Applied Machine Learning Intern",
+    "location": "Seattle, WA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-02-26",
+    "scraped_at": "2026-07-11T19:25:05",
+    "url": "https://jobright.ai/jobs/info/6a432c95b0f2553559ece302"
   }
 ]
