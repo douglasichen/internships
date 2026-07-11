@@ -72,7 +72,12 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     ({id: full page HTML}; see desc_store). Skips a row when:
     - its listing id is already present (retry after crash before persist_seen), or
     - the same company+title+location already exists (cross-source / re-scrape
-      of the same human-visible job with a different URL).
+      of the same human-visible job with a different URL), *and* recompute's
+      content-group merge rules say the group is mergeable (distinct embedded
+      job ids like _R-1234 vs _R-5678 must each get their own row -- same rule
+      as --recompute dedup). When a content-key duplicate is skipped but we
+      have body text the kept row lacks, fill that description under the kept
+      id so dual-write does not throw away a good apply-page body.
     """
     from internships import desc_store
 
@@ -85,7 +90,22 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             descs.setdefault(k, v)
 
     have = {r.get("id") for r in existing}
-    have_content = {recompute.content_key(r) for r in existing}
+    # content_key -> rows already kept with that company+title+location
+    by_content = {}
+    for r in existing:
+        if isinstance(r, dict):
+            by_content.setdefault(recompute.content_key(r), []).append(r)
+
+    def _fill_desc_for_group(group, text):
+        """Attach body text to the first group row that still lacks one."""
+        if not text:
+            return
+        for er in group:
+            eid = er.get("id") if isinstance(er, dict) else None
+            if eid and not descs.get(eid):
+                descs[eid] = text
+                return
+
     for l in listings:
         row = _row(l, scraped_at)  # no description field
         lid = row["id"]
@@ -96,12 +116,15 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             if l.extra_text and not descs.get(lid):
                 descs[lid] = l.extra_text
             continue
-        if ck in have_content:
-            # same company+title+location already recorded under another id
+        group = by_content.get(ck) or []
+        if group and recompute._content_group_mergeable(group + [row]):
+            # same human-visible job already recorded under another id -- keep
+            # the older row, but don't drop a description we already fetched
+            _fill_desc_for_group(group, l.extra_text)
             continue
         existing.append(row)
         have.add(lid)
-        have_content.add(ck)
+        by_content.setdefault(ck, []).append(row)
         if l.extra_text:
             descs[lid] = l.extra_text
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -215,6 +238,43 @@ def selftest():
         append_all_json([b], "2026-07-10T00:00:00", all_json)
         rows = json.loads(all_json.read_text())
         assert len(rows) == 1 and rows[0]["id"] == a.id()
+
+    # same company+title+location BUT distinct embedded job ids (e.g. two NXP
+    # "System Engineer Intern" openings in Bucharest) must NOT collapse -- same
+    # rule as --recompute dedup. Pre-fix this permanently dropped the second
+    # opening (content_key skip + persist_seen marked it seen forever).
+    with tempfile.TemporaryDirectory() as td:
+        all_json = Path(td) / "all.json"
+        a = Listing(
+            "ats_boards", "NXP", "System Engineer Intern", "Bucharest",
+            "https://nxp.wd3.myworkdayjobs.com/careers/job/Bucharest/"
+            "System-Engineer-Intern_R-1234",
+        )
+        b = Listing(
+            "ats_boards", "NXP", "System Engineer Intern", "Bucharest",
+            "https://nxp.wd3.myworkdayjobs.com/careers/job/Bucharest/"
+            "System-Engineer-Intern_R-5678",
+        )
+        assert a.id() != b.id()
+        append_all_json([a, b], "2026-07-09T00:00:00", all_json)
+        rows = json.loads(all_json.read_text())
+        assert len(rows) == 2, rows
+        assert {r["id"] for r in rows} == {a.id(), b.id()}
+
+    # content-key duplicate with a body: keep the older row, but still store
+    # the description under that row's id when it was empty (dual-write must
+    # not throw away a good apply-page body from the alternate source/URL).
+    with tempfile.TemporaryDirectory() as td:
+        from internships import desc_store
+        all_json = Path(td) / "all.json"
+        a = Listing("ats_boards", "Acme", "SWE Intern", "SF", "http://ats/1",
+                    extra_text="")
+        b = Listing("custom_boards", "Acme", "SWE Intern", "SF", "http://custom/1",
+                    extra_text="GOOD BODY")
+        append_all_json([a, b], "2026-07-09T00:00:00", all_json)
+        rows = json.loads(all_json.read_text())
+        assert len(rows) == 1 and rows[0]["id"] == a.id()
+        assert desc_store.load(all_json)[a.id()] == "GOOD BODY"
 
     # retry: id already in all.json, desc missing -- second append fills store
     with tempfile.TemporaryDirectory() as td:
