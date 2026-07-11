@@ -67,8 +67,8 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     """The web UI's whole dataset: every listing ever found, across every run,
     each stamped with when it was scraped. Grows by appending.
 
-    Descriptions are NOT stored here -- they go to out/descriptions.json keyed
-    by the same listing id (see desc_store). Skips a row when:
+    Descriptions are NOT stored here -- they go to out/descriptions/<id>.html.gz
+    (gzipped full page HTML; see desc_store). Skips a row when:
     - its listing id is already present (retry after crash before persist_seen), or
     - the same company+title+location already exists (cross-source / re-scrape
       of the same human-visible job with a different URL).
@@ -281,9 +281,10 @@ def main():
             changed, total = recompute.recompute_priority()
             print(f"recomputed priority for {total} listings, {changed} changed -> {recompute.ALL_JSON_PATH}")
         if "descriptions" in a.recompute:
+            from internships import desc_store
             changed, stale = recompute.backfill_descriptions()
             print(f"backfilled {changed}/{stale} stale descriptions -> "
-                  f"{recompute.DESCRIPTIONS_PATH}")
+                  f"{desc_store.dir_for()}")
         return
 
     # Defer seen-id writes until after a successful out/all.json append so a
