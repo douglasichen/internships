@@ -11,6 +11,7 @@
 - Full apply-page HTML: `out/descriptions.json.gz` (`{listing_id: html}`). **Gitignored.** Don't commit it.
 - Applied checkbox marks: `out/applied.json` (`{listing_id: ISO}`). **Gitignored.** Server is source of truth; FE also mirrors `localStorage` (prefer serving as `http://localhost:…` not `127.0.0.1` so browser state matches).
 - Whenever a scrape, `--recompute`, or UI clear-2027 changes `out/all.json`, commit that change **on its own** — don't bundle it into a code commit. Message what happened to the data (e.g. "Scrape: 12 new listings", "Recompute: deduped 15 rows", "Clear is_2027 on N listings"), not a generic "update data".
+- **Never `git checkout` / `git restore` `out/all.json` to discard uncommitted scrape results** — that is how scheduled-scrape appends get wiped. The launchd wrapper (`scripts/scrape_cron.sh`) auto-commits + pushes `out/all.json` after a successful scrape so history stays durable; agents should still commit data changes themselves when they scrape outside launchd.
 
 ## Fetching external domains
 
