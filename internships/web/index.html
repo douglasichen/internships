@@ -589,6 +589,7 @@
       <button class="chip" data-source="github_readme"><span class="dot" style="background:var(--plum)"></span>vanshb03</button>
       <button class="chip" data-source="speedyapply"><span class="dot" style="background:var(--gold)"></span>speedyapply</button>
       <button class="chip" data-source="sndsh404"><span class="dot" style="background:var(--slate)"></span>sndsh404</button>
+      <button class="toggle active" id="toggleSWE">SWE only</button>
       <button class="toggle active" id="toggle2027">2027 only</button>
       <button class="toggle active" id="toggleNA">North America</button>
       <button class="toggle" id="toggleP12">P1+P2 only</button>
@@ -666,6 +667,7 @@ const FILTERS_KEY = 'internships-filters';
 const FILTER_DEFAULTS = {
   query: '',
   sources: Object.keys(SOURCE_COLOR),
+  onlySWE: true, // software-engineering intern titles only
   only2027: true,
   onlyNA: true, // US or Canada locations only
   priorityFilter: 'all', // 'all' | 'p12' | 'p1'
@@ -686,6 +688,7 @@ function loadFilterState() {
       // Empty array is valid (user turned all sources off).
       if (raw.sources.length === 0 || picked.length) s.sources = picked.length ? picked : [];
     }
+    if (typeof raw.onlySWE === 'boolean') s.onlySWE = raw.onlySWE;
     if (typeof raw.only2027 === 'boolean') s.only2027 = raw.only2027;
     if (typeof raw.onlyNA === 'boolean') s.onlyNA = raw.onlyNA;
     if (raw.priorityFilter === 'all' || raw.priorityFilter === 'p12' || raw.priorityFilter === 'p1') {
@@ -705,6 +708,7 @@ function saveFilterState() {
     localStorage.setItem(FILTERS_KEY, JSON.stringify({
       query: state.query,
       sources: [...state.sources],
+      onlySWE: state.onlySWE,
       only2027: state.only2027,
       onlyNA: state.onlyNA,
       priorityFilter: state.priorityFilter,
@@ -719,6 +723,7 @@ const _loaded = loadFilterState();
 const state = {
   query: _loaded.query,
   sources: new Set(_loaded.sources),
+  onlySWE: _loaded.onlySWE,
   only2027: _loaded.only2027,
   onlyNA: _loaded.onlyNA,
   priorityFilter: _loaded.priorityFilter,
@@ -735,6 +740,7 @@ function applyFilterControls() {
   document.querySelectorAll('.chip[data-source]').forEach(chip => {
     chip.classList.toggle('active', state.sources.has(chip.dataset.source));
   });
+  document.getElementById('toggleSWE').classList.toggle('active', state.onlySWE);
   document.getElementById('toggle2027').classList.toggle('active', state.only2027);
   document.getElementById('toggleNA').classList.toggle('active', state.onlyNA);
   document.getElementById('toggleP12').classList.toggle('active', state.priorityFilter === 'p12');
@@ -943,10 +949,19 @@ function safeUrl(u) {
   } catch { return ''; }
 }
 
+// Mirror internships/filters.py is_swe_internship (keep in sync when SWE_RE changes).
+const INTERN_RE = /\b(intern(ship)?|co[\- ]?op)\b/i;
+const SWE_RE = /\b(software|swe|\bsde\b|developer|software\s+development|development\s+engineer|programmer|full[\- ]?stack|back[\- ]?end|front[\- ]?end|infrastructure|firmware|embedded|machine[\- ]?learning|\bml\b|data\s+engineer|security\s+engineer|site\s+reliability|\bsre\b|(?:software|cloud|data|ml|ai)\s+platform|(?:software|computer|distributed)\s+systems?)\b/i;
+function isSweInternship(title) {
+  if (!title) return false;
+  return INTERN_RE.test(title) && SWE_RE.test(title);
+}
+
 function applyFilters(rows) {
   const q = state.query.trim().toLowerCase();
   return rows.filter(r => {
     if (!state.sources.has(r.source)) return false;
+    if (state.onlySWE && !isSweInternship(r.title)) return false;
     if (state.only2027 && !r.is_2027) return false;
     if (state.onlyNA && !isNorthAmericaLocation(r.location)) return false;
     if (state.priorityFilter === 'p1' && r.priority !== 1) return false;
@@ -1065,6 +1080,12 @@ document.getElementById('filtersToggle').addEventListener('click', e => {
   e.currentTarget.setAttribute('aria-expanded', open);
   state.filtersOpen = open;
   saveFilterState();
+});
+document.getElementById('toggleSWE').addEventListener('click', e => {
+  state.onlySWE = !state.onlySWE;
+  e.target.classList.toggle('active', state.onlySWE);
+  saveFilterState();
+  render();
 });
 document.getElementById('toggle2027').addEventListener('click', e => {
   state.only2027 = !state.only2027;
