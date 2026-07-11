@@ -4822,5 +4822,89 @@
     "posted": "",
     "scraped_at": "2026-07-11T02:45:14",
     "url": "https://job-boards.greenhouse.io/zscaler/jobs/5045817007"
+  },
+  {
+    "id": "75afe38a6fa45d46",
+    "company": "Arrowstreet Capital",
+    "title": "Quantitative Developer Intern",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "sndsh404",
+    "posted": "2026-07-09",
+    "scraped_at": "2026-07-11T01:31:09",
+    "url": "https://arrowstreetcapital.wd5.myworkdayjobs.com/Campus_Careers/job/Boston/Quantitative-Developer-Intern--Summer-2027_R1506"
+  },
+  {
+    "id": "f5f5760b044224bc",
+    "company": "LA-Tech.org",
+    "title": "Technical Intern, Software / Cyber / AI (Spring 2027, remote)",
+    "location": "Los Angeles, CA / Remote (US)",
+    "is_2027": true,
+    "priority": 3,
+    "source": "sndsh404",
+    "posted": "2026-07-09",
+    "scraped_at": "2026-07-11T01:31:09",
+    "url": "https://pod4.app.loxo.co/job/Mzk2ODktbmxudnJmeGRuOXM0OHE3ZA=="
+  },
+  {
+    "id": "f5bfe2a823d666a0",
+    "company": "Microsoft",
+    "title": "Software Engineering INTERN",
+    "location": "India, Multiple Locations, Multiple Locations",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-07-11T01:31:09",
+    "url": "https://apply.careers.microsoft.com/careers/job/1970393556911730"
+  },
+  {
+    "id": "0b696eae84b0ae2b",
+    "company": "Qualcomm",
+    "title": "Intern FY27 - System Integration and Testing Intern - Haifa",
+    "location": "Haifa, Haifa District, Israel",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-07-11T01:31:09",
+    "url": "https://app.eightfold.ai/careers/job/446719645424"
+  },
+  {
+    "id": "ce52fb03d5b951f9",
+    "company": "SAP",
+    "title": "SAP GPO iXp Intern - Category Management Cloud Infrastructure",
+    "location": "Houston, TX, US, 77098",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-07-11T01:31:09",
+    "url": "https://jobs.sap.com/job/Houston-SAP-GPO-iXp-Intern-Category-Management-Cloud-Infrastructure-TX-77098/1407683733/"
+  },
+  {
+    "id": "747a51d203e704ff",
+    "company": "Seagate",
+    "title": "Equipment Control & Software - Intern",
+    "location": "Singapore, SG",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-07-11T05:22:14",
+    "url": "https://seagatecareers.com/job/Singapore-Equipment-Control-&-Software-Intern/1403925100/"
+  },
+  {
+    "id": "a922c447d1cc7f31",
+    "company": "Ericsson",
+    "title": "Cloud Infrastructure Engineer Intern",
+    "location": "Rome,Rome,Italy",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-11T10:04:41",
+    "url": "https://jobs.ericsson.com/careers/job/563121776796797"
   }
 ]
