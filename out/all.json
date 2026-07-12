@@ -10990,5 +10990,53 @@
     "posted": "2026-07-12",
     "scraped_at": "2026-07-12T16:28:38",
     "url": "https://jobright.ai/jobs/info/6a4572614f64ba41dcb4d649"
+  },
+  {
+    "id": "c1d81c33ea8701c2",
+    "company": "Heard | Run Your Shop Smarter",
+    "title": "Startup Software Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T18:38:11",
+    "url": "https://jobright.ai/jobs/info/6a53f63f8a74e077472fa27e"
+  },
+  {
+    "id": "509673a56432605e",
+    "company": "Moda Health",
+    "title": "Software Engineer (Intern)",
+    "location": "Portland, OR, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T18:38:11",
+    "url": "https://jobright.ai/jobs/info/6a53e9d18ef95364ead93ce5"
+  },
+  {
+    "id": "f3fc8bd6e42317e8",
+    "company": "PHM Society",
+    "title": "Time Series Machine Learning Intern",
+    "location": "Rochester, NY, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T18:38:11",
+    "url": "https://jobright.ai/jobs/info/6a53f53bd007ee02d95fd238"
+  },
+  {
+    "id": "9bd772f28356d376",
+    "company": "Palantir Technologies",
+    "title": "Software Engineer, Internship",
+    "location": "Palo Alto, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T18:38:11",
+    "url": "https://jobright.ai/jobs/info/6a53f3128576ec69c0151779"
   }
 ]
