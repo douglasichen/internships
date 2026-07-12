@@ -10954,5 +10954,41 @@
     "posted": "2026-07-12",
     "scraped_at": "2026-07-12T13:48:14",
     "url": "https://jobright.ai/jobs/info/6a53bc1dc8eb0843027ad7e4"
+  },
+  {
+    "id": "8720114a1a8cfbb9",
+    "company": "Neuralink",
+    "title": "Software Engineer Intern, Infrastructure",
+    "location": "South San Francisco, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T16:28:38",
+    "url": "https://jobright.ai/jobs/info/6a53e6bd8ef95364ead93c63"
+  },
+  {
+    "id": "0f8603b24ce6615a",
+    "company": "Quantum Design",
+    "title": "Software Engineering Intern- Python Modernization & Automation",
+    "location": "QD - Inc, United States of America",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-09",
+    "scraped_at": "2026-07-12T16:28:38",
+    "url": "https://jobright.ai/jobs/info/6a53e0efe726ec56126a85d7"
+  },
+  {
+    "id": "99a0e9093c982005",
+    "company": "Seven Research, LLC",
+    "title": "Core Developer - Intern",
+    "location": "New York, NY, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T16:28:38",
+    "url": "https://jobright.ai/jobs/info/6a4572614f64ba41dcb4d649"
   }
 ]
