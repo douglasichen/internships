@@ -10702,5 +10702,29 @@
     "posted": "2026-07-11",
     "scraped_at": "2026-07-11T21:50:26",
     "url": "https://jobright.ai/jobs/info/6a52dda7d007ee02d95f95ce"
+  },
+  {
+    "id": "1fcb38b743487d57",
+    "company": "Etched",
+    "title": "Chip Simulation Software Intern",
+    "location": "San Jose, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-05-19",
+    "scraped_at": "2026-07-12T00:11:07",
+    "url": "https://jobright.ai/jobs/info/6a52f6b2e726ec56126a5280"
+  },
+  {
+    "id": "df2c41d070d1fbae",
+    "company": "SeatSwap, Inc.",
+    "title": "Full-Stack Web Development Internship",
+    "location": "New York, NY, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-11",
+    "scraped_at": "2026-07-12T00:11:07",
+    "url": "https://jobright.ai/jobs/info/6a52e33b8a74e077472f678c"
   }
 ]
