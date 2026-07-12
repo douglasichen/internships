@@ -10906,5 +10906,53 @@
     "posted": "2026-07-12",
     "scraped_at": "2026-07-12T11:33:04",
     "url": "https://jobright.ai/jobs/info/6a539f15c8eb0843027ad1ce"
+  },
+  {
+    "id": "f9a4ec387f498a77",
+    "company": "Gitar",
+    "title": "Software Engineer Intern",
+    "location": "San Mateo, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T13:48:14",
+    "url": "https://jobright.ai/jobs/info/6a53a468e726ec56126a77eb"
+  },
+  {
+    "id": "0a279196f7254881",
+    "company": "SPREEAI",
+    "title": "Mobile Software Engineer Intern \u2014 Flagship Apps (iOS / Android / Web)",
+    "location": "San Francisco, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-03-14",
+    "scraped_at": "2026-07-12T13:48:14",
+    "url": "https://jobright.ai/jobs/info/69ef72d0e624fe645d531299"
+  },
+  {
+    "id": "26fc00848e6ea1f6",
+    "company": "Todd",
+    "title": "Full Stack Software Developer Intern (Summer)",
+    "location": "Los Angeles, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T13:48:14",
+    "url": "https://jobright.ai/jobs/info/6a53b242e726ec56126a7b0d"
+  },
+  {
+    "id": "b32d83a30750d894",
+    "company": "Todd",
+    "title": "Full Stack Software Developer Intern (Winter)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T13:48:14",
+    "url": "https://jobright.ai/jobs/info/6a53bc1dc8eb0843027ad7e4"
   }
 ]
