@@ -10774,5 +10774,41 @@
     "posted": "2026-05-28",
     "scraped_at": "2026-07-12T07:12:42",
     "url": "https://jobright.ai/jobs/info/6a535af1e726ec56126a6946"
+  },
+  {
+    "id": "4250c236aa41b7ce",
+    "company": "Blue Origin",
+    "title": "Spring 2027 Avionics Software Internship - Graduate",
+    "location": "Multi Locations: Greater Seattle Area, US; Greater Seattle Area, United States of America",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-06-10",
+    "scraped_at": "2026-07-12T09:23:00",
+    "url": "https://jobright.ai/jobs/info/6a299db61de59e0682a8073b"
+  },
+  {
+    "id": "7bff388953cd8cca",
+    "company": "Copart",
+    "title": "Software Engineering Intern",
+    "location": "Dallas, TX, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-08",
+    "scraped_at": "2026-07-12T09:23:00",
+    "url": "https://jobright.ai/jobs/info/6a5380168576ec69c014fee5"
+  },
+  {
+    "id": "0bd9ebd645cba65e",
+    "company": "Eulerity",
+    "title": "Android Developer Intern",
+    "location": "New York, NY, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T09:23:00",
+    "url": "https://jobright.ai/jobs/info/6a5366138ef95364ead9204f"
   }
 ]
