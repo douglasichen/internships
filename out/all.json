@@ -10810,5 +10810,101 @@
     "posted": "2026-07-12",
     "scraped_at": "2026-07-12T09:23:00",
     "url": "https://jobright.ai/jobs/info/6a5366138ef95364ead9204f"
+  },
+  {
+    "id": "4665727745b7ec2e",
+    "company": "Cadence",
+    "title": "Intern-Software Engineering",
+    "location": "MI, United States",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-03-14",
+    "scraped_at": "2026-07-12T11:33:04",
+    "url": "https://jobright.ai/jobs/info/6a53937a8ef95364ead929eb"
+  },
+  {
+    "id": "c4d658b83c49d484",
+    "company": "Guardian RF",
+    "title": "Front End and UI Software Engineering Intern",
+    "location": "Washington, DC, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T11:33:04",
+    "url": "https://jobright.ai/jobs/info/6a539cfb8ef95364ead92b22"
+  },
+  {
+    "id": "8ba5ade0e25fb172",
+    "company": "JarSync",
+    "title": "Frontend Development Intern",
+    "location": "Marion County, IN, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T11:33:04",
+    "url": "https://jobright.ai/jobs/info/6a5385bf8576ec69c0150031"
+  },
+  {
+    "id": "676744f4e3de72bf",
+    "company": "Point72",
+    "title": "Quantitative Developer Intern",
+    "location": "New York, NY, United States",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T11:33:04",
+    "url": "https://jobright.ai/jobs/info/6a538850d007ee02d95fbac3"
+  },
+  {
+    "id": "9c30cc6b2087504e",
+    "company": "Reply",
+    "title": "iOS Developer Intern",
+    "location": "Detroit Area, Michigan, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T11:33:04",
+    "url": "https://jobright.ai/jobs/info/6a539ecc8ef95364ead92b70"
+  },
+  {
+    "id": "7825621283132096",
+    "company": "Rippling",
+    "title": "Software Engineer Intern - Backend Focused - Winter 2027",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-09",
+    "scraped_at": "2026-07-12T11:33:04",
+    "url": "https://jobright.ai/jobs/info/6a2d15adfc0644749054bc61"
+  },
+  {
+    "id": "6c5374dfaa56b50a",
+    "company": "Rippling",
+    "title": "Software Engineer Intern - Backend Focused - Winter 2027",
+    "location": "Seattle, WA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-28",
+    "scraped_at": "2026-07-12T11:33:04",
+    "url": "https://jobright.ai/jobs/info/6a2991e20c4972328e7e4390"
+  },
+  {
+    "id": "82d35a617872f6ca",
+    "company": "Todd",
+    "title": "Full Stack Software Developer Intern (Fall)",
+    "location": "Los Angeles, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T11:33:04",
+    "url": "https://jobright.ai/jobs/info/6a539f15c8eb0843027ad1ce"
   }
 ]
