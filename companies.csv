@@ -480,3 +480,61 @@ Cybereason,https://job-boards.greenhouse.io/cybereason,https://boards-api.greenh
 Chronosphere,https://jobs.ashbyhq.com/chronospherejobs,https://api.ashbyhq.com/posting-api/job-board/chronospherejobs,ok
 Mixpanel,https://mixpanel.com/jobs/,https://boards-api.greenhouse.io/v1/boards/mixpanel/jobs?content=true,ok
 Segment,https://boards.greenhouse.io/twilio (Segment is part of Twilio),https://boards-api.greenhouse.io/v1/boards/twilio/jobs?content=true,ok
+Auctor,https://jobs.ashbyhq.com/auctor,https://api.ashbyhq.com/posting-api/job-board/auctor,ok
+AfterQuery,https://jobs.ashbyhq.com/afterquery,https://api.ashbyhq.com/posting-api/job-board/afterquery,ok
+Harper,https://jobs.ashbyhq.com/harperinsure,https://api.ashbyhq.com/posting-api/job-board/harperinsure,ok
+Flai,https://jobs.ashbyhq.com/flai,https://api.ashbyhq.com/posting-api/job-board/flai,ok
+Nox Metals,https://jobs.ashbyhq.com/nox-metals,https://api.ashbyhq.com/posting-api/job-board/nox-metals,ok
+Bolna AI,https://jobs.ashbyhq.com/bolna,https://api.ashbyhq.com/posting-api/job-board/bolna,ok
+Uplane,https://jobs.ashbyhq.com/uplane,https://api.ashbyhq.com/posting-api/job-board/uplane,ok
+Lucis,https://jobs.ashbyhq.com/lucis,https://api.ashbyhq.com/posting-api/job-board/lucis,ok
+Solva,https://jobs.ashbyhq.com/solva,https://api.ashbyhq.com/posting-api/job-board/solva,ok
+Mercura,https://jobs.ashbyhq.com/mercura,https://api.ashbyhq.com/posting-api/job-board/mercura,ok
+Idler,https://jobs.ashbyhq.com/idler,https://api.ashbyhq.com/posting-api/job-board/idler,ok
+Fleetline,https://jobs.ashbyhq.com/fleetline,https://api.ashbyhq.com/posting-api/job-board/fleetline,ok
+Reacher,https://jobs.ashbyhq.com/reacher,https://api.ashbyhq.com/posting-api/job-board/reacher,ok
+Finto,https://jobs.ashbyhq.com/finto,https://api.ashbyhq.com/posting-api/job-board/finto,ok
+AgentMail,https://jobs.ashbyhq.com/agentmail,https://api.ashbyhq.com/posting-api/job-board/agentmail,ok
+Dedalus Labs,https://jobs.ashbyhq.com/dedalus-labs,https://api.ashbyhq.com/posting-api/job-board/dedalus-labs,ok
+Hex Security,https://jobs.ashbyhq.com/hex,https://api.ashbyhq.com/posting-api/job-board/hex,ok
+Hyperspell,https://jobs.ashbyhq.com/hyperspell,https://api.ashbyhq.com/posting-api/job-board/hyperspell,ok
+Comena,https://jobs.ashbyhq.com/comena,https://api.ashbyhq.com/posting-api/job-board/comena,ok
+Blaxel,https://jobs.ashbyhq.com/blaxel,https://api.ashbyhq.com/posting-api/job-board/blaxel,ok
+Prox,https://jobs.ashbyhq.com/prox,https://api.ashbyhq.com/posting-api/job-board/prox,ok
+Avallon AI,https://jobs.ashbyhq.com/avallon,https://api.ashbyhq.com/posting-api/job-board/avallon,ok
+SF Tensor,https://jobs.ashbyhq.com/sf-tensor,https://api.ashbyhq.com/posting-api/job-board/sf-tensor,ok
+AnswerThis,https://jobs.ashbyhq.com/answerthis,https://api.ashbyhq.com/posting-api/job-board/answerthis,ok
+truthsystems,https://jobs.ashbyhq.com/truthsystems,https://api.ashbyhq.com/posting-api/job-board/truthsystems,ok
+Pingo,https://jobs.ashbyhq.com/pingo,https://api.ashbyhq.com/posting-api/job-board/pingo,ok
+Sim,https://jobs.ashbyhq.com/sim,https://api.ashbyhq.com/posting-api/job-board/sim,ok
+Claim Health,https://jobs.ashbyhq.com/claim-health,https://api.ashbyhq.com/posting-api/job-board/claim-health,ok
+Solidroad,https://jobs.ashbyhq.com/solidroad,https://api.ashbyhq.com/posting-api/job-board/solidroad,ok
+Moss,https://jobs.ashbyhq.com/moss,https://api.ashbyhq.com/posting-api/job-board/moss,ok
+Eloquent AI,https://jobs.ashbyhq.com/eloquentai,https://api.ashbyhq.com/posting-api/job-board/eloquentai,ok
+Minerva,https://jobs.ashbyhq.com/minerva,https://api.ashbyhq.com/posting-api/job-board/minerva,ok
+Human Archive,https://jobs.ashbyhq.com/humanarchive,https://api.ashbyhq.com/posting-api/job-board/humanarchive,ok
+Cardboard,https://jobs.ashbyhq.com/cardboard,https://api.ashbyhq.com/posting-api/job-board/cardboard,ok
+Stilta,https://jobs.ashbyhq.com/stilta,https://api.ashbyhq.com/posting-api/job-board/stilta,ok
+Infinite,https://jobs.ashbyhq.com/infinite,https://api.ashbyhq.com/posting-api/job-board/infinite,ok
+Fort,https://jobs.ashbyhq.com/fort,https://api.ashbyhq.com/posting-api/job-board/fort,ok
+Pax Historia,https://jobs.ashbyhq.com/pax-historia,https://api.ashbyhq.com/posting-api/job-board/pax-historia,ok
+Asimov,https://jobs.ashbyhq.com/asimov,https://api.ashbyhq.com/posting-api/job-board/asimov,ok
+DiligenceSquared,https://jobs.ashbyhq.com/diligencesquared,https://api.ashbyhq.com/posting-api/job-board/diligencesquared,ok
+Thesis,https://jobs.ashbyhq.com/thesis,https://api.ashbyhq.com/posting-api/job-board/thesis,ok
+Hypercubic,https://jobs.ashbyhq.com/hypercubic,https://api.ashbyhq.com/posting-api/job-board/hypercubic,ok
+BootLoop,https://jobs.ashbyhq.com/bootloop,https://api.ashbyhq.com/posting-api/job-board/bootloop,ok
+Jeevy Fabrication,https://jobs.ashbyhq.com/jeevyfabrication,https://api.ashbyhq.com/posting-api/job-board/jeevyfabrication,ok
+Ambral,https://jobs.ashbyhq.com/ambral,https://api.ashbyhq.com/posting-api/job-board/ambral,ok
+Juno,https://jobs.ashbyhq.com/juno,https://api.ashbyhq.com/posting-api/job-board/juno,ok
+Dispatch,https://jobs.ashbyhq.com/dispatch,https://api.ashbyhq.com/posting-api/job-board/dispatch,ok
+Vela,https://jobs.ashbyhq.com/vela,https://api.ashbyhq.com/posting-api/job-board/vela,ok
+Tsenta,https://jobs.ashbyhq.com/tsenta,https://api.ashbyhq.com/posting-api/job-board/tsenta,ok
+Polymath,https://jobs.ashbyhq.com/polymath,https://api.ashbyhq.com/posting-api/job-board/polymath,ok
+Cranston AI,https://jobs.ashbyhq.com/cranston,https://api.ashbyhq.com/posting-api/job-board/cranston,ok
+Miso Labs,https://jobs.ashbyhq.com/misolabs,https://api.ashbyhq.com/posting-api/job-board/misolabs,ok
+Interface,https://jobs.ashbyhq.com/interface,https://api.ashbyhq.com/posting-api/job-board/interface,ok
+CareSwift,https://jobs.ashbyhq.com/careswift,https://api.ashbyhq.com/posting-api/job-board/careswift,ok
+MangoDesk,https://jobs.ashbyhq.com/mangodesk,https://api.ashbyhq.com/posting-api/job-board/mangodesk,ok
+Chestnut,https://jobs.ashbyhq.com/chestnut,https://api.ashbyhq.com/posting-api/job-board/chestnut,ok
+Dex,https://jobs.ashbyhq.com/dex,https://api.ashbyhq.com/posting-api/job-board/dex,ok
+Sygaldry Technologies,https://jobs.ashbyhq.com/sygaldry-technologies,https://api.ashbyhq.com/posting-api/job-board/sygaldry-technologies,ok
