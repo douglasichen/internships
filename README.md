@@ -93,7 +93,7 @@ filter on already-scraped rows (hides marketing/AI-PM false positives).
 | `GET` | `/api/descriptions/ids` | ids that have a description body |
 | `POST` | `/api/descriptions` | `{id, text}` upsert one description (409 if `.run.lock` held) |
 | `GET`/`POST` | `/api/applied` | applied map `id → ISO` (`?merge=1` to union) |
-| `POST` | `/api/listings/clear-2027` | `{id}` clear 2027 + set override (409 if `.run.lock` held) |
+| `POST` | `/api/listings/clear-2027` | `{id}` clear 2027 + set override (409 if `.run.lock` held, 404 if `id` unknown) |
 
 No auth — localhost personal tool only.
 
@@ -114,6 +114,49 @@ in `internships/__main__.py`. README sources share `md_table.py`.
 
 External fetches are **per-domain** throttled (`DomainThrottle.hold` in
 `ats_boards.py`) so the same host doesn’t get stampeded under the thread pool.
+
+## Growing coverage
+
+Coverage grows two ways: the existing sources above turn up new listings on
+every scrape, and new companies get added to `companies.csv` so `ats_boards`
+covers them too. Overlap between all of this is expected and handled by the
+dedup stack described in **Running it** above (batch `Listing.id`, README
+`known_urls`, per-source `seen`, content-key merge) — adding a company that
+some other source already partially covers is fine, not a bug.
+
+To find new companies to add, the pattern is a cheap, mechanical HTTP probe,
+not a scrape:
+
+1. Get a candidate company-name list from anywhere (a YC directory export, a
+   "top companies" list, etc.) — just needs a name and ideally a website.
+2. Drop anything already resolved — already `api_status: ok` in
+   `companies.csv`, or already present in the source's board list.
+3. For each remaining candidate, guess the board slug (lowercased
+   no-punctuation company name, or the website's root domain) and hit the
+   ATS's public per-company posting API directly:
+   - Ashby: `https://api.ashbyhq.com/posting-api/job-board/<slug>`
+   - Greenhouse: `https://boards-api.greenhouse.io/v1/boards/<slug>/jobs`
+   - Lever: `https://api.lever.co/v0/postings/<slug>`
+
+   A real board replies with job data (e.g. Ashby returns `{"jobs": [...]}`);
+   anything else (an error body, a 404) means try the next slug guess or move
+   on — most candidates, especially small/early-stage companies, won't have
+   one at all, and that's an expected, uninteresting result.
+4. This only works because these are unauthenticated public JSON APIs with no
+   anti-bot layer — it does **not** generalize to sites like Glassdoor or
+   LinkedIn, which sit behind Cloudflare/login walls and have no per-company
+   API; scraping around that would mean detection evasion, which isn't worth
+   it here. Skip sources like that rather than trying to defeat the
+   challenge.
+5. Because each candidate is an independent lookup, this parallelizes well —
+   split the candidate list into chunks and check them concurrently.
+6. Confirmed hits get appended to `companies.csv`
+   (`company,job_listings_url,api_urls,api_status=ok`) — no code changes
+   needed, the next scrape (manual or scheduled) picks them up automatically.
+
+`boards.csv` (see **Legacy** below) was an earlier one-off sweep using this
+exact method for Ashby/Lever; new discoveries now go straight into
+`companies.csv` since that's what the scraper actually reads.
 
 ## Data layout
 

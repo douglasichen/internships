@@ -100,7 +100,7 @@ flowchart TD
 | `POST` | `/api/descriptions` | body `{id, text}` — 409 if `.run.lock` held |
 | `GET` | `/api/applied` | full map |
 | `POST` | `/api/applied` | replace map; `?merge=1` unions (later ISO wins) |
-| `POST` | `/api/listings/clear-2027` | body `{id}` → `is_2027=false`, `is_2027_override=false` — 409 if `.run.lock` held |
+| `POST` | `/api/listings/clear-2027` | body `{id}` → `is_2027=false`, `is_2027_override=false` — 409 if `.run.lock` held, 404 if `id` unknown |
 
 ## Adding a source
 
@@ -126,6 +126,22 @@ Uninstall: `launchctl bootout gui/$(id -u)/com.internships.scrape` and remove
 
 If the repo is under `~/Documents`, grant Full Disk Access to `/bin/bash` and
 the `python3` binary used by the agent (TCC does not inherit shell grants).
+
+## Growing coverage
+
+Two separate mechanisms:
+
+- **More listings from known companies** — every scrape re-fetches all
+  configured boards/READMEs/APIs; dedup (`seen_store.py`, content-key merge —
+  see Components above) keeps re-fetches cheap.
+- **More companies** — `companies.csv` is grown by probing candidate company
+  names against ATS public per-company posting APIs (Ashby, Greenhouse, Lever
+  — see README **Growing coverage** for the exact slugs/URLs). It's a plain
+  HTTP GET per candidate, no scraping or auth, so it parallelizes across many
+  candidates at once; confirmed hits get appended as new `companies.csv` rows
+  with no code changes. Deliberately not attempted against sites with no
+  public API and active anti-bot defenses (e.g. Glassdoor) — not worth the
+  fight for what's a coverage nice-to-have, not core functionality.
 
 ## What's deliberately not here
 
