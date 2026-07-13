@@ -11062,5 +11062,77 @@
     "posted": "2026-07-12",
     "scraped_at": "2026-07-12T21:33:23",
     "url": "https://jobright.ai/jobs/info/6a2d15adfc0644749054bc61"
+  },
+  {
+    "id": "822ee54a30b9dad1",
+    "company": "Airbase",
+    "title": "Software Engineering Intern",
+    "location": "Airbase HQ, NYC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-03-22",
+    "scraped_at": "2026-07-13T00:54:03",
+    "url": "https://jobright.ai/jobs/info/6a545bddd007ee02d95fe88b"
+  },
+  {
+    "id": "d60268fe6a52e55d",
+    "company": "EngineeRD",
+    "title": "Internship - Frontend Developer",
+    "location": "Fairfax, VA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-13T00:54:03",
+    "url": "https://jobright.ai/jobs/info/6a542f64d007ee02d95fdf3b"
+  },
+  {
+    "id": "9b14e1611c328c41",
+    "company": "FIVE x 5",
+    "title": "Intern - Software Development",
+    "location": "Tuscaloosa, AL, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-03-25",
+    "scraped_at": "2026-07-13T00:54:03",
+    "url": "https://jobright.ai/jobs/info/6a542e28d007ee02d95fdef0"
+  },
+  {
+    "id": "e8af7e9be790022e",
+    "company": "SproutsAI",
+    "title": "AI Software Engineering Summer Intern",
+    "location": "Palo Alto, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-12",
+    "scraped_at": "2026-07-13T00:54:03",
+    "url": "https://jobright.ai/jobs/info/6a544ac38576ec69c0152a1d"
+  },
+  {
+    "id": "210e952c50c7b5c6",
+    "company": "Velinsa",
+    "title": "Software Engineering Intern",
+    "location": "New York, NY, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-13T00:54:03",
+    "url": "https://jobright.ai/jobs/info/6a542b3e8a74e077472fadab"
+  },
+  {
+    "id": "eacd33c05f48ff94",
+    "company": "Wall Street Quants",
+    "title": "Quantitative Developer Intern",
+    "location": "New York, New York, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-26",
+    "scraped_at": "2026-07-13T00:54:03",
+    "url": "https://jobright.ai/jobs/info/6a5456768a74e077472fb7aa"
   }
 ]
