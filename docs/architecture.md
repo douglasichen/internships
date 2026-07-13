@@ -132,7 +132,8 @@ the `python3` binary used by the agent (TCC does not inherit shell grants).
 Two separate mechanisms:
 
 - **More listings from known companies** — every scrape re-fetches all
-  configured boards/READMEs/APIs; dedup (below) keeps re-fetches cheap.
+  configured boards/READMEs/APIs; dedup (`seen_store.py`, content-key merge —
+  see Components above) keeps re-fetches cheap.
 - **More companies** — `companies.csv` is grown by probing candidate company
   names against ATS public per-company posting APIs (Ashby, Greenhouse, Lever
   — see README **Growing coverage** for the exact slugs/URLs). It's a plain
