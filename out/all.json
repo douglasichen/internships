@@ -11038,5 +11038,29 @@
     "posted": "2026-07-12",
     "scraped_at": "2026-07-12T18:38:11",
     "url": "https://jobright.ai/jobs/info/6a53f3128576ec69c0151779"
+  },
+  {
+    "id": "9e2fac7c551870a2",
+    "company": "Kentucky Farm Bureau Insurance",
+    "title": "Application Programmer Analyst Intern",
+    "location": "Louisville, KY, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T21:33:23",
+    "url": "https://jobright.ai/jobs/info/6a313f4ac477a5075f48baef"
+  },
+  {
+    "id": "c5aa9aec2e3ade41",
+    "company": "Rippling",
+    "title": "Software Engineer Intern - Backend Focused - Winter 2027",
+    "location": "Multi Locations: New York, NY; San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-12",
+    "scraped_at": "2026-07-12T21:33:23",
+    "url": "https://jobright.ai/jobs/info/6a2d15adfc0644749054bc61"
   }
 ]
