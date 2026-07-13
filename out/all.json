@@ -11722,5 +11722,89 @@
     "posted": "2026-07-13",
     "scraped_at": "2026-07-13T12:16:54",
     "url": "https://jobright.ai/jobs/info/6a54dce681744f383a313795"
+  },
+  {
+    "id": "04dd2b218d3828f1",
+    "company": "Akuna Capital",
+    "title": "Software Engineer Intern - C# .NET Desktop, Summer 2027",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-13T14:30:10",
+    "url": "https://www.akunacapital.com/careers/job/8018886/?gh_jid=8018886"
+  },
+  {
+    "id": "2acc987561eb66f7",
+    "company": "Akuna Capital",
+    "title": "Software Engineer Intern - Full Stack Web, Summer 2027",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-13T14:30:10",
+    "url": "https://www.akunacapital.com/careers/job/8018893/?gh_jid=8018893"
+  },
+  {
+    "id": "057bd78daea9c156",
+    "company": "Akuna Capital",
+    "title": "Software Engineer Intern - Python, Summer 2027",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-13T14:30:10",
+    "url": "https://www.akunacapital.com/careers/job/8018853/?gh_jid=8018853"
+  },
+  {
+    "id": "8f6b8b732605f624",
+    "company": "Citadel",
+    "title": "software-engineer-intern-europe",
+    "location": "",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-07-13T14:30:10",
+    "url": "https://www.citadel.com/careers/details/software-engineer-intern-europe"
+  },
+  {
+    "id": "03cb625ab7469b7f",
+    "company": "Hudson River Trading",
+    "title": "Software Engineering Internship (C++ or Python) \u2013 Summer 2027",
+    "location": "Austin, TX, United States",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-07-13",
+    "scraped_at": "2026-07-13T14:30:10",
+    "url": "https://jobright.ai/jobs/info/6a550868268af95237be8c2a"
+  },
+  {
+    "id": "2ffffc5730ad5b63",
+    "company": "Redwire",
+    "title": "Intern \u2013 Space Software Engineering, National Security Space",
+    "location": "Chantilly, VA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-13",
+    "scraped_at": "2026-07-13T14:30:10",
+    "url": "https://jobright.ai/jobs/info/6a550670ae07d60a8d00e5a9"
+  },
+  {
+    "id": "6f9b52c83d70e2c0",
+    "company": "The Aparecio Foundation",
+    "title": "Web Developer/Programmer Intern/Volunteer",
+    "location": "Los Angeles, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-13",
+    "scraped_at": "2026-07-13T14:30:10",
+    "url": "https://jobright.ai/jobs/info/6a54f54dae07d60a8d00dff7"
   }
 ]
