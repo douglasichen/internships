@@ -11806,5 +11806,41 @@
     "posted": "2026-07-13",
     "scraped_at": "2026-07-13T14:30:10",
     "url": "https://jobright.ai/jobs/info/6a54f54dae07d60a8d00dff7"
+  },
+  {
+    "id": "23216209a0cb4eb2",
+    "company": "Akuna Capital",
+    "title": "Software Engineer Intern - C++, Summer 2027",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-13T14:54:06",
+    "url": "https://www.akunacapital.com/careers/job/8018847/?gh_jid=8018847"
+  },
+  {
+    "id": "187741f2a3af9918",
+    "company": "Comena",
+    "title": "Software Engineering Intern",
+    "location": "Munich",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-13T14:54:06",
+    "url": "https://jobs.ashbyhq.com/comena/7e547b6e-ddb5-4294-8530-84d3001a3cef"
+  },
+  {
+    "id": "870827c7e4b99dc6",
+    "company": "Nox Metals",
+    "title": "Software Engineering Intern",
+    "location": "US/Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-13T14:54:06",
+    "url": "https://jobs.ashbyhq.com/nox-metals/6edc2dff-7c4b-44b8-abba-32d5953b8c5f"
   }
 ]
