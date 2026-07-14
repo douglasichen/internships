@@ -12154,5 +12154,53 @@
     "posted": "",
     "scraped_at": "2026-07-13T20:29:32",
     "url": "https://www.tesla.com/careers/search/job/vehicle-software-engineer-internship-robotaxi-and-service-operations-273001"
+  },
+  {
+    "id": "5f289a68d73222ba",
+    "company": "Desert Financial Credit Union",
+    "title": "Database Developer Intern",
+    "location": "Multi Locations: Phoenix, AZ, United States; Phoenix, Arizona, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-29",
+    "scraped_at": "2026-07-13T23:27:22",
+    "url": "https://jobright.ai/jobs/info/6a42e20a6a9c2774b3fa7b58"
+  },
+  {
+    "id": "0b1f844d7bf68c92",
+    "company": "Ginkgo Bioworks",
+    "title": "Software Intern, Autonomous Lab",
+    "location": "Emeryville, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-13",
+    "scraped_at": "2026-07-13T23:27:22",
+    "url": "https://jobright.ai/jobs/info/6a5589ab268af95237bec434"
+  },
+  {
+    "id": "8ccd3ffb403f4e58",
+    "company": "Layer5",
+    "title": "Software Engineer Internship",
+    "location": "Indiana, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-22",
+    "scraped_at": "2026-07-13T23:27:22",
+    "url": "https://jobright.ai/jobs/info/6a559a7b13cd7d29d5e32d5c"
+  },
+  {
+    "id": "c4a1b67213b44cc6",
+    "company": "TeleWorld Solutions",
+    "title": "Software Developer (Full Stack/Backend) Intern",
+    "location": "Chantilly, VA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-13",
+    "scraped_at": "2026-07-13T23:27:22",
+    "url": "https://jobright.ai/jobs/info/6a556dbb377f983ce8a9a488"
   }
 ]
