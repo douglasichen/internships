@@ -12202,5 +12202,77 @@
     "posted": "2026-07-13",
     "scraped_at": "2026-07-13T23:27:22",
     "url": "https://jobright.ai/jobs/info/6a556dbb377f983ce8a9a488"
+  },
+  {
+    "id": "861e15b9cd695858",
+    "company": "Centerfield",
+    "title": "Software Engineer Intern",
+    "location": "Los Angeles, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-09",
+    "scraped_at": "2026-07-14T02:27:15",
+    "url": "https://jobright.ai/jobs/info/6a55b6e3fdf4fa71202b3e83"
+  },
+  {
+    "id": "861c688c146f7550",
+    "company": "Generac",
+    "title": "Intern Firmware Engineering",
+    "location": "Reno, NV - USA, United States of America",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-17",
+    "scraped_at": "2026-07-14T02:27:15",
+    "url": "https://jobright.ai/jobs/info/6a55aadb8719590518d94d11"
+  },
+  {
+    "id": "56bf016f887580b8",
+    "company": "Itron, Inc.",
+    "title": "Intern - Hardware / Embedded Security Engineer",
+    "location": "United States of America, North Carolina, Raleigh, US",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-05-27",
+    "scraped_at": "2026-07-14T02:27:15",
+    "url": "https://jobright.ai/jobs/info/6a1751a89005d858e94f8a1f"
+  },
+  {
+    "id": "ad022e1ecf3b45f4",
+    "company": "Itron, Inc.",
+    "title": "Intern - Hardware / Embedded Security Engineer",
+    "location": "United States of America, North Carolina, Raleigh, United States of America",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-05-26",
+    "scraped_at": "2026-07-14T02:27:15",
+    "url": "https://jobright.ai/jobs/info/6a5112a7bf63b66c79978959"
+  },
+  {
+    "id": "1cd9289c9033fa45",
+    "company": "Philo Homes",
+    "title": "Software Engineer Intern (Computer Vision)_Bilingual Chinese",
+    "location": "New York, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-13",
+    "scraped_at": "2026-07-14T02:27:15",
+    "url": "https://jobright.ai/jobs/info/6a55a3448719590518d94a0a"
+  },
+  {
+    "id": "42d684af71136532",
+    "company": "Point72",
+    "title": "Machine Learning Researcher - Intern",
+    "location": "New York, United States",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-06-25",
+    "scraped_at": "2026-07-14T02:27:15",
+    "url": "https://jobright.ai/jobs/info/6a4325603a9004648946ace1"
   }
 ]
