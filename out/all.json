@@ -12274,5 +12274,77 @@
     "posted": "2026-06-25",
     "scraped_at": "2026-07-14T02:27:15",
     "url": "https://jobright.ai/jobs/info/6a4325603a9004648946ace1"
+  },
+  {
+    "id": "3f6e20f688dcc576",
+    "company": "Atomic Semi",
+    "title": "Infrastructure Software Engineering Intern - Fall",
+    "location": "San Francisco, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-04-21",
+    "scraped_at": "2026-07-14T05:51:36",
+    "url": "https://jobright.ai/jobs/info/6a55eef6f7517b519ad51e75"
+  },
+  {
+    "id": "9fec642a5314a5cb",
+    "company": "Copart",
+    "title": "Software Engineering Intern",
+    "location": "Multi Locations: Dallas, TX; Dallas, TX, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-06",
+    "scraped_at": "2026-07-14T05:51:36",
+    "url": "https://jobright.ai/jobs/info/6a5380168576ec69c014fee5"
+  },
+  {
+    "id": "97cd0aabb2e9dc49",
+    "company": "Denari",
+    "title": "Summer '26 Product & Software Internship",
+    "location": "Madison, WI, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-13",
+    "scraped_at": "2026-07-14T05:51:36",
+    "url": "https://jobright.ai/jobs/info/6a55c72b14f1040fa611baef"
+  },
+  {
+    "id": "70fb235d9c717239",
+    "company": "Hasana, Inc.",
+    "title": "Web Developer/Programmer Internship",
+    "location": "New York, NY, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-13",
+    "scraped_at": "2026-07-14T05:51:36",
+    "url": "https://jobright.ai/jobs/info/6a55cb94ef22935f2e3f72b0"
+  },
+  {
+    "id": "5821978ddc83956a",
+    "company": "RadNet",
+    "title": "Intern Software Development",
+    "location": "Seattle/Bothell, WA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-03-01",
+    "scraped_at": "2026-07-14T05:51:36",
+    "url": "https://jobright.ai/jobs/info/6a55c08cef22935f2e3f6a4a"
+  },
+  {
+    "id": "4c51d824d334b0d5",
+    "company": "Unbound",
+    "title": "Software Engineering Intern",
+    "location": "San Francisco, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-04-14",
+    "scraped_at": "2026-07-14T05:51:36",
+    "url": "https://jobright.ai/jobs/info/6a55c2ebec54dd532d81328f"
   }
 ]
