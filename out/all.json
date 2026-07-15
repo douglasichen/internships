@@ -12946,5 +12946,53 @@
     "posted": "2026-07-14",
     "scraped_at": "2026-07-14T20:44:39",
     "url": "https://jobright.ai/jobs/info/6a56be4621f64463ad356c40"
+  },
+  {
+    "id": "eeef34c874f75ebe",
+    "company": "Americhem",
+    "title": "Data Engineer Intern",
+    "location": "Cuyahoga Falls, OH, US",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-05-27",
+    "scraped_at": "2026-07-14T23:02:30",
+    "url": "https://jobright.ai/jobs/info/6a56d4a553b3962b910b2cfb"
+  },
+  {
+    "id": "e594c0cce88a6607",
+    "company": "Exowatt",
+    "title": "Software Engineering Intern - Inventory Automation & IoT/Robotics",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-10",
+    "scraped_at": "2026-07-14T23:02:30",
+    "url": "https://jobright.ai/jobs/info/6a51b767ae4052672fe998af"
+  },
+  {
+    "id": "6b7559d7562ea643",
+    "company": "Phia",
+    "title": "Full Stack Engineer Intern",
+    "location": "New York City, NY, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-05-27",
+    "scraped_at": "2026-07-14T23:02:30",
+    "url": "https://jobright.ai/jobs/info/6a56c2b1efb06a45240d8265"
+  },
+  {
+    "id": "44726a0e86c061d6",
+    "company": "PulseSync Pte Ltd",
+    "title": "Intern (Software Development) \u2013 SG",
+    "location": "Lane County, OR, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-14",
+    "scraped_at": "2026-07-14T23:02:30",
+    "url": "https://jobright.ai/jobs/info/6a56c3a2f7517b519ad5814c"
   }
 ]
