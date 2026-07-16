@@ -21,6 +21,7 @@ from datetime import datetime
 from pathlib import Path
 
 from internships import recompute
+from internships.models import normalize_url
 from internships.service import ROOT, run
 from internships.sources.ats_boards import AtsBoardsSource
 from internships.sources.custom_boards import CustomBoardsSource
@@ -94,11 +95,26 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             descs.setdefault(k, v)
 
     have = {r.get("id") for r in existing}
-    # content_key -> rows already kept with that company+title+location
-    by_content = {}
+    # (company, canonical title) -> clusters of rows already kept for that role.
+    # Same identity clustering as recompute.dedupe pass 2: a new row that is the
+    # same posting as an existing cluster (locations overlap, real job ids don't
+    # conflict) is skipped rather than appended as a near-duplicate.
+    def _bucket(r):
+        return (recompute._squash(r.get("company")),
+                recompute.canon_title(r.get("title")))
+
+    buckets = {}
+    # normalized-url -> the cluster it lives in, mirroring dedupe pass 1: a new
+    # row whose apply link already exists is the same posting even when its
+    # title/location canonicalize differently (append had no url pass before).
+    by_url = {}
     for r in existing:
         if isinstance(r, dict):
-            by_content.setdefault(recompute.content_key(r), []).append(r)
+            cluster = [r]  # one existing row = one cluster
+            buckets.setdefault(_bucket(r), []).append(cluster)
+            u = normalize_url(r.get("url") or "")
+            if u:
+                by_url.setdefault(u, cluster)
 
     def _fill_desc_for_group(group, text):
         """Attach body text to the first group row that still lacks one."""
@@ -113,22 +129,29 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     for l in listings:
         row = _row(l, scraped_at)  # no description field
         lid = row["id"]
-        ck = recompute.content_key(row)
         if lid in have:
             # retry after crash: row may already be in all.json but desc never
             # saved -- still fill the store when we have body text
             if l.extra_text and not descs.get(lid):
                 descs[lid] = l.extra_text
             continue
-        group = by_content.get(ck) or []
-        if group and recompute._content_group_mergeable(group + [row]):
+        clusters = buckets.setdefault(_bucket(row), [])
+        url = normalize_url(row.get("url") or "")
+        joined = by_url.get(url) if url else None
+        if joined is None:
+            joined = next((c for c in clusters if recompute._can_join(c, row)), None)
+        if joined is not None:
             # same human-visible job already recorded under another id -- keep
             # the older row, but don't drop a description we already fetched
-            _fill_desc_for_group(group, l.extra_text)
+            _fill_desc_for_group(joined, l.extra_text)
+            joined.append(row)  # so later listings this run also see it
             continue
+        new_cluster = [row]
         existing.append(row)
         have.add(lid)
-        by_content.setdefault(ck, []).append(row)
+        clusters.append(new_cluster)
+        if url:
+            by_url.setdefault(url, new_cluster)
         if l.extra_text:
             descs[lid] = l.extra_text
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -248,7 +271,7 @@ def selftest():
     # same company+title+location BUT distinct embedded job ids (e.g. two NXP
     # "System Engineer Intern" openings in Bucharest) must NOT collapse -- same
     # rule as --recompute dedup. Pre-fix this permanently dropped the second
-    # opening (content_key skip + persist_seen marked it seen forever).
+    # opening (content dedup skip + persist_seen marked it seen forever).
     with tempfile.TemporaryDirectory() as td:
         all_json = Path(td) / "all.json"
         a = Listing(
