@@ -94,11 +94,18 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             descs.setdefault(k, v)
 
     have = {r.get("id") for r in existing}
-    # content_key -> rows already kept with that company+title+location
-    by_content = {}
+    # (company, canonical title) -> clusters of rows already kept for that role.
+    # Same identity clustering as recompute.dedupe pass 2: a new row that is the
+    # same posting as an existing cluster (locations overlap, real job ids don't
+    # conflict) is skipped rather than appended as a near-duplicate.
+    def _bucket(r):
+        return (recompute._squash(r.get("company")),
+                recompute.canon_title(r.get("title")))
+
+    buckets = {}
     for r in existing:
         if isinstance(r, dict):
-            by_content.setdefault(recompute.content_key(r), []).append(r)
+            buckets.setdefault(_bucket(r), []).append([r])  # one row = one cluster
 
     def _fill_desc_for_group(group, text):
         """Attach body text to the first group row that still lacks one."""
@@ -113,22 +120,23 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     for l in listings:
         row = _row(l, scraped_at)  # no description field
         lid = row["id"]
-        ck = recompute.content_key(row)
         if lid in have:
             # retry after crash: row may already be in all.json but desc never
             # saved -- still fill the store when we have body text
             if l.extra_text and not descs.get(lid):
                 descs[lid] = l.extra_text
             continue
-        group = by_content.get(ck) or []
-        if group and recompute._content_group_mergeable(group + [row]):
+        clusters = buckets.setdefault(_bucket(row), [])
+        joined = next((c for c in clusters if recompute._can_join(c, row)), None)
+        if joined is not None:
             # same human-visible job already recorded under another id -- keep
             # the older row, but don't drop a description we already fetched
-            _fill_desc_for_group(group, l.extra_text)
+            _fill_desc_for_group(joined, l.extra_text)
+            joined.append(row)  # so later listings this run also see it
             continue
         existing.append(row)
         have.add(lid)
-        by_content.setdefault(ck, []).append(row)
+        clusters.append([row])
         if l.extra_text:
             descs[lid] = l.extra_text
     path.parent.mkdir(parents=True, exist_ok=True)

@@ -21,17 +21,6 @@ from internships.filters import company_priority, year_relevance
 from internships.models import normalize_url
 from internships.service import ROOT, _fetch_raw_page
 
-# Pull a posting id out of an apply URL when present so company+title+location
-# dedup does not merge distinct openings that share a generic title
-# (e.g. three NXP "System Engineer Intern" roles in Bucharest with different R- ids).
-# Identity-bearing only: gh_jid / jobId / job_id / Greenhouse token= / Workday R- / JR.
-# Do NOT include jr_id — that is a README-list click tracker (stripped by
-# normalize_url) and would steal the last-match slot from a real gh_jid.
-_JOB_TOKEN_RE = re.compile(
-    r"(?:/jobs/|/job/|[?&](?:gh_jid|jobId|job_id|token)=|_R-|JR)([A-Za-z0-9-]{4,})",
-    re.I,
-)
-
 ALL_JSON_PATH = ROOT / "out" / "all.json"
 DESCRIPTIONS_PATH = desc_store.DESCRIPTIONS_PATH
 
@@ -113,24 +102,136 @@ def recompute_priority(path=ALL_JSON_PATH):
     return changed, len(rows)
 
 
-def content_key(row):
-    """Exact company + title + location identity (case/whitespace-normalized).
+# --- Canonical content identity (fuzzy dedup) -------------------------------
+# The exact company|title|location key misses the bulk of real duplicates: the
+# same posting arrives from jobright/startupjobs/ats_boards/speedyapply with the
+# location string spelled a dozen ways ("Dallas, TX" / "Dallas, TX, United
+# States" / "Multi Locations: Dallas, TX; ...") and the title carrying trailing
+# season/year/remote tags. Canonicalizing both, then clustering on a real
+# embedded job-id guard + location overlap, is what actually collapses them.
 
-    Used to collapse the same posting scraped from different sources/URLs
-    (e.g. github_readme vs ats_boards) when the human-visible fields match."""
-    return (
-        (row.get("company") or "").strip().lower(),
-        (row.get("title") or "").strip().lower(),
-        (row.get("location") or "").strip().lower(),
-    )
+# Real ATS posting ids only -- gh_jid / Workday R- / JR / greenhouse numeric
+# /jobs/<n> / token= / jobId. Must start with a digit, which is what keeps out
+# path words that are not identities: jobright's "/jobs/info" (-> constant) and
+# workday's "/job/Dallas-TX" (a location slug) would otherwise spuriously
+# block or allow cross-source merges. jr_id (a README click tracker) is not in
+# the pattern at all, so a real gh_jid alongside it still wins.
+_REAL_TOKEN_RE = re.compile(
+    r"(?:[?&](?:gh_jid|jobId|job_id|token)=|_R-|\bJR|/jobs/)(\d[A-Za-z0-9-]{3,})",
+    re.I,
+)
+
+# Trailing decorations on a title that don't change the role identity.
+_TITLE_TAIL_RE = re.compile(
+    r"\s*[-–—(|,]\s*(summer|fall|spring|winter|remote|hybrid|onsite|us|usa|"
+    r"u\.s\.a?\.?|20\d\d|intern(ship)?|co-?op|phd|ph\.d\.?|ms|m\.s\.?|bs|b\.s\.?|"
+    r"undergrad(uate)?|graduate|masters?|bachelors?)\b.*$",
+    re.I,
+)
+
+# Country / region / facility noise stripped from each location segment.
+_LOC_NOISE_RE = re.compile(
+    r",?\s*\b(united states of america|united states|u\.s\.a?\.?|usa|us|"
+    r"remote|onsite|hybrid|headquarters|hq|office|multiple locations|"
+    r"multi locations)\b",
+    re.I,
+)
+_US_STATE_ABBR = frozenset(
+    "al ak az ar ca co ct de fl ga hi id il in ia ks ky la me md ma mi mn ms "
+    "mo mt ne nv nh nj nm ny nc nd oh ok or pa ri sc sd tn tx ut vt va wa wv "
+    "wi wy dc".split()
+)
 
 
-def job_token(url):
-    """Best-effort posting id embedded in a URL, or None if none found."""
+def _squash(s):
+    return re.sub(r"\s+", " ", (s or "").strip().lower())
+
+
+def canon_title(title):
+    """Role title with trailing season/year/level/remote tags peeled off and
+    punctuation flattened, so "Software Engineer Intern - Summer 2027" and
+    "Software Engineer Intern (Remote)" share one identity."""
+    t = _squash(title)
+    prev = None
+    while prev != t:  # peel repeatedly: "... - Intern - Summer 2027"
+        prev = t
+        t = _TITLE_TAIL_RE.sub("", t).strip(" -–—(|,")
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9 ]+", " ", t)).strip()
+
+
+def location_tokens(location):
+    """Set of canonical city tokens for a location string. Collapses country
+    suffixes, "Multi Locations:" prefixes, and facility tags so the many
+    spellings of one city reduce to the same token. Empty set when the string
+    names no city (bare state, "United States", "Remote", "")."""
+    loc = _squash(location)
+    loc = re.sub(r"^multi(ple)? locations?\s*:", "", loc)
+    cities = set()
+    for piece in re.split(r"[;/]| and ", loc):
+        piece = _LOC_NOISE_RE.sub("", piece).replace("(", " ").replace(")", " ")
+        segs = [s.strip() for s in piece.split(",") if s.strip()]
+        if not segs:
+            continue
+        city = re.sub(r"\s+", " ", re.sub(r"[^a-z0-9 ]+", " ", segs[0])).strip()
+        if len(city) > 1 and city not in _US_STATE_ABBR:
+            cities.add(city)
+    return frozenset(cities)
+
+
+def real_job_token(url):
+    """Real ATS posting id in a URL, or None. See _REAL_TOKEN_RE."""
     if not url:
         return None
-    matches = _JOB_TOKEN_RE.findall(url)
-    return matches[-1].lower() if matches else None
+    m = _REAL_TOKEN_RE.findall(url)
+    return m[-1].lower() if m else None
+
+
+def _can_join(cluster, row):
+    """True if `row` is the same posting as an existing `cluster` of rows that
+    already share (company, canon_title). Blocks the join when the row's real
+    job id conflicts with ANY member (distinct reqs like NXP _R-...102 vs 103,
+    or Gemini token=1 vs 2 stay apart -- and checking every member, not just
+    one, stops a token-less row from transitively bridging two distinct ids).
+    Otherwise requires a shared city token, treating an empty location (no city
+    named) as compatible with anything in the same title+company bucket."""
+    rtok = real_job_token(row.get("url"))
+    rloc = location_tokens(row.get("location"))
+    loc_ok = not rloc
+    for m in cluster:
+        mtok = real_job_token(m.get("url"))
+        if rtok and mtok and rtok != mtok:
+            return False
+        mloc = location_tokens(m.get("location"))
+        if not mloc or (rloc & mloc):
+            loc_ok = True
+    return loc_ok
+
+
+def cluster_content(rows):
+    """Group rows that are the same human-visible posting. Buckets by
+    (company, canon_title) then greedily first-fits each row into a compatible
+    cluster (see _can_join). Returns a list of row-lists.
+
+    ponytail: greedy first-fit is order-sensitive and O(n^2) within a bucket;
+    buckets are tiny (a handful of rows per company+role) so it does not
+    matter. Upgrade to real connected-components only if a bucket ever gets big.
+    """
+    buckets = {}
+    for r in rows:
+        buckets.setdefault((_squash(r.get("company")), canon_title(r.get("title"))),
+                           []).append(r)
+    groups = []
+    for members in buckets.values():
+        clusters = []
+        for row in members:
+            for c in clusters:
+                if _can_join(c, row):
+                    c.append(row)
+                    break
+            else:
+                clusters.append([row])
+        groups.extend(clusters)
+    return groups
 
 
 def _keep_oldest(group):
@@ -179,20 +280,6 @@ def _collapse(groups_dict, *, mergeable=None, descs=None):
     return kept, removed, migrated
 
 
-def _content_group_mergeable(group):
-    """Do not merge company+title+location groups when embedded job ids conflict.
-
-    Any disagreement among present tokens means the group is not a single
-    opening (e.g. tokens A,A,B must not collapse and drop B). Only merge when
-    every extracted token agrees (or fewer than two rows carry a token).
-    """
-    tokens = [job_token(r.get("url")) for r in group]
-    present = [t for t in tokens if t]
-    if len(set(present)) > 1:
-        return False
-    return True
-
-
 def dedupe(path=ALL_JSON_PATH):
     """Merge rows that are the same job under today's identity rules:
 
@@ -225,12 +312,14 @@ def dedupe(path=ALL_JSON_PATH):
     after_url, removed_url, migrated_url = _collapse(by_url, descs=descs)
     after_url.extend(no_url)
 
-    # Pass 2: by company|title|location on the URL-collapsed set
-    by_content = {}
-    for row in after_url:
-        by_content.setdefault(content_key(row), []).append(row)
+    # Pass 2: cluster same-posting rows on the URL-collapsed set. Groups by
+    # (company, canonical title) then merges rows whose locations overlap and
+    # whose embedded real job ids don't conflict -- collapses the same opening
+    # arriving from many sources with drifting location/title spellings, while
+    # keeping genuinely distinct reqs (NXP _R- ids) and distinct cities apart.
+    content_groups = {i: g for i, g in enumerate(cluster_content(after_url))}
     result_rows, removed_content, migrated_content = _collapse(
-        by_content, mergeable=_content_group_mergeable, descs=descs
+        content_groups, descs=descs
     )
 
     result_rows = sorted(result_rows, key=lambda r: r.get("scraped_at") or "")
@@ -332,6 +421,51 @@ def selftest():
     finally:
         _self.company_priority = orig_priority
 
+    # canon_title: trailing season/year/level/remote tags collapse to one role
+    assert canon_title("Software Engineer Intern - Summer 2027") == "software engineer intern"
+    assert canon_title("Software Engineer Intern (Remote)") == "software engineer intern"
+    assert canon_title("SWE Intern, Fall 2026") == "swe intern"
+    # ...but a distinguishing word in the middle of the role is NOT a tag
+    assert canon_title("Quantitative Developer Intern") != canon_title(
+        "Quantitative Software Developer Intern")
+
+    # location_tokens: the many spellings of one city reduce to one token;
+    # bare state / country / remote name no city (empty set)
+    assert location_tokens("Dallas, TX") == location_tokens("Dallas, TX, United States") \
+        == location_tokens("Dallas, TX - Headquarters, United States of America") \
+        == frozenset({"dallas"})
+    assert location_tokens("Multi Locations: Dallas, TX; Dallas, TX, United States") \
+        == frozenset({"dallas"})
+    assert location_tokens("Prague, Czech Republic") == location_tokens("Prague, Czechia")
+    assert location_tokens("United States - Remote") == location_tokens("") == frozenset()
+    assert location_tokens("San Francisco, CA; Palo Alto, CA; Seattle, WA") \
+        == frozenset({"san francisco", "palo alto", "seattle"})
+
+    # cluster_content: same posting from many sources with drifting location
+    # spellings collapses to one cluster; distinct cities stay separate...
+    same_role = [
+        {"company": "Optiver", "title": "Software Engineer Intern", "location": "Austin, TX",
+         "url": "https://a/1"},
+        {"company": "Optiver", "title": "Software Engineer Intern - Summer 2027",
+         "location": "Austin, Texas, United States", "url": "https://a/2"},
+        {"company": "Optiver", "title": "Software Engineer Intern", "location": "Chicago, IL",
+         "url": "https://a/3"},
+    ]
+    groups = cluster_content(same_role)
+    assert sorted(len(g) for g in groups) == [1, 2], groups  # Austin x2 merged, Chicago alone
+    # ...and distinct real job ids never merge even when title+city match
+    two_reqs = [
+        {"company": "NXP", "title": "SE Intern", "location": "Bucharest",
+         "url": "https://x/job/Bucharest/SE_R-1001"},
+        {"company": "NXP", "title": "SE Intern", "location": "Bucharest",
+         "url": "https://x/job/Bucharest/SE_R-1002"},
+    ]
+    assert sorted(len(g) for g in cluster_content(two_reqs)) == [1, 1]
+    # a token-less row must not transitively bridge two conflicting job ids
+    bridged = two_reqs + [{"company": "NXP", "title": "SE Intern",
+                           "location": "Bucharest", "url": "https://x/no-token"}]
+    assert len(cluster_content(bridged)) >= 2
+
     # dedupe pass 1: same link (query string aside), different source/scrape time
     # -- keep the OLDEST record, never overwrite it with a newer one
     dupe_rows = [
@@ -396,8 +530,8 @@ def selftest():
     assert len(json.loads(p_nxp.read_text())) == 2
 
     # Greenhouse embed ?token= is identity-bearing (models.normalize_url keeps it);
-    # content-key dedup must not collapse two tokens into one row.
-    assert job_token(
+    # content clustering must not collapse two tokens into one row.
+    assert real_job_token(
         "https://boards.greenhouse.io/embed/job_app?for=gemini&token=1111111"
     ) == "1111111"
     gh_rows = [
@@ -428,7 +562,6 @@ def selftest():
          "url": "https://x.example/careers/job/Loc/Role_R-1002",
          "scraped_at": "2026-01-03", "id": "b1"},
     ]
-    assert _content_group_mergeable(mixed_rows) is False
     p_mix = Path(tempfile.mkdtemp()) / "all.json"
     p_mix.write_text(json.dumps(mixed_rows))
     removed, total = dedupe(p_mix)
@@ -446,19 +579,25 @@ def selftest():
          "url": "https://boards.greenhouse.io/embed/job_app?for=co&token=99999",
          "scraped_at": "2026-01-02", "id": "s2"},
     ]
-    assert job_token(same_tok[0]["url"]) == job_token(same_tok[1]["url"]) == "99999"
-    assert _content_group_mergeable(same_tok) is True
+    assert (real_job_token(same_tok[0]["url"])
+            == real_job_token(same_tok[1]["url"]) == "99999")
     p_same = Path(tempfile.mkdtemp()) / "all.json"
     p_same.write_text(json.dumps(same_tok))
     removed, total = dedupe(p_same)
     assert removed == 1 and total == 2
     assert json.loads(p_same.read_text())[0]["id"] == "s1"
 
-    # jr_id is a click tracker, not a job id -- must not be preferred over gh_jid
-    assert job_token(
+    # real_job_token: gh_jid is an identity, jr_id (a click tracker) is not --
+    # so it never gets picked over a real gh_jid, and alone yields None.
+    assert real_job_token(
         "https://www.jumptrading.com/hr/job?gh_jid=7565728&jr_id=tracker99"
     ) == "7565728"
-    assert job_token("https://example.com/apply?jr_id=onlytracker") is None
+    assert real_job_token("https://example.com/apply?jr_id=onlytracker") is None
+    # jobright "/jobs/info/<hash>" and workday "/job/Dallas-TX" are NOT ids
+    # (would misfire the old path-word regex); real_job_token returns None.
+    assert real_job_token("https://jobright.ai/jobs/info/6a511ea50252") is None
+    assert real_job_token(
+        "https://copart.wd12.myworkdayjobs.com/en-US/copart/job/Dallas-TX") is None
 
     import sys
     _self = sys.modules[__name__]  # module-level patch, not a fresh dotted
