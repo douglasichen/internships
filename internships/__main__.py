@@ -28,13 +28,15 @@ from internships.sources.github_readme import GithubReadmeSource
 from internships.sources.jobright import JobrightSource
 from internships.sources.sndsh404 import Sndsh404Source
 from internships.sources.speedyapply import SpeedyApplySource
+from internships.sources.startupjobs import StartupJobsSource
 
 OUT_DIR = ROOT / "out"
 ALL_JSON_PATH = OUT_DIR / "all.json"
 LOCK_PATH = ROOT / ".run.lock"
 
 SOURCES = [AtsBoardsSource(), CustomBoardsSource(), GithubReadmeSource(),
-           SpeedyApplySource(), Sndsh404Source(), JobrightSource()]
+           SpeedyApplySource(), Sndsh404Source(), JobrightSource(),
+           StartupJobsSource()]
 
 FIELDS = ["company", "title", "location", "is_2027", "priority", "source", "posted",
           "scraped_at", "url", "description"]
@@ -149,6 +151,7 @@ def selftest():
                "internships.sources.custom_boards",
                "internships.sources.github_readme", "internships.sources.speedyapply",
                "internships.sources.sndsh404", "internships.sources.jobright",
+               "internships.sources.startupjobs",
                "internships.service", "internships.recompute"]
     for m in modules:
         subprocess.run([sys.executable, "-m", m], cwd=ROOT, check=True)
