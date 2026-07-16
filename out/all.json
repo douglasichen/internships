@@ -16174,5 +16174,77 @@
     "posted": "",
     "scraped_at": "2026-07-16T15:42:26",
     "url": "https://jobs.smartrecruiters.com/WesternDigital/744000138184309"
+  },
+  {
+    "id": "ce79b416c0403dcf",
+    "company": "BUREUX",
+    "title": "Frontend Designer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-16",
+    "scraped_at": "2026-07-16T19:48:31",
+    "url": "https://jobright.ai/jobs/info/6a5942c5c8e3a473cb8a6054"
+  },
+  {
+    "id": "c335df8a69d72bbb",
+    "company": "Barkback",
+    "title": "Software Intern",
+    "location": "Santa Barbara, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-16",
+    "scraped_at": "2026-07-16T19:48:31",
+    "url": "https://jobright.ai/jobs/info/6a59421663a8f619507c1497"
+  },
+  {
+    "id": "fe1a9170233bd692",
+    "company": "GigCentric",
+    "title": "Software Quality Assurance / UI Testor Internship",
+    "location": "7613 Elmwood Ave, Middleton, WI 53562, USA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-16",
+    "scraped_at": "2026-07-16T19:48:31",
+    "url": "https://jobright.ai/jobs/info/6a5941b73ac7627fe9ffe489"
+  },
+  {
+    "id": "7625b5e4b73b6889",
+    "company": "SOLX",
+    "title": "2027-Software Engineer Intern",
+    "location": "Aguadilla, PR, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-16",
+    "scraped_at": "2026-07-16T19:48:31",
+    "url": "https://jobright.ai/jobs/info/6a593e9f686b4755d1e0f44c"
+  },
+  {
+    "id": "7df7e5232b3f2111",
+    "company": "SOLX",
+    "title": "AI Infrastructure Engineer Intern",
+    "location": "Aguadilla, PR, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-16",
+    "scraped_at": "2026-07-16T19:48:31",
+    "url": "https://jobright.ai/jobs/info/6a593e604da96a42cfd8ffc6"
+  },
+  {
+    "id": "5f67b636e408fcc2",
+    "company": "Torch Technologies, Inc.",
+    "title": "Software Engineer Intern",
+    "location": "Huntsville, AL, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-16",
+    "scraped_at": "2026-07-16T19:48:31",
+    "url": "https://jobright.ai/jobs/info/6a5935084da96a42cfd8fbc0"
   }
 ]
