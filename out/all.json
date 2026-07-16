@@ -15958,5 +15958,29 @@
     "posted": "2026-05-29",
     "scraped_at": "2026-07-16T05:00:25",
     "url": "https://startup.jobs/software-engineer-intern-generalist-ponyai-8000934"
+  },
+  {
+    "id": "667a832f2b518d75",
+    "company": "Bitpanda",
+    "title": "Software Engineer Intern, Fullstack - 12 Month Internship",
+    "location": "Vienna, Austria",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-07-15",
+    "scraped_at": "2026-07-16T07:30:44",
+    "url": "https://startup.jobs/software-engineer-intern-fullstack-12-month-internship-bitpanda-2-8758036"
+  },
+  {
+    "id": "7251fc319cb82c96",
+    "company": "Skyworks",
+    "title": "AI & Machine Learning Summer/Fall Co-Op (June '26 - Dec '26)",
+    "location": "Irvine, CA, USA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-07-16T07:30:44",
+    "url": "https://careers.skyworksinc.com/job/AI-&amp;-Machine-Learning-SummerFall-Co-Op-%28June-&apos;26-Dec-&apos;26%29"
   }
 ]
