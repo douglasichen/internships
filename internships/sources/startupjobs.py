@@ -40,7 +40,7 @@ APP_ID = "4CQMTMMK73"
 # only a fallback for when the live scrape and env override both miss.
 _DEFAULT_KEY = "YmRiYzczYjlmNzMzNjc0MmRhMmIzZmRjOGJjNWY0YjJkMDY5YTkyMzAyNTk3ZDRlNzJlN2E3NTVlMWM3MTEyYnJlc3RyaWN0SW5kaWNlcz1Qb3N0X3Byb2R1Y3Rpb24lMkNQbGFjZXNfcHJvZHVjdGlvbiUyQ0NvbXBhbnlfcHJvZHVjdGlvbiZ2YWxpZFVudGlsPTE3ODQxOTc4ODg="
 PAGE_URL = "https://startup.jobs/internships?c=internship&q=software"
-_META_KEY_RE = re.compile(r'current-algolia-api-key-search"\s+content="([^"]+)"')
+_META_KEY_RE = re.compile(r'current-algolia-api-key-search"[^>]*\bcontent="([^"]+)"')
 JOB_BASE_URL = "https://startup.jobs"
 INDEX_NAME = "Post_production"
 QUERY = "software"
@@ -224,9 +224,12 @@ def selftest():
         assert _fresh_key() == "override=="
     finally:
         del os.environ["STARTUPJOBS_ALGOLIA_KEY"]
-    # meta-tag regex pulls the key out of the page markup
+    # meta-tag regex pulls the key out of the page markup, tolerating any
+    # attributes interposed between name and content
     assert _META_KEY_RE.search(
         '<meta name="current-algolia-api-key-search" content="ZZZ=">').group(1) == "ZZZ="
+    assert _META_KEY_RE.search(
+        '<meta name="current-algolia-api-key-search" id="x" content="QQ==">').group(1) == "QQ=="
 
     assert StartupJobsSource().name == "startupjobs"
     print("startupjobs selftest OK")

@@ -108,9 +108,11 @@ No auth — localhost personal tool only.
 - `speedyapply.py` — [speedyapply/2027-SWE-College-Jobs](https://github.com/speedyapply/2027-SWE-College-Jobs)
 - `sndsh404.py` — [sndsh404/summer-2027-internships](https://github.com/sndsh404/summer-2027-internships)
 - `jobright.py` — [Jobright US SWE intern board](https://jobright.ai/minisites-jobs/intern/us/swe) (`POST /swan/mini-sites/list`)
+- `startupjobs.py` — [startup.jobs](https://startup.jobs/internships) via its Algolia index. Its search key expires every ~2h, so the source scrapes a fresh one from the page's `<meta>` tag using **`curl_cffi`** (`pip install curl_cffi`) to clear Cloudflare. Optional dep: without it the source falls back to an env/stale key and just yields nothing — the rest of the run is unaffected. Override the key manually with `STARTUPJOBS_ALGOLIA_KEY`.
 
 Adding a source = class with `.name` and `.fetch() -> list[Listing]`, register
-in `internships/__main__.py`. README sources share `md_table.py`.
+in `internships/__main__.py`. README sources share `md_table.py`. Everything
+else is stdlib; `startupjobs.py` is the only source with an (optional) pip dep.
 
 External fetches are **per-domain** throttled (`DomainThrottle.hold` in
 `ats_boards.py`) so the same host doesn’t get stampeded under the thread pool.
