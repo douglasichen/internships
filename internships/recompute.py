@@ -116,18 +116,31 @@ def recompute_priority(path=ALL_JSON_PATH):
 # workday's "/job/Dallas-TX" (a location slug) would otherwise spuriously
 # block or allow cross-source merges. jr_id (a README click tracker) is not in
 # the pattern at all, so a real gh_jid alongside it still wins.
+# Note the JR branch is "(?:_|\b)JR": Workday writes the req as "_JR0285543",
+# and \b alone never fires there (underscore is a word char, so there is no
+# boundary between "_" and "J") -- which silently dropped every _JR id.
 _REAL_TOKEN_RE = re.compile(
-    r"(?:[?&](?:gh_jid|jobId|job_id|token)=|_R-|\bJR|/jobs/)(\d[A-Za-z0-9-]{3,})",
+    r"(?:[?&](?:gh_jid|jobId|job_id|token)=|_R-|(?:_|\b)JR-?|/jobs/)(\d[A-Za-z0-9-]{3,})",
     re.I,
 )
 
-# Trailing decorations on a title that don't change the role identity.
+# A trailing SEASON / YEAR / WORK-MODE tag that doesn't change the role
+# identity. Deliberately narrow: it strips only the matched tag (and an
+# optional year right after a season, plus surrounding punctuation) at the very
+# END of the string -- NOT ".*$". Peeling to end-of-string was a real bug: it
+# let "Software Engineer, Internship - Defense Tech" collapse to "software
+# engineer" and merged distinct Palantir/Citadel roles (and even different
+# countries) into one row. Role words (intern/internship), level (phd/ms/bs)
+# and region (us/asia/europe) are NOT tags here -- they distinguish postings.
 _TITLE_TAIL_RE = re.compile(
-    r"\s*[-–—(|,]\s*(summer|fall|spring|winter|remote|hybrid|onsite|us|usa|"
-    r"u\.s\.a?\.?|20\d\d|intern(ship)?|co-?op|phd|ph\.d\.?|ms|m\.s\.?|bs|b\.s\.?|"
-    r"undergrad(uate)?|graduate|masters?|bachelors?)\b.*$",
+    r"[\s\-–—(),|/]+"
+    r"(?:summer|fall|autumn|spring|winter|remote|hybrid|on-?site)"
+    r"(?:[\s\-,]+20\d\d)?"
+    r"[\s\-–—(),|/]*$",
     re.I,
 )
+# A bare trailing year, e.g. "SWE Intern 2027".
+_TITLE_YEAR_TAIL_RE = re.compile(r"[\s\-–—(),|/]+20\d\d[\s\-–—(),|/]*$")
 
 # Country / region / facility noise stripped from each location segment.
 _LOC_NOISE_RE = re.compile(
@@ -148,14 +161,18 @@ def _squash(s):
 
 
 def canon_title(title):
-    """Role title with trailing season/year/level/remote tags peeled off and
+    """Role title with trailing season/year/work-mode tags peeled off and
     punctuation flattened, so "Software Engineer Intern - Summer 2027" and
-    "Software Engineer Intern (Remote)" share one identity."""
+    "Software Engineer Intern (Remote)" share one identity -- but role/region
+    qualifiers ("... - Defense Tech", "... - Europe") are preserved so distinct
+    postings stay distinct."""
     t = _squash(title)
     prev = None
-    while prev != t:  # peel repeatedly: "... - Intern - Summer 2027"
+    while prev != t:  # peel repeatedly: "... (Remote) - Summer 2027"
         prev = t
-        t = _TITLE_TAIL_RE.sub("", t).strip(" -–—(|,")
+        t = _TITLE_TAIL_RE.sub("", t)
+        t = _TITLE_YEAR_TAIL_RE.sub("", t)
+        t = t.strip(" -–—(),|/")
     return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9 ]+", " ", t)).strip()
 
 
@@ -188,23 +205,28 @@ def real_job_token(url):
 
 def _can_join(cluster, row):
     """True if `row` is the same posting as an existing `cluster` of rows that
-    already share (company, canon_title). Blocks the join when the row's real
-    job id conflicts with ANY member (distinct reqs like NXP _R-...102 vs 103,
-    or Gemini token=1 vs 2 stay apart -- and checking every member, not just
-    one, stops a token-less row from transitively bridging two distinct ids).
-    Otherwise requires a shared city token, treating an empty location (no city
-    named) as compatible with anything in the same title+company bucket."""
+    already share (company, canon_title).
+
+    Blocks the join when the row's real job id conflicts with ANY member
+    (distinct reqs like NXP _R-...102 vs 103, or Gemini token=1 vs 2 stay apart;
+    checking every member, not just one, stops a token-less row from
+    transitively bridging two distinct ids).
+
+    For location it compares against the UNION of the cluster's city tokens, not
+    each member in isolation: an empty-location member contributes no city, so
+    it can never bridge two genuinely different cities (e.g. a Citadel row with
+    no location must not let New York and Houston collapse into one). A row with
+    no city of its own, or a cluster that names none yet, is treated as
+    compatible."""
     rtok = real_job_token(row.get("url"))
     rloc = location_tokens(row.get("location"))
-    loc_ok = not rloc
+    cluster_cities = set()
     for m in cluster:
         mtok = real_job_token(m.get("url"))
         if rtok and mtok and rtok != mtok:
             return False
-        mloc = location_tokens(m.get("location"))
-        if not mloc or (rloc & mloc):
-            loc_ok = True
-    return loc_ok
+        cluster_cities |= location_tokens(m.get("location"))
+    return not rloc or not cluster_cities or bool(rloc & cluster_cities)
 
 
 def cluster_content(rows):
@@ -421,13 +443,25 @@ def selftest():
     finally:
         _self.company_priority = orig_priority
 
-    # canon_title: trailing season/year/level/remote tags collapse to one role
+    # canon_title: trailing season / year / work-mode tags collapse to one role
     assert canon_title("Software Engineer Intern - Summer 2027") == "software engineer intern"
     assert canon_title("Software Engineer Intern (Remote)") == "software engineer intern"
     assert canon_title("SWE Intern, Fall 2026") == "swe intern"
+    assert canon_title("SWE Intern 2027") == "swe intern"
+    assert canon_title("ML Intern (Remote) - Summer 2027") == "ml intern"
     # ...but a distinguishing word in the middle of the role is NOT a tag
     assert canon_title("Quantitative Developer Intern") != canon_title(
         "Quantitative Software Developer Intern")
+    # ...and a role/region qualifier AFTER the word "Internship" must survive --
+    # peeling to end-of-string collapsed distinct Palantir/Citadel roles (and
+    # different countries) into one.
+    assert canon_title("Software Engineer, Internship - Defense Tech") \
+        != canon_title("Software Engineer, Internship - Infrastructure")
+    assert canon_title("Software Engineer, Internship") \
+        != canon_title("Software Engineer, Internship - Defense Tech")
+    assert canon_title("SWE Intern - US") != canon_title("SWE Intern - Europe")
+    # a level/tech qualifier is not a season tag either
+    assert canon_title("Data Analyst, MS SQL Server") == "data analyst ms sql server"
 
     # location_tokens: the many spellings of one city reduce to one token;
     # bare state / country / remote name no city (empty set)
@@ -465,6 +499,31 @@ def selftest():
     bridged = two_reqs + [{"company": "NXP", "title": "SE Intern",
                            "location": "Bucharest", "url": "https://x/no-token"}]
     assert len(cluster_content(bridged)) >= 2
+    # an EMPTY-location row must not bridge two distinct cities either: New York
+    # and Houston stay separate even with location-less rows in the same bucket.
+    city_bridge = [
+        {"company": "Citadel", "title": "Software Engineer", "location": "New York, NY",
+         "url": "https://c/1"},
+        {"company": "Citadel", "title": "Software Engineer", "location": "",
+         "url": "https://c/2"},
+        {"company": "Citadel", "title": "Software Engineer", "location": "Houston, TX",
+         "url": "https://c/3"},
+    ]
+    cb = cluster_content(city_bridge)
+    ny = next(r for g in cb for r in g if r["url"] == "https://c/1")
+    hou = next(r for g in cb for r in g if r["url"] == "https://c/3")
+    assert not any(ny in g and hou in g for g in cb)  # never in the same cluster
+
+    # real_job_token must catch Workday _JR ids -- \b never fires after "_"
+    assert real_job_token("https://x.wd1.myworkdayjobs.com/Careers/job/Penang/_JR0285543") \
+        == "0285543"
+    assert real_job_token(".../_JR0285543") != real_job_token(".../_JR0285538-1")
+    assert sorted(len(g) for g in cluster_content([
+        {"company": "Intel", "title": "SW Intern", "location": "Penang",
+         "url": ".../Penang/SW-Intern_JR0285543"},
+        {"company": "Intel", "title": "SW Intern", "location": "Penang",
+         "url": ".../Penang/SW-Intern_JR0285538"},
+    ])) == [1, 1]  # distinct JR reqs never merge
 
     # dedupe pass 1: same link (query string aside), different source/scrape time
     # -- keep the OLDEST record, never overwrite it with a newer one

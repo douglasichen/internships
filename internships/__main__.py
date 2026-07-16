@@ -21,6 +21,7 @@ from datetime import datetime
 from pathlib import Path
 
 from internships import recompute
+from internships.models import normalize_url
 from internships.service import ROOT, run
 from internships.sources.ats_boards import AtsBoardsSource
 from internships.sources.custom_boards import CustomBoardsSource
@@ -103,9 +104,17 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
                 recompute.canon_title(r.get("title")))
 
     buckets = {}
+    # normalized-url -> the cluster it lives in, mirroring dedupe pass 1: a new
+    # row whose apply link already exists is the same posting even when its
+    # title/location canonicalize differently (append had no url pass before).
+    by_url = {}
     for r in existing:
         if isinstance(r, dict):
-            buckets.setdefault(_bucket(r), []).append([r])  # one row = one cluster
+            cluster = [r]  # one existing row = one cluster
+            buckets.setdefault(_bucket(r), []).append(cluster)
+            u = normalize_url(r.get("url") or "")
+            if u:
+                by_url.setdefault(u, cluster)
 
     def _fill_desc_for_group(group, text):
         """Attach body text to the first group row that still lacks one."""
@@ -127,16 +136,22 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
                 descs[lid] = l.extra_text
             continue
         clusters = buckets.setdefault(_bucket(row), [])
-        joined = next((c for c in clusters if recompute._can_join(c, row)), None)
+        url = normalize_url(row.get("url") or "")
+        joined = by_url.get(url) if url else None
+        if joined is None:
+            joined = next((c for c in clusters if recompute._can_join(c, row)), None)
         if joined is not None:
             # same human-visible job already recorded under another id -- keep
             # the older row, but don't drop a description we already fetched
             _fill_desc_for_group(joined, l.extra_text)
             joined.append(row)  # so later listings this run also see it
             continue
+        new_cluster = [row]
         existing.append(row)
         have.add(lid)
-        clusters.append([row])
+        clusters.append(new_cluster)
+        if url:
+            by_url.setdefault(url, new_cluster)
         if l.extra_text:
             descs[lid] = l.extra_text
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -256,7 +271,7 @@ def selftest():
     # same company+title+location BUT distinct embedded job ids (e.g. two NXP
     # "System Engineer Intern" openings in Bucharest) must NOT collapse -- same
     # rule as --recompute dedup. Pre-fix this permanently dropped the second
-    # opening (content_key skip + persist_seen marked it seen forever).
+    # opening (content dedup skip + persist_seen marked it seen forever).
     with tempfile.TemporaryDirectory() as td:
         all_json = Path(td) / "all.json"
         a = Listing(
