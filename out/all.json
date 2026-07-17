@@ -16390,5 +16390,77 @@
     "posted": "2026-07-16",
     "scraped_at": "2026-07-17T08:53:32",
     "url": "https://jobright.ai/jobs/info/6a59cbdf856af468ab005373"
+  },
+  {
+    "id": "1a8aec4be79ab5f5",
+    "company": "Autodesk Canada Co.",
+    "title": "Software Engineering Intern Summer 2027",
+    "location": "Oslo, Norway",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-17T14:36:48",
+    "url": "https://startup.jobs/software-engineering-intern-summer-2027-autodesk-canada-co-8767144"
+  },
+  {
+    "id": "5b28c93cdbd0be7a",
+    "company": "Composio",
+    "title": "Full-stack Intern",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "0d",
+    "scraped_at": "2026-07-17T14:36:48",
+    "url": "https://jobs.ashbyhq.com/composio/4d819015-0b9a-466f-9b41-8e1cc1e5b6d9"
+  },
+  {
+    "id": "ac9e3e92045839a1",
+    "company": "Deepgram",
+    "title": "Software Engineering- Internship",
+    "location": "USA | Remote",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-17T14:36:48",
+    "url": "https://jobs.ashbyhq.com/Deepgram/dc8693b5-72ce-4ca3-ab15-9c8434d35da1"
+  },
+  {
+    "id": "14fde69d4797f903",
+    "company": "Intel",
+    "title": "AI Software Engineering Intern",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-17T14:36:48",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Software-Engineering-Intern_JR0282639"
+  },
+  {
+    "id": "71a6d6ccbc9e4cde",
+    "company": "Intel",
+    "title": "AI Software Engineering Intern",
+    "location": "US, Arizona, Phoenix",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-17T14:36:48",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/US-Arizona-Phoenix/AI-Software-Engineering-Intern_JR0282641"
+  },
+  {
+    "id": "0ba11b10039ea15d",
+    "company": "Nokia",
+    "title": "Incubation Developer Coop/Intern",
+    "location": "Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-17T14:36:48",
+    "url": "https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/34227"
   }
 ]
