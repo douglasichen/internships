@@ -139,6 +139,21 @@ def load(all_json_path=None) -> dict:
     return _read_gz_json(p)
 
 
+def load_ids(all_json_path=None) -> list:
+    """Just the listing ids that have a stored body -- the FE badge query.
+
+    load() is the wrong tool here: it runs migrate_legacy (re-reads the big
+    legacy .bak on every call) and then decompresses the store a SECOND time,
+    so a keys-only request was parsing ~70 MB of apply-page HTML twice to hand
+    back ~25 KB of ids. This decompresses once, skips the (idempotent, already
+    done) legacy migration, and never touches the values. Missing file -> [].
+    Corrupt primary still raises, same as load()."""
+    p = path_for(all_json_path)
+    if not p.is_file():
+        return []
+    return list(_read_gz_json(p).keys())
+
+
 def save(descs: dict, all_json_path=None) -> None:
     """Atomically rewrite the full id -> HTML map (gzip JSON)."""
     with _lock:
