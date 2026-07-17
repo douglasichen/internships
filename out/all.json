@@ -16462,5 +16462,17 @@
     "posted": "",
     "scraped_at": "2026-07-17T14:36:48",
     "url": "https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/34227"
+  },
+  {
+    "id": "74649c5a846d5227",
+    "company": "Safe Fleet",
+    "title": "Firmware Engineer Intern",
+    "location": "Multi Locations: Boise, ID, United States; MO, St. Louis, US",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-17T17:37:06",
+    "url": "https://jobright.ai/jobs/info/6a59eccf3ac7627fe9001398"
   }
 ]
