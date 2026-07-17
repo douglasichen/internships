@@ -38,6 +38,34 @@ _state = {"running": False, "result": None, "error": None}
 _scrape_lock = threading.Lock()
 _scrape_state = {"running": False, "result": None, "error": None}
 
+# (mtime, ids) cache for /api/descriptions/ids -- see the handler.
+_desc_ids_lock = threading.Lock()
+_desc_ids_cache = (None, None)
+
+
+def _descriptions_ids_cached():
+    """Listing ids with a stored body, cached until descriptions.json.gz's
+    mtime changes. Recomputing means decompressing the whole store, so we do it
+    at most once per write rather than on every FE load. mtime catches writes
+    from a separate CLI process; this server's own POST calls
+    _invalidate_desc_ids directly (two writes in the same clock tick would not
+    move mtime)."""
+    global _desc_ids_cache
+    p = desc_store.path_for()
+    mtime = p.stat().st_mtime if p.is_file() else None
+    with _desc_ids_lock:
+        cached_mtime, ids = _desc_ids_cache
+        if ids is None or mtime != cached_mtime:
+            ids = desc_store.load_ids()
+            _desc_ids_cache = (mtime, ids)
+        return ids
+
+
+def _invalidate_desc_ids():
+    global _desc_ids_cache
+    with _desc_ids_lock:
+        _desc_ids_cache = (None, None)
+
 
 def _is_lock_held():
     """Non-blocking probe: is .run.lock currently held by ANY process --
@@ -226,6 +254,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return
             finally:
                 lock_file.close()
+            _invalidate_desc_ids()  # this put just added an id to the badge set
             self._json(200, {"ok": True, "id": lid.strip()})
             return
         if path == "/api/applied":
@@ -298,8 +327,12 @@ class Handler(SimpleHTTPRequestHandler):
         if path == "/api/descriptions/ids":
             # Lightweight set of listing ids that already have a description
             # so the FE can badge rows missing one without loading full HTML.
+            # Cached by file mtime: decompressing the ~11 MB store to list keys
+            # took ~0.5 s, and the FE re-hits this on every load / scrape /
+            # recompute. POST /api/descriptions is the only mutator and it bumps
+            # mtime, so the cache self-invalidates.
             try:
-                ids = list(desc_store.load().keys())
+                ids = _descriptions_ids_cached()
             except (OSError, ValueError) as e:
                 self._json(500, {"error": str(e)})
                 return
@@ -437,14 +470,18 @@ def selftest():
         finally:
             run_sources = orig_run_sources
 
-        # /api/descriptions/ids + POST /api/descriptions (in-memory, no disk)
+        # /api/descriptions/ids + POST /api/descriptions (in-memory, no disk).
+        # The ids endpoint caches by mtime + POST invalidation; the fake put
+        # never touches disk, so the POST handler's _invalidate_desc_ids is what
+        # makes the new id show up -- exercise that path.
         fake = {}
-        orig_load, orig_put = desc_store.load, desc_store.put
-        desc_store.load = lambda all_json_path=None: dict(fake)
+        orig_load_ids, orig_put = desc_store.load_ids, desc_store.put
+        desc_store.load_ids = lambda all_json_path=None: list(fake)
         def _fake_put(lid, text, all_json_path=None):
             if lid and isinstance(text, str) and text:
                 fake[lid] = text
         desc_store.put = _fake_put
+        _invalidate_desc_ids()  # drop any cache from a real prior load
         try:
             ids = json.loads(urllib.request.urlopen(
                 f"http://127.0.0.1:{port}/api/descriptions/ids", timeout=5).read())
@@ -474,7 +511,8 @@ def selftest():
                 f"http://127.0.0.1:{port}/api/descriptions/ids", timeout=5).read())
             assert ids == {"ids": ["job1"]}, ids
         finally:
-            desc_store.load, desc_store.put = orig_load, orig_put
+            desc_store.load_ids, desc_store.put = orig_load_ids, orig_put
+            _invalidate_desc_ids()
 
         # /api/applied: isolated temp store
         td_app = Path(tempfile.mkdtemp())

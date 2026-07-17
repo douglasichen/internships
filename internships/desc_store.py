@@ -65,7 +65,11 @@ def _write_gz_json(p: Path, descs: dict) -> None:
     fd, tmp_name = tempfile.mkstemp(prefix=p.name + ".", suffix=".tmp", dir=str(p.parent))
     try:
         with os.fdopen(fd, "wb") as f:
-            f.write(gzip.compress(payload, compresslevel=6))
+            # level 1, not 6: this file is gitignored and local-only, so the
+            # ~2 MB it saves at higher compression buys nothing, while level 6
+            # cost ~1.3 s of CPU per rewrite (the bulk of every save/scrape/
+            # dedupe write). Decompress speed is independent of the level.
+            f.write(gzip.compress(payload, compresslevel=1))
         Path(tmp_name).replace(p)
     except Exception:
         try:
@@ -73,6 +77,16 @@ def _write_gz_json(p: Path, descs: dict) -> None:
         except OSError:
             pass
         raise
+
+
+def _has_legacy(all_json_path=None) -> bool:
+    """Any legacy store still on disk to import? Once these are gone (the
+    steady state), migrate_legacy is a no-op that only wastes a full gz
+    decompress -- so load()/put() skip it entirely when this is False."""
+    leg = _legacy_json(all_json_path)
+    return (leg.is_file()
+            or leg.with_suffix(".json.bak").is_file()
+            or _legacy_dir(all_json_path).is_dir())
 
 
 def migrate_legacy(all_json_path=None) -> int:
@@ -132,11 +146,29 @@ def load(all_json_path=None) -> dict:
     Missing file -> {}. Corrupt primary file raises (do not fail-open to {}
     and wipe on next save).
     """
-    migrate_legacy(all_json_path)
+    # Skip migrate_legacy when nothing legacy exists: it would decompress the
+    # whole store just to add 0 keys, then load() decompresses it a second time.
+    if _has_legacy(all_json_path):
+        migrate_legacy(all_json_path)
     p = path_for(all_json_path)
     if not p.is_file():
         return {}
     return _read_gz_json(p)
+
+
+def load_ids(all_json_path=None) -> list:
+    """Just the listing ids that have a stored body -- the FE badge query.
+
+    load() is the wrong tool here: it runs migrate_legacy (re-reads the big
+    legacy .bak on every call) and then decompresses the store a SECOND time,
+    so a keys-only request was parsing ~70 MB of apply-page HTML twice to hand
+    back ~25 KB of ids. This decompresses once, skips the (idempotent, already
+    done) legacy migration, and never touches the values. Missing file -> [].
+    Corrupt primary still raises, same as load()."""
+    p = path_for(all_json_path)
+    if not p.is_file():
+        return []
+    return list(_read_gz_json(p).keys())
 
 
 def save(descs: dict, all_json_path=None) -> None:
@@ -164,7 +196,10 @@ def put(listing_id: str, text: str, all_json_path=None) -> None:
         return
     # migrate_legacy may write; run it outside the write lock first so we don't
     # nest _lock. Re-read under lock so concurrent puts cannot drop each other.
-    migrate_legacy(all_json_path)
+    # Skip it when no legacy store exists (else it decompresses the gz for
+    # nothing on every manual submit).
+    if _has_legacy(all_json_path):
+        migrate_legacy(all_json_path)
     with _lock:
         p = path_for(all_json_path)
         descs = _read_gz_json(p) if p.is_file() else {}
