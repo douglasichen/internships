@@ -16366,5 +16366,29 @@
     "posted": "2026-07-16",
     "scraped_at": "2026-07-17T03:05:29",
     "url": "https://jobright.ai/jobs/info/6a5987d03ac7627fe9fffcb8"
+  },
+  {
+    "id": "6919393853fbec03",
+    "company": "Autodesk",
+    "title": "Software Engineering Intern Summer 2027",
+    "location": "Norway - Oslo",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-17T08:53:32",
+    "url": "https://autodesk.wd1.myworkdayjobs.com/Ext/job/Norway---Oslo/Software-Engineering-Intern-Summer-2027_26WD100046"
+  },
+  {
+    "id": "b1a83d9505e844ab",
+    "company": "DebateIt",
+    "title": "Software Engineer Intern",
+    "location": "New York, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-16",
+    "scraped_at": "2026-07-17T08:53:32",
+    "url": "https://jobright.ai/jobs/info/6a59cbdf856af468ab005373"
   }
 ]
