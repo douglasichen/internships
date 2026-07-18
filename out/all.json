@@ -16486,5 +16486,41 @@
     "posted": "2026-06-01",
     "scraped_at": "2026-07-17T22:08:17",
     "url": "https://startup.jobs/software-project-manager-intern-ethics-code-8042672"
+  },
+  {
+    "id": "9b1eb5896904415d",
+    "company": "Citadel Securities",
+    "title": "Machine Learning Researcher \u2013 PhD Intern (US)",
+    "location": "Miami, FL, United States",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-18T15:27:49",
+    "url": "https://jobright.ai/jobs/info/6a5a381c4da96a42cfd949bf"
+  },
+  {
+    "id": "ab17ea15ed5c29cd",
+    "company": "Forge Industrial",
+    "title": "VR Web Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-18T15:27:49",
+    "url": "https://jobright.ai/jobs/info/6a5a23d0c8e3a473cb8aa130"
+  },
+  {
+    "id": "eb73f641ec6cd451",
+    "company": "Relling",
+    "title": "Software Engineer Intern",
+    "location": "San Francisco, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-18T15:27:49",
+    "url": "https://jobright.ai/jobs/info/6a5a2e7b4da96a42cfd9476b"
   }
 ]
