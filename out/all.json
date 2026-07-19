@@ -16630,5 +16630,17 @@
     "posted": "2026-07-17",
     "scraped_at": "2026-07-19T16:17:24",
     "url": "https://jobright.ai/jobs/info/6a5b1809c8e3a473cb8af089"
+  },
+  {
+    "id": "bb6d39cfd03c35fd",
+    "company": "Amber",
+    "title": "Software Engineering Intern",
+    "location": "San Francisco, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-18",
+    "scraped_at": "2026-07-19T16:34:41",
+    "url": "https://jobright.ai/jobs/info/6a5d21b463a8f619507cea93"
   }
 ]
