@@ -16522,5 +16522,113 @@
     "posted": "2026-07-17",
     "scraped_at": "2026-07-18T15:27:49",
     "url": "https://jobright.ai/jobs/info/6a5a2e7b4da96a42cfd9476b"
+  },
+  {
+    "id": "71e703178b672586",
+    "company": "Altera",
+    "title": "AI Software Development Engineer - Intern",
+    "location": "San Jose, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-19T16:17:24",
+    "url": "https://jobright.ai/jobs/info/6a5ad153856af468ab009ad1"
+  },
+  {
+    "id": "440121c9eea7a4c6",
+    "company": "Autodesk",
+    "title": "Software Engineering Intern Summer 2027",
+    "location": "Oslo, Norway",
+    "is_2027": true,
+    "priority": 2,
+    "source": "startupjobs",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-19T16:17:24",
+    "url": "https://startup.jobs/software-engineering-intern-summer-2027-autodesk-8773197"
+  },
+  {
+    "id": "8799847f81c6192e",
+    "company": "Career Launch Tech Initiative",
+    "title": "Software Engineering Intern",
+    "location": "Los Angeles, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-19T16:17:24",
+    "url": "https://jobright.ai/jobs/info/6a5adcfdc8e3a473cb8ad5fd"
+  },
+  {
+    "id": "d2127b0af9d5af9b",
+    "company": "Dassault Syst\u00e8mes",
+    "title": "INTERNSHIP:Computational Fluids Dynamics (CFD) Software Test Engineer",
+    "location": "Johnston, RI, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-19T16:17:24",
+    "url": "https://jobright.ai/jobs/info/6a5adc81686b4755d1e16d0b"
+  },
+  {
+    "id": "044be04de5b25739",
+    "company": "Freelancerprox",
+    "title": "Software Developer - Intern",
+    "location": "Union City, California, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-19T16:17:24",
+    "url": "https://jobright.ai/jobs/info/6a5a88fec8e3a473cb8ac34f"
+  },
+  {
+    "id": "34bba0d9bc89dfa9",
+    "company": "Intel",
+    "title": "AI Software Engineering Intern",
+    "location": "US, Oregon, Hillsboro, United States of America",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-19T16:17:24",
+    "url": "https://jobright.ai/jobs/info/6a5a6d4e686b4755d1e15109"
+  },
+  {
+    "id": "6b4af5d87eb6e591",
+    "company": "Obsidian Solutions Group",
+    "title": "Unity 3D Developer Intern",
+    "location": "Fredericksburg, VA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-19T16:17:24",
+    "url": "https://jobright.ai/jobs/info/6a5a456f63a8f619507c60fa"
+  },
+  {
+    "id": "2a0fb8eef447c465",
+    "company": "Pitch Aeronautics",
+    "title": "Software Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-19T16:17:24",
+    "url": "https://jobright.ai/jobs/info/6a5a5842c8e3a473cb8ab23e"
+  },
+  {
+    "id": "2b52ded4bcb4ff1a",
+    "company": "Vista Compliance Laboratories",
+    "title": "Software Development Engineer (Internship)",
+    "location": "San Clemente, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-17",
+    "scraped_at": "2026-07-19T16:17:24",
+    "url": "https://jobright.ai/jobs/info/6a5b1809c8e3a473cb8af089"
   }
 ]
