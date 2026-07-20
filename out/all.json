@@ -16654,5 +16654,41 @@
     "posted": "2026-07-19",
     "scraped_at": "2026-07-20T00:25:12",
     "url": "https://jobright.ai/jobs/info/6a5d80e663a8f619507cf738"
+  },
+  {
+    "id": "64410717cb105708",
+    "company": "American Outdoor Brands Inc.",
+    "title": "Software Test Technician - Intern",
+    "location": "Columbia, MO, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-15",
+    "scraped_at": "2026-07-20T02:51:40",
+    "url": "https://jobright.ai/jobs/info/6a5da99363a8f619507d0568"
+  },
+  {
+    "id": "8ddf2dac2873f483",
+    "company": "Current Lighting",
+    "title": "Part Time Jr. Application Developer  - Intern/Co-Op",
+    "location": "Greenville, SC, US",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-08",
+    "scraped_at": "2026-07-20T02:51:40",
+    "url": "https://jobright.ai/jobs/info/6a5da49c79547a520df5e4c2"
+  },
+  {
+    "id": "5080802e03a84bb6",
+    "company": "University of Washington",
+    "title": "Research Internship in Software Development",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-19",
+    "scraped_at": "2026-07-20T02:51:40",
+    "url": "https://jobright.ai/jobs/info/6a5d9224686b4755d1e1e0ec"
   }
 ]
