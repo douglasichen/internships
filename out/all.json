@@ -16966,5 +16966,53 @@
     "posted": "",
     "scraped_at": "2026-07-20T17:06:18",
     "url": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213"
+  },
+  {
+    "id": "973b5b39b0bd90a8",
+    "company": "Genia",
+    "title": "AI/ML Engineer \u2013 Architectural Modeling (Intern) - US",
+    "location": "Los Angeles, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-20",
+    "scraped_at": "2026-07-21T00:33:52",
+    "url": "https://jobright.ai/jobs/info/6a5e7d6cf3674a0545d29496"
+  },
+  {
+    "id": "5e4a3480e3b1156b",
+    "company": "Marketeq Talent",
+    "title": "Quality Assurance Internship (QA) - IT / Software",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-20",
+    "scraped_at": "2026-07-21T00:33:52",
+    "url": "https://jobright.ai/jobs/info/6a5e76ea050c423c792ef66d"
+  },
+  {
+    "id": "fb51caff98bb9fe7",
+    "company": "NXP Semiconductors",
+    "title": "2027 Intern - Product/Test Development Engineer",
+    "location": "Tianjin (Weiwu)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-21T00:33:52",
+    "url": "https://nxp.wd3.myworkdayjobs.com/careers/job/Tianjin-Weiwu/XMLNAME-2027-Intern---Product-Test-Development-Engineer_R-10065692"
+  },
+  {
+    "id": "d97117aac60f7638",
+    "company": "Vigilon Cyber",
+    "title": "Cyber Security Engineer Intern",
+    "location": "Burlington, VT, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-05-21",
+    "scraped_at": "2026-07-21T00:33:52",
+    "url": "https://jobright.ai/jobs/info/6a5e743ef3674a0545d2927d"
   }
 ]
