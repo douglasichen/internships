@@ -17338,5 +17338,29 @@
     "posted": "2026-07-21",
     "scraped_at": "2026-07-22T01:08:16",
     "url": "https://jobright.ai/jobs/info/6a600e4f8c7fd835513bc90d"
+  },
+  {
+    "id": "9cb40408ddf4d439",
+    "company": "Appier",
+    "title": "Software Engineer, Backend Development (Intern)",
+    "location": "Taipei, Taiwan",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2025-06-16",
+    "scraped_at": "2026-07-22T03:31:28",
+    "url": "https://startup.jobs/software-engineer-backend-development-intern-appier-6876206"
+  },
+  {
+    "id": "08322bd4d40fad91",
+    "company": "Trax Group",
+    "title": "Software Quality Assurance Engineer - Intern (Pooling)",
+    "location": "Cebu City, Philippines",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-07-22",
+    "scraped_at": "2026-07-22T03:31:28",
+    "url": "https://startup.jobs/software-quality-assurance-engineer-intern-pooling-trax-group-8783230"
   }
 ]
