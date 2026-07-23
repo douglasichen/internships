@@ -17698,5 +17698,65 @@
     "posted": "",
     "scraped_at": "2026-07-22T18:33:36",
     "url": "https://jobs.smartrecruiters.com/WesternDigital/744000139010858"
+  },
+  {
+    "id": "2a892d4ca02d0e69",
+    "company": "Elevated Web Design",
+    "title": "Product Software Engineering Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-22",
+    "scraped_at": "2026-07-22T22:50:06",
+    "url": "https://jobright.ai/jobs/info/6a614b2eeaa37f43e7587fdf"
+  },
+  {
+    "id": "0b356bd4fb72aef0",
+    "company": "Marketeq Talent",
+    "title": "Software QA Internship",
+    "location": "Miami, FL, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-22",
+    "scraped_at": "2026-07-22T22:50:06",
+    "url": "https://jobright.ai/jobs/info/6a6148f7ab9bd4676324a936"
+  },
+  {
+    "id": "c3e6bbe308a27d92",
+    "company": "Moog Inc.",
+    "title": "Intern, Software Engineering",
+    "location": "Buffalo, NY, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-22",
+    "scraped_at": "2026-07-22T22:50:06",
+    "url": "https://jobright.ai/jobs/info/6a613239ab9bd46763249ddc"
+  },
+  {
+    "id": "292ff77c108aced6",
+    "company": "Rendezvous Robotics",
+    "title": "Software Engineering Intern (Spring 2027)",
+    "location": "Golden, CO, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-22",
+    "scraped_at": "2026-07-22T22:50:06",
+    "url": "https://jobright.ai/jobs/info/6a61406d7196365a6f009c2e"
+  },
+  {
+    "id": "106365795c69f5c8",
+    "company": "RightOn Education",
+    "title": "Software Development Intern",
+    "location": "Philadelphia, PA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-22",
+    "scraped_at": "2026-07-22T22:50:06",
+    "url": "https://jobright.ai/jobs/info/6a61594711edf44d79160603"
   }
 ]
