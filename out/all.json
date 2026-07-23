@@ -17866,5 +17866,41 @@
     "posted": "2026-07-23",
     "scraped_at": "2026-07-23T13:57:26",
     "url": "https://jobright.ai/jobs/info/6a62422007e15f1ab0e45170"
+  },
+  {
+    "id": "8123a4e301b90110",
+    "company": "Appian",
+    "title": "Software Engineering Intern",
+    "location": "McLean, VA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-23",
+    "scraped_at": "2026-07-23T17:51:39",
+    "url": "https://jobright.ai/jobs/info/6a626309846162391c935914"
+  },
+  {
+    "id": "e1f2ad8824ba2ffd",
+    "company": "KRAFZEN",
+    "title": "Full Stack Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-23",
+    "scraped_at": "2026-07-23T17:51:39",
+    "url": "https://jobright.ai/jobs/info/6a626c5f846162391c935c93"
+  },
+  {
+    "id": "a415c153142b1f74",
+    "company": "Tenstorrent",
+    "title": "Software Engineering Intern, Power Modeling & AI Tools",
+    "location": "Santa Clara, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-23",
+    "scraped_at": "2026-07-23T17:51:39",
+    "url": "https://jobright.ai/jobs/info/6a625ff21e089c0cc884c184"
   }
 ]
