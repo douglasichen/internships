@@ -17770,5 +17770,17 @@
     "posted": "2026-05-17",
     "scraped_at": "2026-07-23T01:20:04",
     "url": "https://jobright.ai/jobs/info/6a61635fab9bd4676324b26f"
+  },
+  {
+    "id": "b676aca9cdc402db",
+    "company": "TechXSherpa",
+    "title": "Python Developer (Intern)",
+    "location": "Multnomah County, OR, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-08",
+    "scraped_at": "2026-07-23T06:28:53",
+    "url": "https://jobright.ai/jobs/info/6a61b5927196365a6f00bde1"
   }
 ]
