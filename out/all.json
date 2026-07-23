@@ -17782,5 +17782,41 @@
     "posted": "2026-07-08",
     "scraped_at": "2026-07-23T06:28:53",
     "url": "https://jobright.ai/jobs/info/6a61b5927196365a6f00bde1"
+  },
+  {
+    "id": "1050cd0accdbab71",
+    "company": "Enlighten",
+    "title": "Data Engineer (Skillbridge Intern) - 28499",
+    "location": "Augusta, GA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-20",
+    "scraped_at": "2026-07-23T08:59:47",
+    "url": "https://jobright.ai/jobs/info/6a61defad51f6101c8fbd9e2"
+  },
+  {
+    "id": "718d2d637e5f843b",
+    "company": "G-Research",
+    "title": "Machine Learning Research Internship",
+    "location": "London",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-07-23T08:59:47",
+    "url": "https://www.gresearch.com/vacancies/machine-learning-research-internship/"
+  },
+  {
+    "id": "e51b044c67d55508",
+    "company": "TIKAJ Security",
+    "title": "Full Stack Developer Intern (Remote)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-23",
+    "scraped_at": "2026-07-23T08:59:47",
+    "url": "https://jobright.ai/jobs/info/6a61f2deeaa37f43e758b35e"
   }
 ]
