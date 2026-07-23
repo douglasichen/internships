@@ -17818,5 +17818,41 @@
     "posted": "2026-07-23",
     "scraped_at": "2026-07-23T08:59:47",
     "url": "https://jobright.ai/jobs/info/6a61f2deeaa37f43e758b35e"
+  },
+  {
+    "id": "9b6196a3d7cb1a39",
+    "company": "Moog",
+    "title": "Intern - Software Engineering",
+    "location": "Buffalo, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-07-23T11:20:43",
+    "url": "https://moog.wd5.myworkdayjobs.com/en-US/moog_external_career_site/job/Buffalo-NY/Intern--Software-Engineering_R-26-18885-1"
+  },
+  {
+    "id": "07e5488a86bc3d1f",
+    "company": "Premium Guard Inc. (PGI)",
+    "title": "Software Engineer Intern (57235)",
+    "location": "Lockbourne, OH, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-23",
+    "scraped_at": "2026-07-23T11:20:43",
+    "url": "https://jobright.ai/jobs/info/6a620cdc4c28897b3dc7d21a"
+  },
+  {
+    "id": "ae94f0995e341c7d",
+    "company": "SEL",
+    "title": "Software Engineer Intern",
+    "location": "Boise, ID",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-07-23T11:20:43",
+    "url": "https://selinc.wd1.myworkdayjobs.com/en-US/sel/job/Idaho---Boise/Software-Engineer-Intern_2026-22321"
   }
 ]
