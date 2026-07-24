@@ -17962,5 +17962,77 @@
     "posted": "2026-07-23",
     "scraped_at": "2026-07-23T20:32:45",
     "url": "https://jobright.ai/jobs/info/6a627fa2846162391c93645a"
+  },
+  {
+    "id": "f1d218fd2524d088",
+    "company": "Grab",
+    "title": "Intern, Software Engineer Mobile",
+    "location": "Petaling Jaya",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-23T23:16:19",
+    "url": "https://jobs.smartrecruiters.com/Grab/744000139433819"
+  },
+  {
+    "id": "3806c8cf57ebac5c",
+    "company": "Qualcomm",
+    "title": "Intern - GenAI Benchmarking (MLE) / On-Device Model Deployment (SWE)",
+    "location": "Seoul, Korea, Republic of",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-07-23T23:16:19",
+    "url": "https://app.eightfold.ai/careers/job/446719752421"
+  },
+  {
+    "id": "7435404ea5378a40",
+    "company": "Wing Assistant",
+    "title": "AI & Tech Internship Program (Software, Product, Ops, GTM)",
+    "location": "Shenzhen, China",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-07-23",
+    "scraped_at": "2026-07-23T23:16:19",
+    "url": "https://startup.jobs/ai-tech-internship-program-software-product-ops-gtm-wing-assistant-8795008"
+  },
+  {
+    "id": "feef98709b926066",
+    "company": "Wing Assistant",
+    "title": "AI & Tech Internship Program (Software, Product, Ops, GTM)",
+    "location": "Shanghai, China",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-07-23",
+    "scraped_at": "2026-07-23T23:16:19",
+    "url": "https://startup.jobs/ai-tech-internship-program-software-product-ops-gtm-wing-assistant-8795009"
+  },
+  {
+    "id": "b9f3d55c65b6d2f2",
+    "company": "Wing Assistant",
+    "title": "AI & Tech Internship Program (Software, Product, Ops, GTM)",
+    "location": "Beijing, China",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-07-23",
+    "scraped_at": "2026-07-23T23:16:19",
+    "url": "https://startup.jobs/ai-tech-internship-program-software-product-ops-gtm-wing-assistant-8795006"
+  },
+  {
+    "id": "d1c8e5f077eb9282",
+    "company": "Wing Assistant",
+    "title": "AI & Tech Internship Program (Software, Product, Ops, GTM)",
+    "location": "China",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-07-23",
+    "scraped_at": "2026-07-23T23:16:19",
+    "url": "https://startup.jobs/ai-tech-internship-program-software-product-ops-gtm-wing-assistant-8795007"
   }
 ]
