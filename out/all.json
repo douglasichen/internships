@@ -18406,5 +18406,41 @@
     "posted": "2026-07-03",
     "scraped_at": "2026-07-25T03:28:29",
     "url": "https://jobright.ai/jobs/info/6a42e1496a9c2774b3fa7b32"
+  },
+  {
+    "id": "48b69cd139eb0899",
+    "company": "GeoComply",
+    "title": "Security Software Engineer Intern",
+    "location": "Ho Chi Minh City, Vietnam",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-07-24",
+    "scraped_at": "2026-07-25T10:20:21",
+    "url": "https://startup.jobs/security-software-engineer-intern-geocomply-8801882"
+  },
+  {
+    "id": "89972e31b124a7a8",
+    "company": "Key Tech Inc.",
+    "title": "Computer Engineer - Firmware/Software (Full-Time & Intern Positions)",
+    "location": "Baltimore, MD, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-08",
+    "scraped_at": "2026-07-25T10:20:21",
+    "url": "https://jobright.ai/jobs/info/6a3d1c56122f340d29cef3af"
+  },
+  {
+    "id": "711f5ee801f33b23",
+    "company": "eBay",
+    "title": "Software Engineer Intern",
+    "location": "Bengaluru, India",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-25T10:20:21",
+    "url": "https://ebay.wd5.myworkdayjobs.com/apply/job/Bengaluru-India/Software-Engineer-Intern_R0069699"
   }
 ]
