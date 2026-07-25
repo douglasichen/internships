@@ -18442,5 +18442,17 @@
     "posted": "",
     "scraped_at": "2026-07-25T10:20:21",
     "url": "https://ebay.wd5.myworkdayjobs.com/apply/job/Bengaluru-India/Software-Engineer-Intern_R0069699"
+  },
+  {
+    "id": "e028b00001839ec4",
+    "company": "Northrop Grumman",
+    "title": "Software Engineer Intern",
+    "location": "Melbourne, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Jul 25",
+    "scraped_at": "2026-07-25T16:17:48",
+    "url": "https://ngc.wd1.myworkdayjobs.com/northrop_grumman_external_site/job/United-States-Florida-Melbourne/XMLNAME-2027-Intern-Software-Engineer_R10239275?utm_source=github-vansh-ouckah"
   }
 ]
