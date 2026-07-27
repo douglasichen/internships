@@ -185,16 +185,21 @@ _US_STATE_ABBR = frozenset(
 )
 # Full US state names — not cities when they appear as a segment (except the
 # city-states below). "US, Arizona, Phoenix" must skip Arizona and keep Phoenix.
-_US_STATE_NAMES = frozenset(
-    "alabama alaska arizona arkansas california colorado connecticut delaware "
-    "florida georgia hawaii idaho illinois indiana iowa kansas kentucky "
-    "louisiana maine maryland massachusetts michigan minnesota mississippi "
-    "missouri montana nebraska nevada new hampshire new jersey new mexico "
-    "new york north carolina north dakota ohio oklahoma oregon pennsylvania "
-    "rhode island south carolina south dakota tennessee texas utah vermont "
-    "virginia washington west virginia wisconsin wyoming "
-    "district of columbia".split()
-)
+# MUST be explicit multi-word strings: never space-join then .split(), or
+# multi-word states become fragments (new/york/north/carolina/...) and leak as
+# city tokens that bridge distinct cities (Buffalo↔NYC via "new york", etc.).
+_US_STATE_NAMES = frozenset({
+    "alabama", "alaska", "arizona", "arkansas", "california", "colorado",
+    "connecticut", "delaware", "florida", "georgia", "hawaii", "idaho",
+    "illinois", "indiana", "iowa", "kansas", "kentucky", "louisiana", "maine",
+    "maryland", "massachusetts", "michigan", "minnesota", "mississippi",
+    "missouri", "montana", "nebraska", "nevada", "new hampshire", "new jersey",
+    "new mexico", "new york", "north carolina", "north dakota", "ohio",
+    "oklahoma", "oregon", "pennsylvania", "rhode island", "south carolina",
+    "south dakota", "tennessee", "texas", "utah", "vermont", "virginia",
+    "washington", "west virginia", "wisconsin", "wyoming",
+    "district of columbia",
+})
 # States that are also major cities commonly listed alone or in city lists.
 # "New York, Chicago" must keep new york; bare "Arizona" must not.
 _CITY_STATE_NAMES = frozenset({"new york", "washington"})
@@ -686,6 +691,26 @@ def selftest():
     assert location_tokens("Seattle, Washington, United States") == frozenset({"seattle"})
     assert location_tokens("Seattle, Washington") & location_tokens("Washington, DC") == frozenset()
     assert location_tokens("Atlanta, Georgia, United States") == frozenset({"atlanta"})
+    # Multi-word US state names must be full phrases in _US_STATE_NAMES (never
+    # space-.split fragments). Leaked state tokens would bridge distinct cities
+    # that share a multi-word state name (Buffalo↔NYC, Raleigh↔Charlotte, …).
+    assert location_tokens("Buffalo, New York") == frozenset({"buffalo"})
+    assert location_tokens("Buffalo, New York") & location_tokens("New York, NY") == frozenset()
+    assert location_tokens("Raleigh, North Carolina") == frozenset({"raleigh"})
+    assert location_tokens("Raleigh, North Carolina") & location_tokens(
+        "Charlotte, North Carolina") == frozenset()
+    assert location_tokens("Newark, New Jersey") == frozenset({"newark"})
+    assert location_tokens("Newark, New Jersey") & location_tokens(
+        "Jersey City, New Jersey") == frozenset()
+    assert location_tokens("Santa Fe, New Mexico") & location_tokens(
+        "US, New Mexico, Albuquerque") == frozenset()
+    assert location_tokens("York, PA") == frozenset({"york"})
+    assert location_tokens("Charleston, West Virginia") == frozenset({"charleston"})
+    assert location_tokens("US, North Carolina, Charlotte") == frozenset({"charlotte"})
+    # bare multi-word pure state is empty (must not join city clusters)
+    assert location_tokens("North Carolina") == frozenset()
+    # city-state allowlist: bare "New York" still names the city
+    assert location_tokens("New York") == frozenset({"new york"})
 
     # cluster_content: same posting from many sources with drifting location
     # spellings collapses to one cluster; distinct cities stay separate...
@@ -725,6 +750,26 @@ def selftest():
     ny = next(r for g in cb for r in g if r["url"] == "https://c/1")
     hou = next(r for g in cb for r in g if r["url"] == "https://c/3")
     assert not any(ny in g and hou in g for g in cb)  # never in the same cluster
+
+    # Multi-word state names must not bridge distinct cities for same company+title
+    multi_state_cities = [
+        {"company": "Acme", "title": "Software Engineer Intern",
+         "location": "Buffalo, New York", "url": "https://m/buf"},
+        {"company": "Acme", "title": "Software Engineer Intern",
+         "location": "New York, NY", "url": "https://m/nyc"},
+        {"company": "Acme", "title": "Software Engineer Intern",
+         "location": "Raleigh, North Carolina", "url": "https://m/ral"},
+        {"company": "Acme", "title": "Software Engineer Intern",
+         "location": "Charlotte, North Carolina", "url": "https://m/cha"},
+    ]
+    msc = cluster_content(multi_state_cities)
+    assert len(msc) == 4, [([r["url"] for r in g]) for g in msc]
+    buf = next(r for g in msc for r in g if r["url"] == "https://m/buf")
+    nyc_r = next(r for g in msc for r in g if r["url"] == "https://m/nyc")
+    ral = next(r for g in msc for r in g if r["url"] == "https://m/ral")
+    cha = next(r for g in msc for r in g if r["url"] == "https://m/cha")
+    assert not any(buf in g and nyc_r in g for g in msc)
+    assert not any(ral in g and cha in g for g in msc)
 
     # real_job_token must catch Workday _JR ids -- \b never fires after "_"
     assert real_job_token("https://x.wd1.myworkdayjobs.com/Careers/job/Penang/_JR0285543") \
