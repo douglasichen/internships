@@ -267,7 +267,13 @@ def _clean_loc_seg(seg):
 def _cities_from_segments(segs):
     """Pick city tokens from already-cleaned comma-segments of one location
     piece. Handles City/ST, country-first (Poland, Gdansk / US, Arizona,
-    Phoenix), multi-city lists (New York, Chicago), and bare state/country."""
+    Phoenix / US, Washington, Redmond), multi-city lists (New York, Chicago),
+    and bare state/country.
+
+    Country segments must still be present in `segs` so country-first structure
+    can be detected. City-states (new york, washington) act as states when a
+    later real city follows them in country-first form, but remain cities when
+    they are the last meaningful segment or appear in multi-city lists."""
     segs = [s for s in segs if s]
     if not segs:
         return []
@@ -285,11 +291,15 @@ def _cities_from_segments(segs):
         # Full state name that is not also a major city listing.
         return is_state_name(s) and s not in _CITY_STATE_NAMES
 
+    def is_city_state(s):
+        return s in _CITY_STATE_NAMES
+
     has_state_abbr = any(is_state_abbr(s) for s in segs)
 
     # Country- or pure-state-first: "Poland, Gdansk", "US, Arizona, Phoenix",
-    # "Arizona, Phoenix" — skip leading geo noise and intermediate state names;
-    # keep later city segment(s).
+    # "US, Washington, Redmond", "US, New York, Buffalo", "Arizona, Phoenix".
+    # Skip leading geo noise and intermediate state names (including city-states
+    # that are followed by a later real city); keep city segment(s).
     if is_country(segs[0]) or is_pure_state(segs[0]):
         out = []
         for s in segs[1:]:
@@ -297,6 +307,11 @@ def _cities_from_segments(segs):
                 continue
             if len(s) > 1:
                 out.append(s)
+        # City-states act as states when a later non-city-state city exists
+        # ("US, New York, Buffalo" → buffalo; "US, Washington, Redmond" →
+        # redmond) but stay as the city when they are alone ("US, New York").
+        if any(is_city_state(s) for s in out) and any(not is_city_state(s) for s in out):
+            out = [s for s in out if not is_city_state(s)]
         return out
 
     # Classic "City, ST" / "City, ST, Country" — first segment is the city.
@@ -354,8 +369,11 @@ def location_tokens(location):
         segs = []
         for raw in raw_segs:
             # Country phrases may still contain punctuation (u.s.a.) — clean first.
+            # Keep country segments: _cities_from_segments needs them to detect
+            # country-first form so city-states can act as states when a later
+            # city follows ("US, Washington, Redmond" → redmond only).
             cleaned = _clean_loc_seg(raw)
-            if not cleaned or cleaned in _COUNTRY_NOISE:
+            if not cleaned:
                 continue
             segs.append(cleaned)
         for city in _cities_from_segments(segs):
@@ -711,6 +729,20 @@ def selftest():
     assert location_tokens("North Carolina") == frozenset()
     # city-state allowlist: bare "New York" still names the city
     assert location_tokens("New York") == frozenset({"new york"})
+    # Country-first + city-state: city-state is geo when a later city follows,
+    # but the city when it is the last meaningful segment. Must not bridge
+    # Redmond↔DC or Buffalo↔NYC via a shared city-state token.
+    assert location_tokens("United States, Washington, Redmond") == frozenset({"redmond"})
+    assert location_tokens("US, New York, Buffalo") == frozenset({"buffalo"})
+    assert location_tokens("US, New York") == frozenset({"new york"})  # NY is the city
+    assert location_tokens("US, Arizona, Phoenix") == frozenset({"phoenix"})
+    assert location_tokens("Washington, DC") == frozenset({"washington"})
+    assert location_tokens("New York, NY") == frozenset({"new york"})
+    assert location_tokens("Buffalo, New York") == frozenset({"buffalo"})
+    assert location_tokens("Seattle, Washington") & location_tokens("Washington, DC") == frozenset()
+    assert location_tokens("United States, Washington, Redmond") & location_tokens(
+        "Washington, DC") == frozenset()
+    assert location_tokens("US, New York, Buffalo") & location_tokens("New York, NY") == frozenset()
 
     # cluster_content: same posting from many sources with drifting location
     # spellings collapses to one cluster; distinct cities stay separate...
@@ -770,6 +802,26 @@ def selftest():
     cha = next(r for g in msc for r in g if r["url"] == "https://m/cha")
     assert not any(buf in g and nyc_r in g for g in msc)
     assert not any(ral in g and cha in g for g in msc)
+
+    # Country-first city-state must not merge distinct cities (Redmond↔DC, Buffalo↔NYC)
+    country_first_cs = [
+        {"company": "Msft", "title": "Software Engineer Intern",
+         "location": "United States, Washington, Redmond", "url": "https://cf/red"},
+        {"company": "Msft", "title": "Software Engineer Intern",
+         "location": "Washington, DC", "url": "https://cf/dc"},
+        {"company": "AcmeNY", "title": "Software Engineer Intern",
+         "location": "US, New York, Buffalo", "url": "https://cf/buf"},
+        {"company": "AcmeNY", "title": "Software Engineer Intern",
+         "location": "New York, NY", "url": "https://cf/nyc"},
+    ]
+    cfc = cluster_content(country_first_cs)
+    assert len(cfc) == 4, [([r["url"] for r in g]) for g in cfc]
+    red = next(r for g in cfc for r in g if r["url"] == "https://cf/red")
+    dc = next(r for g in cfc for r in g if r["url"] == "https://cf/dc")
+    buf2 = next(r for g in cfc for r in g if r["url"] == "https://cf/buf")
+    nyc2 = next(r for g in cfc for r in g if r["url"] == "https://cf/nyc")
+    assert not any(red in g and dc in g for g in cfc)
+    assert not any(buf2 in g and nyc2 in g for g in cfc)
 
     # real_job_token must catch Workday _JR ids -- \b never fires after "_"
     assert real_job_token("https://x.wd1.myworkdayjobs.com/Careers/job/Penang/_JR0285543") \
