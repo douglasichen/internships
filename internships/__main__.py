@@ -76,13 +76,17 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     Descriptions are NOT stored here -- they go to out/descriptions.json.gz
     ({id: full page HTML}; see desc_store). Skips a row when:
     - its listing id is already present (retry after crash before persist_seen), or
-    - the same company+title+location already exists (cross-source / re-scrape
-      of the same human-visible job with a different URL), *and* recompute's
-      content-group merge rules say the group is mergeable (distinct embedded
-      job ids like _R-1234 vs _R-5678 must each get their own row -- same rule
-      as --recompute dedup). When a content-key duplicate is skipped but we
-      have body text the kept row lacks, fill that description under the kept
-      id so dual-write does not throw away a good apply-page body.
+    - the same normalized URL already exists (dedupe pass 1), or
+    - the same real_job_token already exists under recompute's token-identity
+      rules (pass 2: strong tokens always, short tokens need company soft-match),
+      or
+    - content clustering says it joins an existing (company, canon_title)
+      cluster (pass 3: locations overlap, real job ids don't conflict). Distinct
+      embedded job ids like _R-1234 vs _R-5678 must each get their own row --
+      same rule as --recompute dedup.
+    When a duplicate is skipped but we have body text the kept row lacks, fill
+    that description under the kept id so dual-write does not throw away a good
+    apply-page body.
     """
     from internships import desc_store
 
@@ -96,7 +100,7 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
 
     have = {r.get("id") for r in existing}
     # (canon_company, canon_title) -> clusters of rows already kept for that role.
-    # Same identity clustering as recompute.dedupe pass 2: a new row that is the
+    # Same identity clustering as recompute.dedupe pass 3: a new row that is the
     # same posting as an existing cluster (locations overlap, real job ids don't
     # conflict) is skipped rather than appended as a near-duplicate. Must stay
     # in sync with recompute.cluster_content's bucket key.
@@ -107,8 +111,11 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
     buckets = {}
     # normalized-url -> the cluster it lives in, mirroring dedupe pass 1: a new
     # row whose apply link already exists is the same posting even when its
-    # title/location canonicalize differently (append had no url pass before).
+    # title/location canonicalize differently.
     by_url = {}
+    # real_job_token -> list of clusters, mirroring dedupe pass 2. Multiple
+    # clusters per short token when company strings are incompatible.
+    by_token = {}
     for r in existing:
         if isinstance(r, dict):
             cluster = [r]  # one existing row = one cluster
@@ -116,6 +123,9 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             u = normalize_url(r.get("url") or "")
             if u:
                 by_url.setdefault(u, cluster)
+            tok = recompute.real_job_token(r.get("url"))
+            if tok:
+                by_token.setdefault(tok, []).append(cluster)
 
     def _fill_desc_for_group(group, text):
         """Attach body text to the first group row that still lacks one."""
@@ -126,6 +136,14 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             if eid and not descs.get(eid):
                 descs[eid] = text
                 return
+
+    def _index_token(tok, cluster):
+        """Register cluster under tok if not already listed there."""
+        if not tok:
+            return
+        clusters = by_token.setdefault(tok, [])
+        if cluster not in clusters:
+            clusters.append(cluster)
 
     for l in listings:
         row = _row(l, scraped_at)  # no description field
@@ -138,7 +156,16 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             continue
         clusters = buckets.setdefault(_bucket(row), [])
         url = normalize_url(row.get("url") or "")
+        tok = recompute.real_job_token(row.get("url"))
         joined = by_url.get(url) if url else None
+        # Pass 2: same real_job_token (with short-token company guard)
+        if joined is None and tok:
+            joined = next(
+                (c for c in by_token.get(tok, [])
+                 if recompute.token_can_join(tok, c, row)),
+                None,
+            )
+        # Pass 3: content cluster join
         if joined is None:
             joined = next((c for c in clusters if recompute._can_join(c, row)), None)
         if joined is not None:
@@ -146,6 +173,10 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             # the older row, but don't drop a description we already fetched
             _fill_desc_for_group(joined, l.extra_text)
             joined.append(row)  # so later listings this run also see it
+            # keep indexes current for subsequent listings in this batch
+            if url:
+                by_url.setdefault(url, joined)
+            _index_token(tok, joined)
             continue
         new_cluster = [row]
         existing.append(row)
@@ -153,6 +184,7 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
         clusters.append(new_cluster)
         if url:
             by_url.setdefault(url, new_cluster)
+        _index_token(tok, new_cluster)
         if l.extra_text:
             descs[lid] = l.extra_text
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -334,6 +366,60 @@ def selftest():
         rows = json.loads(all_json.read_text())
         assert len(rows) == 1 and rows[0]["id"] == a.id()
         assert desc_store.load(all_json)[a.id()] == "GOOD BODY"
+
+    # token identity: same gh_jid, different company spelling + title seasoning
+    # must not re-append (mirrors recompute pass 2). IMC-style live dups.
+    with tempfile.TemporaryDirectory() as td:
+        from internships import desc_store
+        all_json = Path(td) / "all.json"
+        a = Listing(
+            "ats_boards", "IMC Trading",
+            "Software Engineer Intern - Summer 2027", "Chicago",
+            "https://job-boards.eu.greenhouse.io/imc/jobs/4823924101",
+            extra_text="",
+        )
+        b = Listing(
+            "github_readme", "IMC", "Software Engineer Intern", "Chicago, IL",
+            "https://www.imc.com/us/careers/jobs/4823924101",
+            extra_text="IMC BODY FROM README",
+        )
+        assert recompute.real_job_token(a.url) == recompute.real_job_token(b.url)
+        append_all_json([a], "2026-07-01T00:00:00", all_json)
+        append_all_json([b], "2026-07-09T00:00:00", all_json)
+        rows = json.loads(all_json.read_text())
+        assert len(rows) == 1 and rows[0]["id"] == a.id()
+        assert rows[0]["company"] == "IMC Trading"  # oldest kept
+        assert desc_store.load(all_json)[a.id()] == "IMC BODY FROM README"
+
+    # short token + incompatible companies: must NOT collapse at append time
+    with tempfile.TemporaryDirectory() as td:
+        all_json = Path(td) / "all.json"
+        a = Listing("ats_boards", "Acme Corp", "Intern", "NY",
+                    "https://careers.acme.com/jobs/10838")
+        b = Listing("ats_boards", "Globex Inc", "Intern", "NY",
+                    "https://careers.globex.com/jobs/10838")
+        assert recompute.real_job_token(a.url) == recompute.real_job_token(b.url) == "10838"
+        assert not recompute.companies_compatible(a.company, b.company)
+        append_all_json([a, b], "2026-07-09T00:00:00", all_json)
+        rows = json.loads(all_json.read_text())
+        assert len(rows) == 2
+        assert {r["id"] for r in rows} == {a.id(), b.id()}
+
+    # distinct tokens stay two rows even with similar titles
+    with tempfile.TemporaryDirectory() as td:
+        all_json = Path(td) / "all.json"
+        a = Listing(
+            "ats_boards", "Akuna Capital", "SWE Intern - Python", "Chicago",
+            "https://www.akunacapital.com/careers/job/8018853/?gh_jid=8018853",
+        )
+        b = Listing(
+            "ats_boards", "Akuna Capital", "SWE Intern - C++", "Chicago",
+            "https://www.akunacapital.com/careers/job/8018847/?gh_jid=8018847",
+        )
+        assert recompute.real_job_token(a.url) != recompute.real_job_token(b.url)
+        append_all_json([a, b], "2026-07-09T00:00:00", all_json)
+        rows = json.loads(all_json.read_text())
+        assert len(rows) == 2
 
     # retry: id already in all.json, desc missing -- second append fills store
     with tempfile.TemporaryDirectory() as td:
