@@ -257,6 +257,8 @@ def _squash(s):
 _COMPANY_SUFFIXES = frozenset({
     "inc", "llc", "ltd", "corp", "corporation", "technologies", "technology",
     "company", "co", "group", "holdings",
+    # optional legal tails (under-merge only if missing): UK plc, US long forms
+    "plc", "incorporated", "pbc", "limited",
 })
 
 # Short forms that drop meaningful words (not just a legal suffix). Key and
@@ -268,8 +270,10 @@ _COMPANY_ALIASES = {
     "aquatic": "aquaticcapitalmanagement",
     "aquaticcapital": "aquaticcapitalmanagement",
     "oldmission": "oldmissioncapital",
-    # matches "Susquehanna Investment Group" after Group peel
-    "susquehanna": "susquehannainvestment",
+    # SIG: live data uses bare / Investment Group / International Group (majority).
+    # After Group peel: susquehanna | susquehannainvestment | susquehannainternational
+    "susquehannainvestment": "susquehanna",
+    "susquehannainternational": "susquehanna",
 }
 
 
@@ -283,15 +287,17 @@ def canon_company(name):
 
     Safety: only peels generic trailing tokens -- "Google Cloud" stays distinct
     from "Google". Does not invent renames (Fab2 stays fab2, Atomic Semi stays
-    atomicsemi).
+    atomicsemi). If every token was a suffix (e.g. bare "Inc"), fall back to
+    the pre-peel alphanum form so those names do not share one empty bucket.
     """
     t = _squash(name)
     if t.startswith("the "):
         t = t[4:]
     tokens = re.findall(r"[a-z0-9]+", t)
+    raw = "".join(tokens)
     while tokens and tokens[-1] in _COMPANY_SUFFIXES:
         tokens.pop()
-    key = "".join(tokens)
+    key = "".join(tokens) or raw
     return _COMPANY_ALIASES.get(key, key)
 
 
@@ -734,11 +740,30 @@ def selftest():
     assert (canon_company("Aquatic") == canon_company("Aquatic Capital")
             == canon_company("Aquatic Capital Management"))
     assert canon_company("Old Mission") == canon_company("Old Mission Capital")
-    assert canon_company("Susquehanna") == canon_company("Susquehanna Investment Group")
+    # SIG: bare / Investment Group / International Group all share one key
+    assert (canon_company("Susquehanna")
+            == canon_company("Susquehanna Investment Group")
+            == canon_company("Susquehanna International Group")
+            == "susquehanna")
+    # optional legal tails
+    assert canon_company("BAE Systems") == canon_company("BAE Systems plc")
+    assert canon_company("Acme") == canon_company("Acme Incorporated")
     # safety: meaningful second words and renames stay distinct
     assert canon_company("Google") != canon_company("Google Cloud")
     assert canon_company("Fab2") != canon_company("Atomic Semi")
     assert canon_company("Acme") == canon_company("Acme Technologies")  # suffix peel intended
+    # non-suffix second words must NOT alias (high-volume internship employers)
+    assert canon_company("Citadel") != canon_company("Citadel Securities")
+    assert canon_company("Citadel") == "citadel"
+    assert canon_company("Citadel Securities") == "citadelsecurities"
+    # Jump Trading Group peels Group; bare "Jump" (not in live data) stays distinct
+    assert canon_company("Jump Trading") == canon_company("Jump Trading Group") == "jumptrading"
+    assert canon_company("Jump") != canon_company("Jump Trading")
+    # suffix-only names fall back to pre-peel alphanum (not a shared "" bucket)
+    assert canon_company("Inc") == "inc"
+    assert canon_company("Group") == "group"
+    assert canon_company("Technologies") == "technologies"
+    assert canon_company("") == ""
 
     # canon_title: trailing season / year / work-mode tags collapse to one role
     assert canon_title("Software Engineer Intern - Summer 2027") == "software engineer intern"
@@ -967,6 +992,28 @@ def selftest():
          "location": "Chicago, United States", "url": "https://ats/imc"},
     ]
     assert sorted(len(g) for g in cluster_content(imc_merge)) == [2]
+    # SIG: International Group (majority live spelling) merges with bare /
+    # Investment Group when title + Bala Cynwyd location overlap. Titles are
+    # peel-compatible so company spelling is the only variable under test.
+    sig_merge = [
+        {"company": "Susquehanna", "title": "Quantitative Strategy Developer Intern",
+         "location": "Bala Cynwyd, PA", "url": "https://sig/bare"},
+        {"company": "Susquehanna International Group",
+         "title": "Quantitative Strategy Developer Intern - Summer 2027",
+         "location": "Bala Cynwyd, PA, United States", "url": "https://sig/intl"},
+        {"company": "Susquehanna Investment Group",
+         "title": "Quantitative Strategy Developer Intern",
+         "location": "Bala Cynwyd", "url": "https://sig/inv"},
+    ]
+    assert sorted(len(g) for g in cluster_content(sig_merge)) == [3]
+    # Citadel vs Citadel Securities: same title+city must stay separate clusters
+    citadel_split = [
+        {"company": "Citadel", "title": "Software Engineer Intern",
+         "location": "New York, NY", "url": "https://citadel/swe"},
+        {"company": "Citadel Securities", "title": "Software Engineer Intern",
+         "location": "New York, NY", "url": "https://citsec/swe"},
+    ]
+    assert sorted(len(g) for g in cluster_content(citadel_split)) == [1, 1]
 
     # real_job_token must catch Workday _JR ids -- \b never fires after "_"
     assert real_job_token("https://x.wd1.myworkdayjobs.com/Careers/job/Penang/_JR0285543") \

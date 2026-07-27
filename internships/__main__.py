@@ -284,6 +284,20 @@ def selftest():
         assert len(rows) == 1 and rows[0]["id"] == a.id()
         assert rows[0]["company"] == "Palantir"
 
+    # different canon_company (Citadel vs Citadel Securities) with same title +
+    # city -- must NOT skip; non-suffix second words stay distinct firms.
+    with tempfile.TemporaryDirectory() as td:
+        all_json = Path(td) / "all.json"
+        a = Listing("ats_boards", "Citadel", "Software Engineer Intern",
+                    "New York, NY", "http://ats/citadel-swe")
+        b = Listing("ats_boards", "Citadel Securities", "Software Engineer Intern",
+                    "New York, NY", "http://ats/citsec-swe")
+        append_all_json([a], "2026-07-09T00:00:00", all_json)
+        append_all_json([b], "2026-07-10T00:00:00", all_json)
+        rows = json.loads(all_json.read_text())
+        assert len(rows) == 2, rows
+        assert {r["id"] for r in rows} == {a.id(), b.id()}
+
     # same company+title+location BUT distinct embedded job ids (e.g. two NXP
     # "System Engineer Intern" openings in Bucharest) must NOT collapse -- same
     # rule as --recompute dedup. Pre-fix this permanently dropped the second
