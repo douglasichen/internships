@@ -27,20 +27,27 @@ _TRACKING_QUERY_PARAMS = frozenset({
     "utm",  # nonstandard short form seen in tests / some boards
 })
 
-# Greenhouse serves the same board+job under several hostnames. Collapse to
-# one so boards.greenhouse.io/... and job-boards.greenhouse.io/... (and the
-# .eu variants) share a dedup identity. Path + identity query stay intact.
-_GREENHOUSE_HOSTS = frozenset({
+# Greenhouse host aliases fold *within* region only. US job-boards → boards;
+# EU job-boards → boards.eu. Do NOT cross-fold EU ↔ US: board/token namespaces
+# are regional and the same numeric id can mean different jobs.
+_GREENHOUSE_US_HOSTS = frozenset({
     "boards.greenhouse.io",
     "job-boards.greenhouse.io",
+})
+_GREENHOUSE_US_CANON = "boards.greenhouse.io"
+_GREENHOUSE_EU_HOSTS = frozenset({
     "boards.eu.greenhouse.io",
     "job-boards.eu.greenhouse.io",
 })
-_GREENHOUSE_CANON_HOST = "boards.greenhouse.io"
+_GREENHOUSE_EU_CANON = "boards.eu.greenhouse.io"
 
-# Workday career sites optional-locale prefix: /en-US/External/job/... vs
-# /External/job/... are the same posting. Match en, en-US, en-GB, fr-FR, …
-_WORKDAY_LOCALE_RE = re.compile(r"^[A-Za-z]{2}(-[A-Za-z]{2})?$")
+# Workday optional locale prefix: /en-US/External/job/... vs /External/job/...
+# are the same posting. Only strip language-REGION with a hyphen (en-US, fr-FR)
+# — bare 2-letter codes like IT/US/HR are often *site* names, not locales.
+_WORKDAY_LOCALE_RE = re.compile(r"^[a-z]{2}-[a-z]{2}$", re.I)
+# Bare "en" is sometimes used as a locale; only strip when followed by a
+# non-job site segment that then has /job/ (so /en/job/... is left alone).
+_WORKDAY_BARE_EN_RE = re.compile(r"^en$", re.I)
 
 
 def normalize_url(url: str) -> str:
@@ -56,14 +63,20 @@ def normalize_url(url: str) -> str:
     Also folds common non-identity URL variance so the same posting from two
     sources merges:
       - scheme / host lowercased; leading ``www.`` stripped
-      - Greenhouse host aliases → boards.greenhouse.io
-      - Workday ``/en-US/`` (and similar locale) path prefix stripped
+      - Greenhouse host aliases within region (job-boards → boards;
+        job-boards.eu → boards.eu; EU is NOT folded into US)
+      - Workday ``/en-US/`` (hyphenated locale) path prefix stripped; bare
+        2-letter site codes like ``IT`` are preserved
       - path lowercased (ATS job ids are numeric/UUID) and trailing slash
         removed
 
+    Note: stronger canonicalization can change Listing.id() for existing
+    rows (SeenStore may briefly re-see them until recompute collapses by
+    normalize_url / content). self.url itself is never mutated -- only the
+    id / known_urls basis uses this form.
+
     Remaining query params are sorted so param order doesn't affect the
-    identity. self.url itself is never mutated -- only the id / known_urls
-    basis uses this form."""
+    identity."""
     if not url:
         return ""
     parts = urlsplit(url)
@@ -71,16 +84,32 @@ def normalize_url(url: str) -> str:
     host = (parts.netloc or "").lower()
     if host.startswith("www."):
         host = host[4:]
-    if host in _GREENHOUSE_HOSTS:
-        host = _GREENHOUSE_CANON_HOST
+    if host in _GREENHOUSE_US_HOSTS:
+        host = _GREENHOUSE_US_CANON
+    elif host in _GREENHOUSE_EU_HOSTS:
+        host = _GREENHOUSE_EU_CANON
 
     path = parts.path or ""
     if host.endswith(".myworkdayjobs.com"):
         segments = path.split("/")
         # path "/en-US/External/job/..." → ['', 'en-US', 'External', 'job', ...]
-        if len(segments) > 1 and _WORKDAY_LOCALE_RE.fullmatch(segments[1] or ""):
-            segments.pop(1)
-            path = "/".join(segments)
+        if len(segments) > 1:
+            first = segments[1] or ""
+            second = (segments[2] if len(segments) > 2 else "") or ""
+            strip_locale = False
+            if _WORKDAY_LOCALE_RE.fullmatch(first):
+                # language-REGION (en-US, en-GB, fr-FR, …)
+                strip_locale = True
+            elif (
+                _WORKDAY_BARE_EN_RE.fullmatch(first)
+                and second.lower() != "job"
+                and any((s or "").lower() == "job" for s in segments[2:])
+            ):
+                # bare "en" only when a site segment follows and /job/ is present
+                strip_locale = True
+            if strip_locale:
+                segments.pop(1)
+                path = "/".join(segments)
     path = path.lower().rstrip("/")
 
     kept = []
@@ -212,19 +241,28 @@ def selftest():
         "https://www.deshaw.com/careers/software-developer-intern-new-york-summer-2027-5894"
     ) == "https://deshaw.com/careers/software-developer-intern-new-york-summer-2027-5894"
 
-    # Greenhouse host aliases (same board + job id)
+    # Greenhouse US host aliases (same board + job id) — job-boards → boards
     gh_a = "https://boards.greenhouse.io/andurilindustries/jobs/5148079007?gh_jid=5148079007"
     gh_b = (
         "https://job-boards.greenhouse.io/andurilindustries/jobs/5148079007"
         "?gh_jid=5148079007&utm_source=github-vansh-ouckah"
     )
-    gh_eu = (
+    assert normalize_url(gh_a) == normalize_url(gh_b) == (
+        "https://boards.greenhouse.io/andurilindustries/jobs/5148079007?gh_jid=5148079007"
+    )
+    # EU hosts fold within EU only (job-boards.eu → boards.eu), never into US
+    gh_eu_a = (
         "https://job-boards.eu.greenhouse.io/andurilindustries/jobs/5148079007"
         "?gh_jid=5148079007"
     )
-    assert normalize_url(gh_a) == normalize_url(gh_b) == normalize_url(gh_eu) == (
-        "https://boards.greenhouse.io/andurilindustries/jobs/5148079007?gh_jid=5148079007"
+    gh_eu_b = (
+        "https://boards.eu.greenhouse.io/andurilindustries/jobs/5148079007"
+        "?gh_jid=5148079007"
     )
+    assert normalize_url(gh_eu_a) == normalize_url(gh_eu_b) == (
+        "https://boards.eu.greenhouse.io/andurilindustries/jobs/5148079007?gh_jid=5148079007"
+    )
+    assert normalize_url(gh_a) != normalize_url(gh_eu_a)
     # different job ids on greenhouse must stay distinct
     assert normalize_url(
         "https://job-boards.greenhouse.io/andurilindustries/jobs/111"
@@ -245,7 +283,7 @@ def selftest():
         "https://intel.wd1.myworkdayjobs.com/external/job/us-oregon-hillsboro/"
         "ai-software-intern_jr0282639"
     )
-    # en-GB (and similar) also stripped; JR id path segment kept
+    # en-GB (and similar hyphenated locales) also stripped; JR id path segment kept
     assert normalize_url(
         "https://accenture.wd103.myworkdayjobs.com/en-GB/AvanadeCareers/job/"
         "Los-Angeles/Intern_R00319370"
@@ -253,6 +291,18 @@ def selftest():
         "https://accenture.wd103.myworkdayjobs.com/avanadecareers/job/"
         "los-angeles/intern_r00319370"
     )
+    # bare "en" stripped only when followed by a site then /job/
+    assert normalize_url(
+        "https://example.wd1.myworkdayjobs.com/en/External/job/X/Y_JR1"
+    ) == "https://example.wd1.myworkdayjobs.com/external/job/x/y_jr1"
+    # 2-letter *site* codes (IT, US, …) must NOT be stripped as locales
+    assert normalize_url(
+        "https://example.wd1.myworkdayjobs.com/IT/job/Rome/Title_R1"
+    ) == "https://example.wd1.myworkdayjobs.com/it/job/rome/title_r1"
+    # locale + 2-letter site collapses to the same norm as bare site
+    assert normalize_url(
+        "https://example.wd1.myworkdayjobs.com/en-US/IT/job/Rome/Title_R1"
+    ) == "https://example.wd1.myworkdayjobs.com/it/job/rome/title_r1"
     # different Workday requisitions must stay distinct
     assert normalize_url(
         "https://intel.wd1.myworkdayjobs.com/External/job/X/Y_JR0282639"
