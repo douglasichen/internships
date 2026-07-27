@@ -95,12 +95,13 @@ def append_all_json(listings, scraped_at, path=ALL_JSON_PATH):
             descs.setdefault(k, v)
 
     have = {r.get("id") for r in existing}
-    # (company, canonical title) -> clusters of rows already kept for that role.
+    # (canon_company, canon_title) -> clusters of rows already kept for that role.
     # Same identity clustering as recompute.dedupe pass 2: a new row that is the
     # same posting as an existing cluster (locations overlap, real job ids don't
-    # conflict) is skipped rather than appended as a near-duplicate.
+    # conflict) is skipped rather than appended as a near-duplicate. Must stay
+    # in sync with recompute.cluster_content's bucket key.
     def _bucket(r):
-        return (recompute._squash(r.get("company")),
+        return (recompute.canon_company(r.get("company")),
                 recompute.canon_title(r.get("title")))
 
     buckets = {}
@@ -267,6 +268,21 @@ def selftest():
         append_all_json([b], "2026-07-10T00:00:00", all_json)
         rows = json.loads(all_json.read_text())
         assert len(rows) == 1 and rows[0]["id"] == a.id()
+
+    # company spelling variants (canon_company) with same title + city -- skip
+    # the second insert, same as recompute.cluster_content bucket key.
+    with tempfile.TemporaryDirectory() as td:
+        all_json = Path(td) / "all.json"
+        a = Listing("ats_boards", "Palantir", "Software Engineer, Internship",
+                    "New York, NY", "http://ats/palantir-ny")
+        b = Listing("jobright", "Palantir Technologies",
+                    "Software Engineer, Internship",
+                    "New York, NY, United States", "http://jr/palantir-ny")
+        append_all_json([a], "2026-07-09T00:00:00", all_json)
+        append_all_json([b], "2026-07-10T00:00:00", all_json)
+        rows = json.loads(all_json.read_text())
+        assert len(rows) == 1 and rows[0]["id"] == a.id()
+        assert rows[0]["company"] == "Palantir"
 
     # same company+title+location BUT distinct embedded job ids (e.g. two NXP
     # "System Engineer Intern" openings in Bucharest) must NOT collapse -- same

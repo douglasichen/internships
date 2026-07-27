@@ -251,6 +251,50 @@ def _squash(s):
     return re.sub(r"\s+", " ", (s or "").strip().lower())
 
 
+# Trailing legal / generic corporate tokens peeled from company names for
+# content-bucket keys. Only these -- "Google Cloud" must not collapse to
+# "Google", and meaningful second words (Trading, Capital, Investment) stay.
+_COMPANY_SUFFIXES = frozenset({
+    "inc", "llc", "ltd", "corp", "corporation", "technologies", "technology",
+    "company", "co", "group", "holdings",
+})
+
+# Short forms that drop meaningful words (not just a legal suffix). Key and
+# value are already alphanum-squashed (post-suffix-peel). Keep this tiny --
+# do not alias renames (Fab2 ≠ Atomic Semi) or unrelated firms.
+_COMPANY_ALIASES = {
+    "imc": "imctrading",
+    "towerresearch": "towerresearchcapital",
+    "aquatic": "aquaticcapitalmanagement",
+    "aquaticcapital": "aquaticcapitalmanagement",
+    "oldmission": "oldmissioncapital",
+    # matches "Susquehanna Investment Group" after Group peel
+    "susquehanna": "susquehannainvestment",
+}
+
+
+def canon_company(name):
+    """Company identity for content-bucket keys.
+
+    Lowercases, strips leading "the ", peels trailing legal/generic suffixes
+    (Inc/LLC/Technologies/Group/...), flattens to alphanumerics so punctuation
+    variants match ("D.E. Shaw" ≡ "D. E. Shaw" ≡ "D. E. Shaw & Co."), then
+    applies a small short-form alias map (IMC → IMC Trading, etc.).
+
+    Safety: only peels generic trailing tokens -- "Google Cloud" stays distinct
+    from "Google". Does not invent renames (Fab2 stays fab2, Atomic Semi stays
+    atomicsemi).
+    """
+    t = _squash(name)
+    if t.startswith("the "):
+        t = t[4:]
+    tokens = re.findall(r"[a-z0-9]+", t)
+    while tokens and tokens[-1] in _COMPANY_SUFFIXES:
+        tokens.pop()
+    key = "".join(tokens)
+    return _COMPANY_ALIASES.get(key, key)
+
+
 def canon_title(title):
     """Role title with leading/trailing season/year/work-mode tags peeled off
     and punctuation flattened, so "Software Engineer Intern - Summer 2027",
@@ -431,7 +475,7 @@ def real_job_token(url):
 
 def _can_join(cluster, row):
     """True if `row` is the same posting as an existing `cluster` of rows that
-    already share (company, canon_title).
+    already share (canon_company, canon_title).
 
     Blocks the join when the row's real job id conflicts with ANY member
     (distinct reqs like NXP _R-...102 vs 103, or Gemini token=1 vs 2 stay apart;
@@ -457,8 +501,8 @@ def _can_join(cluster, row):
 
 def cluster_content(rows):
     """Group rows that are the same human-visible posting. Buckets by
-    (company, canon_title) then greedily first-fits each row into a compatible
-    cluster (see _can_join). Returns a list of row-lists.
+    (canon_company, canon_title) then greedily first-fits each row into a
+    compatible cluster (see _can_join). Returns a list of row-lists.
 
     ponytail: greedy first-fit is order-sensitive and O(n^2) within a bucket;
     buckets are tiny (a handful of rows per company+role) so it does not
@@ -466,8 +510,8 @@ def cluster_content(rows):
     """
     buckets = {}
     for r in rows:
-        buckets.setdefault((_squash(r.get("company")), canon_title(r.get("title"))),
-                           []).append(r)
+        buckets.setdefault((canon_company(r.get("company")),
+                            canon_title(r.get("title"))), []).append(r)
     groups = []
     for members in buckets.values():
         clusters = []
@@ -561,10 +605,11 @@ def dedupe(path=ALL_JSON_PATH):
     after_url.extend(no_url)
 
     # Pass 2: cluster same-posting rows on the URL-collapsed set. Groups by
-    # (company, canonical title) then merges rows whose locations overlap and
+    # (canon_company, canon_title) then merges rows whose locations overlap and
     # whose embedded real job ids don't conflict -- collapses the same opening
-    # arriving from many sources with drifting location/title spellings, while
-    # keeping genuinely distinct reqs (NXP _R- ids) and distinct cities apart.
+    # arriving from many sources with drifting company/location/title spellings,
+    # while keeping genuinely distinct reqs (NXP _R- ids) and distinct cities
+    # apart.
     content_groups = {i: g for i, g in enumerate(cluster_content(after_url))}
     result_rows, removed_content, migrated_content = _collapse(
         content_groups, descs=descs
@@ -668,6 +713,32 @@ def selftest():
         assert result_pri[2]["priority"] == 1
     finally:
         _self.company_priority = orig_priority
+
+    # canon_company: legal suffixes + punctuation + short-form aliases
+    assert canon_company("Palantir") == canon_company("Palantir Technologies") == "palantir"
+    assert canon_company("Intel") == canon_company("Intel Corporation") == "intel"
+    assert canon_company("ETCHED") == canon_company("Etched") == "etched"
+    assert canon_company("D. E. Shaw") == canon_company("D.E. Shaw") \
+        == canon_company("D. E. Shaw & Co.") == canon_company("The D. E. Shaw Group")
+    assert canon_company("BAE Systems") == canon_company("BAE Systems, Inc.")
+    assert canon_company("Ginkgo Bioworks") == canon_company("Ginkgo Bioworks Inc.")
+    assert canon_company("STOKE Space Technologies") == canon_company("Stoke Space")
+    assert canon_company("IPConfigure") == canon_company("IPConfigure Inc.")
+    assert canon_company("Agilent") == canon_company("Agilent Technologies")
+    assert canon_company("Pony.ai") == canon_company("pony.ai")
+    assert canon_company("Persona AI") == canon_company("Persona AI Inc")
+    assert (canon_company("Voloridge Investment Management")
+            == canon_company("Voloridge Investment Management, LLC"))
+    assert canon_company("IMC") == canon_company("IMC Trading") == "imctrading"
+    assert canon_company("Tower Research") == canon_company("Tower Research Capital")
+    assert (canon_company("Aquatic") == canon_company("Aquatic Capital")
+            == canon_company("Aquatic Capital Management"))
+    assert canon_company("Old Mission") == canon_company("Old Mission Capital")
+    assert canon_company("Susquehanna") == canon_company("Susquehanna Investment Group")
+    # safety: meaningful second words and renames stay distinct
+    assert canon_company("Google") != canon_company("Google Cloud")
+    assert canon_company("Fab2") != canon_company("Atomic Semi")
+    assert canon_company("Acme") == canon_company("Acme Technologies")  # suffix peel intended
 
     # canon_title: trailing season / year / work-mode tags collapse to one role
     assert canon_title("Software Engineer Intern - Summer 2027") == "software engineer intern"
@@ -862,6 +933,40 @@ def selftest():
     nyc2 = next(r for g in cfc for r in g if r["url"] == "https://cf/nyc")
     assert not any(red in g and dc in g for g in cfc)
     assert not any(buf2 in g and nyc2 in g for g in cfc)
+
+    # canon_company in cluster_content: spelling variants of the same firm merge
+    # when title + location allow; distinct cities / job tokens still separate.
+    palantir_merge = [
+        {"company": "Palantir", "title": "Software Engineer, Internship",
+         "location": "New York, NY", "url": "https://p/ats"},
+        {"company": "Palantir Technologies", "title": "Software Engineer, Internship",
+         "location": "New York, NY, United States", "url": "https://p/jobright"},
+    ]
+    assert sorted(len(g) for g in cluster_content(palantir_merge)) == [2]
+    # NY vs Palo Alto stay separate even after company canon
+    palantir_cities = [
+        {"company": "Palantir", "title": "Software Engineer, Internship",
+         "location": "New York, NY", "url": "https://p/ny"},
+        {"company": "Palantir Technologies", "title": "Software Engineer, Internship",
+         "location": "Palo Alto, CA", "url": "https://p/pa"},
+    ]
+    assert sorted(len(g) for g in cluster_content(palantir_cities)) == [1, 1]
+    # distinct real job tokens still separate under a shared canon_company
+    intel_reqs = [
+        {"company": "Intel", "title": "SW Intern", "location": "Penang",
+         "url": "https://x/job/Penang/SW-Intern_JR0285543"},
+        {"company": "Intel Corporation", "title": "SW Intern", "location": "Penang",
+         "url": "https://x/job/Penang/SW-Intern_JR0285538"},
+    ]
+    assert sorted(len(g) for g in cluster_content(intel_reqs)) == [1, 1]
+    # short-form alias: IMC vs IMC Trading, same title + city → merge
+    imc_merge = [
+        {"company": "IMC", "title": "Software Engineer Intern",
+         "location": "Chicago, IL", "url": "https://readme/imc"},
+        {"company": "IMC Trading", "title": "Software Engineer Intern - Summer 2027",
+         "location": "Chicago, United States", "url": "https://ats/imc"},
+    ]
+    assert sorted(len(g) for g in cluster_content(imc_merge)) == [2]
 
     # real_job_token must catch Workday _JR ids -- \b never fires after "_"
     assert real_job_token("https://x.wd1.myworkdayjobs.com/Careers/job/Penang/_JR0285543") \
