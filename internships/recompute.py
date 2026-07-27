@@ -485,28 +485,62 @@ def real_job_token(url):
 _STRONG_TOKEN_LEN = 7
 
 
+# Classic legal-entity trailers peeled when comparing company names for the
+# short-token guard. Keep this set tight: branding words like "group",
+# "capital", "technologies" are part of firm identity and must stay so
+# "Capital One" / "Capital Group" do not collapse via a peeled ["capital"].
+_COMPANY_LEGAL_SUFFIXES = frozenset({
+    "inc", "llc", "ltd", "corp", "corporation", "company", "co",
+    "limited", "plc", "lp", "llp", "pllc", "pc",
+})
+
+
+def _company_words(name):
+    """Normalize a company string to significant word tokens.
+
+    Lowercase, strip leading "the ", split on non-alphanumerics, peel trailing
+    legal suffixes (Inc/LLC/...). Returns [] for empty/missing names.
+    """
+    t = _squash(name)
+    if not t:
+        return []
+    if t.startswith("the "):
+        t = t[4:]
+    words = re.findall(r"[a-z0-9]+", t)
+    while words and words[-1] in _COMPANY_LEGAL_SUFFIXES:
+        words.pop()
+    return words
+
+
 def companies_compatible(a, b):
     """True when two company strings look like the same firm under light drift.
 
     Used only as a guard for short real_job_tokens (< _STRONG_TOKEN_LEN): two
     unrelated companies could theoretically reuse a small numeric id like
-    "10838". Long tokens skip this check entirely. Match rules, in order:
-      - exact match after squash
-      - one string contains the other ("susquehanna" ⊂ "susquehanna investment group")
-      - shared leading word of length >= 4 ("tower research" / "tower research capital")
-    Empty / missing company never counts as compatible (fail closed on short tokens).
+    "10838". Long tokens skip this check entirely.
+
+    Match is *word-sequence* based (not unanchored substring / shared first
+    word alone), so Meta≠Metabase, Apple≠Pineapple, AMD≠Ramda, SAP≠ASAP,
+    Bank of America≠Bank of Montreal, Capital One≠Capital Group:
+      - both non-empty after normalize
+      - exact equal word lists, OR
+      - one list is a whole-word prefix of the other
+        (e.g. ["imc"] ⊏ ["imc","trading"], ["susquehanna"] ⊏
+        ["susquehanna","investment","group"]), requiring first word length
+        >= 2 and shorter length >= 1
+    Empty / missing company never counts as compatible (fail closed).
     """
-    ca, cb = _squash(a), _squash(b)
-    if not ca or not cb:
+    wa, wb = _company_words(a), _company_words(b)
+    if not wa or not wb:
         return False
-    if ca == cb:
+    if wa == wb:
         return True
-    if ca in cb or cb in ca:
-        return True
-    wa, wb = ca.split(), cb.split()
-    if wa and wb and wa[0] == wb[0] and len(wa[0]) >= 4:
-        return True
-    return False
+    # Word-sequence prefix: shorter list must equal the longer's leading words.
+    if len(wa) > len(wb):
+        wa, wb = wb, wa
+    if len(wa[0]) < 2:
+        return False
+    return wb[:len(wa)] == wa
 
 
 def token_can_join(token, cluster, row):
@@ -1310,6 +1344,65 @@ def selftest():
     removed, total = dedupe(p_sig)
     assert removed == 1 and total == 2
     assert json.loads(p_sig.read_text())[0]["id"] == "sig1"
+
+    # Short-token company guard: word-sequence prefix, NOT unanchored substring
+    # or shared first word. These pairs must stay separate under a short id.
+    for a, b in (
+        ("Meta", "Metabase"),
+        ("AMD", "Ramda"),
+        ("Apple", "Pineapple"),
+        ("SAP", "ASAP"),
+        ("Bank of America", "Bank of Montreal"),
+        ("Capital One", "Capital Group"),
+        ("Acme Corp", "Globex Inc"),
+    ):
+        assert not companies_compatible(a, b), (a, b)
+    # Positive word-prefix / equal cases still hold (legal suffix peeled).
+    assert companies_compatible("IMC", "IMC Trading")
+    assert companies_compatible("Tower Research", "Tower Research Capital")
+    assert companies_compatible("BAE Systems", "BAE Systems, Inc.")
+    assert companies_compatible("Acme Corp", "Acme")
+    assert not companies_compatible("", "Meta")
+    assert not companies_compatible(None, "Meta")
+    assert not companies_compatible("Meta", "")
+
+    def _short_pair(co_a, co_b, id_a="a", id_b="b"):
+        return [
+            {"company": co_a, "title": "Intern", "location": "NY",
+             "url": "https://careers.example.com/jobs/10838",
+             "scraped_at": "2026-01-01", "id": id_a},
+            {"company": co_b, "title": "Intern", "location": "NY",
+             "url": "https://careers.other.com/jobs/10838",
+             "scraped_at": "2026-01-02", "id": id_b},
+        ]
+
+    # Meta / Metabase + short token 10838: substring would false-match; keep 2
+    for co_a, co_b, tag in (
+        ("Meta", "Metabase", "meta"),
+        ("AMD", "Ramda", "amd"),
+        ("Apple", "Pineapple", "apple"),
+    ):
+        rows = _short_pair(co_a, co_b, f"{tag}1", f"{tag}2")
+        assert real_job_token(rows[0]["url"]) == "10838"
+        assert not companies_compatible(co_a, co_b)
+        p = Path(tempfile.mkdtemp()) / "all.json"
+        p.write_text(json.dumps(rows))
+        removed, total = dedupe(p)
+        assert removed == 0 and total == 2, (co_a, co_b, removed)
+        assert {r["id"] for r in json.loads(p.read_text())} == {f"{tag}1", f"{tag}2"}
+
+    # Empty company on either side + short token: fail closed, no merge
+    for co_a, co_b in (("", "Acme"), ("Acme", ""), (None, "Acme")):
+        rows = _short_pair(co_a if co_a is not None else "", co_b if co_b is not None else "",
+                           "e1", "e2")
+        if co_a is None:
+            rows[0]["company"] = None
+        if co_b is None:
+            rows[1]["company"] = None
+        p = Path(tempfile.mkdtemp()) / "all.json"
+        p.write_text(json.dumps(rows))
+        removed, total = dedupe(p)
+        assert removed == 0 and total == 2, (co_a, co_b, removed)
 
     # Distinct tokens stay two rows (NXP R-1001 vs R-1002 already covered;
     # also greenhouse-style long ids that differ).
