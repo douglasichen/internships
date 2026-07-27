@@ -138,8 +138,9 @@ _UUID_TOKEN_RE = re.compile(
     re.I,
 )
 # DESHAW: bare /careers/<id> or slug ending in -<id>
-# (software-developer-intern-...-2027-5894). Reject bare 20xx so a year-only
-# slug never becomes an identity token.
+# (software-developer-intern-...-2027-5894). real_job_token rejects bare 20xx
+# on this pattern only so a year-only slug never becomes an identity token;
+# other token sources keep year-shaped values (prior semantics).
 _DESHAW_TOKEN_RE = re.compile(
     r"deshaw\.com/careers/(?:.+-)?(\d{3,6})(?:[/?#]|$)",
     re.I,
@@ -222,7 +223,9 @@ def real_job_token(url):
 
     Covers query ids (gh_jid/token/jobId), Workday _R- / _JR, Greenhouse-style
     /jobs/<n>, Jane Street /position/<n>, Lever/Ashby path UUIDs, and DESHAW
-    careers trailing ids. See module-level token regexes for safety notes.
+    careers trailing ids. Year-shaped tokens (20xx) are rejected only for
+    DESHAW careers captures so season/year tails never become identities;
+    numeric patterns (gh_jid, token=, _R-, /jobs/, …) keep prior semantics.
     """
     if not url:
         return None
@@ -230,7 +233,9 @@ def real_job_token(url):
     for cre in (_REAL_TOKEN_RE, _UUID_TOKEN_RE, _DESHAW_TOKEN_RE):
         for m in cre.finditer(url):
             tok = m.group(1)
-            if _YEAR_TOKEN_RE.fullmatch(tok):
+            # Year filter is a DESHAW safety rail only -- do not skip 20xx on
+            # gh_jid / token= / _R- / /jobs/ / etc. (preserves rightmost winner).
+            if cre is _DESHAW_TOKEN_RE and _YEAR_TOKEN_RE.fullmatch(tok):
                 continue
             end = m.end(1)
             if best is None or end >= best[0]:
@@ -782,6 +787,21 @@ def selftest():
         "https://www.deshaw.com/careers/"
         "software-developer-intern-new-york-summer-2027-5894"
     )
+    # DESHAW year-only tails are not identities (season/year FP rail)
+    assert real_job_token("https://www.deshaw.com/careers/2027") is None
+    assert real_job_token("https://www.deshaw.com/careers/summer-2027") is None
+    assert real_job_token(
+        "https://www.deshaw.com/careers/software-developer-intern-2027"
+    ) is None
+    # Year rejection is DESHAW-only: non-DESHAW 20xx ids keep prior semantics
+    assert real_job_token("https://example.com/?gh_jid=2027") == "2027"
+    assert real_job_token("https://boards.greenhouse.io/co/jobs/2027") == "2027"
+    # multi-match rightmost preserved even when later id is year-shaped
+    assert real_job_token(
+        "https://x.wd1.myworkdayjobs.com/job/_R-1001?gh_jid=2002"
+    ) == "2002"
+    # jobright bare-hex still never becomes a token
+    assert real_job_token("https://jobright.ai/jobs/info/6a511ea50252") is None
 
     import sys
     _self = sys.modules[__name__]  # module-level patch, not a fresh dotted
