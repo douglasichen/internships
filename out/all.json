@@ -18562,5 +18562,53 @@
     "posted": "",
     "scraped_at": "2026-07-27T12:43:01",
     "url": "https://stmicroelectronics.eightfold.ai/careers/job/563637173066707"
+  },
+  {
+    "id": "2d4416a58f07e312",
+    "company": "Ameritas",
+    "title": "Software Developer Intern - Packaged Systems",
+    "location": "Nebraska, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-27",
+    "scraped_at": "2026-07-27T15:49:58",
+    "url": "https://jobright.ai/jobs/info/6a677cb52bf1fb2b7192551d"
+  },
+  {
+    "id": "9ae110d507888d24",
+    "company": "Appian",
+    "title": "Information Security Engineer Intern",
+    "location": "McLean, VA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-27",
+    "scraped_at": "2026-07-27T15:49:58",
+    "url": "https://jobright.ai/jobs/info/6a67771dd0fb4c3df393cf48"
+  },
+  {
+    "id": "906d1668839c88ca",
+    "company": "Carrier",
+    "title": "Infrastructure Services Intern - Fall",
+    "location": "Palm Beach Gardens, FL, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-27",
+    "scraped_at": "2026-07-27T15:49:58",
+    "url": "https://jobright.ai/jobs/info/6a678d99872eb74f9ead9aca"
+  },
+  {
+    "id": "cb0897e0dc6adaec",
+    "company": "Intel Corporation",
+    "title": "AI Software Engineering PhD Intern",
+    "location": "Hillsboro, OR",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Jul 27",
+    "scraped_at": "2026-07-27T15:49:58",
+    "url": "https://intel.wd1.myworkdayjobs.com/external/job/US-Oregon-Hillsboro/AI-Applied-intern_JR0285916?utm_source=github-vansh-ouckah"
   }
 ]
