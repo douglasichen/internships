@@ -18526,5 +18526,41 @@
     "posted": "",
     "scraped_at": "2026-07-27T09:01:37",
     "url": "https://nxp.wd3.myworkdayjobs.com/careers/job/Gratkorn/Internship--Automotive-Customer-Application-Software-Engineer--m-f-d-_R-10064842"
+  },
+  {
+    "id": "899da41de77598b2",
+    "company": "GRO",
+    "title": "Website Developer Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-27",
+    "scraped_at": "2026-07-27T12:43:01",
+    "url": "https://jobright.ai/jobs/info/6a6763f4d0fb4c3df393c91e"
+  },
+  {
+    "id": "065d034dd0a6a57f",
+    "company": "RTX",
+    "title": "Software Engineering Intern (On-site)",
+    "location": "State College, PA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-07-27",
+    "scraped_at": "2026-07-27T12:43:01",
+    "url": "https://jobright.ai/jobs/info/6a674b89d0fb4c3df393c4d0"
+  },
+  {
+    "id": "ada667d751c5782a",
+    "company": "STMicroelectronics",
+    "title": "Software Algorithm Embedded Intern",
+    "location": "Santa Clara, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-07-27T12:43:01",
+    "url": "https://stmicroelectronics.eightfold.ai/careers/job/563637173066707"
   }
 ]
