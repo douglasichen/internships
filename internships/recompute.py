@@ -479,6 +479,119 @@ def real_job_token(url):
     return best[1] if best else None
 
 
+# Tokens this long are treated as global ATS ids (Greenhouse gh_jid /jobs/N,
+# Workday _JR / _R-, embed token=). Cross-company collision risk is negligible,
+# so company string drift ("IMC" vs "IMC Trading") must not block the merge.
+_STRONG_TOKEN_LEN = 7
+
+
+# Classic legal-entity trailers peeled when comparing company names for the
+# short-token guard. Keep this set tight: branding words like "group",
+# "capital", "technologies" are part of firm identity and must stay so
+# "Capital One" / "Capital Group" do not collapse via a peeled ["capital"].
+_COMPANY_LEGAL_SUFFIXES = frozenset({
+    "inc", "llc", "ltd", "corp", "corporation", "company", "co",
+    "limited", "plc", "lp", "llp", "pllc", "pc",
+})
+
+
+def _company_words(name):
+    """Normalize a company string to significant word tokens.
+
+    Lowercase, strip leading "the ", split on non-alphanumerics, peel trailing
+    legal suffixes (Inc/LLC/...). Returns [] for empty/missing names.
+    """
+    t = _squash(name)
+    if not t:
+        return []
+    if t.startswith("the "):
+        t = t[4:]
+    words = re.findall(r"[a-z0-9]+", t)
+    while words and words[-1] in _COMPANY_LEGAL_SUFFIXES:
+        words.pop()
+    return words
+
+
+def companies_compatible(a, b):
+    """True when two company strings look like the same firm under light drift.
+
+    Used only as a guard for short real_job_tokens (< _STRONG_TOKEN_LEN): two
+    unrelated companies could theoretically reuse a small numeric id like
+    "10838". Long tokens skip this check entirely.
+
+    Match is *word-sequence* based (not unanchored substring / shared first
+    word alone), so Meta≠Metabase, Apple≠Pineapple, AMD≠Ramda, SAP≠ASAP,
+    Bank of America≠Bank of Montreal, Capital One≠Capital Group:
+      - both non-empty after normalize
+      - exact equal word lists, OR
+      - one list is a whole-word prefix of the other
+        (e.g. ["imc"] ⊏ ["imc","trading"], ["susquehanna"] ⊏
+        ["susquehanna","investment","group"]), requiring first word length
+        >= 2 and shorter length >= 1
+    Empty / missing company never counts as compatible (fail closed).
+    """
+    wa, wb = _company_words(a), _company_words(b)
+    if not wa or not wb:
+        return False
+    if wa == wb:
+        return True
+    # Word-sequence prefix: shorter list must equal the longer's leading words.
+    if len(wa) > len(wb):
+        wa, wb = wb, wa
+    if len(wa[0]) < 2:
+        return False
+    return wb[:len(wa)] == wa
+
+
+def token_can_join(token, cluster, row):
+    """True if `row` may merge into `cluster` under real_job_token identity.
+
+    Same non-null token is required by the caller. Strong tokens (len >= 7)
+    always join. Short tokens also need company compatibility with every
+    existing member so a shared short id across unrelated firms stays separate.
+    """
+    if not token:
+        return False
+    if len(token) >= _STRONG_TOKEN_LEN:
+        return True
+    for m in cluster:
+        if not companies_compatible(m.get("company"), row.get("company")):
+            return False
+    return True
+
+
+def cluster_by_job_token(rows):
+    """Group rows that share the same real_job_token (with short-token company
+    guard). Rows without a token are returned as singletons. Returns a list of
+    row-lists suitable for _collapse.
+
+    This is the pass that collapses "IMC" vs "IMC Trading" / title seasoning
+    when both URLs embed the same gh_jid -- content clustering cannot see them
+    because it buckets on exact (company, canon_title).
+    """
+    # token -> list of clusters (multiple when a short token collides across
+    # incompatible companies)
+    by_tok = {}
+    no_tok = []
+    for row in rows:
+        tok = real_job_token(row.get("url"))
+        if not tok:
+            no_tok.append([row])
+            continue
+        clusters = by_tok.setdefault(tok, [])
+        for c in clusters:
+            if token_can_join(tok, c, row):
+                c.append(row)
+                break
+        else:
+            clusters.append([row])
+    groups = []
+    for clusters in by_tok.values():
+        groups.extend(clusters)
+    groups.extend(no_tok)
+    return groups
+
+
 def _can_join(cluster, row):
     """True if `row` is the same posting as an existing `cluster` of rows that
     already share (canon_company, canon_title).
@@ -582,10 +695,14 @@ def dedupe(path=ALL_JSON_PATH):
     """Merge rows that are the same job under today's identity rules:
 
     1. Same normalized URL (query-string variants, multi-source same link)
-    2. Same company + title + location (exact, case-insensitive) even when
-       URLs differ -- e.g. Point72 "Quantitative Developer Intern" listed
-       twice from vanshb03. Skips groups where URLs embed distinct job ids
-       (multiple NXP "System Engineer Intern" roles in one city).
+    2. Same real_job_token (ATS id in the URL) regardless of company/title
+       string drift -- e.g. "IMC" vs "IMC Trading" sharing gh_jid 4823924101.
+       None never merges. Short tokens (< 7 chars) also require company
+       compatibility so unrelated firms cannot collide on a small numeric id.
+    3. Content clustering: (company, canon_title) buckets, then location
+       overlap + non-conflicting job ids -- collapses multi-source near-dupes
+       with drifting location/title spellings while keeping distinct reqs
+       (NXP _R- ids) and distinct cities apart.
 
     Always keeps the OLDEST record per merged group (by scraped_at).
 
@@ -610,13 +727,20 @@ def dedupe(path=ALL_JSON_PATH):
     after_url, removed_url, migrated_url = _collapse(by_url, descs=descs)
     after_url.extend(no_url)
 
-    # Pass 2: cluster same-posting rows on the URL-collapsed set. Groups by
+    # Pass 2: same real_job_token is the same posting even when company/title
+    # strings drift across sources (content clustering never sees them).
+    token_groups = {i: g for i, g in enumerate(cluster_by_job_token(after_url))}
+    after_token, removed_token, migrated_token = _collapse(
+        token_groups, descs=descs
+    )
+
+    # Pass 3: cluster same-posting rows on the token-collapsed set. Groups by
     # (canon_company, canon_title) then merges rows whose locations overlap and
     # whose embedded real job ids don't conflict -- collapses the same opening
     # arriving from many sources with drifting company/location/title spellings,
     # while keeping genuinely distinct reqs (NXP _R- ids) and distinct cities
     # apart.
-    content_groups = {i: g for i, g in enumerate(cluster_content(after_url))}
+    content_groups = {i: g for i, g in enumerate(cluster_content(after_token))}
     result_rows, removed_content, migrated_content = _collapse(
         content_groups, descs=descs
     )
@@ -624,10 +748,10 @@ def dedupe(path=ALL_JSON_PATH):
     result_rows = sorted(result_rows, key=lambda r: r.get("scraped_at") or "")
     # descriptions first, then all.json: crash between leaves bodies under the
     # kept id even if duplicate rows still exist (re-dedupe is a no-op fill).
-    if migrated_url + migrated_content:
+    if migrated_url + migrated_token + migrated_content:
         desc_store.save(descs, path)
     _atomic_write(result_rows, path)
-    return removed_url + removed_content, total
+    return removed_url + removed_token + removed_content, total
 
 
 def backfill_descriptions(path=ALL_JSON_PATH):
@@ -1146,6 +1270,173 @@ def selftest():
     removed, total = dedupe(p_same)
     assert removed == 1 and total == 2
     assert json.loads(p_same.read_text())[0]["id"] == "s1"
+
+    # Pass 2 token identity: same gh_jid, company spelling + title seasoning
+    # differ ("IMC Trading" / "IMC", season tags) -- content clustering never
+    # sees these (different company bucket). Keep oldest.
+    imc_rows = [
+        {"company": "IMC Trading", "title": "Software Engineer Intern - Summer 2027",
+         "location": "Chicago", "url": "https://job-boards.eu.greenhouse.io/imc/jobs/4823924101",
+         "scraped_at": "2026-07-09T01:42:28", "id": "imc_new"},
+        {"company": "IMC", "title": "Software Engineer Intern",
+         "location": "Chicago, IL", "url": "https://www.imc.com/us/careers/jobs/4823924101",
+         "scraped_at": "2026-07-01T00:00:00", "id": "imc_old"},
+    ]
+    assert real_job_token(imc_rows[0]["url"]) == real_job_token(imc_rows[1]["url"]) == "4823924101"
+    # content clustering would keep them separate (different company strings)
+    assert sorted(len(g) for g in cluster_content(imc_rows)) == [1, 1]
+    p_imc = Path(tempfile.mkdtemp()) / "all.json"
+    p_imc.write_text(json.dumps(imc_rows))
+    removed, total = dedupe(p_imc)
+    assert removed == 1 and total == 2
+    imc_out = json.loads(p_imc.read_text())
+    assert len(imc_out) == 1 and imc_out[0]["id"] == "imc_old"
+
+    # Anduril title variants, same company, same long gh_jid -- also merges
+    # (content would not: "2027 Software Engineer Intern" peels the leading
+    # year differently than a trailing tag, so canon_title may differ).
+    anduril_rows = [
+        {"company": "Anduril", "title": "2027 Software Engineer Intern",
+         "location": "Costa Mesa", "url": "https://boards.greenhouse.io/andurilindustries/jobs/5148079007",
+         "scraped_at": "2026-07-09T01:42:28", "id": "and_a"},
+        {"company": "Anduril", "title": "Software Engineer Intern",
+         "location": "Costa Mesa, CA", "url": "https://job-boards.greenhouse.io/andurilindustries/jobs/5148079007",
+         "scraped_at": "2026-07-09T01:42:28", "id": "and_b"},
+    ]
+    assert real_job_token(anduril_rows[0]["url"]) == "5148079007"
+    p_and = Path(tempfile.mkdtemp()) / "all.json"
+    p_and.write_text(json.dumps(anduril_rows))
+    removed, total = dedupe(p_and)
+    assert removed == 1 and total == 2
+    assert len(json.loads(p_and.read_text())) == 1
+
+    # Short token (len 5) + incompatible companies must NOT merge -- guard
+    # against theoretical cross-firm reuse of a small numeric id.
+    assert len("10838") < _STRONG_TOKEN_LEN
+    assert not companies_compatible("Acme Corp", "Globex Inc")
+    short_clash = [
+        {"company": "Acme Corp", "title": "Intern", "location": "NY",
+         "url": "https://careers.acme.com/jobs/10838",
+         "scraped_at": "2026-01-01", "id": "acme"},
+        {"company": "Globex Inc", "title": "Intern", "location": "NY",
+         "url": "https://careers.globex.com/jobs/10838",
+         "scraped_at": "2026-01-02", "id": "globex"},
+    ]
+    assert real_job_token(short_clash[0]["url"]) == real_job_token(short_clash[1]["url"]) == "10838"
+    p_clash = Path(tempfile.mkdtemp()) / "all.json"
+    p_clash.write_text(json.dumps(short_clash))
+    removed, total = dedupe(p_clash)
+    assert removed == 0 and total == 2
+    assert {r["id"] for r in json.loads(p_clash.read_text())} == {"acme", "globex"}
+
+    # Short token + compatible company spellings DO merge (Susquehanna case)
+    assert companies_compatible("Susquehanna", "Susquehanna Investment Group")
+    short_ok = [
+        {"company": "Susquehanna", "title": "Quant Intern", "location": "Bala",
+         "url": "https://careers.sig.com/jobs/10838",
+         "scraped_at": "2026-01-01", "id": "sig1"},
+        {"company": "Susquehanna Investment Group", "title": "Quant Intern",
+         "location": "Bala Cynwyd", "url": "https://careers.sig.com/intern/jobs/10838",
+         "scraped_at": "2026-01-02", "id": "sig2"},
+    ]
+    p_sig = Path(tempfile.mkdtemp()) / "all.json"
+    p_sig.write_text(json.dumps(short_ok))
+    removed, total = dedupe(p_sig)
+    assert removed == 1 and total == 2
+    assert json.loads(p_sig.read_text())[0]["id"] == "sig1"
+
+    # Short-token company guard: word-sequence prefix, NOT unanchored substring
+    # or shared first word. These pairs must stay separate under a short id.
+    for a, b in (
+        ("Meta", "Metabase"),
+        ("AMD", "Ramda"),
+        ("Apple", "Pineapple"),
+        ("SAP", "ASAP"),
+        ("Bank of America", "Bank of Montreal"),
+        ("Capital One", "Capital Group"),
+        ("Acme Corp", "Globex Inc"),
+    ):
+        assert not companies_compatible(a, b), (a, b)
+    # Positive word-prefix / equal cases still hold (legal suffix peeled).
+    assert companies_compatible("IMC", "IMC Trading")
+    assert companies_compatible("Tower Research", "Tower Research Capital")
+    assert companies_compatible("BAE Systems", "BAE Systems, Inc.")
+    assert companies_compatible("Acme Corp", "Acme")
+    assert not companies_compatible("", "Meta")
+    assert not companies_compatible(None, "Meta")
+    assert not companies_compatible("Meta", "")
+
+    def _short_pair(co_a, co_b, id_a="a", id_b="b"):
+        return [
+            {"company": co_a, "title": "Intern", "location": "NY",
+             "url": "https://careers.example.com/jobs/10838",
+             "scraped_at": "2026-01-01", "id": id_a},
+            {"company": co_b, "title": "Intern", "location": "NY",
+             "url": "https://careers.other.com/jobs/10838",
+             "scraped_at": "2026-01-02", "id": id_b},
+        ]
+
+    # Meta / Metabase + short token 10838: substring would false-match; keep 2
+    for co_a, co_b, tag in (
+        ("Meta", "Metabase", "meta"),
+        ("AMD", "Ramda", "amd"),
+        ("Apple", "Pineapple", "apple"),
+    ):
+        rows = _short_pair(co_a, co_b, f"{tag}1", f"{tag}2")
+        assert real_job_token(rows[0]["url"]) == "10838"
+        assert not companies_compatible(co_a, co_b)
+        p = Path(tempfile.mkdtemp()) / "all.json"
+        p.write_text(json.dumps(rows))
+        removed, total = dedupe(p)
+        assert removed == 0 and total == 2, (co_a, co_b, removed)
+        assert {r["id"] for r in json.loads(p.read_text())} == {f"{tag}1", f"{tag}2"}
+
+    # Empty company on either side + short token: fail closed, no merge
+    for co_a, co_b in (("", "Acme"), ("Acme", ""), (None, "Acme")):
+        rows = _short_pair(co_a if co_a is not None else "", co_b if co_b is not None else "",
+                           "e1", "e2")
+        if co_a is None:
+            rows[0]["company"] = None
+        if co_b is None:
+            rows[1]["company"] = None
+        p = Path(tempfile.mkdtemp()) / "all.json"
+        p.write_text(json.dumps(rows))
+        removed, total = dedupe(p)
+        assert removed == 0 and total == 2, (co_a, co_b, removed)
+
+    # Distinct tokens stay two rows (NXP R-1001 vs R-1002 already covered;
+    # also greenhouse-style long ids that differ).
+    distinct_tok = [
+        {"company": "Akuna Capital", "title": "SWE Intern - Python",
+         "location": "Chicago", "url": "https://www.akunacapital.com/careers/job/8018853/?gh_jid=8018853",
+         "scraped_at": "2026-01-01", "id": "ak1"},
+        {"company": "Akuna Capital", "title": "SWE Intern - C++",
+         "location": "Chicago", "url": "https://www.akunacapital.com/careers/job/8018847/?gh_jid=8018847",
+         "scraped_at": "2026-01-02", "id": "ak2"},
+    ]
+    assert real_job_token(distinct_tok[0]["url"]) != real_job_token(distinct_tok[1]["url"])
+    p_ak = Path(tempfile.mkdtemp()) / "all.json"
+    p_ak.write_text(json.dumps(distinct_tok))
+    removed, total = dedupe(p_ak)
+    assert removed == 0 and total == 2
+
+    # Description fill from dropped token-sibling: kept id empty, dropped has body
+    tok_desc = [
+        {"company": "Tower Research Capital", "title": "Quant Dev Intern - Summer 2027",
+         "location": "NY", "url": "https://www.tower-research.com/open-positions/?gh_jid=8044334",
+         "scraped_at": "2026-07-09T01:42:28", "id": "tw_new"},
+        {"company": "Tower Research", "title": "Quant Dev Intern",
+         "location": "New York", "url": "https://tower-research.com/open-positions/?gh_jid=8044334",
+         "scraped_at": "2026-07-01T00:00:00", "id": "tw_old"},
+    ]
+    p_td = Path(tempfile.mkdtemp()) / "all.json"
+    p_td.write_text(json.dumps(tok_desc))
+    desc_store.put("tw_new", "TOWER BODY FROM NEWER SOURCE", p_td)
+    assert not desc_store.has("tw_old", p_td)
+    removed, total = dedupe(p_td)
+    assert removed == 1 and total == 2
+    assert json.loads(p_td.read_text())[0]["id"] == "tw_old"
+    assert desc_store.get("tw_old", p_td) == "TOWER BODY FROM NEWER SOURCE"
 
     # real_job_token: gh_jid is an identity, jr_id (a click tracker) is not --
     # so it never gets picked over a real gh_jid, and alone yields None.
