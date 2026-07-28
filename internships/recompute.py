@@ -111,18 +111,41 @@ def recompute_priority(path=ALL_JSON_PATH):
 # embedded job-id guard + location overlap, is what actually collapses them.
 
 # Real ATS posting ids only -- gh_jid / Workday R- / JR / greenhouse numeric
-# /jobs/<n> / token= / jobId. Must start with a digit, which is what keeps out
-# path words that are not identities: jobright's "/jobs/info" (-> constant) and
+# /jobs/<n> / /position/<n> / token= / jobId / Lever+Ashby path UUIDs /
+# DESHAW careers trailing id. Digit-leading numeric ids keep out path words
+# that are not identities: jobright's "/jobs/info" (-> constant) and
 # workday's "/job/Dallas-TX" (a location slug) would otherwise spuriously
 # block or allow cross-source merges. jr_id (a README click tracker) is not in
 # the pattern at all, so a real gh_jid alongside it still wins.
 # Note the JR branch is "(?:_|\b)JR": Workday writes the req as "_JR0285543",
 # and \b alone never fires there (underscore is a word char, so there is no
 # boundary between "_" and "J") -- which silently dropped every _JR id.
+#
+# Patterns are applied together; when several match, the rightmost capture
+# wins (same as the old single-regex findall[-1] rule).
 _REAL_TOKEN_RE = re.compile(
-    r"(?:[?&](?:gh_jid|jobId|job_id|token)=|_R-|(?:_|\b)JR-?|/jobs/)(\d[A-Za-z0-9-]{3,})",
+    r"(?:[?&](?:gh_jid|jobId|job_id|token)=|_R-|(?:_|\b)JR-?|/jobs/|/position/)"
+    r"(\d[A-Za-z0-9-]{3,})",
     re.I,
 )
+# Lever (jobs.lever.co/<co>/<uuid>) and Ashby (jobs.ashbyhq.com/<co>/<uuid>)
+# put a standard UUID in the path. UUIDs may start with a letter, so they
+# cannot ride the digit-leading numeric branch. Require dash-separated form
+# so jobright's bare hex (/jobs/info/6a511ea5...) never matches.
+_UUID_TOKEN_RE = re.compile(
+    r"/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+    r"(?:[/?#]|$)",
+    re.I,
+)
+# DESHAW: bare /careers/<id> or slug ending in -<id>
+# (software-developer-intern-...-2027-5894). real_job_token rejects bare 20xx
+# on this pattern only so a year-only slug never becomes an identity token;
+# other token sources keep year-shaped values (prior semantics).
+_DESHAW_TOKEN_RE = re.compile(
+    r"deshaw\.com/careers/(?:.+-)?(\d{3,6})(?:[/?#]|$)",
+    re.I,
+)
+_YEAR_TOKEN_RE = re.compile(r"20\d{2}\Z")
 
 # A trailing SEASON / YEAR / WORK-MODE tag that doesn't change the role
 # identity. Deliberately narrow: it strips only the matched tag (and an
@@ -196,11 +219,28 @@ def location_tokens(location):
 
 
 def real_job_token(url):
-    """Real ATS posting id in a URL, or None. See _REAL_TOKEN_RE."""
+    """Real ATS posting id in a URL, or None.
+
+    Covers query ids (gh_jid/token/jobId), Workday _R- / _JR, Greenhouse-style
+    /jobs/<n>, Jane Street /position/<n>, Lever/Ashby path UUIDs, and DESHAW
+    careers trailing ids. Year-shaped tokens (20xx) are rejected only for
+    DESHAW careers captures so season/year tails never become identities;
+    numeric patterns (gh_jid, token=, _R-, /jobs/, …) keep prior semantics.
+    """
     if not url:
         return None
-    m = _REAL_TOKEN_RE.findall(url)
-    return m[-1].lower() if m else None
+    best = None  # (end_index, token)
+    for cre in (_REAL_TOKEN_RE, _UUID_TOKEN_RE, _DESHAW_TOKEN_RE):
+        for m in cre.finditer(url):
+            tok = m.group(1)
+            # Year filter is a DESHAW safety rail only -- do not skip 20xx on
+            # gh_jid / token= / _R- / /jobs/ / etc. (preserves rightmost winner).
+            if cre is _DESHAW_TOKEN_RE and _YEAR_TOKEN_RE.fullmatch(tok):
+                continue
+            end = m.end(1)
+            if best is None or end >= best[0]:
+                best = (end, tok.lower())
+    return best[1] if best else None
 
 
 def _can_join(cluster, row):
@@ -656,7 +696,112 @@ def selftest():
     # (would misfire the old path-word regex); real_job_token returns None.
     assert real_job_token("https://jobright.ai/jobs/info/6a511ea50252") is None
     assert real_job_token(
+        "https://jobright.ai/jobs/info/6a511ea50252abcdef") is None
+    assert real_job_token(
         "https://copart.wd12.myworkdayjobs.com/en-US/copart/job/Dallas-TX") is None
+
+    # Lever path UUIDs (Palantir etc.) -- previously always None.
+    lever_a = "https://jobs.lever.co/palantir/373eb939-6f57-4836-8479-be79a5e07249"
+    lever_b = "https://jobs.lever.co/palantir/1b6f1d82-d459-4dea-8bc2-8d2ffe6f881a"
+    lever_a_q = lever_a + "?lever-source=LinkedIn&utm=x"
+    assert real_job_token(lever_a) == "373eb939-6f57-4836-8479-be79a5e07249"
+    assert real_job_token(lever_a_q) == "373eb939-6f57-4836-8479-be79a5e07249"
+    assert real_job_token(lever_b) == "1b6f1d82-d459-4dea-8bc2-8d2ffe6f881a"
+    assert real_job_token(lever_a) != real_job_token(lever_b)
+    # Same company+title+city, different Lever UUIDs: stay distinct.
+    lever_rows = [
+        {"company": "Palantir", "title": "Software Engineer Intern",
+         "location": "New York, NY", "url": lever_a,
+         "scraped_at": "2026-01-01", "id": "lev1"},
+        {"company": "Palantir", "title": "Software Engineer Intern",
+         "location": "New York, NY", "url": lever_b,
+         "scraped_at": "2026-01-02", "id": "lev2"},
+        # same UUID + tracking noise still merges with lev1
+        {"company": "Palantir", "title": "Software Engineer Intern",
+         "location": "New York, NY", "url": lever_a_q,
+         "scraped_at": "2026-01-03", "id": "lev1b"},
+    ]
+    p_lev = Path(tempfile.mkdtemp()) / "all.json"
+    p_lev.write_text(json.dumps(lever_rows))
+    removed, total = dedupe(p_lev)
+    assert removed == 1 and total == 3  # lev1b merges into lev1; lev2 stays
+    assert {r["id"] for r in json.loads(p_lev.read_text())} == {"lev1", "lev2"}
+
+    # Ashby path UUIDs (may start with a letter -- digit-leading branch misses them)
+    assert real_job_token(
+        "https://jobs.ashbyhq.com/circleback/2bb6be67-d1a8-42f7-bb1b-64ee36bf613f"
+    ) == "2bb6be67-d1a8-42f7-bb1b-64ee36bf613f"
+    assert real_job_token(
+        "https://jobs.ashbyhq.com/deepgram/dc8693b5-72ce-4ca3-ab15-9c8434d35da1"
+    ) == "dc8693b5-72ce-4ca3-ab15-9c8434d35da1"
+    assert real_job_token(
+        "https://jobs.ashbyhq.com/notion/5b15697c-fa91-4511-9482-c98a6ff29f90"
+        "?utm_source=github"
+    ) == "5b15697c-fa91-4511-9482-c98a6ff29f90"
+
+    # Greenhouse path / embed / gh_jid still work (regression)
+    assert real_job_token(
+        "https://job-boards.greenhouse.io/andurilindustries/jobs/5148079007"
+    ) == "5148079007"
+    assert real_job_token(
+        "https://boards.greenhouse.io/andurilindustries/jobs/5148079007"
+        "?gh_jid=5148079007"
+    ) == "5148079007"
+    assert real_job_token(
+        "https://boards.greenhouse.io/embed/job_app?for=gemini&token=1111111"
+    ) == "1111111"
+    # www vs non-www same gh_jid surface -- same token
+    assert (real_job_token("https://www.jumptrading.com/hr/job?gh_jid=7565728")
+            == real_job_token("https://jumptrading.com/hr/job?gh_jid=7565728")
+            == "7565728")
+
+    # Numeric path job ids on career sites
+    assert real_job_token("https://careers.sig.com/jobs/10838") == "10838"
+    assert real_job_token(
+        "https://careers.sig.com/intern-co-op-technology/jobs/10838"
+    ) == "10838"
+    assert real_job_token(
+        "https://www.imc.com/us/careers/jobs/4823924101"
+    ) == "4823924101"
+    # Jane Street uses /position/<id>, not /jobs/
+    assert real_job_token(
+        "https://www.janestreet.com/join-jane-street/position/8599644002"
+    ) == "8599644002"
+    assert real_job_token(
+        "https://www.janestreet.com/join-jane-street/position/8419303002/"
+    ) == "8419303002"
+
+    # DESHAW trailing careers id (bare and slug forms share identity)
+    assert real_job_token("https://www.deshaw.com/careers/5894") == "5894"
+    assert real_job_token(
+        "https://www.deshaw.com/careers/"
+        "software-developer-intern-new-york-summer-2027-5894"
+    ) == "5894"
+    assert real_job_token(
+        "https://www.deshaw.com/careers/"
+        "Software-Developer-Ph-D-Intern-New-York-Summer-2027-5893"
+    ) == "5893"
+    assert real_job_token(
+        "https://www.deshaw.com/careers/5894"
+    ) == real_job_token(
+        "https://www.deshaw.com/careers/"
+        "software-developer-intern-new-york-summer-2027-5894"
+    )
+    # DESHAW year-only tails are not identities (season/year FP rail)
+    assert real_job_token("https://www.deshaw.com/careers/2027") is None
+    assert real_job_token("https://www.deshaw.com/careers/summer-2027") is None
+    assert real_job_token(
+        "https://www.deshaw.com/careers/software-developer-intern-2027"
+    ) is None
+    # Year rejection is DESHAW-only: non-DESHAW 20xx ids keep prior semantics
+    assert real_job_token("https://example.com/?gh_jid=2027") == "2027"
+    assert real_job_token("https://boards.greenhouse.io/co/jobs/2027") == "2027"
+    # multi-match rightmost preserved even when later id is year-shaped
+    assert real_job_token(
+        "https://x.wd1.myworkdayjobs.com/job/_R-1001?gh_jid=2002"
+    ) == "2002"
+    # jobright bare-hex still never becomes a token
+    assert real_job_token("https://jobright.ai/jobs/info/6a511ea50252") is None
 
     import sys
     _self = sys.modules[__name__]  # module-level patch, not a fresh dotted
