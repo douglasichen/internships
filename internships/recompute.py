@@ -1271,9 +1271,10 @@ def selftest():
     assert removed == 1 and total == 2
     assert json.loads(p_same.read_text())[0]["id"] == "s1"
 
-    # Pass 2 token identity: same gh_jid, company spelling + title seasoning
-    # differ ("IMC Trading" / "IMC", season tags) -- content clustering never
-    # sees these (different company bucket). Keep oldest.
+    # Pass 2 token identity: same gh_jid with company spelling drift
+    # ("IMC Trading" / "IMC"). canon_company already co-buckets these, so
+    # content clustering also merges when titles/cities align -- token pass
+    # still merges them (and is required when titles differ; see below).
     imc_rows = [
         {"company": "IMC Trading", "title": "Software Engineer Intern - Summer 2027",
          "location": "Chicago", "url": "https://job-boards.eu.greenhouse.io/imc/jobs/4823924101",
@@ -1283,14 +1284,36 @@ def selftest():
          "scraped_at": "2026-07-01T00:00:00", "id": "imc_old"},
     ]
     assert real_job_token(imc_rows[0]["url"]) == real_job_token(imc_rows[1]["url"]) == "4823924101"
-    # content clustering would keep them separate (different company strings)
-    assert sorted(len(g) for g in cluster_content(imc_rows)) == [1, 1]
+    # content clustering merges via canon_company (IMC ≡ IMC Trading)
+    assert sorted(len(g) for g in cluster_content(imc_rows)) == [2]
     p_imc = Path(tempfile.mkdtemp()) / "all.json"
     p_imc.write_text(json.dumps(imc_rows))
     removed, total = dedupe(p_imc)
     assert removed == 1 and total == 2
     imc_out = json.loads(p_imc.read_text())
     assert len(imc_out) == 1 and imc_out[0]["id"] == "imc_old"
+
+    # Token-only merge: same long job id on different URL surfaces, titles that
+    # stay in different content buckets -- cluster_content keeps them apart;
+    # URL pass cannot join (paths differ); pass 2 collapses on the shared token.
+    token_only_rows = [
+        {"company": "Acme", "title": "Hardware Intern",
+         "location": "SF",
+         "url": "https://boards.greenhouse.io/acme/jobs/5555555",
+         "scraped_at": "2026-01-02", "id": "tok_new"},
+        {"company": "Acme", "title": "Software Engineer Intern",
+         "location": "SF",
+         "url": "https://boards.greenhouse.io/embed/job_app?for=acme&token=5555555",
+         "scraped_at": "2026-01-01", "id": "tok_old"},
+    ]
+    assert real_job_token(token_only_rows[0]["url"]) == real_job_token(token_only_rows[1]["url"]) == "5555555"
+    assert normalize_url(token_only_rows[0]["url"]) != normalize_url(token_only_rows[1]["url"])
+    assert sorted(len(g) for g in cluster_content(token_only_rows)) == [1, 1]
+    p_tok = Path(tempfile.mkdtemp()) / "all.json"
+    p_tok.write_text(json.dumps(token_only_rows))
+    removed, total = dedupe(p_tok)
+    assert removed == 1 and total == 2
+    assert json.loads(p_tok.read_text())[0]["id"] == "tok_old"
 
     # Anduril title variants, same company, same long gh_jid -- also merges
     # (content would not: "2027 Software Engineer Intern" peels the leading
