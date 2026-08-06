@@ -12899,16 +12899,16 @@
     "url": "https://boards.greenhouse.io/spacex/jobs/8621757002?gh_jid=8621757002"
   },
   {
-    "id": "b352edb0f608eddd",
-    "company": "Copart",
-    "title": "Software Engineering Intern",
-    "location": "Dallas, TX",
+    "id": "18f0779750ac7ddb",
+    "company": "Virtu Financial",
+    "title": "2027 Internship \u2013 Software Engineer",
+    "location": "Singapore",
     "is_2027": true,
-    "priority": 3,
-    "source": "speedyapply",
-    "posted": "6d",
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
     "scraped_at": "2026-08-05T20:35:29",
-    "url": "https://copart.wd12.myworkdayjobs.com/en-US/copart/job/Dallas-TX---Headquarters/Software-Engineering-Intern_JR109965"
+    "url": "https://job-boards.greenhouse.io/virtu/jobs/5513756002"
   },
   {
     "id": "50e2ed2d9bebb0e5",
@@ -12933,18 +12933,6 @@
     "posted": "16d",
     "scraped_at": "2026-08-05T20:35:29",
     "url": "https://copart.wd12.myworkdayjobs.com/en-US/copart/job/Dallas-TX---Headquarters/Software-Engineering-Intern_JR110079"
-  },
-  {
-    "id": "18f0779750ac7ddb",
-    "company": "Virtu Financial",
-    "title": "2027 Internship \u2013 Software Engineer",
-    "location": "Singapore",
-    "is_2027": true,
-    "priority": 2,
-    "source": "ats_boards",
-    "posted": "",
-    "scraped_at": "2026-08-05T20:35:29",
-    "url": "https://job-boards.greenhouse.io/virtu/jobs/5513756002"
   },
   {
     "id": "c333f4b2589422fe",
@@ -15549,5 +15537,17 @@
     "posted": "2026-08-04",
     "scraped_at": "2026-08-05T22:15:14",
     "url": "https://jobright.ai/jobs/info/6a73db2e8cd88e7ccbf5ab2b"
+  },
+  {
+    "id": "0c64f593911fa12d",
+    "company": "TikTok",
+    "title": "Software Engineer Intern (Media Engine) - 2027 Summer",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-08-05",
+    "scraped_at": "2026-08-06T00:53:32",
+    "url": "https://jobright.ai/jobs/info/6a73f26ae55c73319eb19c79"
   }
 ]
