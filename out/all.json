@@ -16449,5 +16449,41 @@
     "posted": "2026-08-07",
     "scraped_at": "2026-08-08T15:32:04",
     "url": "https://jobright.ai/jobs/info/6a7613704817aa4307046a3e"
+  },
+  {
+    "id": "1d859da14a6475a4",
+    "company": "AMA Legal Solutions \u00ae",
+    "title": "Software Development Engineer Intern",
+    "location": "Marion County, Indiana, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-08",
+    "scraped_at": "2026-08-09T01:29:32",
+    "url": "https://jobright.ai/jobs/info/6a77b613a26ccc369f837c9b"
+  },
+  {
+    "id": "2e60ada8f2184004",
+    "company": "Autter",
+    "title": "Frontend Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-08",
+    "scraped_at": "2026-08-09T01:29:32",
+    "url": "https://jobright.ai/jobs/info/6a77daa14817aa430704afbe"
+  },
+  {
+    "id": "70453ccffc4125b0",
+    "company": "Innovative Timing Systems",
+    "title": "Firmware Engineering Intern",
+    "location": "Maryland Heights, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-07",
+    "scraped_at": "2026-08-09T01:29:32",
+    "url": "https://jobright.ai/jobs/info/6a77e5197b3417772adeb026"
   }
 ]
