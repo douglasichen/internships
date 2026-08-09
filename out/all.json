@@ -16485,5 +16485,53 @@
     "posted": "2026-08-07",
     "scraped_at": "2026-08-09T01:29:32",
     "url": "https://jobright.ai/jobs/info/6a77e5197b3417772adeb026"
+  },
+  {
+    "id": "5e113c85e717e268",
+    "company": "Intuit",
+    "title": "Intern, Software Engineering",
+    "location": "Bangalore, India",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-08-09T18:32:23",
+    "url": "https://jobs.intuit.com/job/bengaluru/intern-software-engineering/27595/98962244160"
+  },
+  {
+    "id": "b8d37f73dc825a49",
+    "company": "PCI Services, LLC",
+    "title": "Software Analyst - Intern",
+    "location": "Norman, OK",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-09",
+    "scraped_at": "2026-08-09T18:32:23",
+    "url": "https://jobright.ai/jobs/info/6a78d1ec67a1ad0bc53ce26c"
+  },
+  {
+    "id": "02e9a7a69b7f2fa8",
+    "company": "ZOVU",
+    "title": "Full-Stack Developer (3-Month Internship to Full-Time)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-09",
+    "scraped_at": "2026-08-09T18:32:23",
+    "url": "https://jobright.ai/jobs/info/6a789b54b17cba5690361b9e"
+  },
+  {
+    "id": "ac798c99503678ef",
+    "company": "ZOVU",
+    "title": "Full-Stack Developer SF (3-Month Internship to Full-Time)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-09",
+    "scraped_at": "2026-08-09T18:32:23",
+    "url": "https://jobright.ai/jobs/info/6a788cf1a26ccc369f838d06"
   }
 ]
