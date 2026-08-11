@@ -16917,5 +16917,53 @@
     "posted": "2026-08-10",
     "scraped_at": "2026-08-11T00:26:40",
     "url": "https://jobright.ai/jobs/info/6a79c504a26ccc369f83abed"
+  },
+  {
+    "id": "0d700438ff851453",
+    "company": "Micron",
+    "title": "Intern - Process Development Engineer, 3D DRAM CMP",
+    "location": "Boise, ID - Main Site",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-11T02:44:26",
+    "url": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Process-Development-Engineer--3D-DRAM-CMP_JR107848"
+  },
+  {
+    "id": "5aa8e51c16fb305e",
+    "company": "Escape\u2122 App AI",
+    "title": "Mobile App Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-10",
+    "scraped_at": "2026-08-11T02:44:26",
+    "url": "https://jobright.ai/jobs/info/6a7a90a49ee17f276dbf38ac"
+  },
+  {
+    "id": "13294972d9c0fbc0",
+    "company": "General Atomics",
+    "title": "Intern - Software",
+    "location": "Poway, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-10",
+    "scraped_at": "2026-08-11T02:44:26",
+    "url": "https://jobright.ai/jobs/info/6a7a9025bb6ca93ae561c2dc"
+  },
+  {
+    "id": "83208d8ee5c13738",
+    "company": "Marketeq Talent",
+    "title": "Software Engineering & AI Development Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-10",
+    "scraped_at": "2026-08-11T02:44:26",
+    "url": "https://jobright.ai/jobs/info/6a7a8ff5b17cba5690367986"
   }
 ]
