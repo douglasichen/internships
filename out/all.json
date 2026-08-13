@@ -17685,5 +17685,65 @@
     "posted": "2026-08-12",
     "scraped_at": "2026-08-12T19:01:10",
     "url": "https://jobright.ai/jobs/info/6a7cd64283621355407ac232"
+  },
+  {
+    "id": "29f4af833b8b2569",
+    "company": "Epic Games",
+    "title": "Gameplay Programmer Intern",
+    "location": "Cary,North Carolina,United States",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-12T22:31:18",
+    "url": "https://epicgames.com/careers/jobs/6141180004?gh_jid=6141180004"
+  },
+  {
+    "id": "82f5f89c7ee74c99",
+    "company": "HP",
+    "title": "College Intern - Machine Learning and Artificial Intelligence",
+    "location": "Singapore, South West, Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-12T22:31:18",
+    "url": "https://hp.wd5.myworkdayjobs.com/ExternalCareerSite/job/Singapore-South-West-Singapore/College-Intern---Machine-Learning-and-Artificial-Intelligence_UNI4651-1"
+  },
+  {
+    "id": "62e7bb083875a922",
+    "company": "Qualcomm",
+    "title": "Intern Hardware Engineer (Embedded Systems and Python)",
+    "location": "Tijuana, Baja California, Mexico",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-08-12T22:31:18",
+    "url": "https://app.eightfold.ai/careers/job/446720362138"
+  },
+  {
+    "id": "8b3500067e84a104",
+    "company": "Schweitzer Engineering Laboratories (SEL)",
+    "title": "Software Engineering Intern (AI Focus)",
+    "location": "Pullman, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-11",
+    "scraped_at": "2026-08-12T22:31:18",
+    "url": "https://jobright.ai/jobs/info/6a7d04c1a346cb6c8d5f1597"
+  },
+  {
+    "id": "3a55af7ec7d0e4d0",
+    "company": "Textron",
+    "title": "2027 Software Engineer Intern",
+    "location": "Augusta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-12",
+    "scraped_at": "2026-08-12T22:31:18",
+    "url": "https://jobright.ai/jobs/info/6a7cf4b6dc3dff2d1c0ca1a9"
   }
 ]
