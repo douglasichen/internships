@@ -17745,5 +17745,29 @@
     "posted": "2026-08-12",
     "scraped_at": "2026-08-12T22:31:18",
     "url": "https://jobright.ai/jobs/info/6a7cf4b6dc3dff2d1c0ca1a9"
+  },
+  {
+    "id": "88fcc408151823c2",
+    "company": "Cadence",
+    "title": "Product Validation Intern - Digital Backend",
+    "location": "SHANGHAI",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-13T01:00:37",
+    "url": "https://cadence.wd1.myworkdayjobs.com/External_Careers/job/SHANGHAI/Product-Validation-Intern---Digital-Backend_R55570"
+  },
+  {
+    "id": "42a00fa451b3970c",
+    "company": "IBM",
+    "title": "Site Reliability Engineer Spring Co-op 2027",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-08-12",
+    "scraped_at": "2026-08-13T01:00:37",
+    "url": "https://jobright.ai/jobs/info/6a7d2c757c52154b59f5e16b"
   }
 ]
