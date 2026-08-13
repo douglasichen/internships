@@ -17769,5 +17769,53 @@
     "posted": "2026-08-12",
     "scraped_at": "2026-08-13T01:00:37",
     "url": "https://jobright.ai/jobs/info/6a7d2c757c52154b59f5e16b"
+  },
+  {
+    "id": "82e90db9edb8f2e1",
+    "company": "DRW",
+    "title": "Software Developer Intern (Data Engineering)",
+    "location": "Singapore",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-13T04:37:13",
+    "url": "https://job-boards.greenhouse.io/drweng/jobs/8127242"
+  },
+  {
+    "id": "4e72dd6ec1d17626",
+    "company": "Exa",
+    "title": "Software Engineer, Intern",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-13",
+    "scraped_at": "2026-08-13T04:37:13",
+    "url": "https://jobright.ai/jobs/info/6a7d6d187c52154b59f5e898"
+  },
+  {
+    "id": "1652062e510f3b24",
+    "company": "Gesture",
+    "title": "AI Full Stack Engineer Intern",
+    "location": "Denver, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-12",
+    "scraped_at": "2026-08-13T04:37:13",
+    "url": "https://jobright.ai/jobs/info/6a7d450e7c52154b59f5e384"
+  },
+  {
+    "id": "3e5eedd44e85f187",
+    "company": "Tesla",
+    "title": "Internship, Firmware Engineer, New Programs Engineering (Winter/Spring 2027)",
+    "location": "Fremont, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-08-12",
+    "scraped_at": "2026-08-13T04:37:13",
+    "url": "https://jobright.ai/jobs/info/6a7d57fd83621355407adf3f"
   }
 ]
