@@ -20553,5 +20553,89 @@
     "posted": "2026-08-19",
     "scraped_at": "2026-08-19T23:24:28",
     "url": "https://jobright.ai/jobs/info/6a864b6fcc81eb647e9f2627"
+  },
+  {
+    "id": "6d685b05ed01ac41",
+    "company": "Nvidia",
+    "title": "Deep Learning Software Engineering Intern, Test Development - 2027",
+    "location": "China, Shanghai",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-20T01:45:02",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/Deep-Learning-Software-Engineering-Intern--Test-Development---2027_JR2023656"
+  },
+  {
+    "id": "3494f4abc0b4c278",
+    "company": "Nvidia",
+    "title": "Software Engineering Intern, CUDA Test Development - 2027",
+    "location": "China, Shanghai",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-20T01:45:02",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/Software-Engineering-Intern--CUDA-Test-Development---2027_JR2023645"
+  },
+  {
+    "id": "f68bdc15075f2960",
+    "company": "Nvidia",
+    "title": "Software QA Developer Intern - 2027",
+    "location": "China, Shanghai",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-20T01:45:02",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/Software-QA-Developer-Intern---2027_JR2023654"
+  },
+  {
+    "id": "9138e55bef85c100",
+    "company": "Nvidia",
+    "title": "Software QA Intern, Spark Rapids  - 2027",
+    "location": "China, Shanghai",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-20T01:45:02",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/Software-QA-Intern--Spark-Rapids----2027_JR2023655"
+  },
+  {
+    "id": "116fbe102c8b0391",
+    "company": "Nvidia",
+    "title": "Test Development Software Engineering Intern, Aerial - 2027",
+    "location": "China, Shanghai",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-20T01:45:02",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/Test-Development-Software-Engineering-Intern--Aerial---2027_JR2023852"
+  },
+  {
+    "id": "9d0b458bc9810e7a",
+    "company": "Sysco",
+    "title": "Software Dev Engineer Intern",
+    "location": "Houston, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-19",
+    "scraped_at": "2026-08-20T01:45:02",
+    "url": "https://jobright.ai/jobs/info/6a869954d34f700f87fc1edf"
+  },
+  {
+    "id": "1d13613ac2ea413a",
+    "company": "Google",
+    "title": "Software Engineering Intern, PhD, Summer 2027",
+    "location": "Taipei, Taiwan",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-08-20T01:45:02",
+    "url": ""
   }
 ]
