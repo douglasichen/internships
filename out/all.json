@@ -21429,5 +21429,113 @@
     "posted": "2026-08-21",
     "scraped_at": "2026-08-21T04:21:59",
     "url": "https://jobright.ai/jobs/info/6a880d2525fc4e7ae3daf2d4"
+  },
+  {
+    "id": "4d373092f0891253",
+    "company": "DV Group",
+    "title": "Software Engineer Intern, Commodities",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Aug 21",
+    "scraped_at": "2026-08-21T11:14:18",
+    "url": "https://job-boards.greenhouse.io/dvtrading/jobs/4719119005?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "37df5fdadfe6762d",
+    "company": "Humana",
+    "title": "Software Engineer Intern, CenterWell and Humana Military \ud83d\udec2",
+    "location": "Louisville, KY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Aug 21",
+    "scraped_at": "2026-08-21T11:14:18",
+    "url": "https://humana.wd5.myworkdayjobs.com/Humana_External_Career_Site/job/Louisville-KY/Humana-Technology-Internship---Summer-2027_R-424692-1?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "c6b624dc4ae16e60",
+    "company": "Susquehanna International Group",
+    "title": "Quantitative Strategy Developer Internship: Summer 2027 (Dublin)",
+    "location": "Dublin",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-08-21T11:14:18",
+    "url": "https://careers-sig.icims.com/jobs/11332/login"
+  },
+  {
+    "id": "cc7f6cdf3ba1bf04",
+    "company": "Susquehanna International Group",
+    "title": "Quantitative Strategy Developer Internship: Summer 2027 (London)",
+    "location": "London",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-08-21T11:14:18",
+    "url": "https://careers-sig.icims.com/jobs/11333/login"
+  },
+  {
+    "id": "362bf4204e9e32d5",
+    "company": "EcoServants\u00ae | Ecological Servants Project",
+    "title": "Software Developer Internship",
+    "location": "Ramona, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-20",
+    "scraped_at": "2026-08-21T11:14:18",
+    "url": "https://jobright.ai/jobs/info/6a87c931cde3717f9e9b3964"
+  },
+  {
+    "id": "01c477c947b03625",
+    "company": "HCA Healthcare",
+    "title": "Intern Systems Programmer Mainframe",
+    "location": "Nashville, TN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-21",
+    "scraped_at": "2026-08-21T11:14:18",
+    "url": "https://jobright.ai/jobs/info/6a886509e8b6601d1290677e"
+  },
+  {
+    "id": "d3d7510848e15500",
+    "company": "Millennium",
+    "title": "Quantitative Developer Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Aug 21",
+    "scraped_at": "2026-08-21T11:14:18",
+    "url": "https://career.mlp.com/careers/job/755957819661?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "1ea0fd6b2e9716c0",
+    "company": "Raytheon",
+    "title": "Software Development Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Tewksbury, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Aug 21",
+    "scraped_at": "2026-08-21T11:14:18",
+    "url": "https://globalhr.wd5.myworkdayjobs.com/fr-CA/Private_Posting_No_TMP/job/US-MA-TEWKSBURY-TB3--50-Apple-Hill-Dr--CONCORD-BLDG-Tewksbury-Tb3-300-Concord/Software-Development-Intern--Summer-2027-_01865635?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "673461c138bafc21",
+    "company": "Teledyne Technologies Incorporated",
+    "title": "Software Engineer Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Huntsville, AL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Aug 21",
+    "scraped_at": "2026-08-21T11:14:18",
+    "url": "https://flir.wd1.myworkdayjobs.com/en-US/flircareers/job/US---Huntsville-AL/NHRC-Software-Engineering-Internship--Summer-2027-_REQ36193?utm_source=github-vansh-ouckah"
   }
 ]
