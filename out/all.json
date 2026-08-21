@@ -21261,5 +21261,41 @@
     "posted": "",
     "scraped_at": "2026-08-20T20:48:39",
     "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/Enterprise-Software-Test-Development-Engineer--RDSS-Intern-_JR2023913"
+  },
+  {
+    "id": "62e1d9903b84cc35",
+    "company": "Nvidia",
+    "title": "Enterprise Software Test Development Engineer (RDSS Intern)",
+    "location": "Taiwan, Taipei",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-20T23:13:39",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/Enterprise-Software-Test-Development-Engineer--RDSS-Intern-_JR2023905"
+  },
+  {
+    "id": "770b0788ecadf4eb",
+    "company": "Nvidia",
+    "title": "Test Development Software Engineering Intern - 2027",
+    "location": "China, Shanghai",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-20T23:13:39",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/Test-Development-Software-Engineering-Intern---2027_JR2023632"
+  },
+  {
+    "id": "76eb59f2b9131473",
+    "company": "PrimeWave Technologies",
+    "title": "Software Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-20",
+    "scraped_at": "2026-08-20T23:13:39",
+    "url": "https://jobright.ai/jobs/info/6a87d932cde3717f9e9b3ba2"
   }
 ]
