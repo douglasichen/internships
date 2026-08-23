@@ -21945,5 +21945,53 @@
     "posted": "2026-08-21",
     "scraped_at": "2026-08-22T14:47:30",
     "url": "https://jobright.ai/jobs/info/6a88a3e625fc4e7ae3db17da"
+  },
+  {
+    "id": "05cf0d00011e493d",
+    "company": "Alpheya",
+    "title": "Software Engineering Internship (UAE N.)",
+    "location": "Abu Dhabi, United Arab Emirates",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-08-12",
+    "scraped_at": "2026-08-23T01:48:14",
+    "url": "https://startup.jobs/software-engineering-internship-uae-n-alpheya-9008310"
+  },
+  {
+    "id": "a4ca1c6bf5ec356e",
+    "company": "Cubit Capital",
+    "title": "Embedded Controls Intern (Spring)",
+    "location": "Louisville, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-22",
+    "scraped_at": "2026-08-23T01:48:14",
+    "url": "https://jobright.ai/jobs/info/6a8a4e52680f314a29d400ab"
+  },
+  {
+    "id": "807aaa96e3ee4ee5",
+    "company": "Leonardo DRS",
+    "title": "Embedded Software Engineer Intern Job Details | Leonardo DRS, Inc.",
+    "location": "Bridgeton, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-21",
+    "scraped_at": "2026-08-23T01:48:14",
+    "url": "https://jobright.ai/jobs/info/6a8a62e2d34f700f87fccc29"
+  },
+  {
+    "id": "754c95346d91e0f3",
+    "company": "Leonardo DRS",
+    "title": "Quality Software Engineer Intern Job Details | Leonardo DRS, Inc.",
+    "location": "Bridgeton, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-21",
+    "scraped_at": "2026-08-23T01:48:14",
+    "url": "https://jobright.ai/jobs/info/6a8a540acde3717f9e9b95cb"
   }
 ]
