@@ -22161,5 +22161,29 @@
     "posted": "2026-08-24",
     "scraped_at": "2026-08-24T09:12:39",
     "url": "https://jobright.ai/jobs/info/6a8c30941d96e6541c8bf85c"
+  },
+  {
+    "id": "4e46f0f3ad502378",
+    "company": "Hewlett Packard Enterprise",
+    "title": "Software Engineering Intern",
+    "location": "Galway, Galway, Ireland",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-24T12:43:26",
+    "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Galway-Galway-Ireland/Software-Engineering-Intern_1211006"
+  },
+  {
+    "id": "1ca2add7c6425bdc",
+    "company": "Nokia",
+    "title": "DSP Firmware Engineering Co-op/Intern",
+    "location": "Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-24T12:43:26",
+    "url": "https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/39237"
   }
 ]
