@@ -22005,5 +22005,89 @@
     "posted": "",
     "scraped_at": "2026-08-23T17:42:28",
     "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/Software-Engineering-Intern--Test-Development---2027_JR2023649-1"
+  },
+  {
+    "id": "fcabec42dc2a340a",
+    "company": "Egotechworld",
+    "title": "Software Development Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-23",
+    "scraped_at": "2026-08-24T02:16:39",
+    "url": "https://jobright.ai/jobs/info/6a8bd016d34f700f87fce959"
+  },
+  {
+    "id": "13e071c028abb4b1",
+    "company": "GALLO",
+    "title": "IT Software Developer Internship 2027 Job Details | Gallo",
+    "location": "Modesto, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-23",
+    "scraped_at": "2026-08-24T02:16:39",
+    "url": "https://jobright.ai/jobs/info/6a8bcefa25fc4e7ae3db661f"
+  },
+  {
+    "id": "697dba7baf08bc03",
+    "company": "Grainger",
+    "title": "GTG Intern - Software Engineer Job Details | Grainger Businesses",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-23",
+    "scraped_at": "2026-08-24T02:16:39",
+    "url": "https://jobright.ai/jobs/info/6a8bcbe0e8b6601d1290ca4a"
+  },
+  {
+    "id": "8f3e42f9a4d20822",
+    "company": "Gulfstream Aerospace",
+    "title": "Spring 2027 - IEF - Software Engineer Collegiate Associate Intern",
+    "location": "Savannah, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-23",
+    "scraped_at": "2026-08-24T02:16:39",
+    "url": "https://jobright.ai/jobs/info/6a8bc96525fc4e7ae3db6472"
+  },
+  {
+    "id": "c42f0b8fcb260af5",
+    "company": "Microsoft",
+    "title": "Software Engineering Intern - Azure Core",
+    "location": "Australia, Multiple Locations, Multiple Locations",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-08-24T02:16:39",
+    "url": "https://apply.careers.microsoft.com/careers/job/1970393556971803"
+  },
+  {
+    "id": "e2692c49ca478f3d",
+    "company": "Microsoft",
+    "title": "Software Engineering Intern - Clipchamp",
+    "location": "Australia, New South Wales, Sydney",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-08-24T02:16:39",
+    "url": "https://apply.careers.microsoft.com/careers/job/1970393556978345"
+  },
+  {
+    "id": "02707dfb8d44b432",
+    "company": "University of Utah",
+    "title": "Intern - Software Development",
+    "location": "Salt Lake City, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-23",
+    "scraped_at": "2026-08-24T02:16:39",
+    "url": "https://jobright.ai/jobs/info/6a8bbb0d680f314a29d41972"
   }
 ]
