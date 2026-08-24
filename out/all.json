@@ -22089,5 +22089,65 @@
     "posted": "2026-08-23",
     "scraped_at": "2026-08-24T02:16:39",
     "url": "https://jobright.ai/jobs/info/6a8bbb0d680f314a29d41972"
+  },
+  {
+    "id": "b85e690053146ae0",
+    "company": "Nvidia",
+    "title": "AI Developer Technology Engineer Intern, AI - 2027",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-24T06:36:10",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Beijing/AI-Developer-Technology-Engineer-Intern--AI---2027_JR2024002"
+  },
+  {
+    "id": "b475b7b262c5e7c2",
+    "company": "Nvidia",
+    "title": "System Software Engineer \u2013 Embedded Power Management (RDSS Intern)",
+    "location": "Taiwan, Taipei",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-24T06:36:10",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/System-Software-Engineer---Embedded-Power-Management--RDSS-Intern-_JR2023967"
+  },
+  {
+    "id": "039610716ef79304",
+    "company": "Google",
+    "title": "Software Developer Intern, PhD, Summer 2027",
+    "location": "Waterloo, ON, Canada",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-08-24T06:36:10",
+    "url": "https://www.google.com/about/careers/applications/signin?jobId=CiUAL2FckZWrsnMpnO61BpV8jI_uXYWYXFGbEM_xek7BHjtu29CTEjsA1Ny_i_FP6lMGene9R1CG-53s120BPQs_A5VBtqGuYj1GCCrmCAY4n0O5JouQYJ7Y6IH373vBrlgpHw%3D%3D_V2&loc=CA&title=Software+Developer+Intern"
+  },
+  {
+    "id": "49409181459b6e87",
+    "company": "Netholabs",
+    "title": "AI/ML Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-20",
+    "scraped_at": "2026-08-24T06:36:10",
+    "url": "https://jobright.ai/jobs/info/6a8be400680f314a29d420a6"
+  },
+  {
+    "id": "f1aad55baf5d1e54",
+    "company": "The Walt Disney Company",
+    "title": "Glendale System Software Engineering Internship, Spring 2027",
+    "location": "Glendale, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-23",
+    "scraped_at": "2026-08-24T06:36:10",
+    "url": "https://jobright.ai/jobs/info/6a8bf6c0cde3717f9e9bb6f1"
   }
 ]
