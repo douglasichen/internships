@@ -23673,5 +23673,41 @@
     "posted": "2026-08-25",
     "scraped_at": "2026-08-26T06:43:15",
     "url": "https://jobright.ai/jobs/info/6a8e7c8eb93d14258ab45818"
+  },
+  {
+    "id": "a47f5f64132efa18",
+    "company": "Nvidia",
+    "title": "Enterprise Software Test Development Engineer (RDSS Intern)",
+    "location": "Taiwan, Taipei",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-26T10:10:01",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/Enterprise-Software-Test-Development-Engineer--RDSS-Intern-_JR2023995"
+  },
+  {
+    "id": "16da233639fe2bad",
+    "company": "Berkeley Industrial Engineering & Operations Research",
+    "title": "E-commerce Developer Intern at Helios Worldwide",
+    "location": "Indianapolis, IN; Santa Monica, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-26",
+    "scraped_at": "2026-08-26T10:10:01",
+    "url": "https://jobright.ai/jobs/info/6a8edd2e382b237ac80c2fde"
+  },
+  {
+    "id": "c4ca7e58f7ee9953",
+    "company": "Robotics and AI Institute",
+    "title": "Internship - Software Engineering",
+    "location": "Z\u00fcrich, Switzerland",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-08-25",
+    "scraped_at": "2026-08-26T10:10:01",
+    "url": "https://startup.jobs/internship-software-engineering-robotics-and-ai-institute-9761032"
   }
 ]
