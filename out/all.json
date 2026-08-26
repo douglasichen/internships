@@ -23649,5 +23649,29 @@
     "posted": "",
     "scraped_at": "2026-08-26T02:53:45",
     "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Beijing/Developer-Technology-Engineering-Intern--AI---2027_JR2024258"
+  },
+  {
+    "id": "a39c8ebcdfaabfa6",
+    "company": "IBM",
+    "title": "2027 Software Engineering Intern \u2013 Agentic AI & Workflow Automation",
+    "location": "Armonk, NY",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-08-25",
+    "scraped_at": "2026-08-26T06:43:15",
+    "url": "https://jobright.ai/jobs/info/6a8e7c83eb0ee5374a47d452"
+  },
+  {
+    "id": "ea21e4093fced460",
+    "company": "IBM",
+    "title": "Firmware and Systems Developer Intern 2027 -Poughkeepsie, NY",
+    "location": "Poughkeepsie, NY",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-08-25",
+    "scraped_at": "2026-08-26T06:43:15",
+    "url": "https://jobright.ai/jobs/info/6a8e7c8eb93d14258ab45818"
   }
 ]
