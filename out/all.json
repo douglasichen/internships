@@ -24885,5 +24885,113 @@
     "posted": "2026-08-28",
     "scraped_at": "2026-08-28T13:46:16",
     "url": "https://jobright.ai/jobs/info/6a91a5128e59685453376b44"
+  },
+  {
+    "id": "50f6e75aedbb3dfc",
+    "company": "Booz Allen Hamilton",
+    "title": "AI Software Developer Intern",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-27",
+    "scraped_at": "2026-08-28T16:20:09",
+    "url": "https://jobright.ai/jobs/info/6a91cd1da27a2d3c9848a2a0"
+  },
+  {
+    "id": "ed79277fed1ffb71",
+    "company": "Brunswick Corporation",
+    "title": "Software Engineer Intern",
+    "location": "Menomonee Falls, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-27",
+    "scraped_at": "2026-08-28T16:20:09",
+    "url": "https://jobright.ai/jobs/info/6a91c86f36036300991949db"
+  },
+  {
+    "id": "624680f598d1441e",
+    "company": "HP",
+    "title": "Software and Engineering Intern Roles - Imaging and Print",
+    "location": "Corvallis, Oregon, United States of America",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-28T16:20:09",
+    "url": "https://hp.wd5.myworkdayjobs.com/ExternalCareerSite/job/Corvallis-Oregon-United-States-of-America/Software-and-Engineering-Intern-Roles---Imaging-and-Print_3168142-1"
+  },
+  {
+    "id": "aff84b705139cd61",
+    "company": "Hewlett Packard Enterprise",
+    "title": "Firmware Engineer Intern",
+    "location": "10 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-28T16:20:09",
+    "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Spring-Texas-United-States-of-America/Firmware-Engineer-Intern_1213627"
+  },
+  {
+    "id": "80158e5727d12e67",
+    "company": "Hewlett Packard Enterprise",
+    "title": "Software Engineer Intern",
+    "location": "10 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-28T16:20:09",
+    "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Spring-Texas-United-States-of-America/Software-Engineer-Intern_1213625"
+  },
+  {
+    "id": "ab6b221bcc62b05f",
+    "company": "Hubbell Incorporated",
+    "title": "2027 Summer Intern: Engineering - Software",
+    "location": "St. Louis, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-28",
+    "scraped_at": "2026-08-28T16:20:09",
+    "url": "https://jobright.ai/jobs/info/6a91cd95a27a2d3c9848a2d4"
+  },
+  {
+    "id": "9c2fcc0cc547f28c",
+    "company": "Intuit",
+    "title": "Summer 2027: Software Engineering Intern - Full Stack",
+    "location": "Multiple Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-08-28T16:20:09",
+    "url": "https://jobs.intuit.com/job/mountain-view/summer-2027-software-engineering-intern-full-stack/27595/99856180864"
+  },
+  {
+    "id": "2668b08c2323a28c",
+    "company": "Risk Inn",
+    "title": "Research Intern \u2013 AI/ML in Financial Risk & Investments",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-28",
+    "scraped_at": "2026-08-28T16:20:09",
+    "url": "https://jobright.ai/jobs/info/6a91c630c12c90443efc82c0"
+  },
+  {
+    "id": "a78642316479ec78",
+    "company": "TIAA",
+    "title": "Churchill Summer Internship: Investment Infrastructure & Technology (IIT)",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-27",
+    "scraped_at": "2026-08-28T16:20:09",
+    "url": "https://jobright.ai/jobs/info/6a91ba279864261ccd29e728"
   }
 ]
