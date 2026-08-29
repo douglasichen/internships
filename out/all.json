@@ -25221,5 +25221,41 @@
     "posted": "2026-08-28",
     "scraped_at": "2026-08-28T23:42:10",
     "url": "https://jobright.ai/jobs/info/6a922f629864261ccd2a06f9"
+  },
+  {
+    "id": "6d5a32b60d1f4512",
+    "company": "Progress Software",
+    "title": "IT Software Engineer Intern (Recent Graduate) - Salesforce & AI Solutions",
+    "location": "Raleigh, NC; Burlington, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-28",
+    "scraped_at": "2026-08-29T15:25:04",
+    "url": "https://jobright.ai/jobs/info/6a931b1c3603630099197f61"
+  },
+  {
+    "id": "586a0b94ca7af5b2",
+    "company": "Silimate",
+    "title": "Chip/EDA/Software Intern",
+    "location": "Mountain View, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-04",
+    "scraped_at": "2026-08-29T15:25:04",
+    "url": "https://jobright.ai/jobs/info/6a7283f3ee751e0c7934939c"
+  },
+  {
+    "id": "779d3e4f377b3075",
+    "company": "Southwire Company",
+    "title": "Manufacturing Software Engineering Intern Job Details | Southwire Company LLC",
+    "location": "Denton, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-29",
+    "scraped_at": "2026-08-29T15:25:04",
+    "url": "https://jobright.ai/jobs/info/6a92d67d8e59685453379e60"
   }
 ]
