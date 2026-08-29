@@ -25197,5 +25197,29 @@
     "posted": "2026-08-28",
     "scraped_at": "2026-08-28T21:06:11",
     "url": "https://jobright.ai/jobs/info/6a920a5fc12c90443efc93fa"
+  },
+  {
+    "id": "e5b271a67e9fb7ae",
+    "company": "Northwood",
+    "title": "Embedded Software Engineering Intern (2027 Summer Internship)",
+    "location": "Torrance, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-28",
+    "scraped_at": "2026-08-28T23:42:10",
+    "url": "https://jobright.ai/jobs/info/6a922e45d18f75674827b942"
+  },
+  {
+    "id": "1c074e56c41c4366",
+    "company": "Northwood",
+    "title": "Software Engineering Intern (2027 Summer Internship)",
+    "location": "Torrance, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-28",
+    "scraped_at": "2026-08-28T23:42:10",
+    "url": "https://jobright.ai/jobs/info/6a922f629864261ccd2a06f9"
   }
 ]
