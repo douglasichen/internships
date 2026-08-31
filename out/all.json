@@ -25007,6 +25007,18 @@
     "url": "https://jobs.ashbyhq.com/telus-digital/32ee6ede-d3cf-4827-b7af-f8d64f2bca11"
   },
   {
+    "id": "7c4b1f9e2b5ddcc7",
+    "company": "Penn Mutual",
+    "title": "Software Engineer Co-op",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-27",
+    "scraped_at": "2026-08-28T21:06:11",
+    "url": "https://jobright.ai/jobs/info/6a91e32b9864261ccd29f757"
+  },
+  {
     "id": "c74f9c05313384f5",
     "company": "Bland",
     "title": "Machine Learning Intern",
@@ -25139,18 +25151,6 @@
     "url": "https://medtronic.wd1.myworkdayjobs.com/en-US/medtroniccareers/job/Mounds-View-Minnesota-United-States-of-America/Engineering-Intern-Summer-2027--Candidates-Attending-2026-SWE-National-Conference-_R76021-1"
   },
   {
-    "id": "7c4b1f9e2b5ddcc7",
-    "company": "Penn Mutual",
-    "title": "Software Engineer Co-op",
-    "location": "United States",
-    "is_2027": true,
-    "priority": 3,
-    "source": "jobright",
-    "posted": "2026-08-27",
-    "scraped_at": "2026-08-28T21:06:11",
-    "url": "https://jobright.ai/jobs/info/6a91e32b9864261ccd29f757"
-  },
-  {
     "id": "4d2e42e154b72e19",
     "company": "Philips",
     "title": "Intern \u2013 Data AI/ML Engineering \u2013 Plymouth, MN \u2013 Summer 2027",
@@ -25257,5 +25257,173 @@
     "posted": "2026-08-29",
     "scraped_at": "2026-08-29T15:25:04",
     "url": "https://jobright.ai/jobs/info/6a92d67d8e59685453379e60"
+  },
+  {
+    "id": "24e310893cb7b3f6",
+    "company": "Brunswick",
+    "title": "Software Engineering Intern",
+    "location": "Champaign, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://brunswick.wd1.myworkdayjobs.com/en-US/search/job/Champaign-IL/Software-Engineering-Intern_JR-051449"
+  },
+  {
+    "id": "26326482cdc327f6",
+    "company": "Nvidia",
+    "title": "Software Engineering Intern, Test Development - 2027",
+    "location": "China, Shanghai",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/Software-Engineering-Intern--Test-Development---2027_JR2023652"
+  },
+  {
+    "id": "a98a912581d0c18a",
+    "company": "Nvidia",
+    "title": "Software Engineering Intern, Test Development - 2027",
+    "location": "China, Shanghai",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/Software-Engineering-Intern--Test-Development---2027_JR2023648"
+  },
+  {
+    "id": "c7ac5f0a550613e5",
+    "company": "Nvidia",
+    "title": "System Software Engineer (RDSS Intern)",
+    "location": "Taiwan, Taipei",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/System-Software-Engineer--RDSS-Intern-_JR2024500"
+  },
+  {
+    "id": "285572916fabc267",
+    "company": "Persona AI",
+    "title": "Robotics Software Internship - Manipulation",
+    "location": "Houston, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://jobs.ashbyhq.com/persona.ai/1e8d195c-e28e-423d-a06a-9eeb401ed4fc"
+  },
+  {
+    "id": "2d0c3f68cbde97be",
+    "company": "northwoodspace",
+    "title": "Embedded Software Engineering Intern - 2027 Summer Internship",
+    "location": "Los Angeles, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://jobs.ashbyhq.com/northwoodspace/d0cca9dd-ea90-4c3b-94b4-17761932d11c"
+  },
+  {
+    "id": "c9afe11fc72fa69d",
+    "company": "northwoodspace",
+    "title": "Software Engineering Intern - 2027 Summer Internship",
+    "location": "Los Angeles, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://jobs.ashbyhq.com/northwoodspace/ce3d4b73-461e-4128-a6f1-f933897e8119"
+  },
+  {
+    "id": "c0c60f917572c107",
+    "company": "Aviator",
+    "title": "Software Engineering Intern",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-30",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://jobright.ai/jobs/info/6a93b156c12c90443efcc638"
+  },
+  {
+    "id": "13b7762a90c06cae",
+    "company": "Bobcat Company",
+    "title": "Application Developer Co Op MES (Jan-Aug 2027) Job Details | Doosan Corp",
+    "location": "West Fargo, ND; Bismarck, ND; Statesville, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-30",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://jobright.ai/jobs/info/6a9429488e5968545337ca2e"
+  },
+  {
+    "id": "6854b201220eb2d9",
+    "company": "Booz Allen",
+    "title": "AI Software Developer Intern",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://bah.wd1.myworkdayjobs.com/en-US/bah_jobs/job/San-Diego-CA/AI-Software-Developer-Intern_R0248115"
+  },
+  {
+    "id": "df580517cb8497ef",
+    "company": "Booz Allen",
+    "title": "University - 2027 Summer Games Software Developer Intern - Atlanta - GA",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://bah.wd1.myworkdayjobs.com/en-US/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138"
+  },
+  {
+    "id": "364665ce2a5fbe27",
+    "company": "Equifax",
+    "title": "Site Reliability Engineer Intern",
+    "location": "Lackland Air Force Base, TX; St. Louis, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-29",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://jobright.ai/jobs/info/6a94b526c12c90443efcdcc8"
+  },
+  {
+    "id": "ff998010c296fc97",
+    "company": "Ericsson",
+    "title": "Software Engineer AIML-Intern",
+    "location": "Plano,Texas,United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://jobs.ericsson.com/careers/job/563121776667928"
+  },
+  {
+    "id": "a7da31635b230165",
+    "company": "Rajant Corporation",
+    "title": "Software Engineering - AI Intern",
+    "location": "Malvern, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-30",
+    "scraped_at": "2026-08-30T21:02:37",
+    "url": "https://jobright.ai/jobs/info/6a94a5dca27a2d3c9848f753"
   }
 ]
