@@ -27249,5 +27249,17 @@
     "posted": "2026-08-31",
     "scraped_at": "2026-09-01T10:56:00",
     "url": "https://jobright.ai/jobs/info/6a95b5ab9fcec5442372e9be"
+  },
+  {
+    "id": "86123cda97a0246a",
+    "company": "Nike",
+    "title": "Software Engineering Undergraduate Internship",
+    "location": "Beaverton, OR",
+    "is_2027": true,
+    "priority": 3,
+    "source": "manual",
+    "posted": "",
+    "scraped_at": "2026-09-01T14:52:01",
+    "url": "https://careers.nike.com/nike-inc-software-engineering-undergraduate-internship/job/R-91111"
   }
 ]
