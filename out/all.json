@@ -32373,5 +32373,89 @@
     "posted": "2026-09-04",
     "scraped_at": "2026-09-04T21:14:19",
     "url": "https://jobright.ai/jobs/info/6a9b525fd5ff1f3f1c39ecdd"
+  },
+  {
+    "id": "6db53ae455b98f12",
+    "company": "A-C Electric Company",
+    "title": "2027 Software Development Internship",
+    "location": "Bakersfield, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-03",
+    "scraped_at": "2026-09-04T23:59:08",
+    "url": "https://jobright.ai/jobs/info/6a9b759e1388387060598200"
+  },
+  {
+    "id": "b92eb07e7e365031",
+    "company": "CNA Insurance",
+    "title": "Technology Internship Program (Software Engineering)",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-04T23:59:08",
+    "url": "https://jobright.ai/jobs/info/6a9b74a69c24314c35f99456"
+  },
+  {
+    "id": "d4c1b305642cad51",
+    "company": "Charles Schwab",
+    "title": "2027 Technology Intern - Software Engineering",
+    "location": "Austin, TX; Westlake, TX; Southlake, TX; Phoenix, AZ; Ann Arbor, MI; Omaha, NE",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-04T23:59:08",
+    "url": "https://jobright.ai/jobs/info/6a9b67741388387060598026"
+  },
+  {
+    "id": "61aa410b72fb9946",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Back End Developer Intern - Poughkeepsie, NY - 2027",
+    "location": "Poughkeepsie, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-28",
+    "scraped_at": "2026-09-04T23:59:08",
+    "url": "https://jobright.ai/jobs/info/6a9b856690a313642c65a445"
+  },
+  {
+    "id": "ff701ca2c03d5920",
+    "company": "Hy-Vee, Inc.",
+    "title": "Digital Software Engineering Intern - Summer 2027",
+    "location": "West Des Moines, IA; Grimes, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-03",
+    "scraped_at": "2026-09-04T23:59:08",
+    "url": "https://jobright.ai/jobs/info/6a9b6610fe45b8490f608354"
+  },
+  {
+    "id": "e66e12979ff63cc6",
+    "company": "Internship List",
+    "title": "Software Developer Intern, MyGeotab (Winter/January 2027, 4-8 Months)",
+    "location": "Oakville, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-04T23:59:08",
+    "url": "https://startup.jobs/software-developer-intern-mygeotab-winter-january-2027-4-8-months-internship-list-9925206"
+  },
+  {
+    "id": "de8a79081e2c5c1e",
+    "company": "NASCO",
+    "title": "Software Engineering Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-04T23:59:08",
+    "url": "https://jobright.ai/jobs/info/6a9b6f9fd5ff1f3f1c39f17b"
   }
 ]
