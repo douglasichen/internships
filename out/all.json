@@ -32457,5 +32457,65 @@
     "posted": "2026-09-04",
     "scraped_at": "2026-09-04T23:59:08",
     "url": "https://jobright.ai/jobs/info/6a9b6f9fd5ff1f3f1c39f17b"
+  },
+  {
+    "id": "06c5d65af80c9cda",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Software Developer Intern - OneIT - Rochester, MN - 2027",
+    "location": "Rochester, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-28",
+    "scraped_at": "2026-09-05T02:22:11",
+    "url": "https://jobright.ai/jobs/info/6a9b93c690a313642c65a53b"
+  },
+  {
+    "id": "a6e1a195f7150679",
+    "company": "Scale",
+    "title": "Software Engineering Intern (Summer 2027)",
+    "location": "San Francisco, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-05T02:22:11",
+    "url": "https://startup.jobs/software-engineering-intern-summer-2027-scale-9927493"
+  },
+  {
+    "id": "9165415dea672676",
+    "company": "Siemens",
+    "title": "Strategic Student Program: Electronics Software Engineering Intern - Digital Component Specifications (EBS, Spring 2027)",
+    "location": "Huntsville, AL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-03",
+    "scraped_at": "2026-09-05T02:22:11",
+    "url": "https://jobright.ai/jobs/info/6a9b9a8ac1d6f91bc3883216"
+  },
+  {
+    "id": "94dd22ca8db02c7a",
+    "company": "Siemens Digital Industries Software",
+    "title": "Strategic Student Program: Electronics Software Engineering Intern - Digital Component Specifications (EBS, Spring 2027)",
+    "location": "Huntsville, AL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-05T02:22:11",
+    "url": "https://jobright.ai/jobs/info/6a9b9b04c1d6f91bc388322a"
+  },
+  {
+    "id": "abfb70141009a781",
+    "company": "Tesla",
+    "title": "Internship, Software Engineer, Code Hardening & Framework Resilience, Robotaxi (Winter/Spring 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-05T02:22:11",
+    "url": "https://jobright.ai/jobs/info/6a9ba3c5c1d6f91bc3883310"
   }
 ]
