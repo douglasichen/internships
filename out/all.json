@@ -32265,5 +32265,113 @@
     "posted": "2026-09-02",
     "scraped_at": "2026-09-04T18:54:58",
     "url": "https://jobright.ai/jobs/info/6a9b0e7dfe45b8490f6069d4"
+  },
+  {
+    "id": "c50f3d0b79055b11",
+    "company": "Apex - Satellite Platforms",
+    "title": "Simulation Software Engineering Internship (Spring or Summer 2027)",
+    "location": "Los Angeles, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-04T21:14:19",
+    "url": "https://jobright.ai/jobs/info/6a9b4efa1388387060597bac"
+  },
+  {
+    "id": "3cb2422ea82bf3d6",
+    "company": "Brave",
+    "title": "Software Engineering Intern - Waterloo University",
+    "location": "Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-04T21:14:19",
+    "url": "https://startup.jobs/software-engineering-intern-waterloo-university-brave-9921699"
+  },
+  {
+    "id": "9df1ddb535656b11",
+    "company": "CNH",
+    "title": "Software Engineer Intern",
+    "location": "Sioux Falls, SD; Tempe, AZ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-03",
+    "scraped_at": "2026-09-04T21:14:19",
+    "url": "https://jobright.ai/jobs/info/6a9b3fec90a313642c6595ce"
+  },
+  {
+    "id": "9d433811a0ccdfc0",
+    "company": "Garner Health",
+    "title": "Software Engineering Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-04T21:14:19",
+    "url": "https://jobright.ai/jobs/info/6a9b3debd5ff1f3f1c39e64c"
+  },
+  {
+    "id": "78e478f553b40dd1",
+    "company": "HDR",
+    "title": "Software Development Intern-RR",
+    "location": "Round Rock, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-04T21:14:19",
+    "url": "https://jobright.ai/jobs/info/6a9b52d490a313642c659bf3"
+  },
+  {
+    "id": "cb938eca24e0cad8",
+    "company": "Manheim Dallas-Fort Worth",
+    "title": "Software Engineering Intern - Summer 2027 (North Hills, NY)",
+    "location": "Long Island, New York, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-03",
+    "scraped_at": "2026-09-04T21:14:19",
+    "url": "https://jobright.ai/jobs/info/6a9b3b00fe45b8490f607865"
+  },
+  {
+    "id": "0d1ffad6bc8cff6b",
+    "company": "Microsoft",
+    "title": "Firmware Engineering INTERN",
+    "location": "Redmond, WA; Santa Clara, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-08-25",
+    "scraped_at": "2026-09-04T21:14:19",
+    "url": "https://jobright.ai/jobs/info/6a9b5bb32cdc5958f53ec210"
+  },
+  {
+    "id": "b15d0ff5093c7cf3",
+    "company": "Rivian and Volkswagen Group Technologies",
+    "title": "Software Engineering Intern - Connected Systems (January - August 2027)",
+    "location": "Irvine, CA; Palo Alto, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-04T21:14:19",
+    "url": "https://jobright.ai/jobs/info/6a9b4f299c24314c35f98e12"
+  },
+  {
+    "id": "323b30e72d6ac1bd",
+    "company": "Smart Data Solutions",
+    "title": "Software Engineer Intern, Monitoring",
+    "location": "Dallas, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-04T21:14:19",
+    "url": "https://jobright.ai/jobs/info/6a9b525fd5ff1f3f1c39ecdd"
   }
 ]
