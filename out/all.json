@@ -34773,5 +34773,53 @@
     "posted": "2026-09-08",
     "scraped_at": "2026-09-08T20:53:15",
     "url": "https://jobright.ai/jobs/info/6aa09d0e500b01124c77a1ab"
+  },
+  {
+    "id": "8e71b60276c93852",
+    "company": "Group One Trading",
+    "title": "Software Developer Intern",
+    "location": "Chicago, IL 60605, US",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-09-08T23:18:55",
+    "url": "https://group1.applicantpro.com/jobs/4200875"
+  },
+  {
+    "id": "8b889b6ac535472d",
+    "company": "Intel",
+    "title": "System Software Engineering Intern",
+    "location": "Malaysia, Kulim",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-08T23:18:55",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Malaysia-Kulim/System-Software-Engineering-Intern_JR0286933"
+  },
+  {
+    "id": "ed75af64e77f23e2",
+    "company": "Internship List",
+    "title": "Software Developer Intern, MyGeotab (Winter/January 2027, 8 Months)",
+    "location": "Oakville, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-08",
+    "scraped_at": "2026-09-08T23:18:55",
+    "url": "https://startup.jobs/software-developer-intern-mygeotab-winter-january-2027-8-months-internship-list-9958534"
+  },
+  {
+    "id": "8c70ae3dc2d99035",
+    "company": "K2 Space",
+    "title": "Simulation Software Engineering Intern - Summer 2027",
+    "location": "Los Angeles, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-09",
+    "scraped_at": "2026-09-08T23:18:55",
+    "url": "https://startup.jobs/simulation-software-engineering-intern-summer-2027-k2-space-9958363"
   }
 ]
