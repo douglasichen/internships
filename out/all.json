@@ -34821,5 +34821,113 @@
     "posted": "2026-09-09",
     "scraped_at": "2026-09-08T23:18:55",
     "url": "https://startup.jobs/simulation-software-engineering-intern-summer-2027-k2-space-9958363"
+  },
+  {
+    "id": "beaa3e51aa0a3478",
+    "company": "CHAMP",
+    "title": "Intern, Software Engineering",
+    "location": "Cleveland, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-08",
+    "scraped_at": "2026-09-09T01:49:36",
+    "url": "https://jobright.ai/jobs/info/6aa0b53fa2266b538d231fbf"
+  },
+  {
+    "id": "2ec81c0f972a35fe",
+    "company": "CNH",
+    "title": "Data Engineer Intern - Python",
+    "location": "Sioux Falls, SD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-08",
+    "scraped_at": "2026-09-09T01:49:36",
+    "url": "https://jobright.ai/jobs/info/6aa0adb2500b01124c77a86a"
+  },
+  {
+    "id": "293ec1ac0529bbd1",
+    "company": "CNH",
+    "title": "Data Engineer Intern 1",
+    "location": "Phoenix, AZ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-08",
+    "scraped_at": "2026-09-09T01:49:36",
+    "url": "https://jobright.ai/jobs/info/6aa0ada9ea127c3794698984"
+  },
+  {
+    "id": "efb92dab66a82c7e",
+    "company": "CNH",
+    "title": "Software Engineer Intern - Python",
+    "location": "Sioux Falls, SD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-08",
+    "scraped_at": "2026-09-09T01:49:36",
+    "url": "https://jobright.ai/jobs/info/6aa0adb4dbc0e60e37e0f309"
+  },
+  {
+    "id": "7a5367a522379e3b",
+    "company": "Cboe Global Markets",
+    "title": "Software Engineer Intern",
+    "location": "Chicago, IL; Kansas City, MO; New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-08",
+    "scraped_at": "2026-09-09T01:49:36",
+    "url": "https://jobright.ai/jobs/info/6aa0ab4aa2266b538d231bff"
+  },
+  {
+    "id": "7e5a5e74c4dddb70",
+    "company": "One",
+    "title": "Software Engineer, Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-08",
+    "scraped_at": "2026-09-09T01:49:36",
+    "url": "https://startup.jobs/software-engineer-intern-one-9964306"
+  },
+  {
+    "id": "c9023503431eca3b",
+    "company": "Red Hat S.R.L.",
+    "title": "Software Engineer Intern",
+    "location": "Boston, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-08",
+    "scraped_at": "2026-09-09T01:49:36",
+    "url": "https://startup.jobs/software-engineer-intern-red-hat-srl-9959208"
+  },
+  {
+    "id": "77c96f9155491c3e",
+    "company": "Rubrik",
+    "title": "Software Engineer (CPD) - Winter Intern",
+    "location": "Bengaluru, India",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-06",
+    "scraped_at": "2026-09-09T01:49:36",
+    "url": "https://startup.jobs/software-engineer-cpd-winter-intern-rubrikinc-9943870"
+  },
+  {
+    "id": "c4df883b313c2cb5",
+    "company": "SWIVEL",
+    "title": "Software Engineering Intern",
+    "location": "San Antonio, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-08",
+    "scraped_at": "2026-09-09T01:49:36",
+    "url": "https://jobright.ai/jobs/info/6aa0b8d5500b01124c77abae"
   }
 ]
