@@ -34929,5 +34929,53 @@
     "posted": "2026-09-08",
     "scraped_at": "2026-09-09T01:49:36",
     "url": "https://jobright.ai/jobs/info/6aa0b8d5500b01124c77abae"
+  },
+  {
+    "id": "c8e8a6a1b8b13bb8",
+    "company": "Tesla",
+    "title": "Internship, Audio Visual Technician, Infrastructure Engineering (Winter/Spring 2027)",
+    "location": "Austin, Texas",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-09-09T06:43:08",
+    "url": "https://www.tesla.com/careers/search/job/internship-audio-visual-technician-infrastructure-engineering-winter-spring-2027-282777"
+  },
+  {
+    "id": "fc3d2eab7698e9eb",
+    "company": "Tesla",
+    "title": "Internship, Physics Engine Development Engineer, Optimus (Summer 2027)",
+    "location": "Palo Alto, California",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-09-09T06:43:08",
+    "url": "https://www.tesla.com/careers/search/job/internship-physics-engine-development-engineer-optimus-summer-2027-282147"
+  },
+  {
+    "id": "853e686c4060621c",
+    "company": "Tesla",
+    "title": "Internship, Software Integration Engineer, Battery Management Systems (Winter/Spring 2027)",
+    "location": "Palo Alto, California",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-09-09T06:43:08",
+    "url": "https://www.tesla.com/careers/search/job/internship-software-integration-engineer-battery-management-systems-winter-spring-2027-282241"
+  },
+  {
+    "id": "09c5a8c94c5fa0b4",
+    "company": "Tesla",
+    "title": "Internship, Software Integration Engineer, Optimus (Winter/Spring 2027)",
+    "location": "Palo Alto, California",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-09-09T06:43:08",
+    "url": "https://www.tesla.com/careers/search/job/internship-software-integration-engineer-optimus-winter-spring-2027-282342"
   }
 ]
