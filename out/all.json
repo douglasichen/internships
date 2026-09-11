@@ -36537,5 +36537,101 @@
     "posted": "2026-09-10",
     "scraped_at": "2026-09-10T20:10:05",
     "url": "https://startup.jobs/sales-intern-paid-internship-software-company-techsmith-corporation-9993940"
+  },
+  {
+    "id": "0b801797ba1a7d7e",
+    "company": "Dpro GmbH",
+    "title": "Frontend Developer Intern (React / Next.js)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-10",
+    "scraped_at": "2026-09-10T22:28:25",
+    "url": "https://jobright.ai/jobs/info/6aa37cf3cb2e99857c27073f"
+  },
+  {
+    "id": "782709e5eedbc5e7",
+    "company": "Elevated Web Design",
+    "title": "Application Software Engineering Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-10",
+    "scraped_at": "2026-09-10T22:28:25",
+    "url": "https://jobright.ai/jobs/info/6aa37ca3cb2e99857c270717"
+  },
+  {
+    "id": "70ce9730228a897c",
+    "company": "Exegy",
+    "title": "Software Engineer Intern",
+    "location": "St. Louis, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-10",
+    "scraped_at": "2026-09-10T22:28:25",
+    "url": "https://jobright.ai/jobs/info/6aa37d01cb2e99857c27075e"
+  },
+  {
+    "id": "f6f8b73cb55fc3ef",
+    "company": "IBM",
+    "title": "Quantum Algorithms and Quantum Machine Learning Intern 2027",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-09-10",
+    "scraped_at": "2026-09-10T22:28:25",
+    "url": "https://jobright.ai/jobs/info/6aa37bdfe38fb65a7df5366a"
+  },
+  {
+    "id": "4001b5729c6576cc",
+    "company": "Impulse Space",
+    "title": "Ground Software Engineering Intern (Summer 2027)",
+    "location": "Redondo Beach, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-04",
+    "scraped_at": "2026-09-10T22:28:25",
+    "url": "https://jobright.ai/jobs/info/6aa37fd24233a2201a2b199f"
+  },
+  {
+    "id": "500db7314bbbabea",
+    "company": "L3Harris Technologies",
+    "title": "Software Engineering Intern",
+    "location": "Rochester, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-09",
+    "scraped_at": "2026-09-10T22:28:25",
+    "url": "https://jobright.ai/jobs/info/6aa37a72e38fb65a7df5358f"
+  },
+  {
+    "id": "2ebd230b3464fffc",
+    "company": "Target",
+    "title": "Software Engineering Summer Internship-Minneapolis, MN (Starting June 2027)",
+    "location": "Brooklyn Park, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-09",
+    "scraped_at": "2026-09-10T22:28:25",
+    "url": "https://jobright.ai/jobs/info/6aa37ab41cc5e5143a60dcdd"
+  },
+  {
+    "id": "60f90a0b0e30d6e6",
+    "company": "The Cigna Group",
+    "title": "The Cigna Group's Technology Development Program  -  Infrastructure & Cloud Engineering Track Summer Internship",
+    "location": "Bloomfield, CT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-09",
+    "scraped_at": "2026-09-10T22:28:25",
+    "url": "https://jobright.ai/jobs/info/6aa1d2400ffb3d4fea6b750e"
   }
 ]
