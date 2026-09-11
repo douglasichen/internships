@@ -36453,5 +36453,89 @@
     "posted": "",
     "scraped_at": "2026-09-10T16:41:48",
     "url": "https://careers.withwaymo.com/jobs?gh_jid=8193295"
+  },
+  {
+    "id": "b705d22922bf97da",
+    "company": "Amperesand",
+    "title": "Software Engineering Intern",
+    "location": "Singapore",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-02",
+    "scraped_at": "2026-09-10T20:10:05",
+    "url": "https://startup.jobs/software-engineering-intern-amperesand-9858327"
+  },
+  {
+    "id": "88b0a343d2523095",
+    "company": "Anduril Industries",
+    "title": "2027 Software Quality Assurance Intern",
+    "location": "Dublin, Ireland",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-09",
+    "scraped_at": "2026-09-10T20:10:05",
+    "url": "https://startup.jobs/2027-software-quality-assurance-intern-anduril-industries-company-9986983"
+  },
+  {
+    "id": "2534598f5666b0c2",
+    "company": "Creatify Lab Inc",
+    "title": "Software Engineer Intern",
+    "location": "Mountain View, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-03-18",
+    "scraped_at": "2026-09-10T20:10:05",
+    "url": "https://startup.jobs/software-engineer-intern-creatify-lab-inc-8302038"
+  },
+  {
+    "id": "11b7afe44b792b76",
+    "company": "Perpay - Career's Page",
+    "title": "Software Engineering Internship, Summer 2027",
+    "location": "Philadelphia, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2023-09-12",
+    "scraped_at": "2026-09-10T20:10:05",
+    "url": "https://startup.jobs/software-engineering-internship-summer-2027-perpay-careers-page-9999321"
+  },
+  {
+    "id": "7bb39563bae92b51",
+    "company": "Rocket Lab USA",
+    "title": "Flight Software Intern Spring 2027",
+    "location": "Littleton, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-09",
+    "scraped_at": "2026-09-10T20:10:05",
+    "url": "https://startup.jobs/flight-software-intern-spring-2027-rocket-lab-usa-9987970"
+  },
+  {
+    "id": "d6b2c13e55dd9c9c",
+    "company": "TechSmith Corporation",
+    "title": "Data & Systems Intern (Paid Internship) - Software",
+    "location": "East Lansing, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-10",
+    "scraped_at": "2026-09-10T20:10:05",
+    "url": "https://startup.jobs/data-systems-intern-paid-internship-software-techsmith-corporation-9993941"
+  },
+  {
+    "id": "4ef680b840830b50",
+    "company": "TechSmith Corporation",
+    "title": "Sales Intern (Paid Internship) - Software Company",
+    "location": "East Lansing, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-10",
+    "scraped_at": "2026-09-10T20:10:05",
+    "url": "https://startup.jobs/sales-intern-paid-internship-software-company-techsmith-corporation-9993940"
   }
 ]
