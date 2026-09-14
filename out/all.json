@@ -38529,5 +38529,29 @@
     "posted": "2026-09-10",
     "scraped_at": "2026-09-13T17:47:39",
     "url": "https://jobright.ai/jobs/info/6aa57375930bff471a29ec61"
+  },
+  {
+    "id": "ccd0c0a1bbca3dff",
+    "company": "Philo Homes",
+    "title": "Software Engineer Intern (Computer Vision)_Mandarin Speaking",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-13",
+    "scraped_at": "2026-09-13T20:26:12",
+    "url": "https://jobright.ai/jobs/info/6aa7407d42411952ff9accfe"
+  },
+  {
+    "id": "3384dbc21ca7624f",
+    "company": "TechSmith",
+    "title": "Software Engineer Intern (Co-op)",
+    "location": "East Lansing, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-10",
+    "scraped_at": "2026-09-13T20:26:12",
+    "url": "https://jobright.ai/jobs/info/6aa75a6ba77a53f5a15753ab"
   }
 ]
