@@ -38553,5 +38553,41 @@
     "posted": "2026-09-10",
     "scraped_at": "2026-09-13T20:26:12",
     "url": "https://jobright.ai/jobs/info/6aa75a6ba77a53f5a15753ab"
+  },
+  {
+    "id": "f4e4b97cc96911c5",
+    "company": "Philips",
+    "title": "Intern \u2013 Software Engineering \u2013 Plymouth, MN \u2013 Summer 2027",
+    "location": "Plymouth, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-13",
+    "scraped_at": "2026-09-13T22:52:53",
+    "url": "https://jobright.ai/jobs/info/6aa76acea77a53f5a157550d"
+  },
+  {
+    "id": "f6795e89407dd195",
+    "company": "TD",
+    "title": "2027 Summer Internship Program - Global Technology & Solutions - Data Engineer",
+    "location": "Mount Laurel Township, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-13",
+    "scraped_at": "2026-09-13T22:52:53",
+    "url": "https://jobright.ai/jobs/info/6aa76e47654b2a9424cf8bf0"
+  },
+  {
+    "id": "f0ebc8615509010f",
+    "company": "TD",
+    "title": "2027 Summer Internship Program - Global Technology & Solutions - Software Engineer (SWE)",
+    "location": "Mount Laurel Township, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-13",
+    "scraped_at": "2026-09-13T22:52:53",
+    "url": "https://jobright.ai/jobs/info/6aa76e4882e82a31997c1dd6"
   }
 ]
