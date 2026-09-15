@@ -40521,5 +40521,53 @@
     "posted": "",
     "scraped_at": "2026-09-14T23:57:27",
     "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/US-California-Palo-Alto/Machine-Learning-Intern_R108140-1"
+  },
+  {
+    "id": "8b1e3d239b4f6ff4",
+    "company": "A Igreja de Jesus Cristo dos Santos dos \u00daltimos Dias",
+    "title": "2026 Software Engineer Technical Intern (Jan and May 2027 hires)",
+    "location": "Bluffdale, UT; Riverton, UT; Lehi, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-31",
+    "scraped_at": "2026-09-15T03:26:42",
+    "url": "https://jobright.ai/jobs/info/6aa8fb5117ddad6a8a47d985"
+  },
+  {
+    "id": "67a0dd3a7da17861",
+    "company": "Quick Fast Business Cash",
+    "title": "AI Automation & Software Development Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-14",
+    "scraped_at": "2026-09-15T03:26:42",
+    "url": "https://jobright.ai/jobs/info/6aa8ea10eff87f571fc980b8"
+  },
+  {
+    "id": "47ab89a4d29af839",
+    "company": "Textron",
+    "title": "2027 Intern - Software Engineer (Crewed Land) - Slidell, LA",
+    "location": "Slidell, LA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-15",
+    "scraped_at": "2026-09-15T03:26:42",
+    "url": "https://jobright.ai/jobs/info/6aa8efb33387a3d9b67d3624"
+  },
+  {
+    "id": "a9a7716f0e86e8b2",
+    "company": "Textron Aviation",
+    "title": "2027 Intern - Software Engineer (Howe & Howe) - Waterboro, ME",
+    "location": "Waterboro, ME",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-15",
+    "scraped_at": "2026-09-15T03:26:42",
+    "url": "https://jobright.ai/jobs/info/6aa8f17383a6750b1adfa7f6"
   }
 ]
