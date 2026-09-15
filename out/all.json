@@ -40569,5 +40569,113 @@
     "posted": "2026-09-15",
     "scraped_at": "2026-09-15T03:26:42",
     "url": "https://jobright.ai/jobs/info/6aa8f17383a6750b1adfa7f6"
+  },
+  {
+    "id": "4e61c097d25f5ddf",
+    "company": "Nvidia",
+    "title": "System Software Intern 2027 (Evergreen)",
+    "location": "3 Locations",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-15T08:31:55",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/India-Pune/System-Software-Intern-2027--Evergreen-_JR2025833"
+  },
+  {
+    "id": "18f327367699c4e1",
+    "company": "AFP Cuprum",
+    "title": "Data Engineer Internship - Des Moines, IA (Summer 2027)",
+    "location": "Des Moines, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-15",
+    "scraped_at": "2026-09-15T08:31:55",
+    "url": "https://jobright.ai/jobs/info/6aa945c6eff87f571fc98da5"
+  },
+  {
+    "id": "7967d59a8a73a9e3",
+    "company": "AFP Cuprum",
+    "title": "Software Engineer Internship - Des Moines, IA (Summer 2027)",
+    "location": "Des Moines, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-15",
+    "scraped_at": "2026-09-15T08:31:55",
+    "url": "https://jobright.ai/jobs/info/6aa9460509ae03adcacdc841"
+  },
+  {
+    "id": "5d23682a1ceda58a",
+    "company": "Analog Devices",
+    "title": "Embedded Software Engineer Intern",
+    "location": "3 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-15T08:31:55",
+    "url": "https://analogdevices.wd1.myworkdayjobs.com/External/job/US-MA-Wilmington/Embedded-Software-Engineer-Intern_R266132"
+  },
+  {
+    "id": "818b37dd40d32e52",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Quantum Infrastructure Intern 2027 - Networking automation",
+    "location": "Yorktown Heights, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-15",
+    "scraped_at": "2026-09-15T08:31:55",
+    "url": "https://jobright.ai/jobs/info/6aa927bf17ddad6a8a47df55"
+  },
+  {
+    "id": "25bf8b343c688bee",
+    "company": "L3Harris Technologies",
+    "title": "Intern, Software Engineer (Salt Lake City, UT)",
+    "location": "Salt Lake City, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-03",
+    "scraped_at": "2026-09-15T08:31:55",
+    "url": "https://jobright.ai/jobs/info/6aa94fdb28e24cb385139a41"
+  },
+  {
+    "id": "d77cf020b81448cf",
+    "company": "Liberty Mutual Insurance",
+    "title": "Solaria Labs Software Development Co-op (Jan - June 2027)",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-14",
+    "scraped_at": "2026-09-15T08:31:55",
+    "url": "https://jobright.ai/jobs/info/6aa9529709ae03adcacdcb90"
+  },
+  {
+    "id": "f6e69828591a35e3",
+    "company": "Tencent",
+    "title": "Backend Development Intern (6 months)",
+    "location": "Singapore-CapitaSky",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-15T08:31:55",
+    "url": "https://tencent.wd1.myworkdayjobs.com/Tencent_Careers/job/Singapore-CapitaSky/Backend-Development-Intern--6-months-_R108169"
+  },
+  {
+    "id": "319723c33bf18297",
+    "company": "URBN (Urban Outfitters, Anthropologie Group, Free People & Nuuly)",
+    "title": "URBN Software Engineering Intern",
+    "location": "Philadelphia, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-15",
+    "scraped_at": "2026-09-15T08:31:55",
+    "url": "https://jobright.ai/jobs/info/6aa9316909ae03adcacdc2a9"
   }
 ]
