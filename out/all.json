@@ -41757,5 +41757,101 @@
     "posted": "2026-09-15",
     "scraped_at": "2026-09-15T20:57:38",
     "url": "https://jobright.ai/jobs/info/6aa9c514eff87f571fc9b66e"
+  },
+  {
+    "id": "6fd132041f597015",
+    "company": "Nvidia",
+    "title": "Firmware Application Engineer (RDSS Intern)",
+    "location": "Taiwan, Taipei",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-16T01:04:49",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/Firmware-Application-Engineer--RDSS-Intern-_JR2024884"
+  },
+  {
+    "id": "f7061bc25c998c82",
+    "company": "Nvidia",
+    "title": "Server Firmware Developer (RDSS Intern)",
+    "location": "Taiwan, Taipei",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-16T01:04:49",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/Server-Firmware-Developer--RDSS-Intern-_JR2025558"
+  },
+  {
+    "id": "1233878599baab00",
+    "company": "Nvidia",
+    "title": "Silicon Software Engineer - System and AI (RDSS Intern)",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-16T01:04:49",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/Silicon-Software-Engineer---System-and-AI--RDSS-Intern-_JR2025538"
+  },
+  {
+    "id": "4976b3eb5f4ed7fe",
+    "company": "Antares",
+    "title": "Software Engineering Intern - Summer 2027",
+    "location": "Torrance, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-15",
+    "scraped_at": "2026-09-16T01:04:49",
+    "url": "https://jobright.ai/jobs/info/6aaa35d2120c360b6bd4ad87"
+  },
+  {
+    "id": "dceca0795253a212",
+    "company": "BioSpace",
+    "title": "2027 Business Technology Solutions Intern - Data & Software Engineering (Undergraduate)",
+    "location": "North Chicago, IL; Lake County, IL, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-15",
+    "scraped_at": "2026-09-16T01:04:49",
+    "url": "https://jobright.ai/jobs/info/6aaa1da3120c360b6bd4ab3d"
+  },
+  {
+    "id": "3a6366e331f9132a",
+    "company": "DV Trading",
+    "title": "2027 Software Developer Intern  (DV Equities)",
+    "location": "Hong Kong",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-16T01:04:49",
+    "url": "https://startup.jobs/2027-software-developer-intern-dv-equities-dv-trading-10083837"
+  },
+  {
+    "id": "011e741c1a1a9f84",
+    "company": "Freeleaps",
+    "title": "Software Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-15",
+    "scraped_at": "2026-09-16T01:04:49",
+    "url": "https://jobright.ai/jobs/info/6aaa22a310b1cd4f41609f61"
+  },
+  {
+    "id": "787ffccd5ab2132d",
+    "company": "The Aerospace Corporation",
+    "title": "2027 Aerospace Software Engineer Undergraduate Intern",
+    "location": "El Segundo, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-16T01:04:49",
+    "url": "https://jobright.ai/jobs/info/6aaa22a328e24cb38513e5c8"
   }
 ]
