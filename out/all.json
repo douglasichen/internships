@@ -41853,5 +41853,41 @@
     "posted": "2026-09-16",
     "scraped_at": "2026-09-16T01:04:49",
     "url": "https://jobright.ai/jobs/info/6aaa22a328e24cb38513e5c8"
+  },
+  {
+    "id": "56fe9d6e4c6b3b82",
+    "company": "Antares",
+    "title": "Software Intern - Summer 2027",
+    "location": "Torrance, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-16T03:55:20",
+    "url": "https://jobright.ai/jobs/info/6aaa49038639d5e4fdc8694f"
+  },
+  {
+    "id": "34fca0e368c12af2",
+    "company": "Hewlett Packard Enterprise",
+    "title": "Systems/Software Engineer - Internship (C++/Linux)",
+    "location": "Galway, Galway, Ireland",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-16T03:55:20",
+    "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Galway-Galway-Ireland/Systems-Software-Engineer---Internship--C---Linux-_1213130"
+  },
+  {
+    "id": "3de954ec3db40b27",
+    "company": "TikTok USDS Joint Venture",
+    "title": "Machine Learning Engineer Intern (Payment) - 2027 Summer",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-16T03:55:20",
+    "url": "https://jobright.ai/jobs/info/6aaa4ce02339cb004a614d36"
   }
 ]
