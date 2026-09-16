@@ -41889,5 +41889,65 @@
     "posted": "2026-09-16",
     "scraped_at": "2026-09-16T03:55:20",
     "url": "https://jobright.ai/jobs/info/6aaa4ce02339cb004a614d36"
+  },
+  {
+    "id": "318c044a02e2653d",
+    "company": "Bedrock Robotics",
+    "title": "Internship 2027 Software Engineer, Fleet Platform",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-16T06:44:05",
+    "url": "https://jobright.ai/jobs/info/6aaa8bd1f6bd9d2d17c182b6"
+  },
+  {
+    "id": "3e8f2ecb44c653a4",
+    "company": "Cyvl",
+    "title": "Software Engineering Intern - SWE/ML (Summer 2027)",
+    "location": "Somerville, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-14",
+    "scraped_at": "2026-09-16T06:44:05",
+    "url": "https://startup.jobs/software-engineering-intern-swe-ml-summer-2027-cyvl-10072770"
+  },
+  {
+    "id": "c65fd519f5624b8d",
+    "company": "General Dynamics Electric Boat",
+    "title": "Information Technology, Software Engineering, & Computer Science - 2027 Summer Internship",
+    "location": "Groton, CT; New London, CT; North Kingstown, RI; Newport, RI; North Stonington, CT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-16T06:44:05",
+    "url": "https://jobright.ai/jobs/info/6aaa7bf8f116e4992553518e"
+  },
+  {
+    "id": "27d92c34c11e1759",
+    "company": "Lam Research",
+    "title": "Business Operations Intern 1 (AI/Computer Science/Software Engineering/Data Analytics)",
+    "location": "Simpang Ampat, Penang, MY",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-09-16T06:44:05",
+    "url": "https://lamresearch.eightfold.ai/careers/job/1099555811957"
+  },
+  {
+    "id": "8d486b53fb86fdc3",
+    "company": "ShopBack",
+    "title": "Software Engineer Intern (H1 2027)",
+    "location": "Singapore",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-08-03",
+    "scraped_at": "2026-09-16T06:44:05",
+    "url": "https://startup.jobs/software-engineer-intern-h1-2027-shopbackmy-8902722"
   }
 ]
