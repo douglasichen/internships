@@ -42693,5 +42693,53 @@
     "posted": "2026-09-16",
     "scraped_at": "2026-09-16T19:36:43",
     "url": "https://jobright.ai/jobs/info/6aaafa86c85610f4a4842cbb"
+  },
+  {
+    "id": "51204709b613caae",
+    "company": "Alphabet (Waymo)",
+    "title": "2027 Summer Intern, BS/MS, Software Engineering, Maneuvering Tech",
+    "location": "San Francisco, California",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-16T22:17:42",
+    "url": "https://careers.withwaymo.com/jobs?gh_jid=8203200"
+  },
+  {
+    "id": "81530bb8dd9b04fd",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Software Engineering Intern 2027",
+    "location": "Irvine, CA; Durham, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-16T22:17:42",
+    "url": "https://jobright.ai/jobs/info/6aab6060f6bd9d2d17c1c67a"
+  },
+  {
+    "id": "46fe6d5ea3390fe3",
+    "company": "Smith+Nephew",
+    "title": "Intern Robotics Software Engineering",
+    "location": "Pittsburgh, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-16T22:17:42",
+    "url": "https://jobright.ai/jobs/info/6aab6ab2c85610f4a48449f6"
+  },
+  {
+    "id": "7fc56ba10b8e57c3",
+    "company": "Waymo",
+    "title": "2027 Summer Intern, BS/MS, Software Engineering, Maneuvering Tech",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-16T22:17:42",
+    "url": "https://jobright.ai/jobs/info/6aab6b69c85610f4a4844a02"
   }
 ]
