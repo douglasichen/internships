@@ -42741,5 +42741,65 @@
     "posted": "2026-09-16",
     "scraped_at": "2026-09-16T22:17:42",
     "url": "https://jobright.ai/jobs/info/6aab6b69c85610f4a4844a02"
+  },
+  {
+    "id": "6896c39a90ab2b3d",
+    "company": "GenPark",
+    "title": "Software Development Intern",
+    "location": "Los Angeles, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-17T01:23:31",
+    "url": "https://jobright.ai/jobs/info/6aab77a8c85610f4a4844c15"
+  },
+  {
+    "id": "2f9b1d76e76858eb",
+    "company": "Lyte",
+    "title": "Intern - Software Engineering",
+    "location": "Sunnyvale, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-17T01:23:31",
+    "url": "https://jobright.ai/jobs/info/6aab846f8e1bf0f764af9b1f"
+  },
+  {
+    "id": "bdfb8da14f42d992",
+    "company": "Speria",
+    "title": "Software Engineering Internship",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-17T01:23:31",
+    "url": "https://jobright.ai/jobs/info/6aab8307f6bd9d2d17c1ca67"
+  },
+  {
+    "id": "0963ea2f696fd4b9",
+    "company": "The Walt Disney Company",
+    "title": "WDI Show Control Software Intern, Spring 2027",
+    "location": "Lake Buena Vista, FL; Glendale, CA; Orlando, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-17T01:23:31",
+    "url": "https://jobright.ai/jobs/info/6aab795fc85610f4a4844c53"
+  },
+  {
+    "id": "4b61a3615d9149b4",
+    "company": "Vanguard",
+    "title": "2027 Spring/Summer Software Engineering Co-op Opportunities",
+    "location": "Dallas, TX; Fort Worth, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-17T01:23:31",
+    "url": "https://jobright.ai/jobs/info/6aab8e0d76707040fb08581c"
   }
 ]
