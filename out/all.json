@@ -44553,5 +44553,41 @@
     "posted": "2026-09-14",
     "scraped_at": "2026-09-18T21:27:47",
     "url": "https://jobright.ai/jobs/info/6aadf070de327d3e210d4af2"
+  },
+  {
+    "id": "e32eb134480fd3d5",
+    "company": "Ericsson",
+    "title": "Software Developer Integrator Intern",
+    "location": "Budapest,Budapest,Hungary",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-19T00:05:11",
+    "url": "https://jobs.ericsson.com/careers/job/563121777196968"
+  },
+  {
+    "id": "c3497c51dc80994f",
+    "company": "Lance",
+    "title": "Software Engineering Intern",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-26",
+    "scraped_at": "2026-09-19T00:05:11",
+    "url": "https://jobright.ai/jobs/info/6aae106dde327d3e210d4f38"
+  },
+  {
+    "id": "05b0a5c3b1205095",
+    "company": "Overlap",
+    "title": "Software Engineering Internship",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-05-26",
+    "scraped_at": "2026-09-19T00:05:11",
+    "url": "https://jobright.ai/jobs/info/6aae117e3dbb1f8967cf0196"
   }
 ]
