@@ -44445,5 +44445,77 @@
     "posted": "2026-09-18",
     "scraped_at": "2026-09-18T16:22:38",
     "url": "https://jobright.ai/jobs/info/6aada57a2e757fcb5c8b9aa4"
+  },
+  {
+    "id": "317ac03300e0cca7",
+    "company": "Bot Auto",
+    "title": "Intern, Software Engineer AI Agents (Fall 2026/Winter 2027)",
+    "location": "Houston, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-18",
+    "scraped_at": "2026-09-18T18:41:49",
+    "url": "https://jobright.ai/jobs/info/6aadd4b40ebc8fb2313eb95a"
+  },
+  {
+    "id": "9797867ea30937a7",
+    "company": "Qualcomm",
+    "title": "FY27 Intern - Firmware/Embedded Software Engineering Internship - Canada (12 or 16 months)",
+    "location": "Toronto, Ontario, Canada",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-09-18T18:41:49",
+    "url": "https://app.eightfold.ai/careers/job/446721141411"
+  },
+  {
+    "id": "866cae0774cd62a9",
+    "company": "Qualcomm",
+    "title": "Machine Learning & Artificial Intelligence Engineering Internship \u2013 Summer 2027",
+    "location": "San Diego, CA; Austin, TX; Boxborough, MA; New Jersey, United States; New York, NY; Raleigh, NC; Santa Clara, CA; Boulder, CO; Bridgewater, NJ; Chandler, AZ; Irvine, CA; Louisville, KY; Seattle, WA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-09-18",
+    "scraped_at": "2026-09-18T18:41:49",
+    "url": "https://jobright.ai/jobs/info/6aadbe19de327d3e210d42a0"
+  },
+  {
+    "id": "b31f5ab6740c413d",
+    "company": "Qualcomm",
+    "title": "Software Engineering Internship - Summer 2027",
+    "location": "San Diego, CA; Austin, TX; Boxborough, MA; New Jersey, United States; Tempe, AZ; Irvine, CA; Louisville, KY; New York, NY; Boulder, CO; Bridgewater, NJ; Chandler, AZ; Raleigh, NC; Santa Clara, CA; Seattle, WA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-09-18",
+    "scraped_at": "2026-09-18T18:41:49",
+    "url": "https://jobright.ai/jobs/info/6aadbe8a2e757fcb5c8ba2ca"
+  },
+  {
+    "id": "6af50b45d367e93d",
+    "company": "Spectrum",
+    "title": "2027 Summer Intern: Software Engineer - P&T",
+    "location": "Maryland Heights, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-18",
+    "scraped_at": "2026-09-18T18:41:49",
+    "url": "https://jobright.ai/jobs/info/6aadd5da0ebc8fb2313eb98d"
+  },
+  {
+    "id": "351cb9e1b28fad98",
+    "company": "SprintRay Inc.",
+    "title": "Software Development Engineer Intern",
+    "location": "Los Angeles, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-18",
+    "scraped_at": "2026-09-18T18:41:49",
+    "url": "https://jobright.ai/jobs/info/6aad99a53d96632d741aedb9"
   }
 ]
