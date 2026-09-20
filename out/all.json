@@ -44985,5 +44985,41 @@
     "posted": "2026-09-20",
     "scraped_at": "2026-09-20T04:47:23",
     "url": "https://jobright.ai/jobs/info/6aafa94f0ebc8fb2313edf36"
+  },
+  {
+    "id": "0e31267900252b29",
+    "company": "IEX",
+    "title": "Data Engineer Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-20",
+    "scraped_at": "2026-09-20T07:43:08",
+    "url": "https://jobright.ai/jobs/info/6aafc3093d96632d741b25de"
+  },
+  {
+    "id": "5947742622e2f4a1",
+    "company": "IEX",
+    "title": "Software Engineer Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-20",
+    "scraped_at": "2026-09-20T07:43:08",
+    "url": "https://jobright.ai/jobs/info/6aafc2ff3d96632d741b25da"
+  },
+  {
+    "id": "477bc9143d2ba12a",
+    "company": "ITERRA",
+    "title": "Computer Science & Computer Vision AI/ML Intern",
+    "location": "Hatillo, PR",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-20",
+    "scraped_at": "2026-09-20T07:43:08",
+    "url": "https://jobright.ai/jobs/info/6aafc2f36956574eac8ba3ed"
   }
 ]
