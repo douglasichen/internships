@@ -45057,5 +45057,29 @@
     "posted": "1d",
     "scraped_at": "2026-09-20T11:20:38",
     "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/rec_rtx_ext_gateway/job/US-CT-WINDSOR-LOCKS-B1--1-Hamilton-Rd--BLDG-1/Software-Project-Engineer-Intern--Summer-2027--Onsite_01872660"
+  },
+  {
+    "id": "e38e3925d2c1c73e",
+    "company": "GenPark",
+    "title": "Full Stack Engineering Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-20",
+    "scraped_at": "2026-09-20T14:02:08",
+    "url": "https://jobright.ai/jobs/info/6ab02fea2e757fcb5c8bd736"
+  },
+  {
+    "id": "da5022c088d0b8ac",
+    "company": "Melissa",
+    "title": "Software Developer Full-time Regular or Paid Internship",
+    "location": "Rancho Santa Margarita, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-20",
+    "scraped_at": "2026-09-20T14:02:08",
+    "url": "https://jobright.ai/jobs/info/6ab01dc0dd960b415641897a"
   }
 ]
