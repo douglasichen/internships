@@ -45081,5 +45081,41 @@
     "posted": "2026-09-20",
     "scraped_at": "2026-09-20T14:02:08",
     "url": "https://jobright.ai/jobs/info/6ab01dc0dd960b415641897a"
+  },
+  {
+    "id": "3a59ba26a3529be9",
+    "company": "Segment",
+    "title": "Software Engineer Intern (January 12th start, 23 weeks)",
+    "location": "Remote - India",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-20T17:46:03",
+    "url": "https://job-boards.greenhouse.io/twilio/jobs/8190887"
+  },
+  {
+    "id": "82395365e0fd3600",
+    "company": "Nvidia",
+    "title": "Software Engineer, Simulation and Virtualization (RDSS Intern)",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-20T17:46:03",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/Software-Engineer--Simulation-and-Virtualization--RDSS-Intern-_JR2025783"
+  },
+  {
+    "id": "d9174814571f2dc2",
+    "company": "General Dynamics",
+    "title": "Intern Engineer - Infrastructure Hardware/Network",
+    "location": "Pittsfield, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-20",
+    "scraped_at": "2026-09-20T17:46:03",
+    "url": "https://jobright.ai/jobs/info/6ab0699f3dbb1f8967cf30b8"
   }
 ]
