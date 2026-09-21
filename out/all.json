@@ -45117,5 +45117,65 @@
     "posted": "2026-09-20",
     "scraped_at": "2026-09-20T17:46:03",
     "url": "https://jobright.ai/jobs/info/6ab0699f3dbb1f8967cf30b8"
+  },
+  {
+    "id": "8da01dce49f09cdd",
+    "company": "Mercury",
+    "title": "Software Engineering Intern - Spring 2027",
+    "location": "San Francisco, CA, New York, NY, Portland, OR, or Remote within Canada or United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-21T01:05:25",
+    "url": "https://job-boards.greenhouse.io/mercury/jobs/6199367004"
+  },
+  {
+    "id": "fd8e75982ecb86a0",
+    "company": "BHAV Acquisition Corp. NASDAQ #BHAVU",
+    "title": "AI / ML Engineering Intern",
+    "location": "Piscataway, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-20",
+    "scraped_at": "2026-09-21T01:05:25",
+    "url": "https://jobright.ai/jobs/info/6ab09c6b2e757fcb5c8be20f"
+  },
+  {
+    "id": "ded6ef05acf1aea3",
+    "company": "Interstates",
+    "title": "Software Developer Intern",
+    "location": "Sioux Center, IA; Sioux Falls, SD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-20",
+    "scraped_at": "2026-09-21T01:05:25",
+    "url": "https://jobright.ai/jobs/info/6ab09d91de327d3e210d82a9"
+  },
+  {
+    "id": "5982e9dc2d197f97",
+    "company": "Northrop Grumman",
+    "title": "2027 Embedded Software Engineer Intern - Baltimore MD",
+    "location": "Baltimore, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-20",
+    "scraped_at": "2026-09-21T01:05:25",
+    "url": "https://jobright.ai/jobs/info/6ab0c2dc3d96632d741b40fa"
+  },
+  {
+    "id": "9c06a4d67de1bfec",
+    "company": "Northrop Grumman",
+    "title": "2027 Embedded Software Engineer Intern - Camarillo CA",
+    "location": "Camarillo, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-17",
+    "scraped_at": "2026-09-21T01:05:25",
+    "url": "https://jobright.ai/jobs/info/6ab076a12e757fcb5c8bdfae"
   }
 ]
