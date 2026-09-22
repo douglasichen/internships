@@ -46077,5 +46077,41 @@
     "posted": "2026-09-21",
     "scraped_at": "2026-09-21T22:37:30",
     "url": "https://jobright.ai/jobs/info/6ab1ecbc191d8c340dbdd393"
+  },
+  {
+    "id": "c12151d77ab22c66",
+    "company": "Amazon",
+    "title": "2027 Software Dev Engineer Intern - Spain",
+    "location": "ES, M, Madrid",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-22T03:13:00",
+    "url": "https://www.amazon.jobs/en/jobs/10555855/2027-software-dev-engineer-intern-spain"
+  },
+  {
+    "id": "ff4a1b3e9da4d938",
+    "company": "Nvidia",
+    "title": "System Software Engineer - USB (RDSS Intern)",
+    "location": "Taiwan, Taipei",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-22T03:13:00",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/System-Software-Engineer---USB--RDSS-Intern-_JR2025914-1"
+  },
+  {
+    "id": "cb42758818edde1e",
+    "company": "CCI Systems",
+    "title": "MTU Career Fair-Software Developer Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-21",
+    "scraped_at": "2026-09-22T03:13:00",
+    "url": "https://jobright.ai/jobs/info/6ab20713d2a93d5a97ebd878"
   }
 ]
