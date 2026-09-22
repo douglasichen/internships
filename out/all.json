@@ -46053,5 +46053,29 @@
     "posted": "2026-09-21",
     "scraped_at": "2026-09-21T20:23:01",
     "url": "https://jobright.ai/jobs/info/6ab1c433d43eb922ca0c0fd8"
+  },
+  {
+    "id": "48943142f414e4fe",
+    "company": "Fujitsu",
+    "title": "Software Engineering Fall Co Op - 1Finity",
+    "location": "Texas, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-20",
+    "scraped_at": "2026-09-21T22:37:30",
+    "url": "https://jobright.ai/jobs/info/6ab1f897d2a93d5a97ebd5a7"
+  },
+  {
+    "id": "c9ce24a23bdabe65",
+    "company": "Scot Forge",
+    "title": "IT Software Development Intern",
+    "location": "Spring Grove, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-21",
+    "scraped_at": "2026-09-21T22:37:30",
+    "url": "https://jobright.ai/jobs/info/6ab1ecbc191d8c340dbdd393"
   }
 ]
