@@ -46113,5 +46113,77 @@
     "posted": "2026-09-21",
     "scraped_at": "2026-09-22T03:13:00",
     "url": "https://jobright.ai/jobs/info/6ab20713d2a93d5a97ebd878"
+  },
+  {
+    "id": "880c91380981dd28",
+    "company": "Snowflake",
+    "title": "Software Engineer Intern - Berlin (2027)",
+    "location": "DE-Berlin-Trion Building",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-22T07:13:42",
+    "url": "https://jobs.ashbyhq.com/snowflake/ab028e3c-c1cf-4455-8915-8e4e6b0cc9e8"
+  },
+  {
+    "id": "16991c0ea25a2ec0",
+    "company": "HAI Group",
+    "title": "Software Development Intern",
+    "location": "Cheshire, CT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-22",
+    "scraped_at": "2026-09-22T07:13:42",
+    "url": "https://jobright.ai/jobs/info/6ab2783a326574570a001112"
+  },
+  {
+    "id": "e924fa4b3e094dd1",
+    "company": "Marvell",
+    "title": "Firmware Engineer Intern",
+    "location": "CA-ON - Toronto - TOR",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-22T07:13:42",
+    "url": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/CA-ON---Toronto---TOR/Firmware-Engineer-Intern_2603751"
+  },
+  {
+    "id": "799f46b446918a8f",
+    "company": "Marvell",
+    "title": "Software/Firmware Engineer Intern",
+    "location": "CA-ON - Toronto - TOR",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-22T07:13:42",
+    "url": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/CA-ON---Toronto---TOR/Software-Firmware-Engineer-Intern_2604053"
+  },
+  {
+    "id": "a1047daebcca2758",
+    "company": "Sprinklr",
+    "title": "ML Intern",
+    "location": "India - Haryana - Gurgaon",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-22T07:13:42",
+    "url": "https://sprinklr.wd1.myworkdayjobs.com/careers/job/India---Haryana---Gurgaon/ML-Intern_113518-JOB"
+  },
+  {
+    "id": "1c2291014ee20c0b",
+    "company": "Tigbourne Capital Ltd",
+    "title": "Private Equity Intern - Software Engineer",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-22",
+    "scraped_at": "2026-09-22T07:13:42",
+    "url": "https://jobright.ai/jobs/info/6ab278cc8254c44790e5556f"
   }
 ]
