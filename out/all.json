@@ -46185,5 +46185,77 @@
     "posted": "2026-09-22",
     "scraped_at": "2026-09-22T07:13:42",
     "url": "https://jobright.ai/jobs/info/6ab278cc8254c44790e5556f"
+  },
+  {
+    "id": "c3609681bfcb0f80",
+    "company": "GE HealthCare",
+    "title": "Full-Stack Software Engineering Intern \u2013 MIM Commercialized Web Applications",
+    "location": "Beachwood, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-21",
+    "scraped_at": "2026-09-22T10:09:53",
+    "url": "https://jobright.ai/jobs/info/6ab28f271e4847ddae914c5b"
+  },
+  {
+    "id": "570ba76e304680c9",
+    "company": "Geneva Trading",
+    "title": "Python Developer Intern",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-22",
+    "scraped_at": "2026-09-22T10:09:53",
+    "url": "https://jobright.ai/jobs/info/6ab2960e78c69ff506c3f106"
+  },
+  {
+    "id": "7b1c1b70400d6119",
+    "company": "KPMG US",
+    "title": "Advisory Intern, Federal Technology Enablement Application Developer/Software Engineer | McLean Summer 2027",
+    "location": "McLean, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-01",
+    "scraped_at": "2026-09-22T10:09:53",
+    "url": "https://jobright.ai/jobs/info/6ab2953a30340229a322e316"
+  },
+  {
+    "id": "60a42560bd011e34",
+    "company": "Optiver",
+    "title": "Software Engineer Co-Op (January - April 2027)",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-09-22",
+    "scraped_at": "2026-09-22T10:09:53",
+    "url": "https://jobright.ai/jobs/info/6ab284ed78c69ff506c3ec4f"
+  },
+  {
+    "id": "7652681b109c5523",
+    "company": "Sanofi",
+    "title": "2027 Spring Co-op Machine Learning AI, Cambridge, MA",
+    "location": "Cambridge, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-21",
+    "scraped_at": "2026-09-22T10:09:53",
+    "url": "https://jobright.ai/jobs/info/6ab293288254c44790e55bad"
+  },
+  {
+    "id": "e00ec53b4bd533e6",
+    "company": "UDig",
+    "title": "Software Engineering Intern",
+    "location": "Nashville, TN; Richmond, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-22",
+    "scraped_at": "2026-09-22T10:09:53",
+    "url": "https://jobright.ai/jobs/info/6ab295251508734c1530a626"
   }
 ]
