@@ -47853,5 +47853,89 @@
     "posted": "2026-09-23",
     "scraped_at": "2026-09-23T14:42:03",
     "url": "https://jobright.ai/jobs/info/6ab426190e0ae54eeea46e6d"
+  },
+  {
+    "id": "6f664c5245278094",
+    "company": "Astranis",
+    "title": "Software Defined Radio Hardware Intern (Summer 2027)",
+    "location": "San Francisco",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-23T18:40:30",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4716088006"
+  },
+  {
+    "id": "58c5d24fba388e4e",
+    "company": "Astranis",
+    "title": "Software Defined Radio Hardware Intern (Winter 2027)",
+    "location": "San Francisco",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-23T18:40:30",
+    "url": "https://job-boards.greenhouse.io/astranis/jobs/4716087006"
+  },
+  {
+    "id": "12611d7139f0e939",
+    "company": "Graphcore",
+    "title": "Firmware Engineering Intern",
+    "location": "Austin, Texas, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-23T18:40:30",
+    "url": "https://job-boards.greenhouse.io/graphcore/jobs/8841894002"
+  },
+  {
+    "id": "4956a244a6a3ffa5",
+    "company": "Ramp",
+    "title": "Software Engineer Internship, Frontend",
+    "location": "New York, NY (HQ)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-23T18:40:30",
+    "url": "https://jobs.ashbyhq.com/ramp/a13ae586-f4cb-4385-8822-c42b9b54ed74"
+  },
+  {
+    "id": "c75e65b0a6f6c772",
+    "company": "Ramp",
+    "title": "Software Engineering Intern, Android",
+    "location": "New York, NY (HQ)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-23T18:40:30",
+    "url": "https://jobs.ashbyhq.com/ramp/fcf118cc-521a-4a62-9d13-945e5b6e3cb8"
+  },
+  {
+    "id": "612883a313460020",
+    "company": "Ramp",
+    "title": "Software Engineering Intern, Backend",
+    "location": "New York, NY (HQ)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-23T18:40:30",
+    "url": "https://jobs.ashbyhq.com/ramp/acf6b28d-767f-483f-8ff2-114620cd7e04"
+  },
+  {
+    "id": "f47978f64605e1b6",
+    "company": "Ramp",
+    "title": "Software Engineering Intern, iOS",
+    "location": "New York, NY (HQ)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-23T18:40:30",
+    "url": "https://jobs.ashbyhq.com/ramp/b66be397-240b-41a6-9b05-493299b270a9"
   }
 ]
