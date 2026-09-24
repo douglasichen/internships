@@ -47937,5 +47937,89 @@
     "posted": "",
     "scraped_at": "2026-09-23T18:40:30",
     "url": "https://jobs.ashbyhq.com/ramp/b66be397-240b-41a6-9b05-493299b270a9"
+  },
+  {
+    "id": "e83408acacad7f98",
+    "company": "Intel",
+    "title": "Intern Systems Software Development Engineer",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-23T23:14:07",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Malaysia-Penang/Intern-Systems-Software-Development-Engineer_JR0286936"
+  },
+  {
+    "id": "92fa1bc04b3a828c",
+    "company": "AMD",
+    "title": "Summer 2027 PhD ML Systems Research Engineering Intern",
+    "location": "Santa Clara, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-09-23",
+    "scraped_at": "2026-09-23T23:14:07",
+    "url": "https://jobright.ai/jobs/info/6ab448e8ef911c35dffa46e6"
+  },
+  {
+    "id": "dc82a80e6063be58",
+    "company": "Cigna Healthcare",
+    "title": "The Cigna Group's Technology Development Program  -  Infrastructure & Cloud Engineering Track Summer Internship",
+    "location": "Bloomfield, CT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-09",
+    "scraped_at": "2026-09-23T23:14:07",
+    "url": "https://jobright.ai/jobs/info/6aa1c8493272060a8e3f2220"
+  },
+  {
+    "id": "d8c87699d3fa9161",
+    "company": "Georgia Tech Research Institute",
+    "title": "Student Intern - Software Developer - Spring 2027 - ASL",
+    "location": "Huntsville, AL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-23",
+    "scraped_at": "2026-09-23T23:14:07",
+    "url": "https://jobright.ai/jobs/info/6ab43c4e0e0ae54eeea47617"
+  },
+  {
+    "id": "a2b1e3ccabe228f9",
+    "company": "Ryzoe",
+    "title": "Trainee (Intern) Full Stack Developer",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-23",
+    "scraped_at": "2026-09-23T23:14:07",
+    "url": "https://jobright.ai/jobs/info/6ab44fae0e0ae54eeea47e6c"
+  },
+  {
+    "id": "24b071a265381685",
+    "company": "SeatGeek",
+    "title": "Software Engineer - Internship",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-23",
+    "scraped_at": "2026-09-23T23:14:07",
+    "url": "https://jobright.ai/jobs/info/6ab43f12ef911c35dffa42b7"
+  },
+  {
+    "id": "56411a8ffba9a9c8",
+    "company": "Tesla",
+    "title": "Internship, Software Engineer Industrial Firmware, Energy Engineering (Winter/Spring 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-09-23",
+    "scraped_at": "2026-09-23T23:14:07",
+    "url": "https://jobright.ai/jobs/info/6ab4818bef911c35dffa56c6"
   }
 ]
