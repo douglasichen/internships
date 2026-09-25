@@ -48801,5 +48801,89 @@
     "posted": "2026-09-24",
     "scraped_at": "2026-09-24T18:43:37",
     "url": "https://jobright.ai/jobs/info/6ab5acde634ec6aa7c0d0e80"
+  },
+  {
+    "id": "94dbc2d0898366e0",
+    "company": "Autodesk",
+    "title": "Intern, Software Development Engineer [PSET - Product Data -\u00a0 Document Management]",
+    "location": "Singapore, SGP",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-25T00:26:02",
+    "url": "https://autodesk.wd1.myworkdayjobs.com/Ext/job/Singapore-SGP/Intern--Software-Development-Engineer--PSET---Product-Data----Document-Management-_26WD100984"
+  },
+  {
+    "id": "dae2f7c5c6f7c2ed",
+    "company": "Autodesk",
+    "title": "Intern, Software Development Engineer [PSET-Access-ENG]",
+    "location": "Singapore, SGP",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-25T00:26:02",
+    "url": "https://autodesk.wd1.myworkdayjobs.com/Ext/job/Singapore-SGP/Intern--Software-Development-Engineer--PSET-Access-ENG-_26WD100985-2"
+  },
+  {
+    "id": "d70f80afc3804fdf",
+    "company": "Autodesk",
+    "title": "Intern, Software Development Engineer [PSET-Connected Delivery]",
+    "location": "Singapore, SGP",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-25T00:26:02",
+    "url": "https://autodesk.wd1.myworkdayjobs.com/Ext/job/Singapore-SGP/Intern--Software-Development-Engineer--PSET-Connected-Delivery-_26WD100995-2"
+  },
+  {
+    "id": "4cc6b558fcce702e",
+    "company": "Autodesk",
+    "title": "Intern, Software Development Engineer [PSET-Localization]",
+    "location": "Singapore, SGP",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-25T00:26:02",
+    "url": "https://autodesk.wd1.myworkdayjobs.com/Ext/job/Singapore-SGP/Intern--Software-Development-Engineer--PSET-Localization-_26WD100997-2"
+  },
+  {
+    "id": "87beae2dec7739d3",
+    "company": "Referrals Only",
+    "title": "Software Procurement Intern",
+    "location": "Gurugram, India",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-23",
+    "scraped_at": "2026-09-25T00:26:02",
+    "url": "https://startup.jobs/software-procurement-intern-referrals-only-10184210"
+  },
+  {
+    "id": "f2a10b6c4beabb5e",
+    "company": "Skyworks Solutions, Inc.",
+    "title": "AI/ML Intern",
+    "location": "Irvine, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-24",
+    "scraped_at": "2026-09-25T00:26:02",
+    "url": "https://jobright.ai/jobs/info/6ab5c15dc6fe0dec811a3423"
+  },
+  {
+    "id": "a0621722607d7b5c",
+    "company": "Toradex",
+    "title": "Intern - Product Manager Software",
+    "location": "Brazil",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-24",
+    "scraped_at": "2026-09-25T00:26:02",
+    "url": "https://startup.jobs/intern-product-manager-software-toradex-10187510"
   }
 ]
