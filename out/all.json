@@ -48945,5 +48945,101 @@
     "posted": "2026-09-25",
     "scraped_at": "2026-09-25T07:36:44",
     "url": "https://jobright.ai/jobs/info/6ab66748b3db59402d1004f4"
+  },
+  {
+    "id": "bf609d5852695747",
+    "company": "Graphcore",
+    "title": "Firmware Engineering Intern",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-09-25T10:44:53",
+    "url": "https://job-boards.greenhouse.io/graphcore-early-careers/jobs/8842203002"
+  },
+  {
+    "id": "77511a310cb69554",
+    "company": "Reflect Orbital",
+    "title": "Ground Software Engineering Intern",
+    "location": "Hawthorne, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "0d",
+    "scraped_at": "2026-09-25T10:44:53",
+    "url": "https://jobs.ashbyhq.com/reflect-orbital/c394615d-26c6-4435-ad84-3ca3269c2952"
+  },
+  {
+    "id": "ddbf7528b97a096f",
+    "company": "Revantage",
+    "title": "Quantitative Developer Intern",
+    "location": "Remote - Illinois, USA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-09-25T10:44:53",
+    "url": "https://revantage.wd1.myworkdayjobs.com/en-US/revantage/job/Remote---Illinois/Quantitative-Developer-Intern_JR104315"
+  },
+  {
+    "id": "40ec5b9f21ee9d5d",
+    "company": "First Citizens Bank",
+    "title": "2027 IT Summer Intern - Software Developer (Raleigh, NC)",
+    "location": "Raleigh, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T10:44:53",
+    "url": "https://jobright.ai/jobs/info/6ab66f774873fd3fd852d3da"
+  },
+  {
+    "id": "8d5b8ea4537b8de7",
+    "company": "Radiance Technologies",
+    "title": "Software Engineer Intern Spring/Summer 2027",
+    "location": "Dayton, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-09-25T10:44:53",
+    "url": "https://radiancetech.wd12.myworkdayjobs.com/en-US/radiance_external/job/Dayton-Office/Software-Engineer-Intern-Spring-Summer-2027_HR102442"
+  },
+  {
+    "id": "160a03bffd6cb741",
+    "company": "Siemens EDA",
+    "title": "Engineering Simulation Software Intern \u2013 UI Automation & QA",
+    "location": "Barcelona, ESP",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-09-25T10:44:53",
+    "url": "https://jobs.sw.siemens.com/engineering-simulation-software-intern-ui-automation-qa/engineering-simulation-software-intern-ui-automation-qa/731399D7E97842A39079D7A05D620140/job/"
+  },
+  {
+    "id": "d53d4e0e628b7af8",
+    "company": "Symbotic",
+    "title": "Co-op - Software Engineer",
+    "location": "Wilmington, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-09-25T10:44:53",
+    "url": "https://symbotic.wd504.myworkdayjobs.com/en-US/symbotic/job/USA-Wilmington--MA---HQ/Co-op---Software-Engineer_R8111"
+  },
+  {
+    "id": "6872061369836087",
+    "company": "Z-Score Health",
+    "title": "ML Intern",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T10:44:53",
+    "url": "https://jobright.ai/jobs/info/6ab693db634ec6aa7c0d3262"
   }
 ]
