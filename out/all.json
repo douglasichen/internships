@@ -48885,5 +48885,29 @@
     "posted": "2026-09-24",
     "scraped_at": "2026-09-25T00:26:02",
     "url": "https://startup.jobs/intern-product-manager-software-toradex-10187510"
+  },
+  {
+    "id": "28e125da99ca0503",
+    "company": "POZzlePiece Inc",
+    "title": "Front& Back end developer intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T04:22:32",
+    "url": "https://jobright.ai/jobs/info/6ab63bd5c6fe0dec811a46a5"
+  },
+  {
+    "id": "390e2040c1c426c8",
+    "company": "Skyworks",
+    "title": "Embedded Firmware Engineer Co-Op (Winter/Spring 2027)",
+    "location": "Hillsboro, OR, USA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-09-25T04:22:32",
+    "url": "https://careers.skyworksinc.com/job/Embedded-Firmware-Engineer-Co-Op-%28WinterSpring-2027%29"
   }
 ]
