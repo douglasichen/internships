@@ -48909,5 +48909,41 @@
     "posted": "",
     "scraped_at": "2026-09-25T04:22:32",
     "url": "https://careers.skyworksinc.com/job/Embedded-Firmware-Engineer-Co-Op-%28WinterSpring-2027%29"
+  },
+  {
+    "id": "6e966bbb08c4d709",
+    "company": "Leidos",
+    "title": "Software Development Intern",
+    "location": "Gaithersburg, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-24",
+    "scraped_at": "2026-09-25T07:36:44",
+    "url": "https://jobright.ai/jobs/info/6ab668a74873fd3fd852d2c9"
+  },
+  {
+    "id": "34dd6e0f59aa2269",
+    "company": "McKinsey & Company",
+    "title": "AI Data Engineer Intern - QuantumBlack, AI by McKinsey",
+    "location": "Atlanta, GA; Boston, MA; Chicago, IL; New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T07:36:44",
+    "url": "https://jobright.ai/jobs/info/6ab66744c6fe0dec811a4aaf"
+  },
+  {
+    "id": "6540d5d88e908698",
+    "company": "McKinsey & Company",
+    "title": "Software Engineer Intern - QuantumBlack, AI by McKinsey",
+    "location": "Atlanta, GA; Boston, MA; Chicago, IL; New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T07:36:44",
+    "url": "https://jobright.ai/jobs/info/6ab66748b3db59402d1004f4"
   }
 ]
