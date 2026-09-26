@@ -49473,5 +49473,101 @@
     "posted": "2026-09-25",
     "scraped_at": "2026-09-25T17:18:07",
     "url": "https://jobright.ai/jobs/info/6ab6f90a81e327c4bf202147"
+  },
+  {
+    "id": "fc198eebd5df31a2",
+    "company": "Epiq",
+    "title": "Software Engineer Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-24",
+    "scraped_at": "2026-09-25T20:14:59",
+    "url": "https://jobright.ai/jobs/info/6ab703d839fd8792cb73d219"
+  },
+  {
+    "id": "e22dbbdab87675ae",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Backend Developer Intern - Austin, TX - 2027",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T20:14:59",
+    "url": "https://jobright.ai/jobs/info/6ab729c881e327c4bf202da4"
+  },
+  {
+    "id": "a01bc4106f7416f2",
+    "company": "Keysight Technologies",
+    "title": "R&D Software Engineer QA DevOps, Intern",
+    "location": "Santa Rosa, CA; San Diego, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T20:14:59",
+    "url": "https://jobright.ai/jobs/info/6ab6fe5fba1c25652c610fe8"
+  },
+  {
+    "id": "3d83d78e8230469b",
+    "company": "Microsoft",
+    "title": "Software Engineer: Intern Opportunities for University Students, Atlanta",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T20:14:59",
+    "url": "https://jobright.ai/jobs/info/6ab707ca39fd8792cb73d289"
+  },
+  {
+    "id": "e1f9ebe1582a4ba7",
+    "company": "Pacific Life",
+    "title": "Summer 2027 Software Engineering Internship",
+    "location": "Newport Beach, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T20:14:59",
+    "url": "https://jobright.ai/jobs/info/6ab700bf3a2ec87116e24f90"
+  },
+  {
+    "id": "ad3fce5bdaba244a",
+    "company": "The Aerospace Corporation",
+    "title": "2027 Cloud Solutions Engineer / Site Reliability Grad Intern",
+    "location": "El Segundo, CA; Chantilly, VA; Colorado Springs, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T20:14:59",
+    "url": "https://jobright.ai/jobs/info/6ab70480ba1c25652c6110ca"
+  },
+  {
+    "id": "127b1001ce39e7ee",
+    "company": "The Aerospace Corporation",
+    "title": "2027 Cloud Solutions Engineer / Site Reliability Undergrad Intern",
+    "location": "El Segundo, CA; Chantilly, VA; Colorado Springs, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T20:14:59",
+    "url": "https://jobright.ai/jobs/info/6ab7053739fd8792cb73d23a"
+  },
+  {
+    "id": "1b495300bdc8e456",
+    "company": "The Aerospace Corporation",
+    "title": "2027 Software Systems Engineer and Acquisition Intern",
+    "location": "El Segundo, CA; Chantilly, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-25T20:14:59",
+    "url": "https://jobright.ai/jobs/info/6ab7053e39fd8792cb73d245"
   }
 ]
