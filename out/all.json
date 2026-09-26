@@ -49593,5 +49593,53 @@
     "posted": "",
     "scraped_at": "2026-09-26T01:35:51",
     "url": "https://nxp.wd3.myworkdayjobs.com/careers/job/Gratkorn/Internship--Software-Application-Developer---Cryptographic-Validation-System--m-f-d-_R-10066725"
+  },
+  {
+    "id": "74e6139aa9406b58",
+    "company": "Aru Labs",
+    "title": "Software Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-26",
+    "scraped_at": "2026-09-26T09:30:57",
+    "url": "https://jobright.ai/jobs/info/6ab7d7c03a2ec87116e2667b"
+  },
+  {
+    "id": "8acbf1138c886750",
+    "company": "General Dynamics Information Technology",
+    "title": "GDIT Summer Internship Program \u2013 Summer 2027 AI/ML Data Science and Engineering Internship",
+    "location": "Bossier City, LA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-26T09:30:57",
+    "url": "https://jobright.ai/jobs/info/6ab7de8162bb1fbd451de5a9"
+  },
+  {
+    "id": "fcdd140f30295bfc",
+    "company": "General Dynamics Information Technology",
+    "title": "GDIT Summer Internship Program \u2013 Summer 2027 AI/ML Software Development and Engineering Internship",
+    "location": "Bossier City, LA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-26T09:30:57",
+    "url": "https://jobright.ai/jobs/info/6ab7de8039fd8792cb73e8db"
+  },
+  {
+    "id": "ad57758803668a60",
+    "company": "TCI Group",
+    "title": "Internship - Embedded Software/Electrical Engineering Intern",
+    "location": "Germantown, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-24",
+    "scraped_at": "2026-09-26T09:30:57",
+    "url": "https://jobright.ai/jobs/info/6ab7ae323a2ec87116e26466"
   }
 ]
