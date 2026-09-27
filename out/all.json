@@ -49737,5 +49737,29 @@
     "posted": "2026-09-18",
     "scraped_at": "2026-09-27T06:24:02",
     "url": "https://startup.jobs/2027-summer-intern-bs-ms-software-engineer-ro-performance-team-release-evaluation-simulation-waymo-10128694"
+  },
+  {
+    "id": "b78b6279398dcc7e",
+    "company": "Elire",
+    "title": "Summer 2027 AI Full Stack Developer Consulting Intern",
+    "location": "Minneapolis, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-09-27T08:48:22",
+    "url": "https://jobright.ai/jobs/info/6ab91b7d3a2ec87116e281d9"
+  },
+  {
+    "id": "608a24da31222128",
+    "company": "Vertiv",
+    "title": "Software Engineering Test Intern (Summer 2027)",
+    "location": "Delaware, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-27",
+    "scraped_at": "2026-09-27T08:48:22",
+    "url": "https://jobright.ai/jobs/info/6ab920e53a2ec87116e28359"
   }
 ]
