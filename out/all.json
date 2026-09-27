@@ -49761,5 +49761,29 @@
     "posted": "2026-09-27",
     "scraped_at": "2026-09-27T08:48:22",
     "url": "https://jobright.ai/jobs/info/6ab920e53a2ec87116e28359"
+  },
+  {
+    "id": "36891d4e8b43cd7e",
+    "company": "AutoStore\u2122",
+    "title": "Co-Op/Intern - Software Engineering",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-13",
+    "scraped_at": "2026-09-27T11:29:11",
+    "url": "https://jobright.ai/jobs/info/6aa6c2f542411952ff9ac56f"
+  },
+  {
+    "id": "94084686dd8b4a15",
+    "company": "ISO New England Inc.",
+    "title": "Student Internship - Cloud Platform Engineering",
+    "location": "Holyoke, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-27",
+    "scraped_at": "2026-09-27T11:29:11",
+    "url": "https://jobright.ai/jobs/info/6ab940d9ba1c25652c6145c5"
   }
 ]
