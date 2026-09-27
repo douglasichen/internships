@@ -49701,5 +49701,41 @@
     "posted": "2026-09-26",
     "scraped_at": "2026-09-26T17:37:50",
     "url": "https://jobright.ai/jobs/info/6ab84b79d7fde2c08ec8c9c0"
+  },
+  {
+    "id": "8390c2cff53dd958",
+    "company": "Bedrock Robotics Inc",
+    "title": "2027 Internship Software Engineer, Fleet Platform",
+    "location": "New York, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-09-27T06:24:02",
+    "url": "https://startup.jobs/2027-internship-software-engineer-fleet-platform-bedrock-robotics-inc-10091486"
+  },
+  {
+    "id": "595fff0daeebea93",
+    "company": "DRW",
+    "title": "Software Developer Intern (Python)",
+    "location": "Singapore",
+    "is_2027": true,
+    "priority": 1,
+    "source": "startupjobs",
+    "posted": "2026-07-13",
+    "scraped_at": "2026-09-27T06:24:02",
+    "url": "https://startup.jobs/software-developer-intern-python-drw-9637723"
+  },
+  {
+    "id": "51193fef54d65613",
+    "company": "Waymo",
+    "title": "2027 Summer Intern, BS/MS, Software Engineer, RO Performance team, Release Evaluation (Simulation)",
+    "location": "Warsaw, Poland",
+    "is_2027": true,
+    "priority": 1,
+    "source": "startupjobs",
+    "posted": "2026-09-18",
+    "scraped_at": "2026-09-27T06:24:02",
+    "url": "https://startup.jobs/2027-summer-intern-bs-ms-software-engineer-ro-performance-team-release-evaluation-simulation-waymo-10128694"
   }
 ]
