@@ -49869,5 +49869,41 @@
     "posted": "2026-09-28",
     "scraped_at": "2026-09-28T05:58:53",
     "url": "https://startup.jobs/associate-software-engineer-intern-monzo-10210158"
+  },
+  {
+    "id": "beeaf01e5de8590d",
+    "company": "Bay Center Foods",
+    "title": "Digital Transformation & Technology Software Engineer Intern, Summer 2027",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-28T08:30:12",
+    "url": "https://jobright.ai/jobs/info/6aba61fdee0b348be7299508"
+  },
+  {
+    "id": "9d8f204eb519e6a4",
+    "company": "Chick-fil-A Corporate Support Center",
+    "title": "Digital Transformation & Technology Software Engineer Intern, Summer 2027",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-28T08:30:12",
+    "url": "https://jobright.ai/jobs/info/6aba6527ad8589219ef7d182"
+  },
+  {
+    "id": "11689635ae485765",
+    "company": "Chick-fil-A Supply",
+    "title": "Digital Transformation & Technology Software Engineer Intern, Summer 2027",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-28T08:30:12",
+    "url": "https://jobright.ai/jobs/info/6aba68babe5f1e9325115531"
   }
 ]
