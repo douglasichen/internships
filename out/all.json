@@ -49857,5 +49857,17 @@
     "posted": "",
     "scraped_at": "2026-09-28T01:11:08",
     "url": "https://www.amazon.jobs/en/jobs/10544261/software-developer-intern-field-innovation-security-search-and-observability-sso"
+  },
+  {
+    "id": "cffefd3f1f2c4309",
+    "company": "Monzo",
+    "title": "Associate Software Engineer - Intern",
+    "location": "London, United Kingdom",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-28T05:58:53",
+    "url": "https://startup.jobs/associate-software-engineer-intern-monzo-10210158"
   }
 ]
