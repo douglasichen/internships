@@ -49905,5 +49905,101 @@
     "posted": "2026-09-28",
     "scraped_at": "2026-09-28T08:30:12",
     "url": "https://jobright.ai/jobs/info/6aba68babe5f1e9325115531"
+  },
+  {
+    "id": "1a892cb346c5aba4",
+    "company": "Cencora",
+    "title": "IT Software Development Intern",
+    "location": "Conshohocken, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-28T11:00:43",
+    "url": "https://jobright.ai/jobs/info/6aba8614ee0b348be7299f2b"
+  },
+  {
+    "id": "dfd6667635ca1bfc",
+    "company": "Cencora",
+    "title": "IT Software Intern",
+    "location": "Conshohocken, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-28T11:00:43",
+    "url": "https://jobright.ai/jobs/info/6aba88e7ad8589219ef7dbef"
+  },
+  {
+    "id": "a506d2b82022f955",
+    "company": "Indiana Farm Bureau Insurance",
+    "title": "Software Engineering Intern - Summer 2027",
+    "location": "Indianapolis, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-28T11:00:43",
+    "url": "https://jobright.ai/jobs/info/6aba83dfd2914e9273eebb1d"
+  },
+  {
+    "id": "fa4f73831481d0e6",
+    "company": "InterDigital, Inc.",
+    "title": "Intern, IT Infrastructure",
+    "location": "Conshohocken, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-28T11:00:43",
+    "url": "https://jobright.ai/jobs/info/6aba73c57220f52e62ae653b"
+  },
+  {
+    "id": "ca13c18ec1fa952f",
+    "company": "OCV, LLC",
+    "title": "Software Eng, Manifest Intern",
+    "location": "Opelika, AL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-28T11:00:43",
+    "url": "https://jobright.ai/jobs/info/6aba85ce7220f52e62ae6b18"
+  },
+  {
+    "id": "5b26df1931d2f395",
+    "company": "RTX",
+    "title": "Flight Control Software Engineering Intern (Summer 2027)",
+    "location": "Cedar Rapids, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-27",
+    "scraped_at": "2026-09-28T11:00:43",
+    "url": "https://jobright.ai/jobs/info/6aba71f41acb8fc6f09bf9ae"
+  },
+  {
+    "id": "4977e0783a5da520",
+    "company": "RouteOne",
+    "title": "Software Engineer Intern - Java - Summer 2027",
+    "location": "Farmington Hills, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-24",
+    "scraped_at": "2026-09-28T11:00:43",
+    "url": "https://jobright.ai/jobs/info/6aba7140ad8589219ef7d41e"
+  },
+  {
+    "id": "999da114da5c88ea",
+    "company": "RouteOne",
+    "title": "Software Engineer Intern -.NET - Summer 2027",
+    "location": "Farmington Hills, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-24",
+    "scraped_at": "2026-09-28T11:00:43",
+    "url": "https://jobright.ai/jobs/info/6aba71507220f52e62ae6465"
   }
 ]
