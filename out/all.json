@@ -49785,5 +49785,65 @@
     "posted": "2026-09-27",
     "scraped_at": "2026-09-27T11:29:11",
     "url": "https://jobright.ai/jobs/info/6ab940d9ba1c25652c6145c5"
+  },
+  {
+    "id": "b88d94f684268ae5",
+    "company": "QuEra Computing Inc.",
+    "title": "Internship - Scientific Software and Compilation",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-27",
+    "scraped_at": "2026-09-27T17:57:20",
+    "url": "https://jobright.ai/jobs/info/6ab98637d7fde2c08ec8e1f6"
+  },
+  {
+    "id": "fc647ce5edba5643",
+    "company": "Micron",
+    "title": "Intern - Front-End Materials Procurement Operations",
+    "location": "Fab 10A, Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-27T18:23:23",
+    "url": "https://micron.wd1.myworkdayjobs.com/External/job/Fab-10A-Singapore/Intern---Front-End-Materials-Procurement-Operations_JR110927"
+  },
+  {
+    "id": "38155112273624bb",
+    "company": "Micron",
+    "title": "Intern - Front-End Materials Procurement Operations",
+    "location": "Fab 10A, Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-27T18:23:23",
+    "url": "https://micron.wd1.myworkdayjobs.com/External/job/Fab-10A-Singapore/Intern---Front-End-Materials-Procurement-Operations_JR110925"
+  },
+  {
+    "id": "8e40b72e0769e583",
+    "company": "Bluegrass Stream",
+    "title": "Intern - Site Reliability Engineering",
+    "location": "O'Fallon, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-27",
+    "scraped_at": "2026-09-27T18:23:23",
+    "url": "https://jobright.ai/jobs/info/6ab9b559ba1c25652c614cfc"
+  },
+  {
+    "id": "01a032e7b944b74e",
+    "company": "Boulder Connect",
+    "title": "Software Engineering Intern - Summer 2027",
+    "location": "North Haven, CT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-27",
+    "scraped_at": "2026-09-27T18:23:23",
+    "url": "https://jobright.ai/jobs/info/6ab9b3753a2ec87116e28b49"
   }
 ]
