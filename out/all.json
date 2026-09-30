@@ -51561,5 +51561,101 @@
     "posted": "2026-09-29",
     "scraped_at": "2026-09-29T20:29:48",
     "url": "https://jobright.ai/jobs/info/6abc5a8f187b1378d873db29"
+  },
+  {
+    "id": "7b6f4146ab1b5651",
+    "company": "Coveo",
+    "title": "Software Developer Intern (Professional Services team), Winter 2027",
+    "location": "Qu\u00e9bec City, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-29T22:56:12",
+    "url": "https://startup.jobs/software-developer-intern-professional-services-team-winter-2027-coveo-10221941"
+  },
+  {
+    "id": "b6859748b32fec0a",
+    "company": "Kratos Defense and Security Solutions",
+    "title": "Rose Hulman Kratos Space Federal Software Internship 2027",
+    "location": "Colorado Springs, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-29",
+    "scraped_at": "2026-09-29T22:56:12",
+    "url": "https://jobright.ai/jobs/info/6abc8016fbb3359bcc7d211f"
+  },
+  {
+    "id": "e0e7bde6474a545d",
+    "company": "ShopBack",
+    "title": "Software Engineer Intern - Mobile",
+    "location": "Ho Chi Minh City, Vietnam",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-29T22:56:12",
+    "url": "https://startup.jobs/software-engineer-intern-mobile-shopbackmy-10223136"
+  },
+  {
+    "id": "04904a8b0a61a3e2",
+    "company": "Tesla",
+    "title": "Internship, Embedded Software Engineer, Vehicle Suspension (Winter/Spring 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-09-29",
+    "scraped_at": "2026-09-29T22:56:12",
+    "url": "https://jobright.ai/jobs/info/6abc90412668e0eab35c27d5"
+  },
+  {
+    "id": "69088d53c28a6425",
+    "company": "TikTok USDS Joint Venture",
+    "title": "Software Engineer Intern (Data Application and Tooling) - 2027 Summer",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-27",
+    "scraped_at": "2026-09-29T22:56:12",
+    "url": "https://jobright.ai/jobs/info/6abc82582668e0eab35c263e"
+  },
+  {
+    "id": "d6daa9979eeea673",
+    "company": "TikTok USDS Joint Venture",
+    "title": "Software Engineer Intern (Data Foundation) - 2027 Summer",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-27",
+    "scraped_at": "2026-09-29T22:56:12",
+    "url": "https://jobright.ai/jobs/info/6abc824c752643de1e5d8537"
+  },
+  {
+    "id": "61064b14338cf37b",
+    "company": "Voyager Technologies, Inc.",
+    "title": "2027 Software Engineering Intern",
+    "location": "Long Beach, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-09-29T22:56:12",
+    "url": "https://startup.jobs/2027-software-engineering-intern-voyager-technologies-inc-10222613"
+  },
+  {
+    "id": "c31b4b99e92fa8ef",
+    "company": "Zipline",
+    "title": "Embedded Software Engineering Intern (Summer 2027)",
+    "location": "South San Francisco, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-08-26",
+    "scraped_at": "2026-09-29T22:56:12",
+    "url": "https://startup.jobs/embedded-software-engineering-intern-summer-2027-zipline-9777880"
   }
 ]
