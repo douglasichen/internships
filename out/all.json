@@ -51657,5 +51657,41 @@
     "posted": "2026-08-26",
     "scraped_at": "2026-09-29T22:56:12",
     "url": "https://startup.jobs/embedded-software-engineering-intern-summer-2027-zipline-9777880"
+  },
+  {
+    "id": "147c609f96a6770e",
+    "company": "Northrop Grumman",
+    "title": "2027 Embedded Software Engineer Intern \u2013 Rolling Meadows IL",
+    "location": "Rolling Meadows, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-29",
+    "scraped_at": "2026-09-30T01:17:05",
+    "url": "https://jobright.ai/jobs/info/6abca21b62033c231d781308"
+  },
+  {
+    "id": "2d27bbb20d7b479d",
+    "company": "Society Insurance",
+    "title": "Software Engineer Intern",
+    "location": "Fond du Lac, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-29",
+    "scraped_at": "2026-09-30T01:17:05",
+    "url": "https://jobright.ai/jobs/info/6abc979562033c231d7811ed"
+  },
+  {
+    "id": "32ceb2b47cb99625",
+    "company": "Tesla",
+    "title": "Internship, Software Developer, Integration Tools (Winter/Spring 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-09-29",
+    "scraped_at": "2026-09-30T01:17:05",
+    "url": "https://jobright.ai/jobs/info/6abc98bb2aed40a9546752cb"
   }
 ]
