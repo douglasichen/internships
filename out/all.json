@@ -52557,5 +52557,77 @@
     "posted": "2026-09-30",
     "scraped_at": "2026-10-01T04:17:19",
     "url": "https://jobright.ai/jobs/info/6abe2a61d9621c5b2838e787"
+  },
+  {
+    "id": "13b696a18d0f5840",
+    "company": "Nvidia",
+    "title": "Performance Software Intern, Deep Learning Libraries - 2027",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-01T07:43:14",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/Performance-Software-Intern--Deep-Learning-Libraries---2027_JR2026171"
+  },
+  {
+    "id": "ed46a432ae2921df",
+    "company": "Zynga",
+    "title": "Mobile Developer Intern (C++)",
+    "location": "Barcelona, Spain",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-01T07:43:14",
+    "url": "https://job-boards.greenhouse.io/zyngacareers/jobs/6212933004"
+  },
+  {
+    "id": "d1994362c5de29be",
+    "company": "General Dynamics",
+    "title": "Software Engineer Intern (2027)",
+    "location": "McLeansville, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-01T07:43:14",
+    "url": "https://jobright.ai/jobs/info/6abe5605064da25272e00463"
+  },
+  {
+    "id": "e400d81882b8a083",
+    "company": "General Dynamics",
+    "title": "Software Engineering Intern",
+    "location": "Canonsburg, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-01T07:43:14",
+    "url": "https://jobright.ai/jobs/info/6abe56034ac55253f5d60134"
+  },
+  {
+    "id": "5f9e196b87dde507",
+    "company": "Hewlett Packard Enterprise",
+    "title": "Embedded Software Engineer Internship",
+    "location": "Heredia, Heredia, Costa Rica",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-01T07:43:14",
+    "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Heredia-Heredia-Costa-Rica/Embedded-Software-Engineer-Internship_1214117"
+  },
+  {
+    "id": "aca2d8a9d1257903",
+    "company": "PrizePicks",
+    "title": "Data & Machine Learning Platform Engineering Internship - Spring 2027",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-01T07:43:14",
+    "url": "https://jobright.ai/jobs/info/6abe5a89d9621c5b2838ee9c"
   }
 ]
