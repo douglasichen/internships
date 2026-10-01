@@ -52461,5 +52461,77 @@
     "posted": "2026-09-30",
     "scraped_at": "2026-09-30T21:35:32",
     "url": "https://jobright.ai/jobs/info/6abdb6a4064da25272dfee8b"
+  },
+  {
+    "id": "82a88c41843cc6de",
+    "company": "Varda Space Industries",
+    "title": "Flight Software Internship - Summer 2027",
+    "location": "El Segundo, California, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-01T00:02:22",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/8010159003"
+  },
+  {
+    "id": "0e50a2bcb1c4071f",
+    "company": "Internship List",
+    "title": "Software Developer Intern, Altitude (Winter/January 2027, 12 Months)",
+    "location": "Oakville, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-02",
+    "scraped_at": "2026-10-01T00:02:22",
+    "url": "https://startup.jobs/software-developer-intern-altitude-winter-january-2027-12-months-internship-list-9868070"
+  },
+  {
+    "id": "98f3fa7275f98837",
+    "company": "RTX",
+    "title": "Summer 2027 Embedded Software Engineering Intern (Onsite)",
+    "location": "East Hartford, CT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-29",
+    "scraped_at": "2026-10-01T00:02:22",
+    "url": "https://jobright.ai/jobs/info/6abde7ebd9621c5b2838df04"
+  },
+  {
+    "id": "258336e773b77aed",
+    "company": "Southwest Airline Career Page",
+    "title": "Summer 2027 Data Engineer Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-30",
+    "scraped_at": "2026-10-01T00:02:22",
+    "url": "https://jobright.ai/jobs/info/6abdf7380e027c0f3b39782e"
+  },
+  {
+    "id": "2a49ff2d1c9b7560",
+    "company": "Southwest Airline Career Page",
+    "title": "Summer 2027 Software Engineer Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-30",
+    "scraped_at": "2026-10-01T00:02:22",
+    "url": "https://jobright.ai/jobs/info/6abdf7184ac55253f5d5f3fc"
+  },
+  {
+    "id": "2a2a17a08f0f2dcc",
+    "company": "Tesla",
+    "title": "Internship, Product Security Engineer (Summer 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-09-30",
+    "scraped_at": "2026-10-01T00:02:22",
+    "url": "https://jobright.ai/jobs/info/6abde316d9621c5b2838de80"
   }
 ]
