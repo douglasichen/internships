@@ -52533,5 +52533,29 @@
     "posted": "2026-09-30",
     "scraped_at": "2026-10-01T00:02:22",
     "url": "https://jobright.ai/jobs/info/6abde316d9621c5b2838de80"
+  },
+  {
+    "id": "d99e78e8bd4b43d9",
+    "company": "Southwest Airlines",
+    "title": "Summer 2027 Data Engineer Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-30",
+    "scraped_at": "2026-10-01T04:17:19",
+    "url": "https://jobright.ai/jobs/info/6abe2a6e372c01f6cd722b79"
+  },
+  {
+    "id": "79eb18d3dcaa9980",
+    "company": "Southwest Airlines",
+    "title": "Summer 2027 Software Engineer Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-30",
+    "scraped_at": "2026-10-01T04:17:19",
+    "url": "https://jobright.ai/jobs/info/6abe2a61d9621c5b2838e787"
   }
 ]
