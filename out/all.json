@@ -52389,5 +52389,77 @@
     "posted": "2026-09-30",
     "scraped_at": "2026-09-30T18:04:45",
     "url": "https://jobright.ai/jobs/info/6abd802f372c01f6cd720ef1"
+  },
+  {
+    "id": "1c00f5212c236639",
+    "company": "Intel",
+    "title": "AI Software Engineering Undergraduate Intern",
+    "location": "Costa Rica, San Jose",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-09-30T21:35:32",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Costa-Rica-San-Jose/AI-Software-Engineering-Undergraduate-Intern_JR0287583"
+  },
+  {
+    "id": "df675d0e47cdf7ad",
+    "company": "Arthrex",
+    "title": "3D Application Developer Intern",
+    "location": "Naples, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-30",
+    "scraped_at": "2026-09-30T21:35:32",
+    "url": "https://jobright.ai/jobs/info/6abdb6964ac55253f5d5eb08"
+  },
+  {
+    "id": "a723be30034aca08",
+    "company": "Paylocity",
+    "title": "Software Engineering Intern",
+    "location": "Pittsford, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-29",
+    "scraped_at": "2026-09-30T21:35:32",
+    "url": "https://jobright.ai/jobs/info/6abdb5cd372c01f6cd721bf1"
+  },
+  {
+    "id": "e1e7650dc537cf90",
+    "company": "Tesla",
+    "title": "Internship, Data Engineer, Data Engineering & Business Intelligence (Winter/Spring2027)",
+    "location": "Fremont, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-09-30",
+    "scraped_at": "2026-09-30T21:35:32",
+    "url": "https://jobright.ai/jobs/info/6abdb895372c01f6cd721cb5"
+  },
+  {
+    "id": "15446174051beb9e",
+    "company": "Texas Farm Bureau Insurance Companies",
+    "title": "Software Developer Intern",
+    "location": "Waco, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-29",
+    "scraped_at": "2026-09-30T21:35:32",
+    "url": "https://jobright.ai/jobs/info/6abdbb484ac55253f5d5ebc7"
+  },
+  {
+    "id": "3a30e15dd8840cd2",
+    "company": "UKG",
+    "title": "Software Engineering Internship - Summer 2027",
+    "location": "Lowell, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-30",
+    "scraped_at": "2026-09-30T21:35:32",
+    "url": "https://jobright.ai/jobs/info/6abdb6a4064da25272dfee8b"
   }
 ]
