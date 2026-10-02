@@ -54153,5 +54153,101 @@
     "posted": "2026-10-01",
     "scraped_at": "2026-10-02T12:15:36",
     "url": "https://jobright.ai/jobs/info/6abfd44c372c01f6cd728e1f"
+  },
+  {
+    "id": "8866b2fcd6d4680f",
+    "company": "xAI",
+    "title": "Spring 2027 Software Engineering Internship/Co-op",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-02T14:36:59",
+    "url": "https://job-boards.greenhouse.io/xai/jobs/5252108007"
+  },
+  {
+    "id": "d453054a084fd473",
+    "company": "xAI",
+    "title": "Summer 2027 Software Engineering Internship/Co-op",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-02T14:36:59",
+    "url": "https://job-boards.greenhouse.io/xai/jobs/5255111007"
+  },
+  {
+    "id": "2d271747c28652be",
+    "company": "Health Care Service Corporation",
+    "title": "Early Careers - Infrastructure Engineer Intern",
+    "location": "Chicago, IL; Richardson, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-02T14:36:59",
+    "url": "https://jobright.ai/jobs/info/6ac014a88ff3fb9b3bc7a8ac"
+  },
+  {
+    "id": "51013dc199e59c75",
+    "company": "Johnson Controls",
+    "title": "Software/Controls Engineering Grad Intern (Fall Intern)",
+    "location": "Salem, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-02T14:36:59",
+    "url": "https://jobright.ai/jobs/info/6ac007cd064da25272e0760e"
+  },
+  {
+    "id": "92614b69b0f1a988",
+    "company": "Lam Research",
+    "title": "2027 Engineering Intern - AI/ML & Tool Innovation (SABRE Electroplating) - Masters/PhD (6 months)",
+    "location": "Tualatin, OR, US",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-02T14:36:59",
+    "url": "https://lamresearch.eightfold.ai/careers/job/1099556323254"
+  },
+  {
+    "id": "95f2618fdbe9d830",
+    "company": "MACOM",
+    "title": "Test Software Developer Intern",
+    "location": "Morgan Hill, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-02",
+    "scraped_at": "2026-10-02T14:36:59",
+    "url": "https://jobright.ai/jobs/info/6ac00f348ff3fb9b3bc7a6ce"
+  },
+  {
+    "id": "287f519c64bf8cc1",
+    "company": "Natera",
+    "title": "Software Engineering Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-02",
+    "scraped_at": "2026-10-02T14:36:59",
+    "url": "https://jobright.ai/jobs/info/6ac003c24ac55253f5d67123"
+  },
+  {
+    "id": "0e2f02e5a7dc3512",
+    "company": "SpaceXAI",
+    "title": "Spring 2027 Software Engineering Internship/Co-op",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-02",
+    "scraped_at": "2026-10-02T14:36:59",
+    "url": "https://jobright.ai/jobs/info/6ac003048ff3fb9b3bc7a2b5"
   }
 ]
