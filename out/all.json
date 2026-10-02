@@ -53649,5 +53649,53 @@
     "posted": "2026-09-10",
     "scraped_at": "2026-10-01T22:12:48",
     "url": "https://jobright.ai/jobs/info/6abf1d07372c01f6cd727444"
+  },
+  {
+    "id": "ff3f60b0441a815c",
+    "company": "HackerRank",
+    "title": "Software Development Engineer Intern",
+    "location": "Bengaluru, India",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-02T00:53:07",
+    "url": "https://startup.jobs/software-development-engineer-intern-hackerrank-10261952"
+  },
+  {
+    "id": "9dc6782ed3370b4b",
+    "company": "Mirakl - Labs",
+    "title": "Software Engineer Intern",
+    "location": "Paris, France",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-02T00:53:07",
+    "url": "https://startup.jobs/software-engineer-intern-mirakl-labs-10262314"
+  },
+  {
+    "id": "cce9f565d0f7eabb",
+    "company": "Profluent",
+    "title": "Intern, Software Engineering",
+    "location": "Emeryville, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-02T00:53:07",
+    "url": "https://jobright.ai/jobs/info/6abf45c6d9621c5b283934f6"
+  },
+  {
+    "id": "9eefdbfe709bdd01",
+    "company": "Tesphase",
+    "title": "Software Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-02T00:53:07",
+    "url": "https://jobright.ai/jobs/info/6abf33aad9621c5b28393329"
   }
 ]
