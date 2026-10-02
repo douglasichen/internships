@@ -53697,5 +53697,29 @@
     "posted": "2026-10-01",
     "scraped_at": "2026-10-02T00:53:07",
     "url": "https://jobright.ai/jobs/info/6abf33aad9621c5b28393329"
+  },
+  {
+    "id": "af8ffaf60442c2c8",
+    "company": "Graphcore",
+    "title": "Machine Learning and Data Science Engineering Intern",
+    "location": "Austin, Texas, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-02T03:46:03",
+    "url": "https://job-boards.greenhouse.io/graphcore/jobs/8862951002"
+  },
+  {
+    "id": "4babff89f07cc0fe",
+    "company": "ShopBack",
+    "title": "Software Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-02",
+    "scraped_at": "2026-10-02T03:46:03",
+    "url": "https://jobright.ai/jobs/info/6abf6d08372c01f6cd727ece"
   }
 ]
