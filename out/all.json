@@ -54489,5 +54489,53 @@
     "posted": "2026-10-02",
     "scraped_at": "2026-10-02T20:47:46",
     "url": "https://jobright.ai/jobs/info/6ac04d374ac55253f5d6879f"
+  },
+  {
+    "id": "2c842378d620b8ca",
+    "company": "HNTB",
+    "title": "Intern - AI Business Process Developer (Summer 2027)",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-03T01:15:46",
+    "url": "https://jobright.ai/jobs/info/6ac0782b4ac55253f5d69087"
+  },
+  {
+    "id": "62b8c4cf5ab9d3b9",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Cloud Infrastructure Network Monitoring and Automation Software Engineer Intern - Austin, TX - 2027",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-03T01:15:46",
+    "url": "https://jobright.ai/jobs/info/6ac07a98372c01f6cd72c22a"
+  },
+  {
+    "id": "f6e91d132afb04dc",
+    "company": "Mirakl - Labs",
+    "title": "Software Engineer Intern - Ads",
+    "location": "Paris, France",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-03T01:15:46",
+    "url": "https://startup.jobs/software-engineer-intern-ads-mirakl-labs-10262311"
+  },
+  {
+    "id": "2162efb037c544ad",
+    "company": "Mirakl - Labs",
+    "title": "Software Engineer Intern - Financial Services",
+    "location": "Paris, France",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-01",
+    "scraped_at": "2026-10-03T01:15:46",
+    "url": "https://startup.jobs/software-engineer-intern-financial-services-mirakl-labs-10262314"
   }
 ]
