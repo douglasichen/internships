@@ -53714,7 +53714,7 @@
     "id": "4babff89f07cc0fe",
     "company": "ShopBack",
     "title": "Software Engineer Intern",
-    "location": "United States",
+    "location": "New York City, NY",
     "is_2027": true,
     "priority": 3,
     "source": "jobright",
@@ -54573,5 +54573,65 @@
     "posted": "2026-10-02",
     "scraped_at": "2026-10-03T07:35:05",
     "url": "https://startup.jobs/software-engineering-intern-arc-boat-company-10281535"
+  },
+  {
+    "id": "f12c8c1ebaa6a327",
+    "company": "IDeaS",
+    "title": "Software Developer in Test Intern",
+    "location": "Bloomington, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-10-03T11:31:10",
+    "url": "https://ideas-sas.icims.com/jobs/42665/software-developer-in-test-intern/job"
+  },
+  {
+    "id": "27ef3e7fca6466d6",
+    "company": "Innovative Defense Technologies",
+    "title": "Software Engineer Intern",
+    "location": "Mount Laurel, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-10-03T11:31:10",
+    "url": "https://idtus.pinpointhq.com/en/postings/20817d1b-bd0e-4aa8-a3d5-78e4614b52a3"
+  },
+  {
+    "id": "4eafc62247ad3ef5",
+    "company": "Innovative Defense Technologies",
+    "title": "Software Engineer Intern",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-10-03T11:31:10",
+    "url": "https://idtus.pinpointhq.com/en/postings/0900a5f2-65d5-4cfa-8b14-b2a58d156d53"
+  },
+  {
+    "id": "e40964c6aa3b101a",
+    "company": "Elevated Web Design",
+    "title": "AI Backend Software Engineering Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-03",
+    "scraped_at": "2026-10-03T11:31:10",
+    "url": "https://jobright.ai/jobs/info/6ac11eef8ff3fb9b3bc7d1a1"
+  },
+  {
+    "id": "5055efa473df16dd",
+    "company": "Northrop Grumman",
+    "title": "2027 Software Engineer Intern - Rolling Meadows IL",
+    "location": "Rolling Meadows, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "3d",
+    "scraped_at": "2026-10-03T11:31:10",
+    "url": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Illinois-Rolling-Meadows/XMLNAME-2027-Software-Engineer-Intern---Rolling-Meadows-IL_R10253772"
   }
 ]
