@@ -54549,5 +54549,29 @@
     "posted": "2026-10-03",
     "scraped_at": "2026-10-03T04:04:48",
     "url": "https://jobright.ai/jobs/info/6ac0ac6ed9621c5b283981ab"
+  },
+  {
+    "id": "eb22bdaad49ccbc0",
+    "company": "Altec",
+    "title": "Information Services Software Development Internship Summer 2027",
+    "location": "Birmingham, AL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-03",
+    "scraped_at": "2026-10-03T07:35:05",
+    "url": "https://jobright.ai/jobs/info/6ac0d7a5064da25272e09bd3"
+  },
+  {
+    "id": "7a32648283f3d4cd",
+    "company": "Arc Boat Company",
+    "title": "Software Engineering Intern",
+    "location": "Torrance, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-02",
+    "scraped_at": "2026-10-03T07:35:05",
+    "url": "https://startup.jobs/software-engineering-intern-arc-boat-company-10281535"
   }
 ]
