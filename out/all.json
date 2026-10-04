@@ -54633,5 +54633,29 @@
     "posted": "3d",
     "scraped_at": "2026-10-03T11:31:10",
     "url": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Illinois-Rolling-Meadows/XMLNAME-2027-Software-Engineer-Intern---Rolling-Meadows-IL_R10253772"
+  },
+  {
+    "id": "38212e7f6171be9a",
+    "company": "Marvell",
+    "title": "Research Intern (PhD), Autonomous Infrastructure and Telemetry",
+    "location": "Hyderabad",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-04T07:24:14",
+    "url": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Hyderabad/Research-Intern--PhD---Autonomous-Infrastructure-and-Telemetry_2604257"
+  },
+  {
+    "id": "37517c3c4ddecf5b",
+    "company": "Seven Research, LLC",
+    "title": "Algorithmic Developer - Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-04",
+    "scraped_at": "2026-10-04T07:24:14",
+    "url": "https://jobright.ai/jobs/info/6a45726148d2f00f2a86d969"
   }
 ]
