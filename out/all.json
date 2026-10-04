@@ -54657,5 +54657,65 @@
     "posted": "2026-10-04",
     "scraped_at": "2026-10-04T07:24:14",
     "url": "https://jobright.ai/jobs/info/6a45726148d2f00f2a86d969"
+  },
+  {
+    "id": "8898b70c6ab381da",
+    "company": "General Motors",
+    "title": "2027 Summer Intern - Software Engineer - AV/AI Platform",
+    "location": "Sunnyvale, CA +1",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-10-04T11:03:11",
+    "url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/careers_gm/job/GM-Automation---Sunnyvale---GM-Automation---Sunnyvale/XMLNAME-2027-Summer-Intern---Software-Engineer--AV-AI-Platform_JR-202621696"
+  },
+  {
+    "id": "df2eccacdfcbf093",
+    "company": "Innovative Defense Technologies",
+    "title": "Software Systems Engineer Intern",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-10-04T11:03:11",
+    "url": "https://idtus.pinpointhq.com/en/postings/0be468fd-19df-4455-b4a2-5c4392574805"
+  },
+  {
+    "id": "13d21c72e3979877",
+    "company": "Innovative Defense Technologies",
+    "title": "Software Systems Engineer Intern",
+    "location": "Mount Laurel, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-10-04T11:03:11",
+    "url": "https://idtus.pinpointhq.com/en/postings/58417813-ec8f-4d3b-9728-40b13c6b358d"
+  },
+  {
+    "id": "476bf5da45b5f2c4",
+    "company": "Revvity",
+    "title": "Software Integration Co-Op - Spring 2027",
+    "location": "Akron, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-10-04T11:03:11",
+    "url": "https://revvity.wd103.myworkdayjobs.com/en-US/external/job/Akron/Software-Integration-Co-Op--Spring-2027-_JR-045618"
+  },
+  {
+    "id": "1375bb92938520bd",
+    "company": "Revvity",
+    "title": "Software Integration Co-Op - Spring 2027",
+    "location": "Akron, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-10-04T11:03:11",
+    "url": "https://revvity.wd103.myworkdayjobs.com/en-US/external/job/Akron/Software-Integration-Co-Op--Spring-2027-_JR-045616"
   }
 ]
