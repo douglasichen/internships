@@ -54741,5 +54741,29 @@
     "posted": "2026-10-02",
     "scraped_at": "2026-10-04T22:29:42",
     "url": "https://jobright.ai/jobs/info/6ac31becd9621c5b2839c421"
+  },
+  {
+    "id": "31e611b9c6abdede",
+    "company": "Microsoft",
+    "title": "Firmware Engineering Internship (6-month Program)",
+    "location": "Santa Clara, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-04",
+    "scraped_at": "2026-10-05T01:14:06",
+    "url": "https://jobright.ai/jobs/info/6ac33eab8ff3fb9b3bc80d1d"
+  },
+  {
+    "id": "a9ee6958910d3a8a",
+    "company": "Taboola",
+    "title": "Software Engineer Intern",
+    "location": "Tel Aviv-Yafo, Israel",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-04",
+    "scraped_at": "2026-10-05T01:14:06",
+    "url": "https://startup.jobs/software-engineer-intern-taboola-10290779"
   }
 ]
