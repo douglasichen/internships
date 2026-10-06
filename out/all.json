@@ -55389,5 +55389,65 @@
     "posted": "2026-10-05",
     "scraped_at": "2026-10-05T16:39:22",
     "url": "https://jobright.ai/jobs/info/6ac3fe810e027c0f3b3a8937"
+  },
+  {
+    "id": "b531f945745a25b4",
+    "company": "Cloudflare",
+    "title": "Software Engineer Intern (2027)",
+    "location": "In-Office",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-05T19:55:39",
+    "url": "https://boards.greenhouse.io/cloudflare/jobs/8245211?gh_jid=8245211"
+  },
+  {
+    "id": "326fe827156874f0",
+    "company": "Cloudflare",
+    "title": "Software Engineer Intern (2027)",
+    "location": "In-Office",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-05T19:55:39",
+    "url": "https://boards.greenhouse.io/cloudflare/jobs/8245197?gh_jid=8245197"
+  },
+  {
+    "id": "b680042d4a0db572",
+    "company": "Hewlett Packard Enterprise",
+    "title": "Infrastructure Deployment Automation Intern",
+    "location": "Bloomington, Minnesota, United States of America",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-05T19:55:39",
+    "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bloomington-Minnesota-United-States-of-America/Infrastructure-Deployment-Automation-Intern_1213406"
+  },
+  {
+    "id": "bca7a16c48e32fd9",
+    "company": "Keysight Technologies",
+    "title": "Enterprise Software Development (EDA Tools) Intern",
+    "location": "Santa Rosa, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-05",
+    "scraped_at": "2026-10-05T19:55:39",
+    "url": "https://jobright.ai/jobs/info/6ac436c54ac55253f5d71b80"
+  },
+  {
+    "id": "4c929d9b4dc28cbb",
+    "company": "Todd",
+    "title": "Frontend Developer Intern (Winter '26)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-05",
+    "scraped_at": "2026-10-05T19:55:39",
+    "url": "https://jobright.ai/jobs/info/6ac44c158ff3fb9b3bc85395"
   }
 ]
