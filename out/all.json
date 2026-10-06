@@ -55449,5 +55449,29 @@
     "posted": "2026-10-05",
     "scraped_at": "2026-10-05T19:55:39",
     "url": "https://jobright.ai/jobs/info/6ac44c158ff3fb9b3bc85395"
+  },
+  {
+    "id": "21c9a282282222be",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "AI/ML Engineer Intern 2027 - SAN JOSE",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-05",
+    "scraped_at": "2026-10-05T22:21:13",
+    "url": "https://jobright.ai/jobs/info/6ac47b380e027c0f3b3ab16b"
+  },
+  {
+    "id": "05fc86fd843eee72",
+    "company": "Root Insurance",
+    "title": "Software Engineer Intern: Agent Commerce",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-05",
+    "scraped_at": "2026-10-05T22:21:13",
+    "url": "https://startup.jobs/software-engineer-intern-agent-commerce-root-insurance-10299397"
   }
 ]
