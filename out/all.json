@@ -55473,5 +55473,29 @@
     "posted": "2026-10-05",
     "scraped_at": "2026-10-05T22:21:13",
     "url": "https://startup.jobs/software-engineer-intern-agent-commerce-root-insurance-10299397"
+  },
+  {
+    "id": "b4fe16ca8f1b8541",
+    "company": "Boston Scientific",
+    "title": "Equipment Engineering Software Engineer Intern",
+    "location": "Arden Hills, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-05",
+    "scraped_at": "2026-10-06T00:35:19",
+    "url": "https://jobright.ai/jobs/info/6ac4813b8ff3fb9b3bc85e25"
+  },
+  {
+    "id": "7c41df164ab06846",
+    "company": "XenonAI",
+    "title": "Software Engineer Intern",
+    "location": "Minneapolis, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-05",
+    "scraped_at": "2026-10-06T00:35:19",
+    "url": "https://jobright.ai/jobs/info/6ac499860e027c0f3b3ab44e"
   }
 ]
