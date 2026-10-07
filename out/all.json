@@ -56541,5 +56541,53 @@
     "posted": "2026-10-06",
     "scraped_at": "2026-10-07T02:29:11",
     "url": "https://jobright.ai/jobs/info/6ac5df94064da25272e18989"
+  },
+  {
+    "id": "a75f352870362c92",
+    "company": "Anduril",
+    "title": "2027 Software Engineer Intern",
+    "location": "London, England, United Kingdom",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-07T05:32:58",
+    "url": "https://boards.greenhouse.io/andurilindustries/jobs/5255902007?gh_jid=5255902007"
+  },
+  {
+    "id": "aa2f8d3654f5c47d",
+    "company": "Autodesk",
+    "title": "Intern, Software Engineer [PDMS-DPM-Engineering]",
+    "location": "Singapore, SGP",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-07T05:32:58",
+    "url": "https://autodesk.wd1.myworkdayjobs.com/Ext/job/Singapore-SGP/Intern--Software-Engineer--PDMS-DPM-Engineering-_26WD101277-1"
+  },
+  {
+    "id": "5bd5ad1ea5d2c78b",
+    "company": "Coveo",
+    "title": "Software Developer Intern (Solutions Engineering Core Team), Winter 2027",
+    "location": "Qu\u00e9bec City, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T05:32:58",
+    "url": "https://startup.jobs/software-developer-intern-solutions-engineering-core-team-winter-2027-coveo-10323163"
+  },
+  {
+    "id": "1038fccf85bf931b",
+    "company": "Raytheon",
+    "title": "Software Engineer Co-op (January 2027)",
+    "location": "Marlborough, MA; Tewksbury, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T05:32:58",
+    "url": "https://jobright.ai/jobs/info/6ac613dad9621c5b283a7660"
   }
 ]
