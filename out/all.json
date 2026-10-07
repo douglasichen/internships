@@ -56397,5 +56397,65 @@
     "posted": "2026-10-06",
     "scraped_at": "2026-10-06T18:31:20",
     "url": "https://jobright.ai/jobs/info/6ac55b69064da25272e167a8"
+  },
+  {
+    "id": "9dfcfd1e550208f0",
+    "company": "Sigma Computing",
+    "title": "AI/ML PhD Intern (Summer 2027)",
+    "location": "New York, New York",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-06T21:18:36",
+    "url": "https://job-boards.greenhouse.io/sigmacomputing/jobs/8015269003"
+  },
+  {
+    "id": "e2c44d5da37c9c58",
+    "company": "Nvidia",
+    "title": "AI Computing Software Development Intern - 2027",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-06T21:18:36",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/China-Shanghai/AI-Computing-Software-Development-Intern---2027_JR2026164"
+  },
+  {
+    "id": "d0764a9016eca8e5",
+    "company": "Amazon",
+    "title": "Software Development Engineer (Embedded Systems) Intern, Amazon Leo - Summer 2027 (USA)",
+    "location": "Redmond, WA; Los Angeles, CA; Sunnyvale, CA; San Diego, CA; Santa Monica, CA; Seattle, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-06T21:18:36",
+    "url": "https://jobright.ai/jobs/info/6ac5aa25372c01f6cd73ae4a"
+  },
+  {
+    "id": "290765efbd8c5b9d",
+    "company": "F5",
+    "title": "Software Development Engineer Intern (San Jose, CA)",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-05",
+    "scraped_at": "2026-10-06T21:18:36",
+    "url": "https://jobright.ai/jobs/info/6ac59d50064da25272e17aee"
+  },
+  {
+    "id": "36c8b3dad51334e1",
+    "company": "Sigma",
+    "title": "AI/ML PhD Intern (Summer 2027)",
+    "location": "New York, NY; San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-06T21:18:36",
+    "url": "https://jobright.ai/jobs/info/6ac5a8590e027c0f3b3afd26"
   }
 ]
