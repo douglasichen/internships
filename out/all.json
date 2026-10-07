@@ -56589,5 +56589,65 @@
     "posted": "2026-10-06",
     "scraped_at": "2026-10-07T05:32:58",
     "url": "https://jobright.ai/jobs/info/6ac613dad9621c5b283a7660"
+  },
+  {
+    "id": "33319ccdc6c10ded",
+    "company": "Intel",
+    "title": "GPU Software Performance Intern",
+    "location": "Poland, Gdansk",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-07T08:34:00",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Poland-Gdansk/GPU-Software-Performance-Intern_JR0287884"
+  },
+  {
+    "id": "dfdf5ebdc5e6a6e3",
+    "company": "Intel",
+    "title": "Intern C++ Developer - Graphics Compute Driver (AI, HPC)",
+    "location": "Poland, Gdansk",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-07T08:34:00",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Poland-Gdansk/Intern-C---Developer---Graphics-Compute-Driver--AI--HPC-_JR0287886"
+  },
+  {
+    "id": "24347a582007fa88",
+    "company": "Jabil",
+    "title": "Computer Systems Analyst Intern",
+    "location": "St. Petersburg, FL; Tampa, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-07T08:34:00",
+    "url": "https://jobright.ai/jobs/info/6ac65446064da25272e19dc6"
+  },
+  {
+    "id": "d4e8d7d26d0fc57e",
+    "company": "Northrop Grumman",
+    "title": "2027 Software Developer Intern- Chantilly VA",
+    "location": "Chantilly, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T08:34:00",
+    "url": "https://jobright.ai/jobs/info/6ac64e504ac55253f5d7973a"
+  },
+  {
+    "id": "114d7b31bbf29859",
+    "company": "S&C Electric Company",
+    "title": "Software Engineer Intern",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-07T08:34:00",
+    "url": "https://jobright.ai/jobs/info/6ac65641d9621c5b283a847f"
   }
 ]
