@@ -56481,5 +56481,65 @@
     "posted": "2026-10-06",
     "scraped_at": "2026-10-06T23:37:06",
     "url": "https://jobright.ai/jobs/info/6ac5d87bd9621c5b283a6ffe"
+  },
+  {
+    "id": "88ac162bdb6593bc",
+    "company": "Flink Robotics",
+    "title": "Forward Deployed Software Engineer (Intern or Recent Graduate)",
+    "location": "Z\u00fcrich, Switzerland",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-08-24",
+    "scraped_at": "2026-10-07T02:29:11",
+    "url": "https://startup.jobs/forward-deployed-software-engineer-intern-or-recent-graduate-flink-robotics-9729196"
+  },
+  {
+    "id": "aebaac30044ed018",
+    "company": "Flink Robotics",
+    "title": "Software Engineer (Intern or Recent Graduate)",
+    "location": "Z\u00fcrich, Switzerland",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T02:29:11",
+    "url": "https://startup.jobs/software-engineer-intern-or-recent-graduate-flink-robotics-10315726"
+  },
+  {
+    "id": "01a9b7abef32d74c",
+    "company": "Tenstorrent",
+    "title": "AI SW Intern, Cloud, Infrastructure & Data Centre Deployment",
+    "location": "Austin, TX; Santa Clara, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-07T02:29:11",
+    "url": "https://jobright.ai/jobs/info/6ac5f31d372c01f6cd73b7e2"
+  },
+  {
+    "id": "39e62cb96d66fa0e",
+    "company": "Tenstorrent",
+    "title": "AI Software Intern",
+    "location": "Austin, TX; Santa Clara, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-07T02:29:11",
+    "url": "https://jobright.ai/jobs/info/6ac5f1fc372c01f6cd73b7da"
+  },
+  {
+    "id": "d5c0b1e5be6ab623",
+    "company": "youbloom",
+    "title": "Laravel Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T02:29:11",
+    "url": "https://jobright.ai/jobs/info/6ac5df94064da25272e18989"
   }
 ]
