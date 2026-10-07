@@ -56457,5 +56457,29 @@
     "posted": "2026-10-06",
     "scraped_at": "2026-10-06T21:18:36",
     "url": "https://jobright.ai/jobs/info/6ac5a8590e027c0f3b3afd26"
+  },
+  {
+    "id": "36e92fc356167935",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "2027 Intern \u2014 Software Developer, AI & Marketing Platforms",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-06T23:37:06",
+    "url": "https://jobright.ai/jobs/info/6ac5c05c8ff3fb9b3bc8b148"
+  },
+  {
+    "id": "b175c72b4d723884",
+    "company": "Todd",
+    "title": "Backend Developer Intern (Fall '26)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-06T23:37:06",
+    "url": "https://jobright.ai/jobs/info/6ac5d87bd9621c5b283a6ffe"
   }
 ]
