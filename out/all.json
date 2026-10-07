@@ -56649,5 +56649,65 @@
     "posted": "2026-10-07",
     "scraped_at": "2026-10-07T08:34:00",
     "url": "https://jobright.ai/jobs/info/6ac65641d9621c5b283a847f"
+  },
+  {
+    "id": "7e3c6ca69cef4e00",
+    "company": "Bose Corporation",
+    "title": "Audio Machine Learning Intern/Co-op",
+    "location": "Framingham, MA; Atlanta, GA; Bloomfield Hills, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T11:13:51",
+    "url": "https://jobright.ai/jobs/info/6ac6750f372c01f6cd73d39d"
+  },
+  {
+    "id": "7e121fe4f8454197",
+    "company": "Bose Corporation",
+    "title": "Embedded Software Engineer Co-op  - Audio Tech",
+    "location": "Framingham, MA; Atlanta, GA; Bloomfield Hills, MI; Troy, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T11:13:51",
+    "url": "https://jobright.ai/jobs/info/6ac67519d9621c5b283a8dd2"
+  },
+  {
+    "id": "168bed4686707061",
+    "company": "IDEMIA",
+    "title": "Software Engineering Internship",
+    "location": "Reston, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-23",
+    "scraped_at": "2026-10-07T11:13:51",
+    "url": "https://jobright.ai/jobs/info/6ac6710f064da25272e1a623"
+  },
+  {
+    "id": "24102ea539ac0ad7",
+    "company": "Mastercard",
+    "title": "Security Infrastructure Engineering & Architecture Intern, Summer 2027 \u2013 Arlington, VA, US",
+    "location": "Arlington, VA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T11:13:51",
+    "url": "https://jobright.ai/jobs/info/6ac6778c0e027c0f3b3b2898"
+  },
+  {
+    "id": "e07accfbfbd0c4f2",
+    "company": "Mensa Philosophical Circle",
+    "title": "Software Engineering Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-07T11:13:51",
+    "url": "https://jobright.ai/jobs/info/6ac66c668ff3fb9b3bc8cfe1"
   }
 ]
