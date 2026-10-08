@@ -57081,5 +57081,77 @@
     "posted": "2026-10-07",
     "scraped_at": "2026-10-07T20:53:51",
     "url": "https://jobright.ai/jobs/info/6ac6e4cb372c01f6cd73f7ea"
+  },
+  {
+    "id": "b5f0ee4f8f4db0bf",
+    "company": "DoorDash",
+    "title": "Software Engineer, Intern - Labs (Summer 2027)",
+    "location": "San Francisco, CA; Sunnyvale, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-08T00:15:00",
+    "url": "https://job-boards.greenhouse.io/doordashusa/jobs/8263774"
+  },
+  {
+    "id": "d624a3603a11a1bf",
+    "company": "Intel",
+    "title": "AI Software Engineering Graduate Intern",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-08T00:15:00",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/PRC-Shanghai/AI-Software-Engineering-Graduate-Intern_JR0287917"
+  },
+  {
+    "id": "d32ef0406cebea95",
+    "company": "Intel",
+    "title": "Firmware and Development Tools Intern",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-08T00:15:00",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/PRC-Shanghai/Firmware-and-Development-Tools-Intern_JR0287536"
+  },
+  {
+    "id": "4457617faeb62c0f",
+    "company": "Tenstorrent University",
+    "title": "AI Software Intern",
+    "location": "Santa Clara, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-08T00:15:00",
+    "url": "https://startup.jobs/ai-software-intern-tenstorrent-university-10333458"
+  },
+  {
+    "id": "b9d9df067bb8aa0c",
+    "company": "Tenstorrent University",
+    "title": "Software Engineering Intern: DC Deployment and Infrastructure",
+    "location": "Warsaw, Poland",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-08T00:15:00",
+    "url": "https://startup.jobs/software-engineering-intern-dc-deployment-and-infrastructure-tenstorrent-university-10333463"
+  },
+  {
+    "id": "52a14f4bbed680f2",
+    "company": "Tenstorrent University",
+    "title": "Software Engineering Intern: Training, Models, Kernel/Ops",
+    "location": "Warsaw, Poland",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-08T00:15:00",
+    "url": "https://startup.jobs/software-engineering-intern-training-models-kernel-ops-tenstorrent-university-10333464"
   }
 ]
