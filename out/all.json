@@ -56937,5 +56937,53 @@
     "posted": "",
     "scraped_at": "2026-10-07T15:03:54",
     "url": "https://edbz.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/25013674"
+  },
+  {
+    "id": "3a71a656d724eb19",
+    "company": "BLOOM Foods",
+    "title": "Software Engineer Intern",
+    "location": "United, WV, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T17:23:21",
+    "url": "https://jobright.ai/jobs/info/6ac6b7de0e027c0f3b3b4050"
+  },
+  {
+    "id": "6b6e91db25a396e1",
+    "company": "Draper",
+    "title": "Operating Systems and Embedded Software Development Co-Op (Spring 2027)",
+    "location": "Cambridge, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T17:23:21",
+    "url": "https://jobright.ai/jobs/info/6ac6cfaed9621c5b283aaf79"
+  },
+  {
+    "id": "ae76d392b908f937",
+    "company": "Motorola Solutions",
+    "title": "GenAI & Machine Learning - 2027 Summer Internship (Chicago Hybrid)",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T17:23:21",
+    "url": "https://jobright.ai/jobs/info/6ac6c349064da25272e1c3a5"
+  },
+  {
+    "id": "2c359067d420a9e0",
+    "company": "The Aerospace Corporation",
+    "title": "2027 Embedded Systems / Software Engineering Undergrad Intern",
+    "location": "Chantilly, VA; El Segundo, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T17:23:21",
+    "url": "https://jobright.ai/jobs/info/6ac6d002064da25272e1c96b"
   }
 ]
