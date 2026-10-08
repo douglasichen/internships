@@ -56985,5 +56985,101 @@
     "posted": "2026-10-06",
     "scraped_at": "2026-10-07T17:23:21",
     "url": "https://jobright.ai/jobs/info/6ac6d002064da25272e1c96b"
+  },
+  {
+    "id": "30ab08a2dc15fc7e",
+    "company": "Amazon",
+    "title": "Data Engineer Internship - 2027 (US)",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-09-17",
+    "scraped_at": "2026-10-07T20:53:51",
+    "url": "https://jobright.ai/jobs/info/6ac6dfaf8ff3fb9b3bc8f747"
+  },
+  {
+    "id": "eb318f212187dd4d",
+    "company": "Axos Bank",
+    "title": "Software Development Intern",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T20:53:51",
+    "url": "https://jobright.ai/jobs/info/6ac6fbc70e027c0f3b3b505f"
+  },
+  {
+    "id": "bdbd9b98581dc60c",
+    "company": "Health Care Service Corporation",
+    "title": "Early Careers - Sr Infrastructure Intern",
+    "location": "Chicago, IL; Richardson, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-07T20:53:51",
+    "url": "https://jobright.ai/jobs/info/6ac6d7e68ff3fb9b3bc8f656"
+  },
+  {
+    "id": "46d4d43038051c81",
+    "company": "Mechvanta Engineering",
+    "title": "Software Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-07T20:53:51",
+    "url": "https://jobright.ai/jobs/info/6ac6fed5d9621c5b283ab6c7"
+  },
+  {
+    "id": "4e9c472ab7d9a0a3",
+    "company": "Powertown",
+    "title": "Machine Learning Engineer, Intern (Term-Time)",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-07T20:53:51",
+    "url": "https://jobright.ai/jobs/info/6ac6fa3e064da25272e1cf8a"
+  },
+  {
+    "id": "4495dd44cda5a571",
+    "company": "Tesla",
+    "title": "Internship, Software Engineer, Build & Simulation Platform (Winter/Spring 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-07T20:53:51",
+    "url": "https://jobright.ai/jobs/info/6ac6f4ab4ac55253f5d7cad2"
+  },
+  {
+    "id": "77f4d729f283680b",
+    "company": "TikTok",
+    "title": "Machine Learning Engineer Intern (E-Commerce Recommendation Live) - 2027 Start (PhD)",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-07T20:53:51",
+    "url": "https://jobright.ai/jobs/info/6ac6e4c10e027c0f3b3b4bf5"
+  },
+  {
+    "id": "698159d4805ea05e",
+    "company": "TikTok",
+    "title": "Machine Learning Engineer Intern (E-Commerce Recommendation Video) - 2027 Start (PhD\uff09",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-07T20:53:51",
+    "url": "https://jobright.ai/jobs/info/6ac6e4cb372c01f6cd73f7ea"
   }
 ]
