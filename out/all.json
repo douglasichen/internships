@@ -57609,5 +57609,65 @@
     "posted": "2026-10-08",
     "scraped_at": "2026-10-08T13:25:22",
     "url": "https://jobright.ai/jobs/info/6ac7e60a51a1b3e4219ef452"
+  },
+  {
+    "id": "8f0b0c6e5a6bcaca",
+    "company": "Amazon",
+    "title": "Systems Development Engineer Intern, (US) 2027",
+    "location": "Bellevue, WA; Washington, DC; Texas, United States; Arizona, United States; Massachusetts, United States",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-08",
+    "scraped_at": "2026-10-08T16:17:14",
+    "url": "https://jobright.ai/jobs/info/6ac814f244d6e65604a05fb1"
+  },
+  {
+    "id": "f3cdb064c8593eb8",
+    "company": "Docusign",
+    "title": "Software Engineer Intern - Observability (Platform)",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-08",
+    "scraped_at": "2026-10-08T16:17:14",
+    "url": "https://jobright.ai/jobs/info/6ac8162a51a1b3e4219f0416"
+  },
+  {
+    "id": "3fbbf00d62f3651b",
+    "company": "EngeniusMicro",
+    "title": "Embedded Systems Intern",
+    "location": "Huntsville, AL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-08T16:17:14",
+    "url": "https://jobright.ai/jobs/info/6ac8189644d6e65604a060b5"
+  },
+  {
+    "id": "cdc65cb743bd4364",
+    "company": "Lockheed Martin",
+    "title": "College Student - Full-Stack Software Engineer Intern",
+    "location": "Fort Worth, TX; Palmdale, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-09",
+    "scraped_at": "2026-10-08T16:17:14",
+    "url": "https://jobright.ai/jobs/info/6ac7f571a444ac5d36f86cce"
+  },
+  {
+    "id": "c9d6ed57f12f6e9e",
+    "company": "Viget",
+    "title": "Software Developer Intern (2027)",
+    "location": "Boulder, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-08",
+    "scraped_at": "2026-10-08T16:17:14",
+    "url": "https://jobright.ai/jobs/info/6ac804cf51a1b3e4219effc5"
   }
 ]
