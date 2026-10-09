@@ -57971,18 +57971,6 @@
     "url": "https://edbz.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/25012948"
   },
   {
-    "id": "447191cab5002915",
-    "company": "Docusign",
-    "title": "Software Engineer Intern",
-    "location": "Seattle, WA",
-    "is_2027": true,
-    "priority": 3,
-    "source": "speedyapply",
-    "posted": "2d",
-    "scraped_at": "2026-10-09T12:41:29",
-    "url": "https://uscareers-docusign.icims.com/jobs/30481/software-engineer-intern/job"
-  },
-  {
     "id": "395c1dfc48872e3a",
     "company": "Faire",
     "title": "Applied AI/ML Scientist, Intern",
@@ -58185,5 +58173,77 @@
     "posted": "2026-09-25",
     "scraped_at": "2026-10-09T12:41:29",
     "url": "https://jobright.ai/jobs/info/6ac91e87fcdafb60c6a4ae34"
+  },
+  {
+    "id": "407ac64e1274dad8",
+    "company": "GlobalFoundries",
+    "title": "Software Engineering Intern (Summer 2027)",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-09T15:06:04",
+    "url": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/Software-Engineering-Intern--Summer-2027-_JR-2604039"
+  },
+  {
+    "id": "0dd70980f01dfd2b",
+    "company": "Arcesium",
+    "title": "Software Engineer Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-09",
+    "scraped_at": "2026-10-09T15:06:04",
+    "url": "https://jobright.ai/jobs/info/6ac93f52af788e6ad3b5aa1a"
+  },
+  {
+    "id": "7ece5554c6110a08",
+    "company": "Federal Reserve Board",
+    "title": "Summer 2027 Intern \u2013 Software Developer \u2013 IT",
+    "location": "Washington, DC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-09",
+    "scraped_at": "2026-10-09T15:06:04",
+    "url": "https://jobright.ai/jobs/info/6ac9401dc3a8af9c54a09e2a"
+  },
+  {
+    "id": "b69e3599c46ca302",
+    "company": "SEPHORA",
+    "title": "Intern, AI/ML Engineering",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-08",
+    "scraped_at": "2026-10-09T15:06:04",
+    "url": "https://jobright.ai/jobs/info/6ac9527dd4a5a03707411e6f"
+  },
+  {
+    "id": "4e8386fb45c72e7b",
+    "company": "SEPHORA",
+    "title": "Intern, Technology, DevOps & Site Reliability Engineering (SRE)",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-08",
+    "scraped_at": "2026-10-09T15:06:04",
+    "url": "https://jobright.ai/jobs/info/6ac95232d4a5a03707411e3c"
+  },
+  {
+    "id": "895da595cb81a488",
+    "company": "Sandisk",
+    "title": "GenAI & AI/ML Engineering Summer Intern",
+    "location": "Milpitas, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-09",
+    "scraped_at": "2026-10-09T15:06:04",
+    "url": "https://jobright.ai/jobs/info/6ac9509fd4a5a03707411d42"
   }
 ]
