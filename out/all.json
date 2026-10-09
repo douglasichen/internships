@@ -57813,5 +57813,41 @@
     "posted": "2026-10-08",
     "scraped_at": "2026-10-09T01:57:46",
     "url": "https://jobright.ai/jobs/info/6ac86eb0af788e6ad3b5781d"
+  },
+  {
+    "id": "20e3aa5f867ccb10",
+    "company": "MongoDB",
+    "title": "2027 - Software Engineer Intern, Dublin - 6 Month Internship",
+    "location": "Dublin",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-09T06:46:21",
+    "url": "https://www.mongodb.com/careers/job/?gh_jid=8258279"
+  },
+  {
+    "id": "71cb489344554a40",
+    "company": "Analog Devices",
+    "title": "Software Development Engineering Intern",
+    "location": "Turkey, Istanbul, Bilisim Vadisi",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-09T06:46:21",
+    "url": "https://analogdevices.wd1.myworkdayjobs.com/External/job/Turkey-Istanbul-Bilisim-Vadisi/Software-Development-Engineering-Intern_R267000-1"
+  },
+  {
+    "id": "78759b8eb77371e1",
+    "company": "Celestica",
+    "title": "Student Intern, Software Engineer Job Details | Celestica International LP",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-09",
+    "scraped_at": "2026-10-09T06:46:21",
+    "url": "https://jobright.ai/jobs/info/6ac8aff66355f8776ff15b4c"
   }
 ]
