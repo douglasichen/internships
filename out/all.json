@@ -58259,18 +58259,6 @@
     "url": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---IT-Software-Engineer_JR113941"
   },
   {
-    "id": "a275d493c79c05b4",
-    "company": "Docusign",
-    "title": "Software Engineer Intern",
-    "location": "Seattle, WA",
-    "is_2027": true,
-    "priority": 3,
-    "source": "speedyapply",
-    "posted": "1d",
-    "scraped_at": "2026-10-10T12:01:14",
-    "url": "https://uscareers-docusign.icims.com/jobs/30509/software-engineer-intern/job"
-  },
-  {
     "id": "0aa765275b44c43a",
     "company": "Enterprise",
     "title": "Intern - Software Analyst - EFM IT - Summer 2027",
@@ -58593,5 +58581,29 @@
     "posted": "2026-10-08",
     "scraped_at": "2026-10-10T12:01:14",
     "url": "https://jobright.ai/jobs/info/6ac9a942a3291db11df049dc"
+  },
+  {
+    "id": "8355bfab983319dd",
+    "company": "Orbitly LLC",
+    "title": "iOS Developer Intern (Unpaid)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-11",
+    "scraped_at": "2026-10-11T12:08:25",
+    "url": "https://jobright.ai/jobs/info/6acbab66e7a1d9333210cd85"
+  },
+  {
+    "id": "bb9863ad4eff097b",
+    "company": "Synopsys",
+    "title": "Software Development & Optimization Internship",
+    "location": "Villeurbanne, France",
+    "is_2027": true,
+    "priority": 2,
+    "source": "startupjobs",
+    "posted": "2026-08-18",
+    "scraped_at": "2026-10-11T12:08:25",
+    "url": "https://startup.jobs/software-development-optimization-internship-synopsys-10389410"
   }
 ]
