@@ -58641,5 +58641,77 @@
     "posted": "2026-10-11",
     "scraped_at": "2026-10-11T21:13:54",
     "url": "https://jobright.ai/jobs/info/6acc4665ddd23cce28a0e5bd"
+  },
+  {
+    "id": "ab07b6491d4158fe",
+    "company": "Eli Lilly and Company",
+    "title": "AI Machine Learning Engineer Intern (BS)",
+    "location": "Indianapolis, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-03",
+    "scraped_at": "2026-10-11T23:43:32",
+    "url": "https://jobright.ai/jobs/info/6acc52b9ddd23cce28a0e707"
+  },
+  {
+    "id": "3c176e348d5aa3a0",
+    "company": "Eli Lilly and Company",
+    "title": "AI Masters ML Engineering Intern",
+    "location": "Indianapolis, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-03",
+    "scraped_at": "2026-10-11T23:43:32",
+    "url": "https://jobright.ai/jobs/info/6acc52cba56e5406e57bd64c"
+  },
+  {
+    "id": "42e186267c7cc77d",
+    "company": "Eli Lilly and Company",
+    "title": "AI PhD Causal Machine Learning and Digital Twins Internship",
+    "location": "Indianapolis, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-03",
+    "scraped_at": "2026-10-11T23:43:32",
+    "url": "https://jobright.ai/jobs/info/6acc52c43c831dc4086be548"
+  },
+  {
+    "id": "ed606a66c5df26b8",
+    "company": "Eli Lilly and Company",
+    "title": "AI PhD ML Engineering Intern",
+    "location": "Indianapolis, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-03",
+    "scraped_at": "2026-10-11T23:43:32",
+    "url": "https://jobright.ai/jobs/info/6acc52bc3c831dc4086be540"
+  },
+  {
+    "id": "c0d3f4300bab053a",
+    "company": "Eli Lilly and Company",
+    "title": "Campus - Study Build Programmer Intern",
+    "location": "Indianapolis, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-24",
+    "scraped_at": "2026-10-11T23:43:32",
+    "url": "https://jobright.ai/jobs/info/6acc52b8002e496d4beee522"
+  },
+  {
+    "id": "12a7cc6af9be0f0d",
+    "company": "Lennar",
+    "title": "Intern - Security Engineer",
+    "location": "Irving, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-04",
+    "scraped_at": "2026-10-11T23:43:32",
+    "url": "https://jobright.ai/jobs/info/6acc5415e7a1d9333210dd47"
   }
 ]
