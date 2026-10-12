@@ -58881,5 +58881,65 @@
     "posted": "2026-09-28",
     "scraped_at": "2026-10-12T12:37:19",
     "url": "https://jobright.ai/jobs/info/6aba61fbee0b348be7299506"
+  },
+  {
+    "id": "f00712d10e46b300",
+    "company": "Intel",
+    "title": "Process Integration Development Engineer PhD Intern New 2027",
+    "location": "US, Oregon, Hillsboro",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-12T14:52:52",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Process-Integration-Development-Engineer-PhD-Intern-New-2027_JR0287977"
+  },
+  {
+    "id": "4d6ad8e0ace8f97c",
+    "company": "Cboe Global Markets",
+    "title": "Software Engineer Intern (C++)",
+    "location": "Kansas City, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-11",
+    "scraped_at": "2026-10-12T14:52:52",
+    "url": "https://jobright.ai/jobs/info/6acd296ba56e5406e57c0012"
+  },
+  {
+    "id": "d6b8fc152e4f0da0",
+    "company": "General Dynamics Information Technology",
+    "title": "2027 Summer Intern - Defense Angencies (AI/ML)",
+    "location": "Falls Church, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-11",
+    "scraped_at": "2026-10-12T14:52:52",
+    "url": "https://jobright.ai/jobs/info/6acd334ee7a1d93332110895"
+  },
+  {
+    "id": "e5271b30623ae068",
+    "company": "Tesla",
+    "title": "Internship, Software Engineer, SI Inference Co Design (Winter/Spring 2027)",
+    "location": "Palo Alto, California",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-12T14:52:52",
+    "url": "https://www.tesla.com/careers/search/job/internship-software-engineer-si-inference-co-design-winter-spring-2027-279600"
+  },
+  {
+    "id": "686e43007f60f28c",
+    "company": "Tesla",
+    "title": "Internship, Software Integration Engineer, Service Tooling (Winter/Spring 2027)",
+    "location": "Fremont, California",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-12T14:52:52",
+    "url": "https://www.tesla.com/careers/search/job/internship-software-integration-engineer-service-tooling-winter-spring-2027-286127"
   }
 ]
