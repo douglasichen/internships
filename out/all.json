@@ -58617,5 +58617,29 @@
     "posted": "2026-10-11",
     "scraped_at": "2026-10-11T17:27:05",
     "url": "https://jobright.ai/jobs/info/6acc0c76a56e5406e57bd051"
+  },
+  {
+    "id": "e9a5df3262784be0",
+    "company": "The Global Institute for Health and Human Rights",
+    "title": "Software Engineer Intern",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-11",
+    "scraped_at": "2026-10-11T21:13:54",
+    "url": "https://jobright.ai/jobs/info/6acc436ee7a1d9333210db48"
+  },
+  {
+    "id": "8274bfa5ae1aa3d9",
+    "company": "Todd",
+    "title": "Full Stack Software Engineer Intern (Fall '26)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-11",
+    "scraped_at": "2026-10-11T21:13:54",
+    "url": "https://jobright.ai/jobs/info/6acc4665ddd23cce28a0e5bd"
   }
 ]
