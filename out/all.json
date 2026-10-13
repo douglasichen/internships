@@ -58941,5 +58941,89 @@
     "posted": "",
     "scraped_at": "2026-10-12T14:52:52",
     "url": "https://www.tesla.com/careers/search/job/internship-software-integration-engineer-service-tooling-winter-spring-2027-286127"
+  },
+  {
+    "id": "d772d8813e83a6b0",
+    "company": "Alphabet (Waymo)",
+    "title": "2027 Summer Intern, BS/MS, Software Engineering, Commercialization",
+    "location": "Warsaw, Poland",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-12T17:47:31",
+    "url": "https://careers.withwaymo.com/jobs?gh_jid=8268204"
+  },
+  {
+    "id": "95af1db979449d06",
+    "company": "Expedia",
+    "title": "Software Development Engineering Intern - 2027 - Austin, San Jose, Seattle",
+    "location": "3 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-12T17:47:31",
+    "url": "https://expedia.wd108.myworkdayjobs.com/search/job/Washington---Seattle-Campus/Software-Development-Engineering-Intern---2027---Austin--San-Jose--Seattle_R-110311-1"
+  },
+  {
+    "id": "0cb18a6e1a95d54c",
+    "company": "Intel",
+    "title": "Student Intern, Collaboration Services System Programmer",
+    "location": "Costa Rica, San Jose",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-12T17:47:31",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Costa-Rica-San-Jose/Student-Intern--Collaboration-Services-System-Programmer_JR0287833"
+  },
+  {
+    "id": "fefbf02e71ada05e",
+    "company": "American Family Insurance",
+    "title": "Summer 2027 Intern - Software Engineering (Hybrid)",
+    "location": "Boston, MA; Madison, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-11",
+    "scraped_at": "2026-10-12T17:47:31",
+    "url": "https://jobright.ai/jobs/info/6acd5d97002e496d4bef2053"
+  },
+  {
+    "id": "97510175ee483201",
+    "company": "Lam Research",
+    "title": "2027 Engineering Intern - AI/ML & Tool Innovation (SABRE Electroplating) - Masters/PhD (6 months) Job Details | Lam Research Corporation",
+    "location": "Tualatin, OR",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-10-12",
+    "scraped_at": "2026-10-12T17:47:31",
+    "url": "https://jobright.ai/jobs/info/6acd49a2a56e5406e57c0a4d"
+  },
+  {
+    "id": "9091597a4281456b",
+    "company": "Raytheon",
+    "title": "2027 Summer/Fall Co-op, AGS Software Engineering (Onsite)",
+    "location": "Cedar Rapids, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-27",
+    "scraped_at": "2026-10-12T17:47:31",
+    "url": "https://jobright.ai/jobs/info/6acd4abaa56e5406e57c0aee"
+  },
+  {
+    "id": "00c883ecf8563f1a",
+    "company": "Seagate Technology",
+    "title": "Research Intern (Summer 2027), ML and Security",
+    "location": "Shakopee, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-12",
+    "scraped_at": "2026-10-12T17:47:31",
+    "url": "https://jobright.ai/jobs/info/6acd4f7ca56e5406e57c0c55"
   }
 ]
