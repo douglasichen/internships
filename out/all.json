@@ -59085,5 +59085,53 @@
     "posted": "2026-10-12",
     "scraped_at": "2026-10-12T20:27:13",
     "url": "https://jobright.ai/jobs/info/6acd9013002e496d4bef2b69"
+  },
+  {
+    "id": "d99ffd169235a435",
+    "company": "BeamSphere",
+    "title": "Software Engineering Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-12",
+    "scraped_at": "2026-10-13T00:19:17",
+    "url": "https://jobright.ai/jobs/info/6acdc2fe09635d4ede00adaa"
+  },
+  {
+    "id": "7d1de45191b4cb16",
+    "company": "Boehringer Ingelheim",
+    "title": "Scientific Software Engineering Co-Op - Computational Chemistry & Spectroscopy",
+    "location": "Ridgefield, CT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-27",
+    "scraped_at": "2026-10-13T00:19:17",
+    "url": "https://jobright.ai/jobs/info/6abad46ad2914e9273eed8ec"
+  },
+  {
+    "id": "5f8e1599a9fab27b",
+    "company": "Siemens Digital Industries Software",
+    "title": "Strategic Student Program: Software Engineering Intern (LCS, Summer 2027)",
+    "location": "State College, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-12",
+    "scraped_at": "2026-10-13T00:19:17",
+    "url": "https://jobright.ai/jobs/info/6acdb44809635d4ede00aafe"
+  },
+  {
+    "id": "8772169a56d995ae",
+    "company": "Siemens EDA",
+    "title": "Strategic Student Program: Software Engineering Intern (LCS, Summer 2027)",
+    "location": "State College, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-13T00:19:17",
+    "url": "https://jobs.sw.siemens.com/strategic-student-program-software-engineering-intern-lcs-summer-2027/strategic-student-program-software-engineering-intern-lcs-summer-2027/BBA0E6E6C4C24211ABEAD4E8E3223C84/job/"
   }
 ]
