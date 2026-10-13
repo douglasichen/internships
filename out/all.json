@@ -59133,5 +59133,29 @@
     "posted": "",
     "scraped_at": "2026-10-13T00:19:17",
     "url": "https://jobs.sw.siemens.com/strategic-student-program-software-engineering-intern-lcs-summer-2027/strategic-student-program-software-engineering-intern-lcs-summer-2027/BBA0E6E6C4C24211ABEAD4E8E3223C84/job/"
+  },
+  {
+    "id": "53c8f04817a6eb68",
+    "company": "Google",
+    "title": "Software Engineering Intern, 2027 (English)",
+    "location": "Singapore",
+    "is_2027": true,
+    "priority": 1,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-13T06:45:51",
+    "url": "https://www.google.com/about/careers/applications/signin?jobId=CiUAL2FckcXbmndK9x9cqjCTovaNke3q7jFIuPIHsrhWOTZRX8oWEjsA9yzvgtGSjMPV6kHnw1loBq4SZKwxDA3cdKfs1K2QFt9gsp_Tj7oRagX13bYl79Lzo7WysUiJp4p9_Q%3D%3D_V2&loc=SG&title=Software+Engineering+Intern"
+  },
+  {
+    "id": "3ce52d86f000a7cc",
+    "company": "MIT Lincoln Laboratory",
+    "title": "Software and Electronics Engineering Intern (Summer 2027) - Group 76",
+    "location": "Lexington, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-17",
+    "scraped_at": "2026-10-13T06:45:51",
+    "url": "https://jobright.ai/jobs/info/6acdf605fe6a382e18bee288"
   }
 ]
