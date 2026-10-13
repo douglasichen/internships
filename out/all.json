@@ -59025,5 +59025,65 @@
     "posted": "2026-10-12",
     "scraped_at": "2026-10-12T17:47:31",
     "url": "https://jobright.ai/jobs/info/6acd4f7ca56e5406e57c0c55"
+  },
+  {
+    "id": "492d68579b3d1367",
+    "company": "Hewlett Packard Enterprise",
+    "title": "Firmware Engineering Intern",
+    "location": "Sunnyvale, California, United States of America",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-12T20:27:13",
+    "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Sunnyvale-California-United-States-of-America/Firmware-Engineering-Intern_1214254"
+  },
+  {
+    "id": "1edfebb79224427c",
+    "company": "Life Fitness  / Hammer Strength",
+    "title": "Android Software Intern",
+    "location": "Schaumburg, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-11",
+    "scraped_at": "2026-10-12T20:27:13",
+    "url": "https://jobright.ai/jobs/info/6acd700ba56e5406e57c148a"
+  },
+  {
+    "id": "594013e6b435eeef",
+    "company": "Life Fitness  / Hammer Strength",
+    "title": "Embedded Software Intern",
+    "location": "Schaumburg, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-11",
+    "scraped_at": "2026-10-12T20:27:13",
+    "url": "https://jobright.ai/jobs/info/6acd7005ddd23cce28a12550"
+  },
+  {
+    "id": "60b8035fa2efd54f",
+    "company": "Reolink",
+    "title": "Java Software Trainee | Internship from 2027",
+    "location": "Singapore",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-12",
+    "scraped_at": "2026-10-12T20:27:13",
+    "url": "https://startup.jobs/java-software-trainee-internship-from-2027-reolink-10410952"
+  },
+  {
+    "id": "7db1cee281180ae5",
+    "company": "Veltrana Group",
+    "title": "Programmer Analyst Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-12",
+    "scraped_at": "2026-10-12T20:27:13",
+    "url": "https://jobright.ai/jobs/info/6acd9013002e496d4bef2b69"
   }
 ]
