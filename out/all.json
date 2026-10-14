@@ -60417,5 +60417,65 @@
     "posted": "2026-10-13",
     "scraped_at": "2026-10-13T22:17:01",
     "url": "https://jobright.ai/jobs/info/6acef2dd680c80c8753bf463"
+  },
+  {
+    "id": "9f7c22e8b644bef8",
+    "company": "Zynga",
+    "title": "Software Engineer Intern - Two Dots",
+    "location": "Barcelona, Spain",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-14T04:03:17",
+    "url": "https://job-boards.greenhouse.io/zyngacareers/jobs/6217991004"
+  },
+  {
+    "id": "9b8c1ccba224c943",
+    "company": "Aureum AI",
+    "title": "Software QA Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-14T04:03:17",
+    "url": "https://jobright.ai/jobs/info/6acf39f6680c80c8753bfe2d"
+  },
+  {
+    "id": "00d142d1eaf9cd00",
+    "company": "Grab",
+    "title": "Intern, Software Engineer",
+    "location": "Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-14T04:03:17",
+    "url": "https://jobs.smartrecruiters.com/Grab/744000155475389"
+  },
+  {
+    "id": "84cc04dd376d9c3a",
+    "company": "Tenstorrent",
+    "title": "Systems Intern - Validation, Software, Design, Architecture & Packaging (USA)",
+    "location": "Austin, TX; Santa Clara, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-14T04:03:17",
+    "url": "https://jobright.ai/jobs/info/6acf449de57eb78d5ec0b27b"
+  },
+  {
+    "id": "1f97721c78ac2dcb",
+    "company": "Vivacity Tech PBC",
+    "title": "Software Development Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-13",
+    "scraped_at": "2026-10-14T04:03:17",
+    "url": "https://jobright.ai/jobs/info/6acf38454f3229123da3f2ff"
   }
 ]
