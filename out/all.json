@@ -60477,5 +60477,41 @@
     "posted": "2026-10-13",
     "scraped_at": "2026-10-14T04:03:17",
     "url": "https://jobright.ai/jobs/info/6acf38454f3229123da3f2ff"
+  },
+  {
+    "id": "b6c7fdc407fb8284",
+    "company": "Guardian",
+    "title": "2027 Guardian Summer Intern, Digital & Technology \u2013 AI & Machine Learning",
+    "location": "New York, NY; Bethlehem, PA; Holmdel, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-05",
+    "scraped_at": "2026-10-14T07:23:49",
+    "url": "https://jobright.ai/jobs/info/6aa7c13b82e82a31997c27af"
+  },
+  {
+    "id": "463fad2e54128fab",
+    "company": "Parsons Corporation",
+    "title": "Software Engineering Intern (Summer 2027)",
+    "location": "Huntsville, AL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-14T07:23:49",
+    "url": "https://jobright.ai/jobs/info/6acf64c9b3384bdb2f887c36"
+  },
+  {
+    "id": "f6efda3154338e88",
+    "company": "Riverside Research",
+    "title": "AI/ML and Remote Sensing Intern",
+    "location": "Fairborn, OH; Dayton, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-14T07:23:49",
+    "url": "https://jobright.ai/jobs/info/6acf7be82cc4e9d17e908a76"
   }
 ]
