@@ -60201,5 +60201,89 @@
     "posted": "2026-10-13",
     "scraped_at": "2026-10-13T17:22:18",
     "url": "https://jobright.ai/jobs/info/6aceaa5c680c80c8753be27a"
+  },
+  {
+    "id": "b40c1e2f8a2c8306",
+    "company": "Brain Co.",
+    "title": "AI Platform Engineer Co-Op Intern, Winter 2027",
+    "location": "San Francisco Bay Area, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-13",
+    "scraped_at": "2026-10-13T19:48:10",
+    "url": "https://jobright.ai/jobs/info/6acecc3c4391691a335ae9eb"
+  },
+  {
+    "id": "6926795818c28ecc",
+    "company": "Brain Co.",
+    "title": "AI Security Engineer Co-Op Intern, Winter 2027",
+    "location": "San Francisco Bay Area, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-13",
+    "scraped_at": "2026-10-13T19:48:10",
+    "url": "https://jobright.ai/jobs/info/6acecc3bbb78de94580d829b"
+  },
+  {
+    "id": "9aebc5e90f19d3d6",
+    "company": "Brain Co.",
+    "title": "Machine Learning Engineer, Applied AI Co-Op Intern, Winter 2027",
+    "location": "San Francisco Bay Area, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-13",
+    "scraped_at": "2026-10-13T19:48:10",
+    "url": "https://jobright.ai/jobs/info/6acecc3aba99f15ef4126db2"
+  },
+  {
+    "id": "838cf1c5bbc3b75b",
+    "company": "KLA",
+    "title": "Computer Vision/Machine Learning Intern",
+    "location": "Milpitas, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-13T19:48:10",
+    "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Computer-Vision-Machine-Learning-Intern_2641921-1"
+  },
+  {
+    "id": "fb131f725d517113",
+    "company": "Microsoft",
+    "title": "Research Intern - Machine Learning and Statistics",
+    "location": "Cambridge, MA; Redmond, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-13",
+    "scraped_at": "2026-10-13T19:48:10",
+    "url": "https://jobright.ai/jobs/info/6acec6454391691a335ae8a3"
+  },
+  {
+    "id": "3866fb99e171c224",
+    "company": "Moody's Analytics",
+    "title": "Platform Software Engineering Summer Intern",
+    "location": "Charlotte, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-12",
+    "scraped_at": "2026-10-13T19:48:10",
+    "url": "https://jobright.ai/jobs/info/6aced19e4f3229123da3e300"
+  },
+  {
+    "id": "b7b41d98943a0fa6",
+    "company": "Moody's Analytics",
+    "title": "Software Engineering Summer Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-12",
+    "scraped_at": "2026-10-13T19:48:10",
+    "url": "https://jobright.ai/jobs/info/6aced195bb78de94580d837a"
   }
 ]
