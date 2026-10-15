@@ -61305,5 +61305,65 @@
     "posted": "2026-10-14",
     "scraped_at": "2026-10-14T21:47:21",
     "url": "https://jobright.ai/jobs/info/6ad04270182a457110264784"
+  },
+  {
+    "id": "ec99d6a068abed85",
+    "company": "Grab",
+    "title": "Intern, Software Engineer - Backend",
+    "location": "Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-15T07:36:43",
+    "url": "https://jobs.smartrecruiters.com/Grab/744000155671079"
+  },
+  {
+    "id": "82156351c0fce831",
+    "company": "KBR, Inc.",
+    "title": "Software Engineering Intern",
+    "location": "Colorado Springs, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-11",
+    "scraped_at": "2026-10-15T07:36:43",
+    "url": "https://jobright.ai/jobs/info/6ad04a3f52a37835d5e3f93b"
+  },
+  {
+    "id": "0b37ad183fbda9f4",
+    "company": "Siemens",
+    "title": "Strategic Student Program: Software Development Intern (PES, Spring 2027)",
+    "location": "Mason, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-15T07:36:43",
+    "url": "https://jobright.ai/jobs/info/6ad0571452a37835d5e3fb58"
+  },
+  {
+    "id": "d94b37befcc95b72",
+    "company": "Taktile",
+    "title": "Software Engineer Internship for HPI Students",
+    "location": "Berlin, Germany",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-15T07:36:43",
+    "url": "https://startup.jobs/software-engineer-internship-for-hpi-students-taktile-10459408"
+  },
+  {
+    "id": "3e5454a7c4969e35",
+    "company": "Tessera Labs",
+    "title": "Software Engineering Intern, Full Stack",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-15T07:36:43",
+    "url": "https://jobright.ai/jobs/info/6ad05bf652a37835d5e3fc68"
   }
 ]
