@@ -61245,5 +61245,65 @@
     "posted": "2026-10-12",
     "scraped_at": "2026-10-14T19:10:41",
     "url": "https://jobright.ai/jobs/info/6ad01eeb2cc4e9d17e90c266"
+  },
+  {
+    "id": "6c0f02631c3345b5",
+    "company": "Siemens EDA",
+    "title": "Strategic Student Program: Software Development Intern (PES, Spring 2027)",
+    "location": "Mason, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-14T21:47:21",
+    "url": "https://jobs.sw.siemens.com/strategic-student-program-software-development-intern-pes-spring-2027/strategic-student-program-software-development-intern-pes-spring-2027/408E4025C60E4D2DB0DDA7A5C7E95656/job/"
+  },
+  {
+    "id": "ac102b4a2f12cc4d",
+    "company": "TikTok",
+    "title": "Machine Learning Engineer Intern (E-Commerce Recommendation Live)- 2027 Summer",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-14T21:47:21",
+    "url": "https://jobright.ai/jobs/info/6ad0445b614121de7d946cad"
+  },
+  {
+    "id": "985c6ecf2ca1af2f",
+    "company": "TikTok",
+    "title": "Machine Learning Engineer Intern (E-Commerce Recommendation Video)- 2027 Summer",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-14T21:47:21",
+    "url": "https://jobright.ai/jobs/info/6ad044f552a37835d5e3f81b"
+  },
+  {
+    "id": "4040ecc2757443ad",
+    "company": "TikTok",
+    "title": "Machine Learning Engineer Intern (E-Commerce Recommendation/Search Alliance) - 2027 Summer",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-14T21:47:21",
+    "url": "https://jobright.ai/jobs/info/6ad043f71db1f75ea469f944"
+  },
+  {
+    "id": "5e7b059f169f6a1e",
+    "company": "TikTok",
+    "title": "Machine Learning Engineer Intern (E-Commerce Supply Chain & Logistics-LLM / Agent )- 2027 Summer",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-14T21:47:21",
+    "url": "https://jobright.ai/jobs/info/6ad04270182a457110264784"
   }
 ]
