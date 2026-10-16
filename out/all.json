@@ -61881,5 +61881,53 @@
     "posted": "2026-10-15",
     "scraped_at": "2026-10-16T00:02:06",
     "url": "https://jobright.ai/jobs/info/6ad1a8d6af5019c7f06233e2"
+  },
+  {
+    "id": "a6faac81122d16fa",
+    "company": "Intel",
+    "title": "Software Engineering Intern",
+    "location": "PRC, Shanghai",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-16T03:36:56",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/PRC-Shanghai/Software-Engineering-Intern_JR0288193"
+  },
+  {
+    "id": "f002d86757b8aecb",
+    "company": "Carrier",
+    "title": "Software Engineering Intern - Summer",
+    "location": "East Syracuse, NY; Syracuse, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-16T03:36:56",
+    "url": "https://jobright.ai/jobs/info/6ad1e3779e2fdc1ecc1c401e"
+  },
+  {
+    "id": "46416b28631ab11b",
+    "company": "Park My Ride, LLC",
+    "title": "Mobile App Developer - Internship (React Native/Kotlin)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T03:36:56",
+    "url": "https://jobright.ai/jobs/info/6ad1dcab6b3a581bc8817949"
+  },
+  {
+    "id": "f0fb8a64fbfae78e",
+    "company": "Wayfair",
+    "title": "Software Engineer Intern",
+    "location": "Bangalore, IND",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-16T03:36:56",
+    "url": "https://wayfair.avature.net/en_US/careers?folderId=20829"
   }
 ]
