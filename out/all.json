@@ -62277,5 +62277,89 @@
     "posted": "2026-10-16",
     "scraped_at": "2026-10-16T11:00:20",
     "url": "https://jobright.ai/jobs/info/6ad2517925289a0b3bf55e22"
+  },
+  {
+    "id": "bba46431a9ca23d6",
+    "company": "Entrust",
+    "title": "Software Engineering Co-op",
+    "location": "Minneapolis, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-16T14:15:07",
+    "url": "https://jobright.ai/jobs/info/6ad26b445290d4375c452e5b"
+  },
+  {
+    "id": "c6cec4858a186b59",
+    "company": "Hadrian Automation",
+    "title": "Software Engineer Intern",
+    "location": "Torrance, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-02",
+    "scraped_at": "2026-10-16T14:15:07",
+    "url": "https://startup.jobs/software-engineer-intern-hadrian-automation-9888840"
+  },
+  {
+    "id": "d1dee22c17d091d6",
+    "company": "JMP",
+    "title": "JMP 2027 Summer Internship: Machine Learning/ C++/AI (Master's/PhD)",
+    "location": "Cary, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T14:15:07",
+    "url": "https://jobright.ai/jobs/info/6ad2640025289a0b3bf56732"
+  },
+  {
+    "id": "1fad92a2d360b7d2",
+    "company": "Microsoft",
+    "title": "Research Intern - Machine Learning at MSR NYC",
+    "location": "New York, NY; Cambridge, MA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T14:15:07",
+    "url": "https://jobright.ai/jobs/info/6ad267e583ada13a9da059d6"
+  },
+  {
+    "id": "fa3e5e76e7909a96",
+    "company": "Ramp",
+    "title": "Software Engineering Intern, Frontend",
+    "location": "New York, United States",
+    "is_2027": true,
+    "priority": 2,
+    "source": "startupjobs",
+    "posted": "2026-09-24",
+    "scraped_at": "2026-10-16T14:15:07",
+    "url": "https://startup.jobs/software-engineering-intern-frontend-ramp-2-10175057"
+  },
+  {
+    "id": "2a2c4a01ad79137e",
+    "company": "Sandia National Laboratories",
+    "title": "Intern, R&D Graduate Summer - Resilient Embedded Systems, Onsite",
+    "location": "Albuquerque, NM",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T14:15:07",
+    "url": "https://jobright.ai/jobs/info/6ad264975290d4375c452bd2"
+  },
+  {
+    "id": "e1da905d781951d1",
+    "company": "Wikimedia Foundation",
+    "title": "Software Engineering Internship Program (2027)",
+    "location": "",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-16T14:15:07",
+    "url": "https://startup.jobs/software-engineering-internship-program-2027-wikimedia-10490637"
   }
 ]
