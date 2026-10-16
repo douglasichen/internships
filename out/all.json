@@ -62361,5 +62361,101 @@
     "posted": "2026-10-15",
     "scraped_at": "2026-10-16T14:15:07",
     "url": "https://startup.jobs/software-engineering-internship-program-2027-wikimedia-10490637"
+  },
+  {
+    "id": "23b8132cf42430c8",
+    "company": "AGCO Corporation",
+    "title": "Embedded Software Engineering Intern - Summer 2027",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T16:39:56",
+    "url": "https://jobright.ai/jobs/info/6ad290ee810010ec72f58c48"
+  },
+  {
+    "id": "58cf545262baa63e",
+    "company": "Assort Health",
+    "title": "Software Engineering Internship (Jan - Apr 2027)",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T16:39:56",
+    "url": "https://jobright.ai/jobs/info/6ad2a5b8c4290cef1412c3a6"
+  },
+  {
+    "id": "14dc5d09c0c186a6",
+    "company": "Bird Rock Systems",
+    "title": "AI Developer Intern",
+    "location": "San Diego, CA; Orange County, CA, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T16:39:56",
+    "url": "https://jobright.ai/jobs/info/6ad2a2c925289a0b3bf57ff6"
+  },
+  {
+    "id": "15c459f34da86233",
+    "company": "Booz Allen Hamilton",
+    "title": "University, Software Engineer Intern",
+    "location": "Fayetteville, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T16:39:56",
+    "url": "https://jobright.ai/jobs/info/6ad297ce5290d4375c4541f3"
+  },
+  {
+    "id": "f536c08bfe1b0a58",
+    "company": "Cisco",
+    "title": "Software Engineer Data & AI PhD (Intern) - United States",
+    "location": "3 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-16T16:39:56",
+    "url": "https://cisco.wd5.myworkdayjobs.com/Cisco_Careers/job/San-Jose-California-US/Software-Engineer-Data---AI-PhD--Intern----United-States_2025611"
+  },
+  {
+    "id": "7a63b776ff1f42fc",
+    "company": "Leonardo DRS",
+    "title": "Senior Technical Intern - Software",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-16T16:39:56",
+    "url": "https://jobright.ai/jobs/info/6ad291155290d4375c453c31"
+  },
+  {
+    "id": "a7670a327b75b497",
+    "company": "Northrop Grumman",
+    "title": "2027 Software Engineering Intern - Aurora CO",
+    "location": "Aurora, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T16:39:56",
+    "url": "https://jobright.ai/jobs/info/6ad28e91c4290cef1412b9b1"
+  },
+  {
+    "id": "22f4fb6774464f89",
+    "company": "Rockwell Automation",
+    "title": "Intern, Firmware Engineering",
+    "location": "Milwaukee, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-16T16:39:56",
+    "url": "https://jobright.ai/jobs/info/6ad2a6ba5290d4375c454559"
   }
 ]
