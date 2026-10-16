@@ -61749,5 +61749,89 @@
     "posted": "2026-10-15",
     "scraped_at": "2026-10-15T19:18:49",
     "url": "https://jobright.ai/jobs/info/6ad165d9e2d41540d4a7090f"
+  },
+  {
+    "id": "827558bb9b98f953",
+    "company": "AiDASH",
+    "title": "Software Engineering Intern, Backend",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-15T21:38:55",
+    "url": "https://jobright.ai/jobs/info/6ad1742fae21edea94fd6389"
+  },
+  {
+    "id": "5de260a9173ccce8",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Back End Developer Intern - NY POK BS - 2027",
+    "location": "Poughkeepsie, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-15T21:38:55",
+    "url": "https://jobright.ai/jobs/info/6ad195f3304865221f2f3dbf"
+  },
+  {
+    "id": "87be913f152e68d0",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Back End Developer Intern - NY POK CC - 2027",
+    "location": "Poughkeepsie, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-15T21:38:55",
+    "url": "https://jobright.ai/jobs/info/6ad19990c24514d0596cd341"
+  },
+  {
+    "id": "9d0113e520eaf88e",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Back End Developer Intern - NY POK JO - 2027",
+    "location": "Poughkeepsie, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-15T21:38:55",
+    "url": "https://jobright.ai/jobs/info/6ad190022cb8316516bb1e6d"
+  },
+  {
+    "id": "6b4be3557ae384b5",
+    "company": "IBM",
+    "title": "z/OS Core Technologies Back End Developer Intern 2027 - Poughkeepsie",
+    "location": "Poughkeepsie, AR",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-15T21:38:55",
+    "url": "https://jobright.ai/jobs/info/6ad18a9e304865221f2f3a05"
+  },
+  {
+    "id": "474fa4213116a0b5",
+    "company": "Microsoft",
+    "title": "Research Intern - Efficient AI Software Systems",
+    "location": "Redmond, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-15T21:38:55",
+    "url": "https://jobright.ai/jobs/info/6ad18435c24514d0596cccaf"
+  },
+  {
+    "id": "25f4ca2cbcb61fa3",
+    "company": "hussh \ud83e\udd2b",
+    "title": "Software Engineering Internship (Mobile, Web, Wallet)",
+    "location": "Seattle, WA; Kirkland, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-15T21:38:55",
+    "url": "https://jobright.ai/jobs/info/6ad17531ae21edea94fd63d0"
   }
 ]
