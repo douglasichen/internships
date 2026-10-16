@@ -61833,5 +61833,53 @@
     "posted": "2026-10-15",
     "scraped_at": "2026-10-15T21:38:55",
     "url": "https://jobright.ai/jobs/info/6ad17531ae21edea94fd63d0"
+  },
+  {
+    "id": "46b82a5da8c0f0d6",
+    "company": "Together AI",
+    "title": "Hardware Security Engineer Intern (Summer 2027)",
+    "location": "San Francisco",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-16T00:02:06",
+    "url": "https://job-boards.greenhouse.io/togetherai/jobs/5238469007"
+  },
+  {
+    "id": "ba00a1435a151a9b",
+    "company": "Axiom Space",
+    "title": "Software Engineering Intern (Summer 2027)",
+    "location": "Houston, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-16T00:02:06",
+    "url": "https://jobright.ai/jobs/info/6ad1a1a8af5019c7f062317a"
+  },
+  {
+    "id": "f1194b00cb16a918",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Back End Developer Intern - NY POK JS - 2027",
+    "location": "Poughkeepsie, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-16T00:02:06",
+    "url": "https://jobright.ai/jobs/info/6ad1a5d5e6141f1ade9a181c"
+  },
+  {
+    "id": "9dfc2d496c95e4c6",
+    "company": "Sandia National Laboratories",
+    "title": "Intern, R&D Graduate Year-Round - Smart Electronics Software - Hybrid",
+    "location": "Albuquerque, NM",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-15",
+    "scraped_at": "2026-10-16T00:02:06",
+    "url": "https://jobright.ai/jobs/info/6ad1a8d6af5019c7f06233e2"
   }
 ]
