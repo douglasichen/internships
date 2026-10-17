@@ -62457,5 +62457,53 @@
     "posted": "2026-10-15",
     "scraped_at": "2026-10-16T16:39:56",
     "url": "https://jobright.ai/jobs/info/6ad2a6ba5290d4375c454559"
+  },
+  {
+    "id": "de311594d0c5a3de",
+    "company": "Kroot",
+    "title": "Software Engineer Intern",
+    "location": "Los Angeles, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T20:01:35",
+    "url": "https://jobright.ai/jobs/info/6ad2b0d083ada13a9da07644"
+  },
+  {
+    "id": "5135449217deca60",
+    "company": "Northrop Grumman",
+    "title": "2027 Software Engineering Intern - Colorado Springs",
+    "location": "Colorado Springs, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-13",
+    "scraped_at": "2026-10-16T20:01:35",
+    "url": "https://jobright.ai/jobs/info/6ad2c9ed5290d4375c454d71"
+  },
+  {
+    "id": "556fea26a8e247cf",
+    "company": "Ryan",
+    "title": "Summer 2027 Intern, Software Development",
+    "location": "Plano, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T20:01:35",
+    "url": "https://jobright.ai/jobs/info/6ad2a7f483ada13a9da07296"
+  },
+  {
+    "id": "61a62cc15b93b915",
+    "company": "Ryan",
+    "title": "Summer 2027 Intern, Software Engineering",
+    "location": "Plano, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-16T20:01:35",
+    "url": "https://jobright.ai/jobs/info/6ad2b4fd5290d4375c454a60"
   }
 ]
