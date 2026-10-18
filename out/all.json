@@ -62889,5 +62889,17 @@
     "posted": "2026-10-18",
     "scraped_at": "2026-10-18T04:17:57",
     "url": "https://jobright.ai/jobs/info/6ad48b1225289a0b3bf5d169"
+  },
+  {
+    "id": "4a09f3671ecfdc66",
+    "company": "Tesla",
+    "title": "Internship, SoC Firmware Engineer, SI Hardware Infrastructure (Winter/Spring 2027)",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-18",
+    "scraped_at": "2026-10-18T07:53:26",
+    "url": "https://jobright.ai/jobs/info/6ad4ae3c810010ec72f5eb0f"
   }
 ]
