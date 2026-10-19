@@ -63201,5 +63201,65 @@
     "posted": "2026-10-19",
     "scraped_at": "2026-10-19T02:06:49",
     "url": "https://jobright.ai/jobs/info/6ad5c274e4b94611ab835b48"
+  },
+  {
+    "id": "f4bed1cfa44420df",
+    "company": "H&R Block",
+    "title": "Embark Software Engineering Intern - S",
+    "location": "Kansas City, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-28",
+    "scraped_at": "2026-10-19T04:21:19",
+    "url": "https://jobright.ai/jobs/info/6ad5edbbe4b94611ab838f86"
+  },
+  {
+    "id": "5ab15276c61f7137",
+    "company": "Johns Hopkins Applied Physics Laboratory",
+    "title": "2027 Internship  \u2013 Artificial Intelligence and Machine Learning (AI/ML) Research Assistant",
+    "location": "Laurel, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-19T04:21:19",
+    "url": "https://jobright.ai/jobs/info/6ad5e7f7950ef68d51833a54"
+  },
+  {
+    "id": "19e3e41d44df4c45",
+    "company": "Johns Hopkins Applied Physics Laboratory",
+    "title": "2027 Internship - Cybersecurity Engineer - Critical Infrastructure Protection",
+    "location": "Laurel, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-10",
+    "scraped_at": "2026-10-19T04:21:19",
+    "url": "https://jobright.ai/jobs/info/6ad5e801e4b94611ab8388f0"
+  },
+  {
+    "id": "8d3edf6699f455a7",
+    "company": "Johns Hopkins Applied Physics Laboratory",
+    "title": "2027 Internship \u2013 Space Exploration Software Engineer \u2013 Embedded Applications",
+    "location": "Laurel, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-25",
+    "scraped_at": "2026-10-19T04:21:19",
+    "url": "https://jobright.ai/jobs/info/6ad5e7e4361c015bf0cfd334"
+  },
+  {
+    "id": "9a5dea37e6ccc617",
+    "company": "Wise",
+    "title": "Software Engineering Intern",
+    "location": "London",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-19T04:21:19",
+    "url": "https://wise.jobs/job/software-engineering-intern-in-london-jid-4355"
   }
 ]
