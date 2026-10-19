@@ -63273,5 +63273,89 @@
     "posted": "",
     "scraped_at": "2026-10-19T06:44:59",
     "url": "https://analogdevices.wd1.myworkdayjobs.com/External/job/Romania-Cluj-Napoca-Decembrie/Embedded-Software-Engineering-Intern_R267119-1"
+  },
+  {
+    "id": "826e1b25bf2fb574",
+    "company": "Intel",
+    "title": "Development Tools Software Engineer Intern (m/f/d)",
+    "location": "Germany, Munich",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-19T09:50:24",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Germany-Munich/Development-Tools-Software-Engineer-Intern--m-f-d-_JR0288205"
+  },
+  {
+    "id": "bf23dbc575ed1779",
+    "company": "NXP Semiconductors",
+    "title": "Machine Learning SW Engineering Intern",
+    "location": "Bucharest",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-19T09:50:24",
+    "url": "https://nxp.wd3.myworkdayjobs.com/careers/job/Bucharest/SW-Engineering-Intern_R-10064054"
+  },
+  {
+    "id": "93103f7b0f68c628",
+    "company": "Bosch",
+    "title": "Software Engineering Co-Op - Spring 2027",
+    "location": "Fountain Inn, SC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T09:50:24",
+    "url": "https://jobright.ai/jobs/info/6ad61792950ef68d518360e5"
+  },
+  {
+    "id": "efe6a5a813e99c18",
+    "company": "Ferrovias",
+    "title": "Software Engineering Intern",
+    "location": "New York, NY; Rochester, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T09:50:24",
+    "url": "https://jobright.ai/jobs/info/6ad6367c54bbabbab06f56c9"
+  },
+  {
+    "id": "3a6fdad56d6e72ca",
+    "company": "Interclypse",
+    "title": "Junior Full Stack Software Engineer (Part-Time/Internship)",
+    "location": "Annapolis Junction, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T09:50:24",
+    "url": "https://jobright.ai/jobs/info/6ad629e2950ef68d51836af2"
+  },
+  {
+    "id": "f67fcbd005ad1735",
+    "company": "Siemens EDA",
+    "title": "AI Software Engineer Intern \u2013 Next-Gen Ops Intelligence",
+    "location": "Rotterdam, NLD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-19T09:50:24",
+    "url": "https://jobs.sw.siemens.com/ai-software-engineer-intern-next-gen-ops-intelligence/ai-software-engineer-intern-next-gen-ops-intelligence/3E1C31B8106C4B829F9DDF3431869CA3/job/"
+  },
+  {
+    "id": "8bc4bac2f638a11c",
+    "company": "nCino",
+    "title": "Summer 2027 - Software Engineer Intern | Lehi, UT",
+    "location": "Lehi, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T09:50:24",
+    "url": "https://jobright.ai/jobs/info/6ad62f3454bbabbab06f534c"
   }
 ]
