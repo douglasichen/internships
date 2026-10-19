@@ -63585,5 +63585,89 @@
     "posted": "2026-10-19",
     "scraped_at": "2026-10-19T13:40:26",
     "url": "https://jobright.ai/jobs/info/6ad63a8a950ef68d5183741d"
+  },
+  {
+    "id": "a0def5d5aa16a204",
+    "company": "Braze",
+    "title": "Intern, Software Engineering",
+    "location": "New York City",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-19T16:47:26",
+    "url": "https://job-boards.greenhouse.io/braze/jobs/8301086"
+  },
+  {
+    "id": "65edda1d25371e0c",
+    "company": "Keysight Technologies",
+    "title": "Intern - Optical Design Software & Automation Engineer (PhD Level)",
+    "location": "Santa Clara, CA; Pasadena, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T16:47:26",
+    "url": "https://jobright.ai/jobs/info/6ad6766b67bec1d0d9c6f1b7"
+  },
+  {
+    "id": "cb482f7a910ed517",
+    "company": "Patreon",
+    "title": "Software Engineering Intern - Summer 2027",
+    "location": "New York, NY; San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T16:47:26",
+    "url": "https://jobright.ai/jobs/info/6ad694d2e4b94611ab840542"
+  },
+  {
+    "id": "cb86afe0f6dabc89",
+    "company": "Societe Generale",
+    "title": "Internship - AI Software Engineer",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T16:47:26",
+    "url": "https://jobright.ai/jobs/info/6ad69210e4b94611ab8403de"
+  },
+  {
+    "id": "88d2659410ba352e",
+    "company": "The Toro Company",
+    "title": "Cloud Software Development Intern - The Toro Company",
+    "location": "Frederick, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-18",
+    "scraped_at": "2026-10-19T16:47:26",
+    "url": "https://jobright.ai/jobs/info/6ad680cd950ef68d5183a984"
+  },
+  {
+    "id": "d2fa6391a2183b6d",
+    "company": "Waymo",
+    "title": "2027 Summer Intern, PhD, Machine Learning - Simulation & Closed-Loop Training",
+    "location": "Mountain View, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T16:47:26",
+    "url": "https://jobright.ai/jobs/info/6ad67d623dc655658d8e6939"
+  },
+  {
+    "id": "08572b8393c13c2a",
+    "company": "Zebra Technologies",
+    "title": "2027 Summer Internship (US) - Software Engineer",
+    "location": "Holtsville, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-18",
+    "scraped_at": "2026-10-19T16:47:26",
+    "url": "https://jobright.ai/jobs/info/6ad683da52aa6152bb6963f8"
   }
 ]
