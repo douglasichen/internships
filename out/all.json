@@ -43511,6 +43511,18 @@
     "url": "https://jobright.ai/jobs/info/6aac36f33e3ce93970c7c5e7"
   },
   {
+    "id": "78ccd8544156b98d",
+    "company": "Keysight Technologies",
+    "title": "R&D Software Engineer, Intern",
+    "location": "Multi Locations: Colorado Springs, CO; Santa Rosa, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-17",
+    "scraped_at": "2026-09-17T17:06:58",
+    "url": "https://jobright.ai/jobs/info/6aac6c753dbb1f8967cea9d1"
+  },
+  {
     "id": "a3a10b45ad24e33e",
     "company": "Acadia Insurance (a Berkley Company)",
     "title": "Data Engineer Intern",
@@ -43617,18 +43629,6 @@
     "posted": "2026-09-17",
     "scraped_at": "2026-09-17T17:06:58",
     "url": "https://jobright.ai/jobs/info/6aac6f503e3ce93970c7d867"
-  },
-  {
-    "id": "78ccd8544156b98d",
-    "company": "Keysight Technologies",
-    "title": "R&D Software Engineer, Intern",
-    "location": "Colorado Springs, CO",
-    "is_2027": true,
-    "priority": 3,
-    "source": "jobright",
-    "posted": "2026-09-17",
-    "scraped_at": "2026-09-17T17:06:58",
-    "url": "https://jobright.ai/jobs/info/6aac6c753dbb1f8967cea9d1"
   },
   {
     "id": "387cc2996039b58b",
@@ -62913,5 +62913,173 @@
     "posted": "2026-10-04",
     "scraped_at": "2026-10-18T12:49:38",
     "url": "https://jobright.ai/jobs/info/6ad5121cf04335fc70edcf7d"
+  },
+  {
+    "id": "06393cd1ebdbe1b9",
+    "company": "Tower Research Capital",
+    "title": "Software Engineer, C++ - 6 Month Internship Opportunity",
+    "location": "Singapore",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://www.tower-research.com/open-positions/?gh_jid=8299894"
+  },
+  {
+    "id": "850ed7cd487795fd",
+    "company": "AGCO",
+    "title": "Embedded Software Engineer Intern",
+    "location": "Hesston, KS; Jackson, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 16",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://careers.agcocorp.com/job/Hesston-Embedded-Software-Engineering-Intern-Summer-2027-KS-67062/1440993300/?ats=successfactors&utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "bccd5a4bdaa6252d",
+    "company": "AgZen",
+    "title": "Software Engineering Co-op",
+    "location": "Somerville, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://startup.jobs/software-engineering-co-op-agzen-10496891"
+  },
+  {
+    "id": "74d0c2a33523bb27",
+    "company": "Apple",
+    "title": "SoC Machine Learning Software Engineer Intern",
+    "location": "Sunnyvale, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Oct 15",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://jobs.apple.com/en-us/details/200689488?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "82e66cb106f101e2",
+    "company": "Doctolib",
+    "title": "Software Engineer Intern - Fullstack (x/f/m) - Berlin - March 2027",
+    "location": "Berlin, Germany",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-12",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://startup.jobs/software-engineer-intern-fullstack-x-f-m-berlin-march-2027-doctolib-2-10424915"
+  },
+  {
+    "id": "f772a7615d32eeb5",
+    "company": "Eaton",
+    "title": "C++ Developer Intern, Research & Development Engineering",
+    "location": "Brossard, QC, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 16",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://eaton.eightfold.ai/careers/job/687239542740?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "ce0094234f2aab57",
+    "company": "Figure",
+    "title": "Embedded Software Engineering Intern [Winter 2027]",
+    "location": "San Jose, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://startup.jobs/embedded-software-engineering-intern-winter-2027-figure-2-10458625"
+  },
+  {
+    "id": "75180c68d0b449ac",
+    "company": "HCSC",
+    "title": "Finance Application Developer Intern",
+    "location": "Chicago, IL; Richardson, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 16",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://hcsc.wd1.myworkdayjobs.com/en-US/HCSC_External/job/IL---Chicago/Early-Careers---Finance-Application-Developer-Intern_R0059477?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "61d01f688a33fc68",
+    "company": "HCSC",
+    "title": "Finance Data & Analytics Developer Intern",
+    "location": "Chicago, IL; Richardson, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 16",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://hcsc.wd1.myworkdayjobs.com/en-US/HCSC_External/job/IL---Chicago/Early-Careers---Finance-Data---Analytics-Developer-Intern_R0059478?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "d89593bfb0d247da",
+    "company": "HeyGen",
+    "title": "Software Engineer Intern (Winter 2027)",
+    "location": "Los Angeles, CA; San Francisco, CA; Toronto, ON; Singapore",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-18",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://jobright.ai/jobs/info/6ad55d9ef04335fc70edd859"
+  },
+  {
+    "id": "4e28239b8cd2f4e9",
+    "company": "John Deere",
+    "title": "Software Engineering Intern, Technology",
+    "location": "Ames, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 16",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://johndeere.eightfold.ai/careers/job/137483908089?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "264ef6e9b382792f",
+    "company": "Kepler Communications",
+    "title": "Software Engineering Intern (January 2027)",
+    "location": "Toronto, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-16",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://startup.jobs/software-engineering-intern-january-2027-keplercomms-10498802"
+  },
+  {
+    "id": "3c8fa3ebee32cc30",
+    "company": "RcruitLync",
+    "title": "Machine Learning Intern",
+    "location": "Dover, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-18",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://jobright.ai/jobs/info/6ad59e54c4290cef14133b5a"
+  },
+  {
+    "id": "2dda8cc837a4f2d8",
+    "company": "Venture Lark",
+    "title": "Programmer Analyst Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-18",
+    "scraped_at": "2026-10-18T23:06:45",
+    "url": "https://jobright.ai/jobs/info/6ad5a124810010ec72f60cbc"
   }
 ]
