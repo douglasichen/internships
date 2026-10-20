@@ -63861,5 +63861,89 @@
     "posted": "2026-10-19",
     "scraped_at": "2026-10-20T06:19:53",
     "url": "https://jobright.ai/jobs/info/6ad27923f04335fc70ed5c44"
+  },
+  {
+    "id": "c79c85a07b9cf6f5",
+    "company": "Graphcore",
+    "title": "Firmware Summer Intern 2027",
+    "location": "Bristol, UK",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T08:38:52",
+    "url": "https://job-boards.greenhouse.io/graphcore/jobs/8894770002"
+  },
+  {
+    "id": "94abf48749ba0762",
+    "company": "Intel",
+    "title": "AI Software Development Intern",
+    "location": "Poland, Gdansk",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T08:38:52",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Poland-Gdansk/AI-Software-Development-Intern_JR0288225"
+  },
+  {
+    "id": "a0cfddff8583c08f",
+    "company": "Intel",
+    "title": "DevOps Software Engineering Intern",
+    "location": "Poland, Gdansk",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T08:38:52",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Poland-Gdansk/DevOps-Software-Engineering-Intern_JR0288210"
+  },
+  {
+    "id": "30ef598c08eba278",
+    "company": "Ciena",
+    "title": "Software Engineer (Security) - Intern (Winter 2027)",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-20T08:38:52",
+    "url": "https://jobright.ai/jobs/info/6ad7731b67bec1d0d9c7542b"
+  },
+  {
+    "id": "2b90a2815f70a6d1",
+    "company": "Space Dynamics Laboratory",
+    "title": "Agile Software Test Engineering Intern",
+    "location": "North Logan, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T08:38:52",
+    "url": "https://jobright.ai/jobs/info/6ad77304e4b94611ab8450a6"
+  },
+  {
+    "id": "d301a359ac8d89fe",
+    "company": "TalentRise Solutions",
+    "title": "Programmer Analyst Intern",
+    "location": "Waller, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T08:38:52",
+    "url": "https://jobright.ai/jobs/info/6ad771fb3dc655658d8ec488"
+  },
+  {
+    "id": "b179ff3c5d7aa046",
+    "company": "Texas Instruments",
+    "title": "Software Engineering Intern - Compiler",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T08:38:52",
+    "url": "https://edbz.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/25019103"
   }
 ]
