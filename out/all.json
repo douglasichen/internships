@@ -63669,5 +63669,89 @@
     "posted": "2026-10-18",
     "scraped_at": "2026-10-19T16:47:26",
     "url": "https://jobright.ai/jobs/info/6ad683da52aa6152bb6963f8"
+  },
+  {
+    "id": "0f3a3d922652f6c2",
+    "company": "Intel",
+    "title": "Intern Systems Software Development Engineer",
+    "location": "Vietnam, Ho_Chi_Minh_City",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-19T19:46:04",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Vietnam-Ho_Chi_Minh_City/Intern-Systems-Software-Development-Engineer_JR0288313"
+  },
+  {
+    "id": "27ed7a6c030b9c09",
+    "company": "Palantir",
+    "title": "Software Engineer, Internship - Query Engines",
+    "location": "London, United Kingdom",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-19T19:46:04",
+    "url": "https://jobs.lever.co/palantir/3e59369e-1392-42f2-8d03-86648e87e963"
+  },
+  {
+    "id": "0b781e0e480fa581",
+    "company": "Palantir",
+    "title": "Software Engineer, Internship - Query Engines",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-19T19:46:04",
+    "url": "https://jobs.lever.co/palantir/da774f81-c98c-4dcf-9b9c-949fd7d90a13"
+  },
+  {
+    "id": "844a02c99f4a1606",
+    "company": "Arcafeed",
+    "title": "Software Engineer Intern",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T19:46:04",
+    "url": "https://jobright.ai/jobs/info/6ad6bdf454bbabbab06faf32"
+  },
+  {
+    "id": "ff71fa32fa4fac38",
+    "company": "Dassault Syst\u00e8mes",
+    "title": "INTERNSHIP: User Experience Tools Developer",
+    "location": "Waltham, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T19:46:04",
+    "url": "https://jobright.ai/jobs/info/6ad6a96654bbabbab06fa80d"
+  },
+  {
+    "id": "8bae1f8b537949fb",
+    "company": "FlightSafety International",
+    "title": "Data Engineer Internship - Summer 2027",
+    "location": "Columbus, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T19:46:04",
+    "url": "https://jobright.ai/jobs/info/6ad6ad2f950ef68d5183c356"
+  },
+  {
+    "id": "d5ec2e0eb5590956",
+    "company": "Ricoh USA, Inc.",
+    "title": "Applied Machine Learning and AI Engineering Intern",
+    "location": "Boulder, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T19:46:04",
+    "url": "https://jobright.ai/jobs/info/6ad6b3763dc655658d8e88a4"
   }
 ]
