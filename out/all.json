@@ -63753,5 +63753,29 @@
     "posted": "2026-10-19",
     "scraped_at": "2026-10-19T19:46:04",
     "url": "https://jobright.ai/jobs/info/6ad6b3763dc655658d8e88a4"
+  },
+  {
+    "id": "c65c1dc7f05cca0f",
+    "company": "General Dynamics",
+    "title": "Intern Engineer (Electrical or Firmware)",
+    "location": "Annapolis Junction, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T22:27:20",
+    "url": "https://jobright.ai/jobs/info/6ad6e40552aa6152bb698e6a"
+  },
+  {
+    "id": "cea93d120e46fbbc",
+    "company": "Park My Ride, LLC",
+    "title": "Full-Stack Developer - Internship (React Native/Kotlin)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-19T22:27:20",
+    "url": "https://jobright.ai/jobs/info/6ad6d46ae4b94611ab841f48"
   }
 ]
