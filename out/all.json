@@ -63813,5 +63813,53 @@
     "posted": "",
     "scraped_at": "2026-10-20T03:52:18",
     "url": "https://job-boards.greenhouse.io/graphcore/jobs/8894965002"
+  },
+  {
+    "id": "3fd6a3aa1fda8871",
+    "company": "Graphcore",
+    "title": "Software Engineer Summer Intern, AI Compute Libraries & Performance 2027",
+    "location": "Bristol, UK",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T06:19:53",
+    "url": "https://job-boards.greenhouse.io/graphcore/jobs/8894868002"
+  },
+  {
+    "id": "0e83f5224e995184",
+    "company": "Graphcore",
+    "title": "Software Engineering Summer Intern, Drivers and Utilities 2027",
+    "location": "Bristol, UK",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T06:19:53",
+    "url": "https://job-boards.greenhouse.io/graphcore/jobs/8894376002"
+  },
+  {
+    "id": "3876e3be8230bcfc",
+    "company": "General Dynamics Mission Systems",
+    "title": "Intern Engineer (Electrical or Firmware)",
+    "location": "Annapolis Junction, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T06:19:53",
+    "url": "https://jobright.ai/jobs/info/6ad74ccd52aa6152bb69aa93"
+  },
+  {
+    "id": "db30f0f3410372bd",
+    "company": "SpaceX Super Intelligence",
+    "title": "Summer 2027 Software Engineering Internship/Co-op",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-20T06:19:53",
+    "url": "https://jobright.ai/jobs/info/6ad27923f04335fc70ed5c44"
   }
 ]
