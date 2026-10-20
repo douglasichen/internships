@@ -63777,5 +63777,17 @@
     "posted": "2026-10-19",
     "scraped_at": "2026-10-19T22:27:20",
     "url": "https://jobright.ai/jobs/info/6ad6d46ae4b94611ab841f48"
+  },
+  {
+    "id": "d888b2464033934e",
+    "company": "Intel",
+    "title": "AI Software Engineer Intern",
+    "location": "PRC, Shanghai",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T01:10:04",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/PRC-Shanghai/AI-Software-Engineer-Intern_JR0288261"
   }
 ]
