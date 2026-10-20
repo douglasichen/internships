@@ -64245,5 +64245,101 @@
     "posted": "19d",
     "scraped_at": "2026-10-20T11:07:05",
     "url": "https://jobs.jobvite.com/src-inc/job/oYVTAfw6"
+  },
+  {
+    "id": "317112664bd74ca0",
+    "company": "Micron",
+    "title": "Intern - SSD Firmware",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T13:46:09",
+    "url": "https://micron.wd1.myworkdayjobs.com/External/job/San-Jose-CA/Intern---SSD-Firmware_JR115209"
+  },
+  {
+    "id": "7d1cd430dd891fc9",
+    "company": "Micron",
+    "title": "Intern - SSD Firmware",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T13:46:09",
+    "url": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---SSD-Firmware_JR115210"
+  },
+  {
+    "id": "e6633cfff2d2a20a",
+    "company": "Skydio",
+    "title": "Embedded Software Engineer Intern - Winer 2027",
+    "location": "San Mateo, California, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T13:46:09",
+    "url": "https://jobs.ashbyhq.com/skydio/370da6a5-5ae6-48fe-8e08-9b1dcc63bf34"
+  },
+  {
+    "id": "8db40340f028031d",
+    "company": "Berkshire Hathaway Energy",
+    "title": "Intern - Software Engineering",
+    "location": "Des Moines, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T13:46:09",
+    "url": "https://jobright.ai/jobs/info/6ad7bfef67bec1d0d9c78985"
+  },
+  {
+    "id": "317ccd895a446ac8",
+    "company": "Meta",
+    "title": "Detection & Response Security Engineer, Intern (Summer 2027)",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-20T13:46:09",
+    "url": "https://jobright.ai/jobs/info/6ad7ad673dc655658d8eed8d"
+  },
+  {
+    "id": "f883c135c1a87d6c",
+    "company": "Meta",
+    "title": "Enterprise Security Engineer, Intern (Summer 2027)",
+    "location": "Menlo Park, CA; New York, NY",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T13:46:09",
+    "url": "https://jobright.ai/jobs/info/6ad7ad69e4b94611ab8478ad"
+  },
+  {
+    "id": "4a7075245ca650c0",
+    "company": "Meta",
+    "title": "Product Security Engineer, Intern (Summer 2027)",
+    "location": "Menlo Park, CA; New York, NY",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-20T13:46:09",
+    "url": "https://jobright.ai/jobs/info/6ad7ad6667bec1d0d9c77c4a"
+  },
+  {
+    "id": "c04a52d98901e8a3",
+    "company": "Meta",
+    "title": "Security Engineer Posture Management, Intern (Summer 2027)",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-07",
+    "scraped_at": "2026-10-20T13:46:09",
+    "url": "https://jobright.ai/jobs/info/6ad7ad6d67bec1d0d9c77c53"
   }
 ]
