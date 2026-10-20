@@ -63789,5 +63789,29 @@
     "posted": "",
     "scraped_at": "2026-10-20T01:10:04",
     "url": "https://intel.wd1.myworkdayjobs.com/External/job/PRC-Shanghai/AI-Software-Engineer-Intern_JR0288261"
+  },
+  {
+    "id": "5d17f4e5f5fdaba7",
+    "company": "Amazon",
+    "title": "Data Center Infrastructure Engineer Internship 2027 - UAE nationals",
+    "location": "AE, Dubai",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T03:52:18",
+    "url": "https://www.amazon.jobs/en/jobs/10583818/data-center-infrastructure-engineer-internship-2027-uae-nationals"
+  },
+  {
+    "id": "5611fa28c4f79490",
+    "company": "Graphcore",
+    "title": "Cloud Platform Summer Intern 2027",
+    "location": "Bristol, UK",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T03:52:18",
+    "url": "https://job-boards.greenhouse.io/graphcore/jobs/8894965002"
   }
 ]
