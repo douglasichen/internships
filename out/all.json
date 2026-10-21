@@ -64857,5 +64857,65 @@
     "posted": "2026-10-20",
     "scraped_at": "2026-10-20T20:33:33",
     "url": "https://jobright.ai/jobs/info/6ad821a0950ef68d51846edb"
+  },
+  {
+    "id": "f07706f10f4a1631",
+    "company": "Health Care Service Corporation",
+    "title": "Early Careers - Infrastructure Service Delivery Intern",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-13",
+    "scraped_at": "2026-10-20T22:52:49",
+    "url": "https://jobright.ai/jobs/info/6ad82a65e4b94611ab84c026"
+  },
+  {
+    "id": "9c322eba13e85aed",
+    "company": "Rhoda AI",
+    "title": "Software Engineer Intern, Inference",
+    "location": "Mountain View, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T22:52:49",
+    "url": "https://jobright.ai/jobs/info/6ad830c93dc655658d8f36bd"
+  },
+  {
+    "id": "efd5956ee9c2ce1b",
+    "company": "Siemens",
+    "title": "Software Engineer Intern - Summer 2027",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T22:52:49",
+    "url": "https://jobright.ai/jobs/info/6ad842a63dc655658d8f3b99"
+  },
+  {
+    "id": "1b30683bbbf1601d",
+    "company": "Smith+Nephew",
+    "title": "Intern Embedded Software Engineering",
+    "location": "Andover, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T22:52:49",
+    "url": "https://jobright.ai/jobs/info/6ad848ea54bbabbab070626b"
+  },
+  {
+    "id": "72d0c5bda468962d",
+    "company": "Western Digital",
+    "title": "Internship - Software Development Engineering (Embedded)",
+    "location": "Petaling Jaya",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T22:52:49",
+    "url": "https://jobs.smartrecruiters.com/WesternDigital/744000156706399"
   }
 ]
