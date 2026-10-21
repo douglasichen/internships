@@ -64797,5 +64797,65 @@
     "posted": "",
     "scraped_at": "2026-10-20T18:20:26",
     "url": "https://iaziqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/303922"
+  },
+  {
+    "id": "07912a492b36bbf2",
+    "company": "Beacon Holdings",
+    "title": "Software Engineering Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-06-01",
+    "scraped_at": "2026-10-20T20:33:33",
+    "url": "https://jobright.ai/jobs/info/6a581d2c8f51964c04046eb2"
+  },
+  {
+    "id": "d88261f98b1ac582",
+    "company": "Cre8tors",
+    "title": "Software Developer Intern",
+    "location": "Philadelphia, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T20:33:33",
+    "url": "https://jobright.ai/jobs/info/6ad8040767bec1d0d9c7b5ae"
+  },
+  {
+    "id": "012a95d57037c7ea",
+    "company": "Hewlett Packard Enterprise",
+    "title": "Embedded Software Engineering Intern",
+    "location": "Roseville, California, United States of America",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-20T20:33:33",
+    "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Roseville-California-United-States-of-America/Embedded-Software-Engineering-Intern_1214088"
+  },
+  {
+    "id": "dcaa831bcad6117f",
+    "company": "Safran Defense & Space, Inc.",
+    "title": "Software Engineering Internship Job Details | Safran DSI",
+    "location": "Bedford, NH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T20:33:33",
+    "url": "https://jobright.ai/jobs/info/6ad80f7f67bec1d0d9c7ba74"
+  },
+  {
+    "id": "8559c52c210f3ad0",
+    "company": "Vontier",
+    "title": "Engineering Intern - Software Engineering (Summer 2027)",
+    "location": "Simsbury, CT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-20T20:33:33",
+    "url": "https://jobright.ai/jobs/info/6ad821a0950ef68d51846edb"
   }
 ]
