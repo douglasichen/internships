@@ -64917,5 +64917,29 @@
     "posted": "",
     "scraped_at": "2026-10-20T22:52:49",
     "url": "https://jobs.smartrecruiters.com/WesternDigital/744000156706399"
+  },
+  {
+    "id": "b33b26912e9a5833",
+    "company": "Qualcomm",
+    "title": "FY27 Intern - Machine Learning AISW Internship - Canada (4 Months)",
+    "location": "Markham, Ontario, Canada",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-21T01:09:51",
+    "url": "https://app.eightfold.ai/careers/job/446721636765"
+  },
+  {
+    "id": "c1beae83a34e74a6",
+    "company": "Smith+Nephew",
+    "title": "Intern Agentic AI Software Engineering",
+    "location": "Andover, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-21T01:09:51",
+    "url": "https://jobright.ai/jobs/info/6ad84a8452aa6152bb6a33a2"
   }
 ]
