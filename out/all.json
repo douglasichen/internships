@@ -65853,5 +65853,101 @@
     "posted": "2026-10-21",
     "scraped_at": "2026-10-22T05:53:01",
     "url": "https://startup.jobs/software-engineer-intern-sonio-10546785"
+  },
+  {
+    "id": "758afbcbb28f04d0",
+    "company": "1Password",
+    "title": "Developer Intern, Data Security - Winter 2027",
+    "location": "Remote (United States | Canada)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T08:56:45",
+    "url": "https://jobs.ashbyhq.com/1password/8af1359a-c8a2-492b-b567-ae8ae184a8a1"
+  },
+  {
+    "id": "28c83c91a08898af",
+    "company": "1Password",
+    "title": "Developer Intern, Front-End Platform - Winter 2027",
+    "location": "Remote (United States | Canada)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T08:56:45",
+    "url": "https://jobs.ashbyhq.com/1password/71a3afd1-12b3-4f55-a3bd-fc4e7c46ee37"
+  },
+  {
+    "id": "6a78499d414ea321",
+    "company": "1Password",
+    "title": "Developer Intern, Machine Identity - Winter 2027",
+    "location": "Remote (United States | Canada)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T08:56:45",
+    "url": "https://jobs.ashbyhq.com/1password/6a6869a7-98d2-43e3-b9b5-b68fa4daeb9f"
+  },
+  {
+    "id": "411c350a67bca552",
+    "company": "1Password",
+    "title": "Developer Intern, Vault Team - Winter 2027",
+    "location": "Remote (United States | Canada)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T08:56:45",
+    "url": "https://jobs.ashbyhq.com/1password/b2726ac7-dd0d-42f3-93a5-139e18c90779"
+  },
+  {
+    "id": "04d070f2bf4a838f",
+    "company": "Intel",
+    "title": "Software Development Intern (m/f/d)",
+    "location": "Germany, Munich",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T08:56:45",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Germany-Munich/Software-Development-Intern--m-f-d-_JR0288215"
+  },
+  {
+    "id": "9dc7f93e825954f0",
+    "company": "Nutanix",
+    "title": "software-developer-co-op",
+    "location": "",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T08:56:45",
+    "url": "https://careers.nutanix.com/en/jobs/32928/software-developer-co-op"
+  },
+  {
+    "id": "3eb4e40cd2663dcb",
+    "company": "Nutanix",
+    "title": "software-development-tester-co-op",
+    "location": "",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T08:56:45",
+    "url": "https://careers.nutanix.com/en/jobs/32931/software-development-tester-co-op"
+  },
+  {
+    "id": "e569cc2f3dc01807",
+    "company": "Hollow Star Solutions",
+    "title": "Programmer Analyst Intern",
+    "location": "Waller, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-22",
+    "scraped_at": "2026-10-22T08:56:45",
+    "url": "https://jobright.ai/jobs/info/6ada115f03d2da75289117bb"
   }
 ]
