@@ -65493,5 +65493,65 @@
     "posted": "2026-10-21",
     "scraped_at": "2026-10-21T15:03:03",
     "url": "https://jobright.ai/jobs/info/6ad91816950ef68d5184df20"
+  },
+  {
+    "id": "3c3cc8c3c994dc52",
+    "company": "Crusoe",
+    "title": "Software Engineering Intern, Summer 2027",
+    "location": "San Francisco, CA - US",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-21T17:31:49",
+    "url": "https://jobs.ashbyhq.com/Crusoe/07a8a6a9-975e-471c-ac31-b5aaa97f9af5"
+  },
+  {
+    "id": "4e556a6963893e51",
+    "company": "Intel",
+    "title": "Information Security Engineer Undergraduate Intern",
+    "location": "US, California, Folsom",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-21T17:31:49",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Folsom/Information-Security-Engineer-Undergraduate-Intern_JR0287588"
+  },
+  {
+    "id": "dbe5eb4a751989e3",
+    "company": "Acuity Insurance",
+    "title": "Software Engineer Intern",
+    "location": "Sheboygan, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-21T17:31:49",
+    "url": "https://jobright.ai/jobs/info/6ad92a9354bbabbab070d69c"
+  },
+  {
+    "id": "12bc05a32d8ade31",
+    "company": "Lockheed Martin",
+    "title": "Embedded Software Intern",
+    "location": "Moorestown, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-21T17:31:49",
+    "url": "https://jobright.ai/jobs/info/6ad92e6267bec1d0d9c84319"
+  },
+  {
+    "id": "f2ec560972d1b971",
+    "company": "Walrus Security",
+    "title": "Full Stack Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-21T17:31:49",
+    "url": "https://jobright.ai/jobs/info/6ad93d6b67bec1d0d9c84b50"
   }
 ]
