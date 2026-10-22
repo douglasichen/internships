@@ -65793,5 +65793,65 @@
     "posted": "2026-10-20",
     "scraped_at": "2026-10-22T00:57:55",
     "url": "https://jobright.ai/jobs/info/6ad256a5c4290cef1412a4ae"
+  },
+  {
+    "id": "a2ce8f28219bb2ac",
+    "company": "ByteDance",
+    "title": "Video/Image AI/ML Software Engineer Intern (Multimedia) - 2027 Start (PhD) - Intern (Video and Edge, Multimedia Lab) - 2027 Start (PhD)",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-22",
+    "scraped_at": "2026-10-22T05:53:01",
+    "url": "https://jobright.ai/jobs/info/6ad9dac7e4b94611ab85751d"
+  },
+  {
+    "id": "e4b0239e09835cd4",
+    "company": "Hewlett Packard Enterprise",
+    "title": "Software Development Intern, AI-Assisted Development",
+    "location": "Saint-Laurent, Montreal, QC, Canada",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Oct 20",
+    "scraped_at": "2026-10-22T05:53:01",
+    "url": "https://hpe.wd5.myworkdayjobs.com/jobsathpe/job/St-Laurent-Quebec-Canada/Software-Development-Intern--AI-Assisted-Development--Summer-2027------Stagiaire-en-dveloppement-de--logiciel--dveloppement-assist-par-l-IA--t-2027-_1214294-1?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "9488b65942b9be15",
+    "company": "IBM",
+    "title": "Software Developer - Spring Co-Op 2027 - Cambridge",
+    "location": "Cambridge, MA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-09-29",
+    "scraped_at": "2026-10-22T05:53:01",
+    "url": "https://jobright.ai/jobs/info/6ad9eb7654bbabbab0711578"
+  },
+  {
+    "id": "ea92dcc36754dcfa",
+    "company": "IBM",
+    "title": "Software Developer Spring Co-Op 2027 (Bellevue)",
+    "location": "Bellevue, WA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-09-30",
+    "scraped_at": "2026-10-22T05:53:01",
+    "url": "https://jobright.ai/jobs/info/6ad9ec5e03d2da7528910670"
+  },
+  {
+    "id": "e1e2fdfea62d8829",
+    "company": "Sonio",
+    "title": "Software Engineer Intern",
+    "location": "Paris, France",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-22T05:53:01",
+    "url": "https://startup.jobs/software-engineer-intern-sonio-10546785"
   }
 ]
