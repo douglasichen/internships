@@ -65769,5 +65769,29 @@
     "posted": "2026-10-21",
     "scraped_at": "2026-10-21T22:27:43",
     "url": "https://startup.jobs/software-engineer-student-internship-cloud-services-reversinglabs-10537174"
+  },
+  {
+    "id": "532d4d178ad1d1bc",
+    "company": "Aptiv",
+    "title": "Software Development Intern",
+    "location": "Troy, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-22T00:57:55",
+    "url": "https://jobright.ai/jobs/info/6ad99893b0725dc268ddd4bc"
+  },
+  {
+    "id": "9fd038cf01f1d6ad",
+    "company": "Seagate Technology",
+    "title": "Embedded Software Engineer (Bachelor's Level, Summer 2027 Intern)",
+    "location": "Longmont, CO; Shakopee, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-22T00:57:55",
+    "url": "https://jobright.ai/jobs/info/6ad256a5c4290cef1412a4ae"
   }
 ]
