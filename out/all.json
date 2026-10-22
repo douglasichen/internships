@@ -65685,5 +65685,89 @@
     "posted": "Oct 20",
     "scraped_at": "2026-10-21T19:59:10",
     "url": "https://aero.wd5.myworkdayjobs.com/external/job/El-Segundo-CA/XMLNAME-2027-Embedded-Software-Engineering-Undergrad-Intern_R016949?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "1e628d08403ffff3",
+    "company": "Coinbase",
+    "title": "Software Engineer Intern",
+    "location": "Hybrid - Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-21T22:27:43",
+    "url": "https://www.coinbase.com/careers/positions/8175873?gh_jid=8175873"
+  },
+  {
+    "id": "64315d1c3cba5977",
+    "company": "Ashby",
+    "title": "Software Engineer \u2013 2027 Internship Program (June Start)",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-21T22:27:43",
+    "url": "https://jobright.ai/jobs/info/6ad97f8067bec1d0d9c866f1"
+  },
+  {
+    "id": "0e55a8c94bedfcff",
+    "company": "DV Trading",
+    "title": "2027 Software Developer Intern  (DV QES)",
+    "location": "Hong Kong",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-10-21T22:27:43",
+    "url": "https://startup.jobs/2027-software-developer-intern-dv-qes-dv-trading-10083837"
+  },
+  {
+    "id": "69928d8a95970a10",
+    "company": "GeoSpectrum Technologies, Inc",
+    "title": "Software Developer\u200b Co-op",
+    "location": "Dartmouth, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-21T22:27:43",
+    "url": "https://startup.jobs/software-developer-co-op-geospectrum-technologies-inc-10529480"
+  },
+  {
+    "id": "b6b339fdecd094bf",
+    "company": "Nitro",
+    "title": "Intern Software Engineer (FullStack)",
+    "location": "Dublin, Ireland",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-21T22:27:43",
+    "url": "https://startup.jobs/intern-software-engineer-fullstack-nitro-10543289"
+  },
+  {
+    "id": "7a6b6f487a313959",
+    "company": "Redgate",
+    "title": "Software Engineer Intern",
+    "location": "Cambridge, United Kingdom",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-10-21T22:27:43",
+    "url": "https://startup.jobs/software-engineer-intern-redgate-10518560"
+  },
+  {
+    "id": "3c4fa9121a6d0309",
+    "company": "ReversingLabs",
+    "title": "Software Engineer - Student Internship (Cloud Services)",
+    "location": "Zagreb, Croatia",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-21T22:27:43",
+    "url": "https://startup.jobs/software-engineer-student-internship-cloud-services-reversinglabs-10537174"
   }
 ]
