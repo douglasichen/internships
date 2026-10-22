@@ -65963,18 +65963,6 @@
     "url": "https://jobs.ashbyhq.com/1password/c5289ef1-e919-4672-85c5-ee3112f9ddb9"
   },
   {
-    "id": "0fa6f39c4ef55951",
-    "company": "Docusign",
-    "title": "Software Engineer Intern",
-    "location": "Chicago, IL",
-    "is_2027": true,
-    "priority": 3,
-    "source": "speedyapply",
-    "posted": "1d",
-    "scraped_at": "2026-10-22T11:50:13",
-    "url": "https://uscareers-docusign.icims.com/jobs/30470/software-engineer-intern/job"
-  },
-  {
     "id": "8fc9214090f78a97",
     "company": "Genesys",
     "title": "Software Engineering Intern",
@@ -66081,5 +66069,125 @@
     "posted": "2026-10-22",
     "scraped_at": "2026-10-22T11:50:13",
     "url": "https://jobright.ai/jobs/info/6ada42f503d2da75289135b8"
+  },
+  {
+    "id": "4a005eb3405ab0b3",
+    "company": "1Password",
+    "title": "Developer Intern, Extension Excellence - Winter 2027",
+    "location": "Remote (United States | Canada)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T14:43:47",
+    "url": "https://jobs.ashbyhq.com/1password/7f1732a6-5317-4319-82b9-67c62e88d491"
+  },
+  {
+    "id": "571f2327a47961a1",
+    "company": "Skydio",
+    "title": "Frontend Software Engineer Intern - Summer 2027",
+    "location": "San Mateo, California, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T14:43:47",
+    "url": "https://jobs.ashbyhq.com/skydio/89bb6fee-3cd2-4e0b-a1c2-c73de8c1f9bd"
+  },
+  {
+    "id": "3fdb1adbf0c169f9",
+    "company": "Twitch",
+    "title": "Undergrad Software Engineering Intern (Grad Year: Winter 2027)",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T14:43:47",
+    "url": "https://job-boards.greenhouse.io/twitch/jobs/8886605002"
+  },
+  {
+    "id": "d7011d7d8968d83d",
+    "company": "Allstate",
+    "title": "Arity - Software Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-22T14:43:47",
+    "url": "https://jobright.ai/jobs/info/6ada55a3950ef68d51856481"
+  },
+  {
+    "id": "eff8d85c84dbfa05",
+    "company": "Legence",
+    "title": "Software Development Internship - Summer 2027",
+    "location": "Long Beach, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-22",
+    "scraped_at": "2026-10-22T14:43:47",
+    "url": "https://jobright.ai/jobs/info/6ada52d403d2da7528913f56"
+  },
+  {
+    "id": "310d4ae7f6187ce5",
+    "company": "Northrop Grumman",
+    "title": "Cyber Software Engineer Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "San Antonio, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 22",
+    "scraped_at": "2026-10-22T14:43:47",
+    "url": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Texas-San-Antonio/XMLNAME-2027-Cyber-Software-Engineer-Intern---San-Antonio-TX_R10257311?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "e6ac8c3438b72c95",
+    "company": "RTX",
+    "title": "Part-Time Software Engineer Co-op(Remote)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-22T14:43:47",
+    "url": "https://jobright.ai/jobs/info/6ada521e3a69033df2257c59"
+  },
+  {
+    "id": "af797dc0f06b7a5b",
+    "company": "Roche",
+    "title": "2027 Spring Intern - Data Science & Machine Learning",
+    "location": "South San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-10-22T14:43:47",
+    "url": "https://jobright.ai/jobs/info/6ada59f43a69033df225812b"
+  },
+  {
+    "id": "eecee4e4fff24bfd",
+    "company": "Texas Instruments",
+    "title": "Software Engineering Intern (Canada)",
+    "location": "Canada",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-22T14:43:47",
+    "url": "https://edbz.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/25007757"
+  },
+  {
+    "id": "d643f9151a5c6ad1",
+    "company": "Uline",
+    "title": "Software Developer Intern",
+    "location": "Waukegan, IL; Milwaukee, WI; Glenview, IL; Pleasant Prairie, WI; Kenosha, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 21",
+    "scraped_at": "2026-10-22T14:43:47",
+    "url": "https://uline.wd1.myworkdayjobs.com/en-US/Uline_Careers/job/Pleasant-Prairie-WI/Software-Development-Internship---Summer-2027_R268537?utm_source=github-vansh-ouckah"
   }
 ]
