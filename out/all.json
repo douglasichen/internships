@@ -68409,5 +68409,41 @@
     "posted": "Oct 22",
     "scraped_at": "2026-10-25T01:41:50",
     "url": "https://go.vansh.nyc/fp"
+  },
+  {
+    "id": "9e6e2fa164537de0",
+    "company": "Air Culinaire Worldwide",
+    "title": "Software Engineer Intern",
+    "location": "Tampa, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-25",
+    "scraped_at": "2026-10-25T15:03:43",
+    "url": "https://jobright.ai/jobs/info/6ade153c389e06bb41ada036"
+  },
+  {
+    "id": "4955116da8c97e7b",
+    "company": "Cisco",
+    "title": "Software Engineer Embedded Systems I - Co-op - United States",
+    "location": "San Jose, CA +2",
+    "is_2027": true,
+    "priority": 2,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-10-25T15:03:43",
+    "url": "https://cisco.wd5.myworkdayjobs.com/en-US/cisco_careers/job/San-Jose-California-US/Software-Engineer-Embedded-Systems-I--Co-op----United-States_2029701"
+  },
+  {
+    "id": "e47d06a132e94e59",
+    "company": "Cisco",
+    "title": "Software Engineer Full Stack / Backend I - Co-op - United States",
+    "location": "San Jose, CA +1",
+    "is_2027": true,
+    "priority": 2,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-10-25T15:03:43",
+    "url": "https://cisco.wd5.myworkdayjobs.com/en-US/cisco_careers/job/San-Jose-California-US/Software-Engineer-Full-Stack---Backend-I--Co-op----United-States_2026049"
   }
 ]
