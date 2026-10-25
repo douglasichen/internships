@@ -67881,5 +67881,65 @@
     "posted": "2026-10-24",
     "scraped_at": "2026-10-24T18:28:59",
     "url": "https://jobright.ai/jobs/info/6add4878c5c64fa3d9cb5d1a"
+  },
+  {
+    "id": "7be0f69eb1c13cf3",
+    "company": "MDB General Referrals",
+    "title": "2027 - Software Engineering Intern, AMER",
+    "location": "New York, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-23",
+    "scraped_at": "2026-10-24T20:52:56",
+    "url": "https://startup.jobs/2027-software-engineering-intern-amer-mdb-general-referrals-10572294"
+  },
+  {
+    "id": "89b9a3d98590ee61",
+    "company": "MDB General Referrals",
+    "title": "2027 - Summer Software Engineer Intern, Dublin",
+    "location": "Dublin, Ireland",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-23",
+    "scraped_at": "2026-10-24T20:52:56",
+    "url": "https://startup.jobs/2027-summer-software-engineer-intern-dublin-mdb-general-referrals-10572295"
+  },
+  {
+    "id": "6966e4d553ec8b3f",
+    "company": "Multiply Labs",
+    "title": "Robotics Software Intern",
+    "location": "San Francisco, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-02-19",
+    "scraped_at": "2026-10-24T20:52:56",
+    "url": "https://startup.jobs/robotics-software-intern-multiplylabs-com-10575324"
+  },
+  {
+    "id": "312a7eb0dec37347",
+    "company": "News Corp",
+    "title": "Summer 2027 Internship Program \u2013 Software Engineering Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-10-24T20:52:56",
+    "url": "https://jobright.ai/jobs/info/6add538d0a4cc7090f979772"
+  },
+  {
+    "id": "064deea31a01edb2",
+    "company": "Simbe Robotics",
+    "title": "Robot Software Engineer Intern \u2014 Spring & Summer 2027",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-13",
+    "scraped_at": "2026-10-24T20:52:56",
+    "url": "https://startup.jobs/robot-software-engineer-intern-spring-summer-2027-simbe-robotics-2-10574666"
   }
 ]
