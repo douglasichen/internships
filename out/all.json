@@ -67845,5 +67845,41 @@
     "posted": "Oct 23",
     "scraped_at": "2026-10-24T13:17:15",
     "url": "https://trimble.wd1.myworkdayjobs.com/en-US/trimblecareers/job/Canada---Richmond-Hill-Ontario-Applanix/Navigation---Machine-Learning-Engineering-Intern--16-Months-_R57980?utm_source=github-vansh-ouckah"
+  },
+  {
+    "id": "c8c580cb0dd1e80e",
+    "company": "Astrolab",
+    "title": "Software Engineering Intern",
+    "location": "Hawthorne, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-24",
+    "scraped_at": "2026-10-24T18:28:59",
+    "url": "https://jobright.ai/jobs/info/6add388846a8cabdc1ff953a"
+  },
+  {
+    "id": "f025f63578b7edcd",
+    "company": "Custosa",
+    "title": "Software & AI Systems Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-24",
+    "scraped_at": "2026-10-24T18:28:59",
+    "url": "https://jobright.ai/jobs/info/6add4f8f46a8cabdc1ff9758"
+  },
+  {
+    "id": "40df6f45e813337d",
+    "company": "Realm Labs AI",
+    "title": "Machine Learning Research Intern (Winter 2027)",
+    "location": "Sunnyvale, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-24",
+    "scraped_at": "2026-10-24T18:28:59",
+    "url": "https://jobright.ai/jobs/info/6add4878c5c64fa3d9cb5d1a"
   }
 ]
