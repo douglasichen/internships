@@ -70881,5 +70881,65 @@
     "posted": "2026-10-23",
     "scraped_at": "2026-10-26T19:47:08",
     "url": "https://jobright.ai/jobs/info/6adfd3d9c5c64fa3d9cbffd9"
+  },
+  {
+    "id": "4add7306cbbb93b0",
+    "company": "Amazon",
+    "title": "Network Development Engineer Intern, Core Networking",
+    "location": "AU, NSW, Sydney",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-26T22:32:21",
+    "url": "https://www.amazon.jobs/en/jobs/3201714/network-development-engineer-intern-core-networking"
+  },
+  {
+    "id": "ccb22ea3b188453a",
+    "company": "Highmark Health",
+    "title": "Summer 2027 Infrastructure Compute Operations enGen Undergraduate Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-25",
+    "scraped_at": "2026-10-26T22:32:21",
+    "url": "https://jobright.ai/jobs/info/6ae016a19a8c91d5c358ba1f"
+  },
+  {
+    "id": "a63ec1b97b299cf5",
+    "company": "L3Harris Technologies",
+    "title": "Software Engineering Intern (Melbourne, FL) Job Details | L3HHCM20",
+    "location": "Melbourne, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-26",
+    "scraped_at": "2026-10-26T22:32:21",
+    "url": "https://jobright.ai/jobs/info/6adffa0f5dc7953215a44d88"
+  },
+  {
+    "id": "ee4251826e9cc8da",
+    "company": "L3Harris Technologies",
+    "title": "Software Engineering Intern (Rochester, NY) Job Details | L3HHCM20",
+    "location": "Rochester, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-26",
+    "scraped_at": "2026-10-26T22:32:21",
+    "url": "https://jobright.ai/jobs/info/6adffa335dc7953215a44def"
+  },
+  {
+    "id": "05101f73b903a4ac",
+    "company": "Vibes Meet LLC",
+    "title": "Junior Full Stack Developer Intern (Remote, Unpaid)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-26",
+    "scraped_at": "2026-10-26T22:32:21",
+    "url": "https://jobright.ai/jobs/info/6ae014d49e3e874dbfbb2955"
   }
 ]
