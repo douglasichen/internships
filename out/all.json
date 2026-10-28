@@ -71877,5 +71877,89 @@
     "posted": "2026-10-26",
     "scraped_at": "2026-10-27T22:35:41",
     "url": "https://jobright.ai/jobs/info/6ae148efde23f466ec8bdd3c"
+  },
+  {
+    "id": "94b8a248d8fd7fc3",
+    "company": "Certa",
+    "title": "Frontend Engineer Intern",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 27",
+    "scraped_at": "2026-10-28T01:20:25",
+    "url": "https://go.vansh.nyc/Xa?s=y"
+  },
+  {
+    "id": "4fcd9f4b97b8858c",
+    "company": "Lutron Electronics",
+    "title": "Summer 2027 - Software Engineering Intern - Philadelphia, PA",
+    "location": "Philadelphia, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-27",
+    "scraped_at": "2026-10-28T01:20:25",
+    "url": "https://jobright.ai/jobs/info/6ae1876267c31ab3489a3b40"
+  },
+  {
+    "id": "2fc301281a32aff2",
+    "company": "VSP Vision",
+    "title": "Internship, Software Engineer",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-27",
+    "scraped_at": "2026-10-28T01:20:25",
+    "url": "https://jobright.ai/jobs/info/6ae1903f67c31ab3489a3d01"
+  },
+  {
+    "id": "2bd7815e70103569",
+    "company": "VSP Vision",
+    "title": "Software Engineer Intern",
+    "location": "Remote; United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 27",
+    "scraped_at": "2026-10-28T01:20:25",
+    "url": "https://go.vansh.nyc/X3?s=y"
+  },
+  {
+    "id": "f9303598502379db",
+    "company": "VSP Vision",
+    "title": "Software Engineer Intern, Technology Innovation",
+    "location": "Remote; United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 27",
+    "scraped_at": "2026-10-28T01:20:25",
+    "url": "https://go.vansh.nyc/X8?s=y"
+  },
+  {
+    "id": "82052d23ffdd08f6",
+    "company": "Wallbox",
+    "title": "Software Engineer Intern",
+    "location": "Barcelona, Spain",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-27",
+    "scraped_at": "2026-10-28T01:20:25",
+    "url": "https://startup.jobs/software-engineer-intern-wallbox-company-10601180"
+  },
+  {
+    "id": "04b6f0d8a6035086",
+    "company": "stealth-startup-community",
+    "title": "Embedded Firmware and Controls Engineer Intern",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 26",
+    "scraped_at": "2026-10-28T01:20:25",
+    "url": "https://go.vansh.nyc/X4?s=y"
   }
 ]
