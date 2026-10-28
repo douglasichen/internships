@@ -71997,5 +71997,53 @@
     "posted": "Oct 28",
     "scraped_at": "2026-10-28T04:32:18",
     "url": "https://go.vansh.nyc/Xo?s=y"
+  },
+  {
+    "id": "f2ad10df7a3c9983",
+    "company": "Ace Hardware Corporation",
+    "title": "IT Associate Software Engineer 2027 Summer Internship (Full Time/Paid/12 weeks)",
+    "location": "Oak Brook, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-28",
+    "scraped_at": "2026-10-28T07:13:58",
+    "url": "https://jobright.ai/jobs/info/6ae1eb2a05a39c3e2c714ac6"
+  },
+  {
+    "id": "6404f536adefbe8d",
+    "company": "Ace Hardware Corporation",
+    "title": "IT Associate Software Engineer Intern",
+    "location": "Oak Brook, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-10-28T07:13:58",
+    "url": "https://go.vansh.nyc/Xx?s=y"
+  },
+  {
+    "id": "1b49b74c9fb5afc9",
+    "company": "Allegion",
+    "title": "Software Engineering Intern, Quality Assurance",
+    "location": "Golden, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 27",
+    "scraped_at": "2026-10-28T07:13:58",
+    "url": "https://go.vansh.nyc/Xt?s=y"
+  },
+  {
+    "id": "a60a3765f6f04dbb",
+    "company": "Allegion",
+    "title": "Software Systems Engineering Intern",
+    "location": "Golden, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-10-28T07:13:58",
+    "url": "https://go.vansh.nyc/Xv?s=y"
   }
 ]
