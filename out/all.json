@@ -72045,5 +72045,113 @@
     "posted": "Oct 28",
     "scraped_at": "2026-10-28T07:13:58",
     "url": "https://go.vansh.nyc/Xv?s=y"
+  },
+  {
+    "id": "e12f6c4df5c38df6",
+    "company": "Intel",
+    "title": "Process Integration Development Engineer PhD Intern 2027",
+    "location": "US, Oregon, Hillsboro",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-28T09:59:24",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Process-Integration-Development-Engineer-PhD-Intern-2027_JR0288661"
+  },
+  {
+    "id": "eedf4219680d9ee0",
+    "company": "Allegion",
+    "title": "Summer Intern - Software Systems Engineering",
+    "location": "Golden, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-27",
+    "scraped_at": "2026-10-28T09:59:24",
+    "url": "https://jobright.ai/jobs/info/6ae203956679108488c46757"
+  },
+  {
+    "id": "aea5a6c135617e84",
+    "company": "GAF",
+    "title": "R&D Commercial Product Development Engineer Intern",
+    "location": "Parsippany-Troy Hills, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-27",
+    "scraped_at": "2026-10-28T09:59:24",
+    "url": "https://jobright.ai/jobs/info/6ae204eb6679108488c4684a"
+  },
+  {
+    "id": "0e2938e7888f025b",
+    "company": "Gauss Management Research & Engineering (GMRE Inc.)",
+    "title": "Web Application Developer Intern",
+    "location": "South Ogden, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-28",
+    "scraped_at": "2026-10-28T09:59:24",
+    "url": "https://jobright.ai/jobs/info/6ae1fe436679108488c464cf"
+  },
+  {
+    "id": "64eff0531e0de56b",
+    "company": "Infleqtion",
+    "title": "Quantum Software Intern",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-10-28T09:59:24",
+    "url": "https://go.vansh.nyc/Xz?s=y"
+  },
+  {
+    "id": "4aa672ac24a55460",
+    "company": "Infleqtion",
+    "title": "Summer 2027 Internship - Quantum Software (QSW)",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-28",
+    "scraped_at": "2026-10-28T09:59:24",
+    "url": "https://jobright.ai/jobs/info/6ae1fa661f9d9308370acd98"
+  },
+  {
+    "id": "7fb2544ac3a55b26",
+    "company": "Leidos",
+    "title": "Data Engineer Intern",
+    "location": "Fort Belvoir, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-27",
+    "scraped_at": "2026-10-28T09:59:24",
+    "url": "https://jobright.ai/jobs/info/6ae208fb05a39c3e2c715bc7"
+  },
+  {
+    "id": "88813328cf562b1f",
+    "company": "Sonos",
+    "title": "Software Engineering Intern (Boston)",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-28T09:59:24",
+    "url": "https://sonos.wd1.myworkdayjobs.com/Sonos/job/Boston-MA/Software-Engineering-Intern--Boston-_R2882-1"
+  },
+  {
+    "id": "37b263141dc587a6",
+    "company": "Sonos",
+    "title": "Software Product Management Intern (Seattle)",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-28T09:59:24",
+    "url": "https://sonos.wd1.myworkdayjobs.com/Sonos/job/Seattle-WA/Software-Product-Management-Intern--Seattle-_R2866-1"
   }
 ]
