@@ -71781,5 +71781,101 @@
     "posted": "Oct 26",
     "scraped_at": "2026-10-27T19:20:50",
     "url": "https://go.vansh.nyc/Wx?s=y"
+  },
+  {
+    "id": "dd54d7f5e1075579",
+    "company": "Intel",
+    "title": "AI Software Engineer Intern",
+    "location": "3 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-27T22:35:41",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/PRC-Shanghai/AI-Software-Engineer-Intern_JR0288692"
+  },
+  {
+    "id": "7ef83e31e8b04e39",
+    "company": "Sea Limited",
+    "title": "Backend Engineer Intern, Engineering Infra - AZPE (Spring 2027)",
+    "location": "",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-27T22:35:41",
+    "url": "https://career.sea.com/jobs/137681"
+  },
+  {
+    "id": "b788fa1a9fe9b68b",
+    "company": "Sea Limited",
+    "title": "Product Operations Intern , Data Infrastructure (Spring 2027)",
+    "location": "",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-27T22:35:41",
+    "url": "https://career.sea.com/jobs/137680"
+  },
+  {
+    "id": "c4d5e1c1d332b7e1",
+    "company": "Electronic Theatre Controls",
+    "title": "Software Engineer Intern",
+    "location": "Middleton, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-31",
+    "scraped_at": "2026-10-27T22:35:41",
+    "url": "https://jobright.ai/jobs/info/6ae15d5767c31ab3489a2dd0"
+  },
+  {
+    "id": "eef2f76f19b35fa4",
+    "company": "FUTO",
+    "title": "Software Engineer Intern",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 27",
+    "scraped_at": "2026-10-27T22:35:41",
+    "url": "https://go.vansh.nyc/WW?s=y"
+  },
+  {
+    "id": "3177ebf84ab96e9c",
+    "company": "Paccar",
+    "title": "Application Developer Intern",
+    "location": "Chillicothe, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 27",
+    "scraped_at": "2026-10-27T22:35:41",
+    "url": "https://go.vansh.nyc/WV?s=y"
+  },
+  {
+    "id": "9771ce43e1f421ef",
+    "company": "Precision Castparts",
+    "title": "AI Developer Co-op/Internship (January 2027)",
+    "location": "Portland, OR",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-27",
+    "scraped_at": "2026-10-27T22:35:41",
+    "url": "https://jobright.ai/jobs/info/6ae147636679108488c42826"
+  },
+  {
+    "id": "08558e403eae5108",
+    "company": "The Walt Disney Company",
+    "title": "Enterprise Technology & Data Software Engineering Intern, Summer 2027",
+    "location": "Burbank, CA; Orlando, FL; Seattle, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-26",
+    "scraped_at": "2026-10-27T22:35:41",
+    "url": "https://jobright.ai/jobs/info/6ae148efde23f466ec8bdd3c"
   }
 ]
