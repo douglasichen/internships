@@ -71961,5 +71961,41 @@
     "posted": "Oct 26",
     "scraped_at": "2026-10-28T01:20:25",
     "url": "https://go.vansh.nyc/X4?s=y"
+  },
+  {
+    "id": "8a20097455475e0a",
+    "company": "Daimler Truck",
+    "title": "Software Release Management Intern",
+    "location": "Portland, OR",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-10-28T04:32:18",
+    "url": "https://go.vansh.nyc/Xd?s=y"
+  },
+  {
+    "id": "d54e67d552ac75f7",
+    "company": "HP",
+    "title": "College Intern - Firmware Engineering",
+    "location": "Singapore, South West, Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-28T04:32:18",
+    "url": "https://hp.wd5.myworkdayjobs.com/ExternalCareerSite/job/Singapore-South-West-Singapore/College-Intern---Firmware-Engineering_UNI5128-1"
+  },
+  {
+    "id": "f8184e1cbdf607e2",
+    "company": "RosaicLabs",
+    "title": "Software Engineering Intern",
+    "location": "Austin, TX; Santa Clara, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-10-28T04:32:18",
+    "url": "https://go.vansh.nyc/Xo?s=y"
   }
 ]
