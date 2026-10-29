@@ -72885,5 +72885,53 @@
     "posted": "2026-10-28",
     "scraped_at": "2026-10-29T00:31:59",
     "url": "https://jobright.ai/jobs/info/6ae2cd7c1c3cd4b40608795b"
+  },
+  {
+    "id": "ba34feb279fb09f2",
+    "company": "Amazon",
+    "title": "2027 Software Dev Engineer Intern - Haifa, Israel",
+    "location": "IL, Haifa",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-29T03:44:20",
+    "url": "https://www.amazon.jobs/en/jobs/10592105/2027-software-dev-engineer-intern-haifa-israel"
+  },
+  {
+    "id": "f7cca9d62c3f8178",
+    "company": "Amazon",
+    "title": "2027 Software Dev Engineer Intern - Tel-Aviv, Israel",
+    "location": "IL, Tel Aviv",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-29T03:44:20",
+    "url": "https://www.amazon.jobs/en/jobs/10592104/2027-software-dev-engineer-intern-tel-aviv-israel"
+  },
+  {
+    "id": "b4300b3084599881",
+    "company": "Inbulks",
+    "title": "Junior Front End Development Analyst/Intern - 4DS Corp",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T03:44:20",
+    "url": "https://jobright.ai/jobs/info/6ae314a2eab1f96730971f22"
+  },
+  {
+    "id": "1768d38dd3893e84",
+    "company": "KLA",
+    "title": "Software Engineer Intern",
+    "location": "Milpitas, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-29T03:44:20",
+    "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Software-Engineer-Intern_2642721-1"
   }
 ]
