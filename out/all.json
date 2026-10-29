@@ -72933,5 +72933,17 @@
     "posted": "",
     "scraped_at": "2026-10-29T03:44:20",
     "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Software-Engineer-Intern_2642721-1"
+  },
+  {
+    "id": "3e8dd01da0e08784",
+    "company": "Horizon Lane",
+    "title": "Software Engineering Intern",
+    "location": "Rochester, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T06:14:38",
+    "url": "https://jobright.ai/jobs/info/6ae32dd9c3139b475b5ab464"
   }
 ]
