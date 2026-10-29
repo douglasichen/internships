@@ -52259,18 +52259,6 @@
     "url": "https://sonyglobal.wd1.myworkdayjobs.com/SonyGlobalCareers/job/Lysaker/Firmware-Design---Summer-Internship_JR-119579-1"
   },
   {
-    "id": "f4b8a8f9ecd1f9de",
-    "company": "Abbott",
-    "title": "2027 Winter Graduate Co-op - Clinical Affairs AI/ML",
-    "location": "Saint Paul, MN",
-    "is_2027": true,
-    "priority": 3,
-    "source": "jobright",
-    "posted": "2026-09-29",
-    "scraped_at": "2026-09-30T18:04:45",
-    "url": "https://jobright.ai/jobs/info/6abd92130e027c0f3b39689c"
-  },
-  {
     "id": "8201fb5da10b892f",
     "company": "Allegion",
     "title": "Summer Intern - Software Engineering - Quality Assurance",
@@ -52281,6 +52269,18 @@
     "posted": "2026-09-29",
     "scraped_at": "2026-09-30T18:04:45",
     "url": "https://jobright.ai/jobs/info/6abd9835372c01f6cd7216ce"
+  },
+  {
+    "id": "f4b8a8f9ecd1f9de",
+    "company": "Abbott",
+    "title": "2027 Winter Graduate Co-op - Clinical Affairs AI/ML",
+    "location": "Saint Paul, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-29",
+    "scraped_at": "2026-09-30T18:04:45",
+    "url": "https://jobright.ai/jobs/info/6abd92130e027c0f3b39689c"
   },
   {
     "id": "8538a8e4b97e3c6b",
@@ -73125,5 +73125,185 @@
     "posted": "2026-10-29",
     "scraped_at": "2026-10-29T11:22:53",
     "url": "https://jobright.ai/jobs/info/6ae3725bfb2cd420ace50e39"
+  },
+  {
+    "id": "28e0cdfef06993eb",
+    "company": "VSP Vision Care",
+    "title": "Internship - Software Engineer",
+    "location": "Remote - USA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://vsp.wd1.myworkdayjobs.com/en-US/vspvisioncareers/job/Remote-US/Internship--Software-Engineer_R-10071"
+  },
+  {
+    "id": "c6c188e0291eed80",
+    "company": "JM Family",
+    "title": "Software Engineer Intern",
+    "location": "Deerfield Beach, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "0d",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://jmfamily.wd1.myworkdayjobs.com/en-US/jmfamily_external/job/Florida---Deerfield-Beach/Software-Engineer-Intern_JR105158"
+  },
+  {
+    "id": "5a01c1e922e61426",
+    "company": "Nintendo",
+    "title": "Intern - Software Engineer, Connectivity (NTD)",
+    "location": "Redmond, WA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://careers.nintendo.com/?gh_jid=4472147009"
+  },
+  {
+    "id": "667308b9c3ec791f",
+    "company": "Amway",
+    "title": "Software Engineer Intern \u2013 MAGIC Bonus Calc, Summer 2027 (REQ#43437)",
+    "location": "Ada, MI, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://jobright.ai/jobs/info/6ae38836c3139b475b5aded5"
+  },
+  {
+    "id": "614bffeacaa61f99",
+    "company": "CACI",
+    "title": "Software Engineering Co-op/Intern - Spring 2027",
+    "location": "Rochester, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "0d",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Rochester-NY-US/Software-Engineering-Co-op-Intern---Spring-2027_334160"
+  },
+  {
+    "id": "1d486567351d1fa5",
+    "company": "GM Financial",
+    "title": "Data Engineer Intern",
+    "location": "Arlington, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://go.vansh.nyc/Zs?s=y"
+  },
+  {
+    "id": "e233523fd562a9c5",
+    "company": "GardaWorld",
+    "title": "Software Engineer Intern, C#",
+    "location": "Wayzata, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://go.vansh.nyc/Zc?s=y"
+  },
+  {
+    "id": "d072fe9733433e0b",
+    "company": "Intuitive",
+    "title": "Manufacturing Software Engineering Intern",
+    "location": "Sunnyvale, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://jobs.smartrecruiters.com/Intuitive/744000158313919-manufacturing-software-engineering-intern?oga=true"
+  },
+  {
+    "id": "cfc162e1616553b3",
+    "company": "National Interstate Insurance",
+    "title": "Content Publishing Developer Intern",
+    "location": "Cincinnati, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 29",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://go.vansh.nyc/Ze?s=y"
+  },
+  {
+    "id": "d00fa4c094a1d47d",
+    "company": "National Interstate Insurance",
+    "title": "DevOps Developer Intern",
+    "location": "Cincinnati, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 29",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://go.vansh.nyc/Zr?s=y"
+  },
+  {
+    "id": "c92e2243378b2dd3",
+    "company": "PROJXON",
+    "title": "Application Developer Full Stack (Intern)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://jobright.ai/jobs/info/6ae39b6777c09cb3bd4a7798"
+  },
+  {
+    "id": "62c6e78e4ceb798d",
+    "company": "Path Robotics",
+    "title": "Machine Learning & Robotics Internship 2027",
+    "location": "Columbus, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://jobright.ai/jobs/info/6ae39aaffb2cd420ace52755"
+  },
+  {
+    "id": "80b2cac1085ce9e1",
+    "company": "Reonic",
+    "title": "Software Engineer Intern - (AI x Greentech) (m/f/d)",
+    "location": "Augsburg, Germany",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://startup.jobs/software-engineer-intern-ai-x-greentech-m-f-d-reonic-10622553"
+  },
+  {
+    "id": "a8ea9698fa7cc1d6",
+    "company": "Solarity",
+    "title": "Software Engineer Intern",
+    "location": "Sioux Falls, SD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 27",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://go.vansh.nyc/Zh?s=y"
+  },
+  {
+    "id": "07ad712000a3a730",
+    "company": "The Bernard Group, Inc.",
+    "title": "Intern, Software Engineer (Full Stack)",
+    "location": "Chanhassen, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T14:13:29",
+    "url": "https://jobright.ai/jobs/info/6ae39b3cfb2cd420ace52789"
   }
 ]
