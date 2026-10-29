@@ -72945,5 +72945,53 @@
     "posted": "2026-10-29",
     "scraped_at": "2026-10-29T06:14:38",
     "url": "https://jobright.ai/jobs/info/6ae32dd9c3139b475b5ab464"
+  },
+  {
+    "id": "bf43f0bb0b44cf78",
+    "company": "JM Family Enterprises",
+    "title": "Software Engineer Intern",
+    "location": "Deerfield Beach, FL; Jacksonville, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 29",
+    "scraped_at": "2026-10-29T08:51:15",
+    "url": "https://go.vansh.nyc/YU?s=y"
+  },
+  {
+    "id": "6f4bd7de7a099178",
+    "company": "Sonos",
+    "title": "Software Partner Engineering Intern (Boston)",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-29T08:51:15",
+    "url": "https://sonos.wd1.myworkdayjobs.com/Sonos/job/Boston-MA/Software-Partner-Engineering-Intern--Boston-_R2886-1"
+  },
+  {
+    "id": "63249cd4c68c50f1",
+    "company": "Sonos",
+    "title": "Software Partner Engineering Intern \ud83d\udec2",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 29",
+    "scraped_at": "2026-10-29T08:51:15",
+    "url": "https://go.vansh.nyc/YW?s=y"
+  },
+  {
+    "id": "2eb3e77a55e89df8",
+    "company": "Two Six Technologies",
+    "title": "Systems Software Engineer Intern",
+    "location": "Arlington, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 29",
+    "scraped_at": "2026-10-29T08:51:15",
+    "url": "https://go.vansh.nyc/Z3?s=y"
   }
 ]
