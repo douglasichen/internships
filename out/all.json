@@ -72837,5 +72837,53 @@
     "posted": "2026-10-28",
     "scraped_at": "2026-10-28T21:06:31",
     "url": "https://jobright.ai/jobs/info/6ae2b7d605a39c3e2c71c4b7"
+  },
+  {
+    "id": "60364a1fe6e89f01",
+    "company": "Sea Limited",
+    "title": "Backend Engineer Intern, Data Infrastructure - OLAP (Fall 2026/ Spring 2027)",
+    "location": "",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-10-29T00:31:59",
+    "url": "https://career.sea.com/jobs/137704"
+  },
+  {
+    "id": "503efa892b2cbd7b",
+    "company": "Boston Scientific",
+    "title": "Software & Systems Testing Engineering Intern",
+    "location": "Arden Hills, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-28",
+    "scraped_at": "2026-10-29T00:31:59",
+    "url": "https://jobright.ai/jobs/info/6ae2ce89e37c39926d3b3d58"
+  },
+  {
+    "id": "1853d4a0ed748695",
+    "company": "Disney",
+    "title": "Full Stack Web Development Intern, Walt Disney Animation Studios",
+    "location": "Burbank, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-10-29T00:31:59",
+    "url": "https://go.vansh.nyc/YM?s=y"
+  },
+  {
+    "id": "20b064bd1c11dc7d",
+    "company": "Tesla",
+    "title": "Internship, Data Engineer, Energy (Winter/Spring 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-28",
+    "scraped_at": "2026-10-29T00:31:59",
+    "url": "https://jobright.ai/jobs/info/6ae2cd7c1c3cd4b40608795b"
   }
 ]
