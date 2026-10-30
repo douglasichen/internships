@@ -73533,5 +73533,101 @@
     "posted": "2026-10-29",
     "scraped_at": "2026-10-29T17:20:17",
     "url": "https://jobright.ai/jobs/info/6ae3bfd0eab1f96730976e24"
+  },
+  {
+    "id": "b3858849b894094e",
+    "company": "Axon",
+    "title": "2027 US Software Engineering Internship (Dedrone)",
+    "location": "Seattle, WA; Sterling, VA; Arlington, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T19:49:09",
+    "url": "https://jobright.ai/jobs/info/6ae3e89ad7424a2a828e3d07"
+  },
+  {
+    "id": "173262b70801350c",
+    "company": "Axon",
+    "title": "Software Engineer Intern",
+    "location": "Seattle, WA; Arlington, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 29",
+    "scraped_at": "2026-10-29T19:49:09",
+    "url": "https://go.vansh.nyc/10l?s=y"
+  },
+  {
+    "id": "32f0267754b49c12",
+    "company": "Great American Insurance Group",
+    "title": "DevOps Developer Intern - Summer 2027",
+    "location": "Cincinnati, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T19:49:09",
+    "url": "https://jobright.ai/jobs/info/6ae3ce2cc3139b475b5b05b8"
+  },
+  {
+    "id": "f0b0e3ca56652c4c",
+    "company": "IDEMIA",
+    "title": "Full Stack Software Engineering Internship",
+    "location": "Eden Prairie, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T19:49:09",
+    "url": "https://jobright.ai/jobs/info/6ae3d028d45dc30fb7d2cc60"
+  },
+  {
+    "id": "fcb762f7efd707cc",
+    "company": "NVIDIA",
+    "title": "AI Systems Software Engineering Intern \u2013 Summer 2027",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T19:49:09",
+    "url": "https://jobright.ai/jobs/info/6ae3d28cc3139b475b5b07e5"
+  },
+  {
+    "id": "24b8fdd6c901a117",
+    "company": "NVIDIA",
+    "title": "Compiler Software Engineering Intern - Summer 2027",
+    "location": "Redmond, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T19:49:09",
+    "url": "https://jobright.ai/jobs/info/6ae3d28fd45dc30fb7d2cdbc"
+  },
+  {
+    "id": "027243f0e8a97723",
+    "company": "Philips",
+    "title": "Co-op \u2013 Data Engineer (Biocompatibility) \u2013 Murrysville, PA \u2013 January to June 2027",
+    "location": "Murrysville, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T19:49:09",
+    "url": "https://jobright.ai/jobs/info/6ae3dac977c09cb3bd4a9963"
+  },
+  {
+    "id": "a1d5cd1ba2f8f531",
+    "company": "The Marvin Group",
+    "title": "INTERN (AI DEVELOPER) Job Details | Marvin Group",
+    "location": "Inglewood, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T19:49:09",
+    "url": "https://jobright.ai/jobs/info/6ae3ed90c3139b475b5b1421"
   }
 ]
