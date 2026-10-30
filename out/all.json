@@ -73629,5 +73629,65 @@
     "posted": "2026-10-29",
     "scraped_at": "2026-10-29T19:49:09",
     "url": "https://jobright.ai/jobs/info/6ae3ed90c3139b475b5b1421"
+  },
+  {
+    "id": "7ab914e18b1d3c54",
+    "company": "General Motors",
+    "title": "2027 Summer Intern - AI/ML Engineer - Autonomous Vehicles",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-28",
+    "scraped_at": "2026-10-29T22:18:11",
+    "url": "https://jobright.ai/jobs/info/6ae4075bd7424a2a828e4df5"
+  },
+  {
+    "id": "4d01805c25357c04",
+    "company": "L3Harris Technologies",
+    "title": "FPGA Software Tool Developer Co-op",
+    "location": "Waterdown, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 29",
+    "scraped_at": "2026-10-29T22:18:11",
+    "url": "https://go.vansh.nyc/10n?s=y"
+  },
+  {
+    "id": "cc8667dac5899e04",
+    "company": "Mission Technologies, a division of HII",
+    "title": "Software Engineer, Intern - Summer 2027 - 30942",
+    "location": "Crane, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T22:18:11",
+    "url": "https://jobright.ai/jobs/info/6ae3fc53d45dc30fb7d2e1f2"
+  },
+  {
+    "id": "2642bb26d2f01adc",
+    "company": "Sandia National Laboratories",
+    "title": "Intern, R&D Graduate Summer -NP&C Software Systems, Onsite",
+    "location": "Albuquerque, NM",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T22:18:11",
+    "url": "https://jobright.ai/jobs/info/6ae3f3e377c09cb3bd4aa55b"
+  },
+  {
+    "id": "cb1c60c759de57c7",
+    "company": "What's The Move",
+    "title": "iOS Software Development Internship",
+    "location": "Miami\u2013Fort Lauderdale Area, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-29T22:18:11",
+    "url": "https://jobright.ai/jobs/info/6ae3f956d7424a2a828e46ec"
   }
 ]
