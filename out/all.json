@@ -73761,5 +73761,113 @@
     "posted": "2026-10-30",
     "scraped_at": "2026-10-30T07:49:31",
     "url": "https://jobright.ai/jobs/info/6ae49725eab1f9673097afde"
+  },
+  {
+    "id": "22b4f8cd73acb901",
+    "company": "Stripe",
+    "title": "Master's Machine Learning Engineer, Intern",
+    "location": "Toronto",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-30T11:33:42",
+    "url": "https://stripe.com/jobs/search?gh_jid=8333122"
+  },
+  {
+    "id": "dab68ef95ea6eeec",
+    "company": "Stripe",
+    "title": "Master's Machine Learning Engineer, Intern",
+    "location": "San Francisco, New York City, Seattle",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-30T11:33:42",
+    "url": "https://stripe.com/jobs/search?gh_jid=8333074"
+  },
+  {
+    "id": "a793dcd3e5c6bee5",
+    "company": "Stripe",
+    "title": "PhD Machine Learning Engineer, Intern",
+    "location": "San Francisco, New York City, Seattle",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-30T11:33:42",
+    "url": "https://stripe.com/jobs/search?gh_jid=8328662"
+  },
+  {
+    "id": "3ee022241f7efb10",
+    "company": "Stripe",
+    "title": "PhD Machine Learning Engineer, Intern",
+    "location": "Toronto",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-10-30T11:33:42",
+    "url": "https://stripe.com/jobs/search?gh_jid=8328664"
+  },
+  {
+    "id": "d84be61d8741f917",
+    "company": "Amazon",
+    "title": "Software Development Engineer Intern, Machine Learning/Automated Reasoning",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Oct 29",
+    "scraped_at": "2026-10-30T11:33:42",
+    "url": "https://go.vansh.nyc/10y?s=y"
+  },
+  {
+    "id": "9a499c40e3a60a95",
+    "company": "Lockheed Martin",
+    "title": "sUAS/Drone Software Engineer - Intern",
+    "location": "San Luis Obispo, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-30",
+    "scraped_at": "2026-10-30T11:33:42",
+    "url": "https://jobright.ai/jobs/info/6ae4b859d7424a2a828e7de5"
+  },
+  {
+    "id": "0c65588dfebd59e8",
+    "company": "OTTO Engineering, Inc.",
+    "title": "Embedded Software Intern - Communications - Summer 2027",
+    "location": "Carpentersville, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-30",
+    "scraped_at": "2026-10-30T11:33:42",
+    "url": "https://jobright.ai/jobs/info/6ae4ad91d7424a2a828e77cb"
+  },
+  {
+    "id": "09e3ebbd14d80100",
+    "company": "Sierra Nevada Corporation",
+    "title": "Firmware Engineering Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Folsom, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 30",
+    "scraped_at": "2026-10-30T11:33:42",
+    "url": "https://go.vansh.nyc/10G?s=y"
+  },
+  {
+    "id": "ce6082ed3b3d2036",
+    "company": "Wex",
+    "title": "Software Engineer Intern",
+    "location": "Remote; United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 30",
+    "scraped_at": "2026-10-30T11:33:42",
+    "url": "https://go.vansh.nyc/10z?s=y"
   }
 ]
