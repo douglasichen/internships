@@ -73701,5 +73701,53 @@
     "posted": "",
     "scraped_at": "2026-10-30T02:25:09",
     "url": "https://www.amazon.jobs/en/jobs/10593299/business-developer-intern-early-careers-2027"
+  },
+  {
+    "id": "14696b67d7390740",
+    "company": "Booz Allen Hamilton",
+    "title": "University - 2027 Summer Games Software Developer Intern - El Segundo, CA",
+    "location": "El Segundo, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-30",
+    "scraped_at": "2026-10-30T05:07:19",
+    "url": "https://jobright.ai/jobs/info/6ae4641fd45dc30fb7d2fb1a"
+  },
+  {
+    "id": "17b1325e3f58f081",
+    "company": "Firefly Aerospace",
+    "title": "Internship - Software Engineering - Spring 2027",
+    "location": "Cedar Park, TX; Leander, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-19",
+    "scraped_at": "2026-10-30T05:07:19",
+    "url": "https://jobright.ai/jobs/info/6ae45a93d45dc30fb7d2f92a"
+  },
+  {
+    "id": "c497cbcc81e0b273",
+    "company": "Leonardo DRS",
+    "title": "2027 Summer - Full Stack Software Engineering Intern - Melbourne FL",
+    "location": "Melbourne, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-30",
+    "scraped_at": "2026-10-30T05:07:19",
+    "url": "https://jobright.ai/jobs/info/6ae4726eeab1f9673097a6c4"
+  },
+  {
+    "id": "78521775d1c42321",
+    "company": "The Marvin Group",
+    "title": "INTERN (AI DEVELOPER)",
+    "location": "Inglewood, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-29",
+    "scraped_at": "2026-10-30T05:07:19",
+    "url": "https://jobright.ai/jobs/info/6ae45e21d7424a2a828e607b"
   }
 ]
