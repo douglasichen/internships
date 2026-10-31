@@ -74457,5 +74457,17 @@
     "posted": "Oct 27",
     "scraped_at": "2026-10-30T23:12:19",
     "url": "https://go.vansh.nyc/11O?s=y"
+  },
+  {
+    "id": "eb2723bec1cee93d",
+    "company": "Systems Planning and Analysis",
+    "title": "Data Engineer Intern",
+    "location": "Alexandria, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-10-31T11:21:29",
+    "url": "https://go.vansh.nyc/128?s=y"
   }
 ]
