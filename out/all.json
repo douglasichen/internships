@@ -74373,5 +74373,89 @@
     "posted": "2026-10-29",
     "scraped_at": "2026-10-30T17:42:10",
     "url": "https://jobright.ai/jobs/info/6ae50a62eab1f9673097f429"
+  },
+  {
+    "id": "4ea1169afd825142",
+    "company": "Firework",
+    "title": "Data Engineer Intern",
+    "location": "San Mateo, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 30",
+    "scraped_at": "2026-10-30T23:12:19",
+    "url": "https://go.vansh.nyc/11I?s=y"
+  },
+  {
+    "id": "8eebed202c3cc71a",
+    "company": "GenPark",
+    "title": "Frontend Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-30",
+    "scraped_at": "2026-10-30T23:12:19",
+    "url": "https://jobright.ai/jobs/info/6ae571beeab1f96730981658"
+  },
+  {
+    "id": "f76093942cfa03b6",
+    "company": "Nintendo",
+    "title": "Software Engineer Intern, Graphics",
+    "location": "Redmond, WA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Oct 29",
+    "scraped_at": "2026-10-30T23:12:19",
+    "url": "https://go.vansh.nyc/121?s=y"
+  },
+  {
+    "id": "da087ec69c7a0c63",
+    "company": "Savannah River Mission Completion",
+    "title": "2027 Summer Intern-Computer Science (Artificial Intelligence/Machine Learning)",
+    "location": "Aiken, SC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-30",
+    "scraped_at": "2026-10-30T23:12:19",
+    "url": "https://jobright.ai/jobs/info/6ae555cbd45dc30fb7d366f2"
+  },
+  {
+    "id": "df3bc912883cce4e",
+    "company": "Sephora",
+    "title": "AI Platform Infrastructure Intern, Technology",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 27",
+    "scraped_at": "2026-10-30T23:12:19",
+    "url": "https://go.vansh.nyc/11N?s=y"
+  },
+  {
+    "id": "86aeabfcca4a26d6",
+    "company": "Syntiant",
+    "title": "DevOps Machine Learning Infrastructure Intern",
+    "location": "Irvine, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-10-30T23:12:19",
+    "url": "https://go.vansh.nyc/11V?s=y"
+  },
+  {
+    "id": "8f4b71fc657e0b85",
+    "company": "Toshiba International Corporation",
+    "title": "Firmware Engineer Intern",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 27",
+    "scraped_at": "2026-10-30T23:12:19",
+    "url": "https://go.vansh.nyc/11O?s=y"
   }
 ]
