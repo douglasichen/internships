@@ -75057,5 +75057,29 @@
     "posted": "Nov 01",
     "scraped_at": "2026-11-01T06:47:36",
     "url": "https://go.vansh.nyc/18F?s=y"
+  },
+  {
+    "id": "d44cb75220498e32",
+    "company": "KnowBe4",
+    "title": "Software Engineer Summer Internship",
+    "location": "Clearwater, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-01",
+    "scraped_at": "2026-11-01T16:31:23",
+    "url": "https://jobright.ai/jobs/info/6ae7923ebad9293a40a42997"
+  },
+  {
+    "id": "c7b3a6072a4764a0",
+    "company": "Siemens Digital Industries Software",
+    "title": "Strategic Student Program Digital Enterprise Software Applications Intern",
+    "location": "Charlotte, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 01",
+    "scraped_at": "2026-11-01T16:31:23",
+    "url": "https://go.vansh.nyc/18U?s=y"
   }
 ]
