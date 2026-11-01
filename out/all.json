@@ -74817,5 +74817,29 @@
     "posted": "Oct 30",
     "scraped_at": "2026-10-31T19:52:08",
     "url": "https://go.vansh.nyc/13y?s=y"
+  },
+  {
+    "id": "7b69085f425ff99c",
+    "company": "Applied Concepts, Inc.",
+    "title": "Web and Apps Developer - Intern (Nov-26 to May-27)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-30",
+    "scraped_at": "2026-10-31T22:44:33",
+    "url": "https://jobright.ai/jobs/info/6ae69186d45dc30fb7d3935a"
+  },
+  {
+    "id": "9990d4ff897454fb",
+    "company": "Stalker Radar",
+    "title": "Web and Apps Developer - Intern (Nov-26 to May-27)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-28",
+    "scraped_at": "2026-10-31T22:44:33",
+    "url": "https://jobright.ai/jobs/info/6ae6aaeafb2cd420ace610fd"
   }
 ]
