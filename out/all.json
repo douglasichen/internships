@@ -74841,5 +74841,65 @@
     "posted": "2026-10-28",
     "scraped_at": "2026-10-31T22:44:33",
     "url": "https://jobright.ai/jobs/info/6ae6aaeafb2cd420ace610fd"
+  },
+  {
+    "id": "28b84ee317706c64",
+    "company": "ByteDance",
+    "title": "Machine Learning Engineer Intern, AML-Engine-Orchestration",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 01",
+    "scraped_at": "2026-11-01T01:53:13",
+    "url": "https://go.vansh.nyc/144?s=y"
+  },
+  {
+    "id": "8f2ff00c3287e651",
+    "company": "ByteDance",
+    "title": "Machine Learning Engineer Project Intern, Security-Data",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 01",
+    "scraped_at": "2026-11-01T01:53:13",
+    "url": "https://go.vansh.nyc/14A?s=y"
+  },
+  {
+    "id": "3d05405d3dcad159",
+    "company": "ByteDance",
+    "title": "Security Software Engineer Project Intern, Network Security",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 01",
+    "scraped_at": "2026-11-01T01:53:13",
+    "url": "https://go.vansh.nyc/14B?s=y"
+  },
+  {
+    "id": "d6e358fe01482093",
+    "company": "ByteDance",
+    "title": "Software Engineer Intern, AML-Engine-Orchestration",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 01",
+    "scraped_at": "2026-11-01T01:53:13",
+    "url": "https://go.vansh.nyc/14g?s=y"
+  },
+  {
+    "id": "f4a880f5b70df445",
+    "company": "ByteDance",
+    "title": "Student Researcher Intern, Seed Model - AI Foundation Model Infrastructure",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 01",
+    "scraped_at": "2026-11-01T01:53:13",
+    "url": "https://go.vansh.nyc/140?s=y"
   }
 ]
