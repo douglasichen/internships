@@ -76197,5 +76197,41 @@
     "posted": "Nov 02",
     "scraped_at": "2026-11-03T00:22:11",
     "url": "https://go.vansh.nyc/1cQ?s=y"
+  },
+  {
+    "id": "87a8f2d09c9276ef",
+    "company": "Nvidia",
+    "title": "Software Engineering Intern - 2027",
+    "location": "Germany, Munich",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-03T04:38:39",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Germany-Munich/Software-Engineering-Intern---2027_JR2029184"
+  },
+  {
+    "id": "0cdaed78fd0b903e",
+    "company": "ByteDance",
+    "title": "Software Engineer - Intern (CIS) - 2027 Start",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-10-26",
+    "scraped_at": "2026-11-03T04:38:39",
+    "url": "https://jobright.ai/jobs/info/6adc7b03c5c64fa3d9cb3b3d"
+  },
+  {
+    "id": "85e537eefca84dc3",
+    "company": "Paccar",
+    "title": "Software Developer Intern",
+    "location": "Denton, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 02",
+    "scraped_at": "2026-11-03T04:38:39",
+    "url": "https://go.vansh.nyc/1dr?s=y"
   }
 ]
