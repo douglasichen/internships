@@ -76233,5 +76233,89 @@
     "posted": "Nov 02",
     "scraped_at": "2026-11-03T04:38:39",
     "url": "https://go.vansh.nyc/1dr?s=y"
+  },
+  {
+    "id": "49b03430d063bef8",
+    "company": "American Express",
+    "title": "Campus Undergraduate Summer Internship Program - 2027 Software Engineer, Enterprise Technology Services- Sunnyvale, CA",
+    "location": "Sunnyvale, CA, United States",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-03T10:17:38",
+    "url": "https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26015722"
+  },
+  {
+    "id": "749d6cb4af3d834f",
+    "company": "American Express",
+    "title": "Undergraduate Program Software Engineer Intern, Enterprise Technology Services",
+    "location": "Sunnyvale, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Nov 03",
+    "scraped_at": "2026-11-03T10:17:38",
+    "url": "https://go.vansh.nyc/1dH?s=y"
+  },
+  {
+    "id": "e243c27de7f07bfe",
+    "company": "Fareway Stores, Inc.",
+    "title": "Corporate IT Full Stack Development Intern",
+    "location": "Johnston, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-03T10:17:38",
+    "url": "https://jobright.ai/jobs/info/6ae9f5cca5966d341d02ba4b"
+  },
+  {
+    "id": "2581ddfb0577f856",
+    "company": "Fareway Stores, Inc.",
+    "title": "IBM I RPG Developer Internship",
+    "location": "Johnston, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-03T10:17:38",
+    "url": "https://jobright.ai/jobs/info/6ae9f5c5a291a1db4de264db"
+  },
+  {
+    "id": "a1474e1da898a33a",
+    "company": "KLA",
+    "title": "Machine Learning Engineer Intern",
+    "location": "Milpitas, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-03T10:17:38",
+    "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Product-Development-Engineering-Intern_2641562-1"
+  },
+  {
+    "id": "d8ec7315ce81c940",
+    "company": "Meta",
+    "title": "Research Scientist Intern, FM Quality ML (PhD)",
+    "location": "Menlo Park, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-03T10:17:38",
+    "url": "https://jobright.ai/jobs/info/6aea064e1ba298c77776e087"
+  },
+  {
+    "id": "5c30c14b3511df21",
+    "company": "Tammina Infotech Pvt.Ltd",
+    "title": "Intern \u2013 Software Development",
+    "location": "United States; India",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-03T10:17:38",
+    "url": "https://jobright.ai/jobs/info/6aea06631ba298c77776e0a0"
   }
 ]
