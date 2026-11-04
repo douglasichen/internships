@@ -77169,5 +77169,41 @@
     "posted": "Nov 03",
     "scraped_at": "2026-11-04T01:50:09",
     "url": "https://go.vansh.nyc/1g8?s=y"
+  },
+  {
+    "id": "5fb2c28d5f531bec",
+    "company": "Roku",
+    "title": "Software Engineering Internship Program (Summer 2027)",
+    "location": "Cambridge, United Kingdom",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-04T05:32:58",
+    "url": "https://www.weareroku.com/jobs/8345963?gh_jid=8345963"
+  },
+  {
+    "id": "6aff595428a94ddf",
+    "company": "Roku",
+    "title": "Software Engineering Internship Program (Summer 2027)",
+    "location": "Manchester, United Kingdom",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-04T05:32:58",
+    "url": "https://www.weareroku.com/jobs/8345967?gh_jid=8345967"
+  },
+  {
+    "id": "3475bf1877d2e5a3",
+    "company": "RTX",
+    "title": "Intern: Summer 2027 - Control/Diagnostic Software (Onsite)",
+    "location": "Jupiter, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-04T05:32:58",
+    "url": "https://jobright.ai/jobs/info/6aeaf13c59a085bcfcdcae91"
   }
 ]
