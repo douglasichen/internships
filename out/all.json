@@ -77289,5 +77289,89 @@
     "posted": "Nov 04",
     "scraped_at": "2026-11-04T08:13:57",
     "url": "https://go.vansh.nyc/1gp?s=y"
+  },
+  {
+    "id": "6cc73007595c19a7",
+    "company": "Figma",
+    "title": "PhD Intern, Software Engineer - Interaction Design (2027)",
+    "location": "San Francisco, CA \u2022 New York, NY",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-04T10:54:02",
+    "url": "https://boards.greenhouse.io/figma/jobs/6241542004?gh_jid=6241542004"
+  },
+  {
+    "id": "9b634d402f7e20ee",
+    "company": "BorgWarner",
+    "title": "Software Engineering Intern",
+    "location": "Auburn Hills, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T10:54:02",
+    "url": "https://go.vansh.nyc/1gH?s=y"
+  },
+  {
+    "id": "d61b79d087b1a555",
+    "company": "Moog",
+    "title": "Software Engineering Intern",
+    "location": "Torrance, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T10:54:02",
+    "url": "https://go.vansh.nyc/1gy?s=y"
+  },
+  {
+    "id": "a0336d1be3f5f273",
+    "company": "PACCAR",
+    "title": "2027 Summer Internship: Data Engineer",
+    "location": "Denton, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-04T10:54:02",
+    "url": "https://jobright.ai/jobs/info/6aeb4af9f40efa43f4a15b3b"
+  },
+  {
+    "id": "f045d36dd1824d3b",
+    "company": "Parsons",
+    "title": "AI/ML Engineer Intern",
+    "location": "Centreville, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 03",
+    "scraped_at": "2026-11-04T10:54:02",
+    "url": "https://go.vansh.nyc/1gF?s=y"
+  },
+  {
+    "id": "8121d239dbc1390a",
+    "company": "Zebra Technologies",
+    "title": "2027 Summer Internship (US) - Software Engineer, AI Features & Product Convergence, Zebra Task Manager",
+    "location": "Kennesaw, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-04T10:54:02",
+    "url": "https://jobright.ai/jobs/info/6aeb50f3f40efa43f4a15e53"
+  },
+  {
+    "id": "a8b8c8c6f1797090",
+    "company": "Zebra Technologies",
+    "title": "Software Engineer Intern, AI Features & Product Convergence",
+    "location": "Kennesaw, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T10:54:02",
+    "url": "https://go.vansh.nyc/1gx?s=y"
   }
 ]
