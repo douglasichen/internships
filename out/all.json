@@ -77013,5 +77013,113 @@
     "posted": "Sep 11",
     "scraped_at": "2026-11-03T16:29:14",
     "url": "https://go.vansh.nyc/1eH?s=y"
+  },
+  {
+    "id": "1839a2d9829ee65b",
+    "company": "BAE Systems",
+    "title": "AI/ML Engineer Intern, Summer 2027",
+    "location": "Rockville, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-02",
+    "scraped_at": "2026-11-03T20:07:17",
+    "url": "https://jobright.ai/jobs/info/6aea6cb91ba298c777772c27"
+  },
+  {
+    "id": "9deca6f722ace678",
+    "company": "CNH",
+    "title": "Firmware Software Intern",
+    "location": "Oak Brook, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-03T20:07:17",
+    "url": "https://jobright.ai/jobs/info/6aea59f2fc85f3a394332ec6"
+  },
+  {
+    "id": "aadfefbb9e1dcddd",
+    "company": "Lockheed Martin",
+    "title": "Java Software Developer-INTERN",
+    "location": "Colorado Springs, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-03T20:07:17",
+    "url": "https://jobright.ai/jobs/info/6aea67de913589212b1f6abe"
+  },
+  {
+    "id": "ca418bcda1dc942f",
+    "company": "Nex",
+    "title": "Software Engineer Intern, Sports & Fitness Game Development",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 03",
+    "scraped_at": "2026-11-03T20:07:17",
+    "url": "https://go.vansh.nyc/1fL?s=y"
+  },
+  {
+    "id": "dc7235c9030e3bdd",
+    "company": "RoboForce",
+    "title": "Machine Learning Engineer Intern, AI & Robotics",
+    "location": "Milpitas, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-03T20:07:17",
+    "url": "https://jobright.ai/jobs/info/6aea64c0897466e69e31ea78"
+  },
+  {
+    "id": "3c68421d89ab8528",
+    "company": "Sentient Digital, Inc.",
+    "title": "Software Engineer Intern (Summer 2027)",
+    "location": "Brunswick, ME",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-03T20:07:17",
+    "url": "https://jobright.ai/jobs/info/6aea674a913589212b1f6a33"
+  },
+  {
+    "id": "6513425b2c691541",
+    "company": "Simon Property Group",
+    "title": "Front End Developer Intern",
+    "location": "Indianapolis, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 03",
+    "scraped_at": "2026-11-03T20:07:17",
+    "url": "https://go.vansh.nyc/1fs?s=y"
+  },
+  {
+    "id": "58bdc901ce258529",
+    "company": "Sun Life",
+    "title": "Business Operations Software Engineer 2027 Co-op",
+    "location": "Wellesley, MA; Hartford, CT; Milwaukee, WI; Portland, ME; Kansas City, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-02",
+    "scraped_at": "2026-11-03T20:07:17",
+    "url": "https://jobright.ai/jobs/info/6aea6b481ba298c777772b73"
+  },
+  {
+    "id": "2b4a5be9ae8baee2",
+    "company": "TikTok",
+    "title": "Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-03T20:07:17",
+    "url": "https://jobright.ai/jobs/info/6aea60221ba298c777772491"
   }
 ]
