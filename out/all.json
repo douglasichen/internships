@@ -77205,5 +77205,89 @@
     "posted": "2026-11-03",
     "scraped_at": "2026-11-04T05:32:58",
     "url": "https://jobright.ai/jobs/info/6aeaf13c59a085bcfcdcae91"
+  },
+  {
+    "id": "f6b93ac5ac6f26e5",
+    "company": "Nutanix",
+    "title": "software-engineering-intern-summer-2027",
+    "location": "",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-11-04T08:13:57",
+    "url": "https://careers.nutanix.com/en/jobs/32980/software-engineering-intern-summer-2027"
+  },
+  {
+    "id": "d918dab70454c8f5",
+    "company": "Northrop Grumman",
+    "title": "2027 Cybersecurity Software Engineering Intern - Roy UT",
+    "location": "Clearfield, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-04T08:13:57",
+    "url": "https://jobright.ai/jobs/info/6aeb3023765815f7d745e1a3"
+  },
+  {
+    "id": "851a524147d35f18",
+    "company": "Northrop Grumman",
+    "title": "2027 DevOps Software Engineering Intern - Roy UT",
+    "location": "Roy, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-04T08:13:57",
+    "url": "https://jobright.ai/jobs/info/6aeb303365311d97105b64f5"
+  },
+  {
+    "id": "e2cf11a618f2e1b8",
+    "company": "Northrop Grumman",
+    "title": "Cybersecurity Software Engineering Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Clearfield, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T08:13:57",
+    "url": "https://go.vansh.nyc/1gl?s=y"
+  },
+  {
+    "id": "2e120f965a3c8e8a",
+    "company": "Northrop Grumman",
+    "title": "DevOps Software Engineering Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Roy, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T08:13:57",
+    "url": "https://go.vansh.nyc/1gk?s=y"
+  },
+  {
+    "id": "5de5579c04f849e7",
+    "company": "Northrop Grumman",
+    "title": "Software Test Engineering Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Roy, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T08:13:57",
+    "url": "https://go.vansh.nyc/1gj?s=y"
+  },
+  {
+    "id": "367364ac8e53fdb5",
+    "company": "Plusgrade",
+    "title": "UI/UX Design and Frontend Engineer Intern",
+    "location": "Toronto, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T08:13:57",
+    "url": "https://go.vansh.nyc/1gp?s=y"
   }
 ]
