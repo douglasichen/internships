@@ -77121,5 +77121,17 @@
     "posted": "2026-11-03",
     "scraped_at": "2026-11-03T20:07:17",
     "url": "https://jobright.ai/jobs/info/6aea60221ba298c777772491"
+  },
+  {
+    "id": "4cea4b77d3846715",
+    "company": "LLNL",
+    "title": "Cybersecurity Undergraduate Intern, Cyber and Critical Infrastructure",
+    "location": "Livermore, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 03",
+    "scraped_at": "2026-11-03T22:57:17",
+    "url": "https://go.vansh.nyc/1fR?s=y"
   }
 ]
