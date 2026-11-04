@@ -77133,5 +77133,41 @@
     "posted": "Nov 03",
     "scraped_at": "2026-11-03T22:57:17",
     "url": "https://go.vansh.nyc/1fR?s=y"
+  },
+  {
+    "id": "ded48aad12e2804e",
+    "company": "Northrop Grumman",
+    "title": "S/W Embedded Engineering Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Sykesville, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 03",
+    "scraped_at": "2026-11-04T01:50:09",
+    "url": "https://go.vansh.nyc/1fW?s=y"
+  },
+  {
+    "id": "f6f95c530424194f",
+    "company": "Pacific Fusion",
+    "title": "Software Engineering Intern",
+    "location": "San Leandro, CA; Fremont, CA; Los Lunas, NM",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 01",
+    "scraped_at": "2026-11-04T01:50:09",
+    "url": "https://go.vansh.nyc/1g4?s=y"
+  },
+  {
+    "id": "602b1dcdce077580",
+    "company": "RTX",
+    "title": "Control/Diagnostic Software Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Jupiter, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 03",
+    "scraped_at": "2026-11-04T01:50:09",
+    "url": "https://go.vansh.nyc/1g8?s=y"
   }
 ]
