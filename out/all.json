@@ -63599,6 +63599,18 @@
     "url": "https://job-boards.greenhouse.io/braze/jobs/8301086"
   },
   {
+    "id": "08572b8393c13c2a",
+    "company": "Zebra Technologies",
+    "title": "2027 Summer Internship (US) - Software Engineer",
+    "location": "Holtsville, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-18",
+    "scraped_at": "2026-10-19T16:47:26",
+    "url": "https://jobright.ai/jobs/info/6ad683da52aa6152bb6963f8"
+  },
+  {
     "id": "cb482f7a910ed517",
     "company": "Patreon",
     "title": "Software Engineering Intern - Summer 2027",
@@ -63657,18 +63669,6 @@
     "posted": "2026-10-19",
     "scraped_at": "2026-10-19T16:47:26",
     "url": "https://jobright.ai/jobs/info/6ad67d623dc655658d8e6939"
-  },
-  {
-    "id": "08572b8393c13c2a",
-    "company": "Zebra Technologies",
-    "title": "2027 Summer Internship (US) - Software Engineer",
-    "location": "Holtsville, NY",
-    "is_2027": true,
-    "priority": 3,
-    "source": "jobright",
-    "posted": "2026-10-18",
-    "scraped_at": "2026-10-19T16:47:26",
-    "url": "https://jobright.ai/jobs/info/6ad683da52aa6152bb6963f8"
   },
   {
     "id": "0f3a3d922652f6c2",
@@ -78165,5 +78165,137 @@
     "posted": "Nov 05",
     "scraped_at": "2026-11-05T12:12:44",
     "url": "https://go.vansh.nyc/1iL?s=y"
+  },
+  {
+    "id": "fcd0b6fb62f0991c",
+    "company": "KEEN Footwear",
+    "title": "Associate Footwear Developer Intern",
+    "location": "Keene, NH +1",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://www.keenfootwear.com/careers-list.html?4750548005&gh_jid=4750548005"
+  },
+  {
+    "id": "7a55cdd530180e62",
+    "company": "Apex",
+    "title": "Software Engineering Internship, Test & Automation (Summer 2027)",
+    "location": "Los Angeles, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://jobright.ai/jobs/info/6aecd2853967d67f635a00d8"
+  },
+  {
+    "id": "1cc1c9742195b7a7",
+    "company": "Axiom Consultants",
+    "title": "AI Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://jobright.ai/jobs/info/6aecca5c3a3fa7f03ea89334"
+  },
+  {
+    "id": "7cbe3527de80cd6c",
+    "company": "BorgWarner",
+    "title": "Software Test Intern",
+    "location": "Auburn Hills, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 05",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://go.vansh.nyc/1jb?s=y"
+  },
+  {
+    "id": "71017a0e87efa1e9",
+    "company": "Colony Brands, Inc.",
+    "title": "Data Engineer Internship",
+    "location": "Monroe, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://jobright.ai/jobs/info/6aece0bfa9ea762a04092ec9"
+  },
+  {
+    "id": "96a21ec92770e6bf",
+    "company": "Deltek",
+    "title": "Software Development Internship",
+    "location": "Herndon, VA; Tampa, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://jobright.ai/jobs/info/6aeccbdc3a3fa7f03ea8943a"
+  },
+  {
+    "id": "f3a8937e23f8c8f6",
+    "company": "Deltek",
+    "title": "Software Engineering Intern",
+    "location": "Herndon, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://jobright.ai/jobs/info/6aeccbd9a9ea762a0409235d"
+  },
+  {
+    "id": "db805ae64f82947f",
+    "company": "Raytheon",
+    "title": "Intern: Summer 2027 - Control/Diagnostic Software - Onsite",
+    "location": "Jupiter, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/rec_rtx_ext_gateway/job/US-FL-JUPITER-ADR--17900-Beeline-Hwy--ADR-BLDG/Intern--Summer-2027---Control-Diagnostic-Software--Onsite-_01883840"
+  },
+  {
+    "id": "a149b3d349b29dd9",
+    "company": "STARKEY DE M\u00c9XICO S.A. DE C.V.",
+    "title": "Software Engineering Intern",
+    "location": "Eden Prairie, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 03",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://go.vansh.nyc/1j1?s=y"
+  },
+  {
+    "id": "343291b22b6b28da",
+    "company": "Shield",
+    "title": "Software Engineer Co-op",
+    "location": "Dallas, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 05",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://go.vansh.nyc/1iW?s=y"
+  },
+  {
+    "id": "b4f193a5e4a34cbc",
+    "company": "Sierra Nevada Corporation",
+    "title": "Firmware Engineer Intern (Summer 2027)",
+    "location": "Sparks, NV",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-05T15:00:19",
+    "url": "https://jobright.ai/jobs/info/6aece6743967d67f635a0bbf"
   }
 ]
