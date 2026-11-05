@@ -77387,18 +77387,6 @@
     "url": "https://careers-gdms.icims.com/jobs/75755/software-intern-engineer/job"
   },
   {
-    "id": "f5766f5db26bfdce",
-    "company": "Sun Life",
-    "title": "Business Operations Software Engineer 2027 Co-op",
-    "location": "Hartford, CT +2",
-    "is_2027": true,
-    "priority": 3,
-    "source": "speedyapply",
-    "posted": "1d",
-    "scraped_at": "2026-11-04T15:19:03",
-    "url": "https://sunlife.wd3.myworkdayjobs.com/en-US/experienced-jobs/job/Sun-Life-Wellesley/Business-Operations-Software-Engineer-2027-Co-op_JR00128863-3"
-  },
-  {
     "id": "6cff0cb2867b4448",
     "company": "AmTrust Financial Services, Inc.",
     "title": "IT Data Engineer Internship - Summer 2027",
@@ -77661,5 +77649,89 @@
     "posted": "2026-11-03",
     "scraped_at": "2026-11-04T18:10:08",
     "url": "https://jobright.ai/jobs/info/6aeba5b1fbe13dfb53df628f"
+  },
+  {
+    "id": "4abb8e55c55a8209",
+    "company": "Intel",
+    "title": "AI Software Engineering Intern",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-04T20:48:02",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/PRC-Shanghai/AI-Software-Engineering-Intern_JR0288896"
+  },
+  {
+    "id": "a9a427a7c2caed63",
+    "company": "ASML",
+    "title": "Internship -  Machine Learning and image-based EUV system setup",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-04T20:48:02",
+    "url": "https://jobright.ai/jobs/info/6aebd0d682f0ac077443d3ea"
+  },
+  {
+    "id": "053f6f8a69ee69b5",
+    "company": "Microsoft",
+    "title": "Research Intern - Research in Software Engineering, ML Systems, Agents",
+    "location": "Redmond, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-04T20:48:02",
+    "url": "https://jobright.ai/jobs/info/6aebda1865311d97105bc6ae"
+  },
+  {
+    "id": "703100ed9829ab0a",
+    "company": "PayPal",
+    "title": "Machine Learning Engineer Intern",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T20:48:02",
+    "url": "https://go.vansh.nyc/1hz?s=y"
+  },
+  {
+    "id": "3878d873f03ccca9",
+    "company": "Qualcomm",
+    "title": "Machine Learning Engineering Intern",
+    "location": "Markham, Canada",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T20:48:02",
+    "url": "https://go.vansh.nyc/1ho?s=y"
+  },
+  {
+    "id": "edc26b8573e04142",
+    "company": "Venmo",
+    "title": "Machine Learning Engineer Intern - Summer 2027",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-11-04T20:48:02",
+    "url": "https://jobright.ai/jobs/info/6aebdd4665311d97105bc74d"
+  },
+  {
+    "id": "96bbb52044fd85ad",
+    "company": "Venmo",
+    "title": "Machine Learning Engineer PhD Intern - Summer 2027",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-20",
+    "scraped_at": "2026-11-04T20:48:02",
+    "url": "https://jobright.ai/jobs/info/6aebe481fbe13dfb53df7e1a"
   }
 ]
