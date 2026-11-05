@@ -77733,5 +77733,65 @@
     "posted": "2026-10-20",
     "scraped_at": "2026-11-04T20:48:02",
     "url": "https://jobright.ai/jobs/info/6aebe481fbe13dfb53df7e1a"
+  },
+  {
+    "id": "79e6a0c1b0a614c3",
+    "company": "General Dynamics Information Technology",
+    "title": "AI/ML Data Science and Engineering Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Bossier City, LA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 05",
+    "scraped_at": "2026-11-05T03:50:35",
+    "url": "https://go.vansh.nyc/1hS?s=y"
+  },
+  {
+    "id": "ea33865421c56cd3",
+    "company": "General Dynamics Information Technology",
+    "title": "AI/ML Software Development and Engineering Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Bossier City, LA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 05",
+    "scraped_at": "2026-11-05T03:50:35",
+    "url": "https://go.vansh.nyc/1hT?s=y"
+  },
+  {
+    "id": "145b775fe5d364a8",
+    "company": "Genesys",
+    "title": "Web Software Developer Intern, WFM",
+    "location": "Toronto, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 05",
+    "scraped_at": "2026-11-05T03:50:35",
+    "url": "https://go.vansh.nyc/1hJ?s=y"
+  },
+  {
+    "id": "a491807026c61ec1",
+    "company": "Interbiz Consulting",
+    "title": "Software Engineer Intern",
+    "location": "Tempe, AZ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-05T03:50:35",
+    "url": "https://jobright.ai/jobs/info/6aec36f8f69ea487dd5d7b16"
+  },
+  {
+    "id": "5c86aed76a29a11b",
+    "company": "PayPal",
+    "title": "Machine Learning Engineer PhD Intern - Summer 2027",
+    "location": "San Jose, California, United States of America",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-05T03:50:35",
+    "url": "https://paypal.wd1.myworkdayjobs.com/jobs/job/San-Jose-California-United-States-of-America/Machine-Learning-Engineer-PhD-Intern---Summer-2027_R0138579"
   }
 ]
