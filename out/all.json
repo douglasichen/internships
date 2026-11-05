@@ -77387,18 +77387,6 @@
     "url": "https://careers-gdms.icims.com/jobs/75755/software-intern-engineer/job"
   },
   {
-    "id": "869fe8ccf80772ac",
-    "company": "Sun Life",
-    "title": "Business Operations Software Engineer 2027 Co-op",
-    "location": "Hartford, CT +2",
-    "is_2027": true,
-    "priority": 3,
-    "source": "speedyapply",
-    "posted": "1d",
-    "scraped_at": "2026-11-04T15:19:03",
-    "url": "https://sunlife.wd3.myworkdayjobs.com/en-US/experienced/job/Sun-Life-Wellesley/Business-Operations-Software-Engineer-2027-Co-op_JR00128863-1"
-  },
-  {
     "id": "f5766f5db26bfdce",
     "company": "Sun Life",
     "title": "Business Operations Software Engineer 2027 Co-op",
@@ -77577,5 +77565,101 @@
     "posted": "2026-11-04",
     "scraped_at": "2026-11-04T15:19:03",
     "url": "https://jobright.ai/jobs/info/6aeb897265311d97105b9a72"
+  },
+  {
+    "id": "8c813f8394f12dda",
+    "company": "ASML",
+    "title": "Machine Learning and Image-Based EUV System Setup Intern",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T18:10:08",
+    "url": "https://go.vansh.nyc/1h9?s=y"
+  },
+  {
+    "id": "17f94b6efd2e7c3e",
+    "company": "Badger Meter",
+    "title": "Firmware Test Engineer Intern",
+    "location": "Milwaukee, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-04T18:10:08",
+    "url": "https://go.vansh.nyc/1hi?s=y"
+  },
+  {
+    "id": "976320698a637e33",
+    "company": "Bose Corporation",
+    "title": "DSP/ML Research Engineer Co-op | Spring 2027",
+    "location": "Framingham, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-04T18:10:08",
+    "url": "https://jobright.ai/jobs/info/6aebb376f40efa43f4a19f04"
+  },
+  {
+    "id": "67e40390ecfeafa5",
+    "company": "Bose Corporation",
+    "title": "DSP/ML Research Engineer Intern | Summer 2027",
+    "location": "Framingham, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-04T18:10:08",
+    "url": "https://jobright.ai/jobs/info/6aebb369fbe13dfb53df6910"
+  },
+  {
+    "id": "119164f0c7728ea5",
+    "company": "Corel Corporation",
+    "title": "AI Software Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-04T18:10:08",
+    "url": "https://jobright.ai/jobs/info/6aebb85b82f0ac077443c95d"
+  },
+  {
+    "id": "bbf3069a5d616a3a",
+    "company": "Mercedes-Benz Research & Development North America, Inc.",
+    "title": "AI/ML Intern, Long-Term Memory & Multimodal SLMs for Automotive Agents",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-04T18:10:08",
+    "url": "https://jobright.ai/jobs/info/6aebb438f40efa43f4a19f8c"
+  },
+  {
+    "id": "7aa2be109f07c676",
+    "company": "Mercedes-Benz in the UK",
+    "title": "AI/ML Intern, Long-Term Memory & Multimodal SLMs for Automotive Agents",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-04",
+    "scraped_at": "2026-11-04T18:10:08",
+    "url": "https://jobright.ai/jobs/info/6aeba0a065311d97105ba97e"
+  },
+  {
+    "id": "8dbff50d7d35f09e",
+    "company": "Northrop Grumman",
+    "title": "2027 Spring Co-op Software Engineer Intern \u2013 McClellan CA",
+    "location": "McClellan Park, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-03",
+    "scraped_at": "2026-11-04T18:10:08",
+    "url": "https://jobright.ai/jobs/info/6aeba5b1fbe13dfb53df628f"
   }
 ]
