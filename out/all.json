@@ -78453,5 +78453,77 @@
     "posted": "2026-11-05",
     "scraped_at": "2026-11-05T17:52:04",
     "url": "https://jobright.ai/jobs/info/6aecee313a3fa7f03ea8a8e7"
+  },
+  {
+    "id": "c62b08a115b0c812",
+    "company": "Etched",
+    "title": "Infrastructure Engineering & Projects Intern",
+    "location": "San Jose",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-05T20:58:39",
+    "url": "https://jobs.ashbyhq.com/Etched/1a92048c-60e0-445b-a84e-8f008f1cf47b"
+  },
+  {
+    "id": "fac6124f6f8bb0d4",
+    "company": "Lockheed Martin",
+    "title": "Software Developer Intern",
+    "location": "Boulder, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-05T20:58:39",
+    "url": "https://jobright.ai/jobs/info/6aed2a503967d67f635a2f20"
+  },
+  {
+    "id": "65f467dd780d723c",
+    "company": "Raft",
+    "title": "AI/ML Intern - Summer 2027",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-05T20:58:39",
+    "url": "https://jobright.ai/jobs/info/6aed23c4465e3d2371384c6c"
+  },
+  {
+    "id": "d7378a81125cbd26",
+    "company": "Raft",
+    "title": "Full Stack Engineering Intern - Summer 2027",
+    "location": "McLean, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-05T20:58:39",
+    "url": "https://jobright.ai/jobs/info/6aed23b43a3fa7f03ea8c453"
+  },
+  {
+    "id": "86b32a8c5c4ebfe8",
+    "company": "Raft Company Website",
+    "title": "Full Stack Engineering Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "McLean, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 05",
+    "scraped_at": "2026-11-05T20:58:39",
+    "url": "https://go.vansh.nyc/1jS?s=y"
+  },
+  {
+    "id": "faafafd8a5368ad6",
+    "company": "Zoox",
+    "title": "Software Engineer Intern, Software Systems",
+    "location": "Foster City, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Nov 05",
+    "scraped_at": "2026-11-05T20:58:39",
+    "url": "https://go.vansh.nyc/1jW?s=y"
   }
 ]
