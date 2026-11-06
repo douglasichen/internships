@@ -78525,5 +78525,41 @@
     "posted": "Nov 05",
     "scraped_at": "2026-11-05T20:58:39",
     "url": "https://go.vansh.nyc/1jW?s=y"
+  },
+  {
+    "id": "45014bc03004e766",
+    "company": "ASM",
+    "title": "Intern, Product Intelligence Engineering (AI/ML)",
+    "location": "Phoenix, AZ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-05T23:38:16",
+    "url": "https://jobright.ai/jobs/info/6aed55e7ab48a7079382265d"
+  },
+  {
+    "id": "797dab39d9b4bb41",
+    "company": "ASM",
+    "title": "Product Intelligence Engineering Intern, AI/ML",
+    "location": "Phoenix, AZ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 05",
+    "scraped_at": "2026-11-05T23:38:16",
+    "url": "https://go.vansh.nyc/1jZ?s=y"
+  },
+  {
+    "id": "7a2ac6f8371043df",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Software Engineer Intern 2027",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-05T23:38:16",
+    "url": "https://jobright.ai/jobs/info/6aed4721a3da3840d4aba9c6"
   }
 ]
