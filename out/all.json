@@ -79641,5 +79641,53 @@
     "posted": "Sep 20",
     "scraped_at": "2026-11-07T23:12:33",
     "url": "https://go.vansh.nyc/1mE?s=y"
+  },
+  {
+    "id": "3d7c626c8c6cbc74",
+    "company": "Bosch",
+    "title": "Motorsport Software and Data Analytics Graduate Intern",
+    "location": "Farmington Hills, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-11-08T14:26:43",
+    "url": "https://jobs.smartrecruiters.com/BoschGroup/744000160208440-motorsport-software-and-data-analytics-graduate-intern-?oga=true"
+  },
+  {
+    "id": "7bbd1876faf0af9b",
+    "company": "Hitachi",
+    "title": "Full Stack Developer Intern",
+    "location": "Dallas, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-11-08T14:26:43",
+    "url": "https://hitachi.wd1.myworkdayjobs.com/en-US/hitachi/job/Dallas-Texas-United-States/Full-Stack-Developer-Intern_R0149426"
+  },
+  {
+    "id": "d835a1cd437db64d",
+    "company": "John Deere",
+    "title": "Software Engineer Intern, Product Engineering",
+    "location": "Waterloo, IA; Cary, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 23",
+    "scraped_at": "2026-11-08T14:26:43",
+    "url": "https://go.vansh.nyc/1mU?s=y"
+  },
+  {
+    "id": "51f60e5afe715e93",
+    "company": "Ryan",
+    "title": "Software Engineer Intern",
+    "location": "North York, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 28",
+    "scraped_at": "2026-11-08T14:26:43",
+    "url": "https://go.vansh.nyc/1mO?s=y"
   }
 ]
