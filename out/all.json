@@ -79545,5 +79545,89 @@
     "posted": "2026-11-06",
     "scraped_at": "2026-11-07T01:36:51",
     "url": "https://jobright.ai/jobs/info/6aeec8939f8e479a8bcfaacf"
+  },
+  {
+    "id": "6fe5c0d0422f665d",
+    "company": "Aechelon Technology",
+    "title": "Junior Software Engineer Intern, RTK",
+    "location": "Farmer's Branch, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Aug 13",
+    "scraped_at": "2026-11-07T19:05:25",
+    "url": "https://go.vansh.nyc/1m3?s=y"
+  },
+  {
+    "id": "c581165b415de02f",
+    "company": "Amazon",
+    "title": "Software Development Engineer Intern/Co-Op, ROBOTICS - 2027",
+    "location": "Bellevue, WA; Middlesex County, MA, United States; Seattle, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-07",
+    "scraped_at": "2026-11-07T19:05:25",
+    "url": "https://jobright.ai/jobs/info/6aef6f260fe787d00ed1b1e0"
+  },
+  {
+    "id": "49f4042e74fca702",
+    "company": "Framatome",
+    "title": "AI and Software Innovation Intern",
+    "location": "Lynchburg, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 07",
+    "scraped_at": "2026-11-07T19:05:25",
+    "url": "https://go.vansh.nyc/1m6?s=y"
+  },
+  {
+    "id": "49f64a6ec4967345",
+    "company": "Stoke Space",
+    "title": "Software Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Kent, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-07T19:05:25",
+    "url": "https://go.vansh.nyc/1m5?s=y"
+  },
+  {
+    "id": "a187236c65ab86e2",
+    "company": "Studio Alumbra",
+    "title": "Website Developer Intern",
+    "location": "Greer, SC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-07",
+    "scraped_at": "2026-11-07T19:05:25",
+    "url": "https://jobright.ai/jobs/info/6aef8580676e3f91d326cc3a"
+  },
+  {
+    "id": "babd72a07f30f02a",
+    "company": "Waymo",
+    "title": "2027 Summer Intern, MS/PhD, Quantitative Software Engineer",
+    "location": "San Francisco, United States",
+    "is_2027": true,
+    "priority": 1,
+    "source": "startupjobs",
+    "posted": "2026-09-16",
+    "scraped_at": "2026-11-07T19:05:25",
+    "url": "https://startup.jobs/2027-summer-intern-ms-phd-quantitative-software-engineer-waymo-10097854"
+  },
+  {
+    "id": "b617393199e73781",
+    "company": "empirical",
+    "title": "Software Engineering Intern",
+    "location": "Dakota Dunes, SD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 07",
+    "scraped_at": "2026-11-07T19:05:25",
+    "url": "https://go.vansh.nyc/1mg?s=y"
   }
 ]
