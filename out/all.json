@@ -79689,5 +79689,41 @@
     "posted": "Oct 28",
     "scraped_at": "2026-11-08T14:26:43",
     "url": "https://go.vansh.nyc/1mO?s=y"
+  },
+  {
+    "id": "7f4dbedc60a441eb",
+    "company": "Copart",
+    "title": "Software Engineer Intern",
+    "location": "Dallas, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 22",
+    "scraped_at": "2026-11-08T17:16:47",
+    "url": "https://go.vansh.nyc/1n1?s=y"
+  },
+  {
+    "id": "20ee3fcd5befa9f2",
+    "company": "Intercontinental Exchange",
+    "title": "Software Engineer Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 23",
+    "scraped_at": "2026-11-08T17:16:47",
+    "url": "https://go.vansh.nyc/1n6?s=y"
+  },
+  {
+    "id": "3586c3967b161393",
+    "company": "Intercontinental Exchange",
+    "title": "Software Engineer Intern, Java",
+    "location": "Jacksonville, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 23",
+    "scraped_at": "2026-11-08T17:16:47",
+    "url": "https://go.vansh.nyc/1n7?s=y"
   }
 ]
