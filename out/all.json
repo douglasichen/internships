@@ -79809,5 +79809,65 @@
     "posted": "Oct 06",
     "scraped_at": "2026-11-09T02:34:25",
     "url": "https://go.vansh.nyc/1nF?s=y"
+  },
+  {
+    "id": "cb144f62f57c90e5",
+    "company": "Affirm",
+    "title": "Software Engineer Intern, Machine Learning",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Oct 02",
+    "scraped_at": "2026-11-09T05:23:22",
+    "url": "https://go.vansh.nyc/1nR?s=y"
+  },
+  {
+    "id": "204a88ecb91d3d61",
+    "company": "General Dynamics Mission Systems",
+    "title": "Software Engineer Intern, CWL",
+    "location": "Manassas, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 05",
+    "scraped_at": "2026-11-09T05:23:22",
+    "url": "https://go.vansh.nyc/1nV?s=y"
+  },
+  {
+    "id": "591a651ff8d70291",
+    "company": "General Motors",
+    "title": "AI/ML Engineer Intern, Autonomous Vehicle Simulation",
+    "location": "Sunnyvale, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Sep 30",
+    "scraped_at": "2026-11-09T05:23:22",
+    "url": "https://go.vansh.nyc/1od?s=y"
+  },
+  {
+    "id": "8920a95427496cc4",
+    "company": "Nelnet",
+    "title": "IT Software Engineer Intern",
+    "location": "Lincoln, NE",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 01",
+    "scraped_at": "2026-11-09T05:23:22",
+    "url": "https://go.vansh.nyc/1nM?s=y"
+  },
+  {
+    "id": "143144045de7f94a",
+    "company": "The Federal Reserve System",
+    "title": "Computer Science and Software Engineering Intern",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Sep 30",
+    "scraped_at": "2026-11-09T05:23:22",
+    "url": "https://go.vansh.nyc/1oa?s=y"
   }
 ]
