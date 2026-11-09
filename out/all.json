@@ -80085,5 +80085,113 @@
     "posted": "",
     "scraped_at": "2026-11-09T11:21:20",
     "url": "https://warnerbros.wd5.myworkdayjobs.com/global/job/MA-Needham-117-Kendrick-St/WB-Games-Engineering-Co-op--Needham--MA---January-May-2027_R000109901"
+  },
+  {
+    "id": "62f6d289199b78b3",
+    "company": "Cohere",
+    "title": "Software Engineer Intern (Winter 2027)",
+    "location": "Toronto",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-09T15:02:08",
+    "url": "https://jobs.ashbyhq.com/cohere/df508fc2-f9c5-405d-bfc4-0f2c32404f02"
+  },
+  {
+    "id": "6b2867913d0bceb3",
+    "company": "Brex",
+    "title": "Software Engineer, Internship - 2027",
+    "location": "S\u00e3o Paulo, S\u00e3o Paulo, Brazil",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-09T15:02:08",
+    "url": "https://www.brex.com/careers/8935242002?gh_jid=8935242002"
+  },
+  {
+    "id": "b1c78cde19af0921",
+    "company": "Art of Problem Solving",
+    "title": "Software Engineering Intern",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-09",
+    "scraped_at": "2026-11-09T15:02:08",
+    "url": "https://jobright.ai/jobs/info/6af220161116f6f0a07664eb"
+  },
+  {
+    "id": "91428cb3284b6b9d",
+    "company": "General Dynamics Mission Systems",
+    "title": "Full-Stack Software Engineering Intern, Summer 2027",
+    "location": "Scottsdale, AZ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-09",
+    "scraped_at": "2026-11-09T15:02:08",
+    "url": "https://jobright.ai/jobs/info/6af201ae62fb9f5fcd892b99"
+  },
+  {
+    "id": "cb767695f60de9c5",
+    "company": "Kiewit",
+    "title": "Machine Learning Intern - Kiewit Data Services (Summer 2027)",
+    "location": "La Vista, NE; Omaha, NE",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-09",
+    "scraped_at": "2026-11-09T15:02:08",
+    "url": "https://jobright.ai/jobs/info/6af21722905985ccaa4085ad"
+  },
+  {
+    "id": "4e43aa7bcbfb9470",
+    "company": "Lockheed Martin",
+    "title": "Software Development Intern - Summer 2027",
+    "location": "Bethesda, MD; Rockville, MD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-12",
+    "scraped_at": "2026-11-09T15:02:08",
+    "url": "https://jobright.ai/jobs/info/6af224e21aaffa49f7382017"
+  },
+  {
+    "id": "27317820f0373a7d",
+    "company": "Persona AI",
+    "title": "Humanoid Robotics Software Intern",
+    "location": "Pensacola, FL; Houston, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 09",
+    "scraped_at": "2026-11-09T15:02:08",
+    "url": "https://go.vansh.nyc/1p9?s=y"
+  },
+  {
+    "id": "dd5620db1fc3992c",
+    "company": "Product Manager Accelerator",
+    "title": "AI Engineer Intern - AI/ML/GenAI Design & Development",
+    "location": "Canada; United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-09",
+    "scraped_at": "2026-11-09T15:02:08",
+    "url": "https://jobright.ai/jobs/info/6af216891aaffa49f73804ec"
+  },
+  {
+    "id": "335ac6466d6c61f8",
+    "company": "Santander",
+    "title": "2027 IT \u2013 Infrastructure Operations Summer Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-08",
+    "scraped_at": "2026-11-09T15:02:08",
+    "url": "https://jobright.ai/jobs/info/6af224b41aaffa49f7382004"
   }
 ]
