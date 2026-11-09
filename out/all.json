@@ -79749,5 +79749,65 @@
     "posted": "2026-11-08",
     "scraped_at": "2026-11-08T22:40:35",
     "url": "https://jobright.ai/jobs/info/6af116a7676e3f91d3271493"
+  },
+  {
+    "id": "4f97a19344e71c7f",
+    "company": "General Motors",
+    "title": "Autonomous Driving Software Engineer Intern",
+    "location": "Sunnyvale, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 07",
+    "scraped_at": "2026-11-09T02:34:25",
+    "url": "https://go.vansh.nyc/1nt?s=y"
+  },
+  {
+    "id": "830731c6c734f721",
+    "company": "Indie",
+    "title": "Applications Software Developer Intern",
+    "location": "Aliso Viejo, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 14",
+    "scraped_at": "2026-11-09T02:34:25",
+    "url": "https://go.vansh.nyc/1nq?s=y"
+  },
+  {
+    "id": "b0b71104efe0268e",
+    "company": "National Grid",
+    "title": "Summer 2027 Internship Program:  Machine Learning Engineering - Brooklyn, NY",
+    "location": "Brooklyn, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-08",
+    "scraped_at": "2026-11-09T02:34:25",
+    "url": "https://jobright.ai/jobs/info/6af16b1a457d636c09131245"
+  },
+  {
+    "id": "afc1c5bf145acfe7",
+    "company": "Peraton",
+    "title": "Software Development Intern",
+    "location": "Topeka, KS",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 08",
+    "scraped_at": "2026-11-09T02:34:25",
+    "url": "https://go.vansh.nyc/1nx?s=y"
+  },
+  {
+    "id": "3b656ca337bcaa70",
+    "company": "Skyband Systems",
+    "title": "Software Engineer Intern",
+    "location": "Kirkland, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 06",
+    "scraped_at": "2026-11-09T02:34:25",
+    "url": "https://go.vansh.nyc/1nF?s=y"
   }
 ]
