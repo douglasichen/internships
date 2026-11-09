@@ -79725,5 +79725,29 @@
     "posted": "Oct 23",
     "scraped_at": "2026-11-08T17:16:47",
     "url": "https://go.vansh.nyc/1n7?s=y"
+  },
+  {
+    "id": "15605dd142646d59",
+    "company": "Integrate",
+    "title": "Software Engineer Intern",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Oct 19",
+    "scraped_at": "2026-11-08T22:40:35",
+    "url": "https://go.vansh.nyc/1ng?s=y"
+  },
+  {
+    "id": "54753a8b314c0ce1",
+    "company": "Tesla",
+    "title": "Internship, Software Engineer, Inference Infrastructure (Summer 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-08",
+    "scraped_at": "2026-11-08T22:40:35",
+    "url": "https://jobright.ai/jobs/info/6af116a7676e3f91d3271493"
   }
 ]
