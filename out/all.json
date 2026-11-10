@@ -80541,5 +80541,41 @@
     "posted": "2026-11-09",
     "scraped_at": "2026-11-09T20:32:49",
     "url": "https://jobright.ai/jobs/info/6af270a562fb9f5fcd897aba"
+  },
+  {
+    "id": "8dab5a61c1b8d2e9",
+    "company": "Castelion",
+    "title": "Embedded Software Engineer Intern - Spring 2027",
+    "location": "Torrance, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-09",
+    "scraped_at": "2026-11-09T23:26:41",
+    "url": "https://jobright.ai/jobs/info/6af29e4012ea2d46c53e269a"
+  },
+  {
+    "id": "6fd31f5b3a02bec6",
+    "company": "Clonin",
+    "title": "Software Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-09",
+    "scraped_at": "2026-11-09T23:26:41",
+    "url": "https://jobright.ai/jobs/info/6af2a1bd6d2bd34f89adbb60"
+  },
+  {
+    "id": "6064f61381b5df25",
+    "company": "REGENT",
+    "title": "Mission Software Engineering Intern (Summer)",
+    "location": "North Kingstown, RI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-09",
+    "scraped_at": "2026-11-09T23:26:41",
+    "url": "https://jobright.ai/jobs/info/6af28595d622b1b75451a287"
   }
 ]
