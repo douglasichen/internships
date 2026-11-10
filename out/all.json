@@ -80577,5 +80577,65 @@
     "posted": "2026-11-09",
     "scraped_at": "2026-11-09T23:26:41",
     "url": "https://jobright.ai/jobs/info/6af28595d622b1b75451a287"
+  },
+  {
+    "id": "02854e876d8602d4",
+    "company": "Intel",
+    "title": "HR IT Software Engineer Intern",
+    "location": "Costa Rica, San Jose",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-10T02:32:06",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Costa-Rica-San-Jose/HR-IT-Software-Engineer-Intern_JR0288637"
+  },
+  {
+    "id": "907d7731ad9aed49",
+    "company": "Cloudflare",
+    "title": "Software Engineer Intern (2027) - London, UK",
+    "location": "",
+    "is_2027": true,
+    "priority": 2,
+    "source": "startupjobs",
+    "posted": "2026-10-06",
+    "scraped_at": "2026-11-10T02:32:06",
+    "url": "https://startup.jobs/software-engineer-intern-2027-london-uk-cloudflare-10301468"
+  },
+  {
+    "id": "fd438b213ce8278f",
+    "company": "EquipmentShare",
+    "title": "Engineering Intern, Embedded",
+    "location": "Columbia, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 03",
+    "scraped_at": "2026-11-10T02:32:06",
+    "url": "https://go.vansh.nyc/1q3?s=y"
+  },
+  {
+    "id": "f1a95432a5dbeba5",
+    "company": "Waymo",
+    "title": "2027 Summer Intern, BS/MS, Software Engineer, Multiverse",
+    "location": "San Francisco, United States",
+    "is_2027": true,
+    "priority": 1,
+    "source": "startupjobs",
+    "posted": "2026-11-06",
+    "scraped_at": "2026-11-10T02:32:06",
+    "url": "https://startup.jobs/2027-summer-intern-bs-ms-software-engineer-multiverse-waymo-10714463"
+  },
+  {
+    "id": "5d91c1b80948e6a8",
+    "company": "Wellmark Blue Cross and Blue Shield",
+    "title": "Software Engineer Internship \u2013 User Experience Team",
+    "location": "Des Moines, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-26",
+    "scraped_at": "2026-11-10T02:32:06",
+    "url": "https://jobright.ai/jobs/info/6aa8b7696d0edc2d91b0744c"
   }
 ]
