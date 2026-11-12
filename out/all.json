@@ -82473,5 +82473,89 @@
     "posted": "2026-11-11",
     "scraped_at": "2026-11-11T18:33:46",
     "url": "https://jobright.ai/jobs/info/6af4fce8cbd2ee75d155ef73"
+  },
+  {
+    "id": "0163dfe4fbe9f20e",
+    "company": "Sea Limited",
+    "title": "Security Engineer Intern (Infrastructure Security) - Information Security (Spring 2027)",
+    "location": "",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-11-11T21:21:38",
+    "url": "https://career.sea.com/jobs/138004"
+  },
+  {
+    "id": "b2758892c247750e",
+    "company": "CHAMP",
+    "title": "Frontend Engineer Intern",
+    "location": "Cleveland, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-11",
+    "scraped_at": "2026-11-11T21:21:38",
+    "url": "https://jobright.ai/jobs/info/6af51dfc1b2c5dcbbcd66b95"
+  },
+  {
+    "id": "a5b6d40bf6df9a52",
+    "company": "CHAMP",
+    "title": "Intern, Backend Engineering",
+    "location": "Cleveland, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-11",
+    "scraped_at": "2026-11-11T21:21:38",
+    "url": "https://jobright.ai/jobs/info/6af521f82278454e18c3af80"
+  },
+  {
+    "id": "8fa7b99b707a3323",
+    "company": "IBM",
+    "title": "QA/Test Automation Developer Intern - Tucson, AZ",
+    "location": "Tucson, AZ",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-11-11",
+    "scraped_at": "2026-11-11T21:21:38",
+    "url": "https://jobright.ai/jobs/info/6af505523a9a26aee70a292b"
+  },
+  {
+    "id": "9537ff78ff9555d9",
+    "company": "MKS PAMP",
+    "title": "2027 Summer Software Engineer Co-op",
+    "location": "Andover, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-10",
+    "scraped_at": "2026-11-11T21:21:38",
+    "url": "https://jobright.ai/jobs/info/6af50c6f9144106c56a23b07"
+  },
+  {
+    "id": "22d1ff56cf2086a9",
+    "company": "ServiceNow",
+    "title": "Assoc Information Security Engineer Intern",
+    "location": "San Diego",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-11T21:21:38",
+    "url": "https://jobs.smartrecruiters.com/ServiceNow/744000161204235"
+  },
+  {
+    "id": "15e6b42586f00b34",
+    "company": "ServiceNow",
+    "title": "Associate Information Security Engineer Intern",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Nov 11",
+    "scraped_at": "2026-11-11T21:21:38",
+    "url": "https://go.vansh.nyc/1vY?s=y"
   }
 ]
