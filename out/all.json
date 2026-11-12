@@ -82557,5 +82557,53 @@
     "posted": "Nov 11",
     "scraped_at": "2026-11-11T21:21:38",
     "url": "https://go.vansh.nyc/1vY?s=y"
+  },
+  {
+    "id": "1bb40e0f6f91c47b",
+    "company": "AMETEK",
+    "title": "Intern, Junior Python Developer Job Details | Ametek, Inc.",
+    "location": "Wayne, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-21",
+    "scraped_at": "2026-11-12T14:27:34",
+    "url": "https://jobright.ai/jobs/info/6af54b70a3cce217be6c9167"
+  },
+  {
+    "id": "f2ce0cccb4f4cd08",
+    "company": "Bask Health",
+    "title": "Frontend Engineering Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-11",
+    "scraped_at": "2026-11-12T14:27:34",
+    "url": "https://jobright.ai/jobs/info/6af54ca7cd7be4db20d8c0ac"
+  },
+  {
+    "id": "50c0d6970c3e489d",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "QA/Test Automation Developer Intern - Tucson, AZ",
+    "location": "Tucson, AZ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-11",
+    "scraped_at": "2026-11-12T14:27:34",
+    "url": "https://jobright.ai/jobs/info/6af531c12278454e18c3b301"
+  },
+  {
+    "id": "51b3d2e4a709f2b2",
+    "company": "SecurityMetrics",
+    "title": "Intern - Software Engineer",
+    "location": "Orem, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-11",
+    "scraped_at": "2026-11-12T14:27:34",
+    "url": "https://jobright.ai/jobs/info/6af54420a3cce217be6c8b25"
   }
 ]
