@@ -83445,5 +83445,113 @@
     "posted": "2026-11-13",
     "scraped_at": "2026-11-13T08:48:50",
     "url": "https://jobright.ai/jobs/info/6af6ee3dd0eefb7d11b882b7"
+  },
+  {
+    "id": "73e031df2dbd94f1",
+    "company": "Analog Devices",
+    "title": "Software Quality Assurance (SQA) Intern",
+    "location": "Spain, Valencia, Cortes Valencianas",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-13T12:02:14",
+    "url": "https://analogdevices.wd1.myworkdayjobs.com/External/job/Spain-Valencia-Cortes-Valencianas/Software-Quality-Assurance--SQA--Intern_R267320"
+  },
+  {
+    "id": "b0147a849b50ca0b",
+    "company": "Arm",
+    "title": "Machine Learning Engineering Intern (MS/PhD)",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 2,
+    "source": "jobright",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-13T12:02:14",
+    "url": "https://jobright.ai/jobs/info/6af7247bc7349029d7092975"
+  },
+  {
+    "id": "71ea07b1a4327986",
+    "company": "Daimler Truck",
+    "title": "IT Developer Analyst Intern",
+    "location": "Mount Holly, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 13",
+    "scraped_at": "2026-11-13T12:02:14",
+    "url": "https://go.vansh.nyc/1yM?s=y"
+  },
+  {
+    "id": "1e2289d2aefa4ba8",
+    "company": "Daimler Truck North America",
+    "title": "IT Developer Analyst Intern",
+    "location": "Mount Holly, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-13",
+    "scraped_at": "2026-11-13T12:02:14",
+    "url": "https://jobright.ai/jobs/info/6af744ac82422864006436eb"
+  },
+  {
+    "id": "a4e5a738d9167b19",
+    "company": "Marketeq Digital Solutions",
+    "title": "AI Product Software Engineer Intern (U.S.A)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-13",
+    "scraped_at": "2026-11-13T12:02:14",
+    "url": "https://jobright.ai/jobs/info/6af72b49d0eefb7d11b897e3"
+  },
+  {
+    "id": "ff801f3565ee9a90",
+    "company": "Seagate Technology",
+    "title": "Intern - Edge AI Platform in Seagate Research Group",
+    "location": "Shakopee, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-13T12:02:14",
+    "url": "https://jobright.ai/jobs/info/6af7403741166cab7564964b"
+  },
+  {
+    "id": "8793226b75e5753a",
+    "company": "Seagate Technology",
+    "title": "Intern - Embedded Firmware in Seagate Research Group",
+    "location": "Shakopee, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-13T12:02:14",
+    "url": "https://jobright.ai/jobs/info/6af7408be3d8d612bf4216b7"
+  },
+  {
+    "id": "29cd6ddb6fca1dea",
+    "company": "ServiceNow",
+    "title": "AI Security Engineer Intern",
+    "location": "San Diego",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-13T12:02:14",
+    "url": "https://jobs.smartrecruiters.com/ServiceNow/744000161548289"
+  },
+  {
+    "id": "196b67b3d4e3562a",
+    "company": "Valeo",
+    "title": "Software Engineer Intern (Year-Round)",
+    "location": "Troy, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-13T12:02:14",
+    "url": "https://jobright.ai/jobs/info/6af7331e3ba46d7b6c164008"
   }
 ]
