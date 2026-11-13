@@ -83421,5 +83421,29 @@
     "posted": "2026-11-13",
     "scraped_at": "2026-11-13T05:02:13",
     "url": "https://jobright.ai/jobs/info/6af6d7d341166cab75646deb"
+  },
+  {
+    "id": "def07c063666cc22",
+    "company": "Qorvo Inc, Now Skyworks",
+    "title": "Software Engineer Intern",
+    "location": "Richardson, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-17",
+    "scraped_at": "2026-11-13T08:48:50",
+    "url": "https://jobright.ai/jobs/info/6ae4c890fb2cd420ace599a8"
+  },
+  {
+    "id": "58e1ee65e83eda74",
+    "company": "TikTok",
+    "title": "Machine Learning Scientist Intern (TikTok-Local Services) - 2027 Start",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-13",
+    "scraped_at": "2026-11-13T08:48:50",
+    "url": "https://jobright.ai/jobs/info/6af6ee3dd0eefb7d11b882b7"
   }
 ]
