@@ -83157,5 +83157,113 @@
     "posted": "Nov 11",
     "scraped_at": "2026-11-12T20:02:14",
     "url": "https://go.vansh.nyc/1y3?s=y"
+  },
+  {
+    "id": "b4d409ca10b23df2",
+    "company": "Appier",
+    "title": "Software Engineer Intern, Ads Live Testing",
+    "location": "Taiwan",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-13T02:04:14",
+    "url": "https://startup.jobs/software-engineer-intern-ads-live-testing-appier-10760375"
+  },
+  {
+    "id": "95c22634c2ee859d",
+    "company": "Aurora",
+    "title": "Software Engineer Intern, Vehicle Platforms",
+    "location": "Mountain View, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-13T02:04:14",
+    "url": "https://jobright.ai/jobs/info/6af67b1b8a9bd36b08993786"
+  },
+  {
+    "id": "6dfeb1b303eece9b",
+    "company": "Aurora Innovation",
+    "title": "Software Engineer Intern, Vehicle Platforms",
+    "location": "Mountain View, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 12",
+    "scraped_at": "2026-11-13T02:04:14",
+    "url": "https://go.vansh.nyc/1yu?s=y"
+  },
+  {
+    "id": "9ff209f78d648b7c",
+    "company": "Bask",
+    "title": "Machine Learning Engineering Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 12",
+    "scraped_at": "2026-11-13T02:04:14",
+    "url": "https://go.vansh.nyc/1ys?s=y"
+  },
+  {
+    "id": "3236ea58ec74c496",
+    "company": "Cognira",
+    "title": "Software Engineer Intern (Frontend, Backend, or DevOps) | PFE 2027",
+    "location": "Tunis, Tunisia",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-27",
+    "scraped_at": "2026-11-13T02:04:14",
+    "url": "https://startup.jobs/software-engineer-intern-frontend-backend-or-devops-pfe-2027-cognira-10597056"
+  },
+  {
+    "id": "32367becf21fb84e",
+    "company": "Octant Bio",
+    "title": "Software Engineer - Internship",
+    "location": "Emeryville, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-13T02:04:14",
+    "url": "https://startup.jobs/software-engineer-internship-octant-bio-10766614"
+  },
+  {
+    "id": "4e50a669059ef037",
+    "company": "PatientPoint - Invite Only",
+    "title": "Software Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-13T02:04:14",
+    "url": "https://startup.jobs/software-engineer-intern-patientpoint-invite-only-10764157"
+  },
+  {
+    "id": "beb0350b09e0d5cd",
+    "company": "Scandit",
+    "title": "Software Engineering Internship - Tampere 2027",
+    "location": "Tampere, Finland",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-11",
+    "scraped_at": "2026-11-13T02:04:14",
+    "url": "https://startup.jobs/software-engineering-internship-tampere-2027-scandit-10757319"
+  },
+  {
+    "id": "392688c87ddf0df8",
+    "company": "TikTok",
+    "title": "Machine Learning Engineer Intern (Data-Global E-Commerce-Search) - 2027 Start",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-13T02:04:14",
+    "url": "https://jobright.ai/jobs/info/6af6771980054650a5e7efac"
   }
 ]
