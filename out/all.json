@@ -83877,5 +83877,101 @@
     "posted": "",
     "scraped_at": "2026-11-13T17:46:40",
     "url": "https://jobs.smartrecruiters.com/ServiceNow/744000161592679"
+  },
+  {
+    "id": "b59366649ad4af94",
+    "company": "Hemlock Semiconductor",
+    "title": "Manufacturing Systems Software Developer Intern",
+    "location": "Hemlock, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-13",
+    "scraped_at": "2026-11-13T20:45:08",
+    "url": "https://jobright.ai/jobs/info/6af7b0fcd0eefb7d11b8ef88"
+  },
+  {
+    "id": "8d2df6dd875357e5",
+    "company": "KBR Wyle Services",
+    "title": "Image Processing Software Engineer Intern",
+    "location": "Sioux Falls, SD",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 13",
+    "scraped_at": "2026-11-13T20:45:08",
+    "url": "https://go.vansh.nyc/1zx?s=y"
+  },
+  {
+    "id": "8142810b5eb4c595",
+    "company": "KBR Wyle Services",
+    "title": "Software Engineering Intern, Defense & Intel (D&I)",
+    "location": "Chantilly, VA; Ann Arbor, MI; Lexington, MA; Kihei, HI; Beavercreek, OH; Lexington Park, MD; King of Prussia, PA; Colorado Springs, CO; Huntsville, AL; El Segundo, CA; Orlando, FL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 13",
+    "scraped_at": "2026-11-13T20:45:08",
+    "url": "https://go.vansh.nyc/1zz?s=y"
+  },
+  {
+    "id": "26da967cc02f5d1c",
+    "company": "NetApp",
+    "title": "Software Engineer Intern, Cloud",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 13",
+    "scraped_at": "2026-11-13T20:45:08",
+    "url": "https://go.vansh.nyc/1zr?s=y"
+  },
+  {
+    "id": "84bb840d8d4ca7cc",
+    "company": "NetApp",
+    "title": "Software Engineer Intern, Systems",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 13",
+    "scraped_at": "2026-11-13T20:45:08",
+    "url": "https://go.vansh.nyc/1zs?s=y"
+  },
+  {
+    "id": "129efe142236586e",
+    "company": "NextEra Energy",
+    "title": "Software Engineering Intern, Technical",
+    "location": "St Paul, MN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 13",
+    "scraped_at": "2026-11-13T20:45:08",
+    "url": "https://go.vansh.nyc/1zq?s=y"
+  },
+  {
+    "id": "cc8f07b9455f4cb3",
+    "company": "Tesla",
+    "title": "Internship, Mobile Developer, Optimus (Winter/Spring 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-13",
+    "scraped_at": "2026-11-13T20:45:08",
+    "url": "https://jobright.ai/jobs/info/6af7b012e3d8d612bf425d3c"
+  },
+  {
+    "id": "dfe44c2e739333ab",
+    "company": "Tesla",
+    "title": "Internship, Software Engineer, Energy Engineering (Winter/Spring 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-13",
+    "scraped_at": "2026-11-13T20:45:08",
+    "url": "https://jobright.ai/jobs/info/6af7b015e3d8d612bf425d41"
   }
 ]
