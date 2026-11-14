@@ -84069,5 +84069,77 @@
     "posted": "2026-11-13",
     "scraped_at": "2026-11-14T09:14:59",
     "url": "https://jobright.ai/jobs/info/6af7f18442ae65e2c8f3a8e0"
+  },
+  {
+    "id": "e79fd56bafecd8e8",
+    "company": "Electric Power Engineers",
+    "title": "Software Power Systems Engineering Intern",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-11-14T12:03:15",
+    "url": "https://careers-epeconsulting.icims.com/jobs/2448/software-power-systems-engineering-intern/job"
+  },
+  {
+    "id": "b40333f46bfb092d",
+    "company": "General Dynamics Mission Systems",
+    "title": "Software Asset Management Intern Administrative",
+    "location": "Pittsfield, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-11-14T12:03:15",
+    "url": "https://careers-gdms.icims.com/jobs/76780/software-asset-management-intern-administrative/job"
+  },
+  {
+    "id": "7e924bfae433f432",
+    "company": "Workday",
+    "title": "Data Engineer Intern",
+    "location": "Costa Rica",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-14T12:03:15",
+    "url": "https://workday.wd5.myworkdayjobs.com/Workday/job/Costa-Rica/Data-Engineer-Intern_JR-0111625"
+  },
+  {
+    "id": "391ecdb0a0ecee03",
+    "company": "Arrowstreet Capital, Limited Partnership",
+    "title": "Quantitative Developer Intern, Summer 2027",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-10",
+    "scraped_at": "2026-11-14T12:03:15",
+    "url": "https://jobright.ai/jobs/info/6a510b1257513b72e0c6360a"
+  },
+  {
+    "id": "9309ef009d0ef9df",
+    "company": "Camping World",
+    "title": "Software Engineer Intern",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 12",
+    "scraped_at": "2026-11-14T12:03:15",
+    "url": "https://go.vansh.nyc/1zE?s=y"
+  },
+  {
+    "id": "d55bb8941f49bf02",
+    "company": "SAS",
+    "title": "Software Developer Intern, Go/Golang",
+    "location": "Cary, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 13",
+    "scraped_at": "2026-11-14T12:03:15",
+    "url": "https://go.vansh.nyc/1zC?s=y"
   }
 ]
