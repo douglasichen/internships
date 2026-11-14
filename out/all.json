@@ -84141,5 +84141,41 @@
     "posted": "Nov 13",
     "scraped_at": "2026-11-14T12:03:15",
     "url": "https://go.vansh.nyc/1zC?s=y"
+  },
+  {
+    "id": "9d4f9962b28d766e",
+    "company": "Cintas",
+    "title": "OT Software Engineer Intern, IT",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 12",
+    "scraped_at": "2026-11-14T15:42:47",
+    "url": "https://go.vansh.nyc/1zH?s=y"
+  },
+  {
+    "id": "0e7ab02fcc4a5597",
+    "company": "Martin Marietta",
+    "title": "Intern, Software Data Integration Engineer",
+    "location": "Raleigh, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-14",
+    "scraped_at": "2026-11-14T15:42:47",
+    "url": "https://jobright.ai/jobs/info/6af8b980cb5a5d4a77fcd157"
+  },
+  {
+    "id": "3f7f7976083258ed",
+    "company": "Nammu",
+    "title": "Software Engineer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-14",
+    "scraped_at": "2026-11-14T15:42:47",
+    "url": "https://jobright.ai/jobs/info/6af8cb7a5c0a9086f3613793"
   }
 ]
