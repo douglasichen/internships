@@ -83973,5 +83973,101 @@
     "posted": "2026-11-13",
     "scraped_at": "2026-11-13T20:45:08",
     "url": "https://jobright.ai/jobs/info/6af7b015e3d8d612bf425d41"
+  },
+  {
+    "id": "2221875d0e7ba2c8",
+    "company": "CHAMP",
+    "title": "Intern, Frontend Engineering",
+    "location": "Cleveland, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-14T09:14:59",
+    "url": "https://jobright.ai/jobs/info/6af844554ddfc50167b967d5"
+  },
+  {
+    "id": "cefdbf5564617eef",
+    "company": "CUES Inc.",
+    "title": "Software Engineering Generative AI Intern Job Details | our team",
+    "location": "Elk Grove Village, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-14T09:14:59",
+    "url": "https://jobright.ai/jobs/info/6af81faf34e2d29dcb752f3e"
+  },
+  {
+    "id": "6e8762d7edfc2a9a",
+    "company": "Kiewit",
+    "title": "Machine Learning Intern - Kiewit Data Services (Summer 2027) Job Details | Kiewit",
+    "location": "La Vista, NE",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-08",
+    "scraped_at": "2026-11-14T09:14:59",
+    "url": "https://jobright.ai/jobs/info/6af82260cb5a5d4a77fca161"
+  },
+  {
+    "id": "fe68b881ea43f33e",
+    "company": "NetApp",
+    "title": "Intern - Software Engineer (Cloud) Job Details | NetApp, Inc.",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-14T09:14:59",
+    "url": "https://jobright.ai/jobs/info/6af8620dcb5a5d4a77fcbc32"
+  },
+  {
+    "id": "68e7fa95bb619048",
+    "company": "NetApp",
+    "title": "Intern - Software Engineer (Systems) Job Details | NetApp, Inc.",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-12",
+    "scraped_at": "2026-11-14T09:14:59",
+    "url": "https://jobright.ai/jobs/info/6af8621186a9b19681af9861"
+  },
+  {
+    "id": "36c7c548b8cb5550",
+    "company": "Netatmo",
+    "title": "Internship - Android Software Engineer",
+    "location": "Lyon, France",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-13",
+    "scraped_at": "2026-11-14T09:14:59",
+    "url": "https://startup.jobs/internship-android-software-engineer-netatmo-10779250"
+  },
+  {
+    "id": "5962616521adfbb8",
+    "company": "SAS",
+    "title": "Summer 2027 - Software Developer Intern (Go/Golang Experience)",
+    "location": "Cary, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-14",
+    "scraped_at": "2026-11-14T09:14:59",
+    "url": "https://jobright.ai/jobs/info/6af8742386a9b19681af9fc6"
+  },
+  {
+    "id": "94c1b1d68f2b20ce",
+    "company": "Shield",
+    "title": "June 2027 Co-Op - Software Engineer Intern",
+    "location": "Dallas, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-13",
+    "scraped_at": "2026-11-14T09:14:59",
+    "url": "https://jobright.ai/jobs/info/6af7f18442ae65e2c8f3a8e0"
   }
 ]
