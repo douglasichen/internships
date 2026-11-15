@@ -84177,5 +84177,17 @@
     "posted": "2026-11-14",
     "scraped_at": "2026-11-14T15:42:47",
     "url": "https://jobright.ai/jobs/info/6af8cb7a5c0a9086f3613793"
+  },
+  {
+    "id": "6f0d8cfb66c96b45",
+    "company": "Eight Sleep",
+    "title": "Firmware Intern",
+    "location": "San Francisco, CA; New York, NY; Washington, DC; Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 14",
+    "scraped_at": "2026-11-15T00:47:19",
+    "url": "https://go.vansh.nyc/1zP?s=y"
   }
 ]
