@@ -84249,5 +84249,41 @@
     "posted": "2026-11-14",
     "scraped_at": "2026-11-16T04:52:17",
     "url": "https://jobright.ai/jobs/info/6afaabb61460f8021289cbc7"
+  },
+  {
+    "id": "4d1f7682c73dc462",
+    "company": "Analog Devices",
+    "title": "Software Engineering Intern (Medical Device & Healthcare Integration)",
+    "location": "US, MA, Wilmington",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-16T07:47:40",
+    "url": "https://analogdevices.wd1.myworkdayjobs.com/External/job/US-MA-Wilmington/Software-Engineering-Intern--Medical-Device---Healthcare-Integration-_R269165"
+  },
+  {
+    "id": "61df38deccc9f1cf",
+    "company": "Octaura",
+    "title": "Data Engineer Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 16",
+    "scraped_at": "2026-11-16T07:47:40",
+    "url": "https://go.vansh.nyc/1A6?s=y"
+  },
+  {
+    "id": "88225223e18e5bf3",
+    "company": "Snaphomz",
+    "title": "Full Stack Engineer - Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-15",
+    "scraped_at": "2026-11-16T07:47:40",
+    "url": "https://jobright.ai/jobs/info/6afa95639331e23f79cdd71f"
   }
 ]
