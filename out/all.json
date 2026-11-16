@@ -84225,5 +84225,29 @@
     "posted": "",
     "scraped_at": "2026-11-15T20:51:15",
     "url": "https://jobs.infineon.com/careers/job/563808972179576"
+  },
+  {
+    "id": "73235fded54c5a0a",
+    "company": "Enervexa PowerLabs",
+    "title": "Intern, Software Engineering (R20319)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-16T04:52:17",
+    "url": "https://jobright.ai/jobs/info/6afabe46932361ec3b6e52bb"
+  },
+  {
+    "id": "e338d6946794849c",
+    "company": "RTX",
+    "title": "2027 Summer Intern - Software Engineering - Onsite",
+    "location": "El Segundo, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-14",
+    "scraped_at": "2026-11-16T04:52:17",
+    "url": "https://jobright.ai/jobs/info/6afaabb61460f8021289cbc7"
   }
 ]
