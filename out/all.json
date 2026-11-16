@@ -84201,5 +84201,29 @@
     "posted": "Nov 13",
     "scraped_at": "2026-11-15T16:58:07",
     "url": "https://go.vansh.nyc/1zT?s=y"
+  },
+  {
+    "id": "35a0d15396be48b6",
+    "company": "Sea Limited",
+    "title": "Backend Engineer Intern, Data Infrastructure -  Big Data Platform (Spring 2027)",
+    "location": "",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-11-15T20:51:15",
+    "url": "https://career.sea.com/jobs/138053"
+  },
+  {
+    "id": "61ef3313d6112cd4",
+    "company": "Infineon",
+    "title": "Extracurricular Internship: Python and AI Development Engineer (f/m/div)",
+    "location": "Padua (Padova)",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-15T20:51:15",
+    "url": "https://jobs.infineon.com/careers/job/563808972179576"
   }
 ]
