@@ -84789,5 +84789,113 @@
     "posted": "Nov 04",
     "scraped_at": "2026-11-17T06:09:30",
     "url": "https://go.vansh.nyc/1Bd?s=y"
+  },
+  {
+    "id": "35355b1ef9180364",
+    "company": "Intel",
+    "title": "Automation Developer - Graphics Software Internship",
+    "location": "Poland, Gdansk",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-17T08:51:21",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Poland-Gdansk/Automation-Developer---Graphics-Software-Internship_JR0289264"
+  },
+  {
+    "id": "368aa23e4f00ea88",
+    "company": "Amazon",
+    "title": "Software Development Engineer Intern, Artificial General Intelligence",
+    "location": "Sunnyvale, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 16",
+    "scraped_at": "2026-11-17T08:51:21",
+    "url": "https://go.vansh.nyc/1Bf?s=y"
+  },
+  {
+    "id": "47f714712a425094",
+    "company": "CLO Virtual Fashion",
+    "title": "Software Engineer Intern",
+    "location": "South Korea",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-17T08:51:21",
+    "url": "https://startup.jobs/software-engineer-intern-clo-virtual-fashion-10799723"
+  },
+  {
+    "id": "fd6183ae1cf9d544",
+    "company": "Crest Vale",
+    "title": "Software Engineering Intern (M5774)",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-17T08:51:21",
+    "url": "https://jobright.ai/jobs/info/6afc485529e5a8844e657446"
+  },
+  {
+    "id": "272319e3e3a2d721",
+    "company": "HP",
+    "title": "Software & AI Product Management Intern",
+    "location": "Sant Cugat del Valles, Barcelona, Spain",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-17T08:51:21",
+    "url": "https://hp.wd5.myworkdayjobs.com/ExternalCareerSite/job/Sant-Cugat-del-Valles-Barcelona-Spain/Software---AI-Product-Management-Intern_UNI4781-1"
+  },
+  {
+    "id": "36b28c57b9b12420",
+    "company": "Qorvo Inc, Now Skyworks",
+    "title": "Software Engineer Intern Job Details | Qorvo",
+    "location": "Richardson, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-15",
+    "scraped_at": "2026-11-17T08:51:21",
+    "url": "https://jobright.ai/jobs/info/6afc4e2d29e5a8844e6576ad"
+  },
+  {
+    "id": "7e971f91cc7603c0",
+    "company": "Sallie Mae",
+    "title": "Software Engineer Intern",
+    "location": "Indianapolis, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-17T08:51:21",
+    "url": "https://jobright.ai/jobs/info/6afc584340b855eb290ca2f4"
+  },
+  {
+    "id": "5b9696297be9e183",
+    "company": "Sallie Mae",
+    "title": "Software Engineering Intern",
+    "location": "Indianapolis, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-17T08:51:21",
+    "url": "https://jobright.ai/jobs/info/6afc584740b855eb290ca2f8"
+  },
+  {
+    "id": "6b3b5fd3a99973fb",
+    "company": "Toyota Research Institute",
+    "title": "Automated Driving Advanced Development Intern, Machine Learning Research (Explainable AI)",
+    "location": "Los Altos, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-05",
+    "scraped_at": "2026-11-17T08:51:21",
+    "url": "https://jobright.ai/jobs/info/6afc5a4d1e98d304ea7f03d8"
   }
 ]
