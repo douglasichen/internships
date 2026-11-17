@@ -84741,5 +84741,53 @@
     "posted": "2026-11-16",
     "scraped_at": "2026-11-17T03:21:05",
     "url": "https://jobright.ai/jobs/info/6afc047a40b855eb290c8fa9"
+  },
+  {
+    "id": "ed2268ea4a651e42",
+    "company": "AeroNex Systems",
+    "title": "Software Engineering Intern",
+    "location": "Rochester, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-17T06:09:30",
+    "url": "https://jobright.ai/jobs/info/6afc1bc77df9c4ceafeb864d"
+  },
+  {
+    "id": "0912c6bbc5c4a919",
+    "company": "EchoStar Corporation",
+    "title": "Software Engineering Intern",
+    "location": "Englewood, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-17T06:09:30",
+    "url": "https://jobright.ai/jobs/info/6afc1e1307bef169f5fff997"
+  },
+  {
+    "id": "9c5cfe4297cbc5ce",
+    "company": "Infineon",
+    "title": "Software development Intern",
+    "location": "Xi'an, \u897f\u5b89",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-17T06:09:30",
+    "url": "https://jobs.infineon.com/careers/job/563808972266732"
+  },
+  {
+    "id": "a318f1ea0b32b7c0",
+    "company": "Q-Block Computing",
+    "title": "Embedded Systems Developer Intern",
+    "location": "Ottawa, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 04",
+    "scraped_at": "2026-11-17T06:09:30",
+    "url": "https://go.vansh.nyc/1Bd?s=y"
   }
 ]
