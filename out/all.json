@@ -84669,5 +84669,29 @@
     "posted": "2026-11-16",
     "scraped_at": "2026-11-16T21:03:07",
     "url": "https://jobright.ai/jobs/info/6afba0ef06c0aac84dd97a27"
+  },
+  {
+    "id": "ebd4d24c5441e55c",
+    "company": "Game Companies",
+    "title": "Undergrad Software Engineering Intern (Grad Year: Winter 2027)",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-10-26",
+    "scraped_at": "2026-11-16T23:51:05",
+    "url": "https://jobright.ai/jobs/info/6afbc9221c71d952627eebaa"
+  },
+  {
+    "id": "d39edbb6e1cfc9ea",
+    "company": "Marketeq Digital Solutions",
+    "title": "AI Full Stack Engineer Internship (U.S.A Only)",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-16T23:51:05",
+    "url": "https://jobright.ai/jobs/info/6afbd714755d7cdf657fd7c6"
   }
 ]
