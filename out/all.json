@@ -84501,5 +84501,113 @@
     "posted": "2026-11-16",
     "scraped_at": "2026-11-16T14:52:24",
     "url": "https://jobright.ai/jobs/info/6afb4c4d7f9ead6668ea08fa"
+  },
+  {
+    "id": "d37eb2e43d0dee89",
+    "company": "Analog Devices",
+    "title": "Embedded Hardware & Firmware Intern (Health Solutions)",
+    "location": "US, MA, Wilmington",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-16T18:01:37",
+    "url": "https://analogdevices.wd1.myworkdayjobs.com/External/job/US-MA-Wilmington/Embedded-Hardware---Firmware-Intern--Health-Solutions-_R269166"
+  },
+  {
+    "id": "4ebb0a1f6d2a0a14",
+    "company": "Cognizant",
+    "title": "Software Engineering Internship",
+    "location": "Teaneck, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-16T18:01:37",
+    "url": "https://jobright.ai/jobs/info/6afb6e3fb2e06df25797424f"
+  },
+  {
+    "id": "81c27f9a84c5f184",
+    "company": "Hubbell Incorporated",
+    "title": "2027 Summer Intern: Engineering - AI Software",
+    "location": "Herndon, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-16T18:01:37",
+    "url": "https://jobright.ai/jobs/info/6afb7eae06c0aac84dd96378"
+  },
+  {
+    "id": "f131e208931232d1",
+    "company": "Integration Innovation (i3)",
+    "title": "Embedded Systems Reverse Engineer Intern",
+    "location": "Washington, DC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 16",
+    "scraped_at": "2026-11-16T18:01:37",
+    "url": "https://go.vansh.nyc/1AB?s=y"
+  },
+  {
+    "id": "a0857477cd381a42",
+    "company": "KLA",
+    "title": "Firmware Intern",
+    "location": "Milpitas, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-16T18:01:37",
+    "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Firmware-Intern_2642154-1"
+  },
+  {
+    "id": "f5c7042c66248008",
+    "company": "Minitab",
+    "title": "Software Engineering Intern",
+    "location": "State College, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 16",
+    "scraped_at": "2026-11-16T18:01:37",
+    "url": "https://go.vansh.nyc/1Ax?s=y"
+  },
+  {
+    "id": "57bb39611089ddab",
+    "company": "Raytheon",
+    "title": "Electrical - Firmware Engineering Intern - Summer 2027- Onsite",
+    "location": "Ft Wayne, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "5d",
+    "scraped_at": "2026-11-16T18:01:37",
+    "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/rec_rtx_ext_gateway/job/US-IN-FT-WAYNE-150A--1010-Production-Rd--BLDG-150A/Electrical--Firmware--Engineering-Intern--Summer-2027--Onsite-_01888316"
+  },
+  {
+    "id": "5e9d7220488408b3",
+    "company": "Raytheon",
+    "title": "Software Engineering Intern - ISET-IN-2",
+    "location": "Sterling, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "5d",
+    "scraped_at": "2026-11-16T18:01:37",
+    "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/rec_rtx_ext_gateway/job/US-VA-STERLING-291--22640-Davis-Dr--DAVIS/Software-Engineering-Intern--ISET-IN-2-_01888017"
+  },
+  {
+    "id": "da2ac35f5c0f05f8",
+    "company": "Reliable Robotics Corporation",
+    "title": "Displays Software Engineer Intern",
+    "location": "Mountain View, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 15",
+    "scraped_at": "2026-11-16T18:01:37",
+    "url": "https://go.vansh.nyc/1AA?s=y"
   }
 ]
