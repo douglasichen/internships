@@ -84897,5 +84897,65 @@
     "posted": "2026-11-05",
     "scraped_at": "2026-11-17T08:51:21",
     "url": "https://jobright.ai/jobs/info/6afc5a4d1e98d304ea7f03d8"
+  },
+  {
+    "id": "69f1c3de55336a5d",
+    "company": "Manulife",
+    "title": "Summer Intern 2027 - Software Engineering, Security & Operations",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-17T11:57:35",
+    "url": "https://jobright.ai/jobs/info/6afc829e3786d28f21459b42"
+  },
+  {
+    "id": "2dc3b97640c6884e",
+    "company": "Marvell",
+    "title": "AI Infrastructure Engineer Intern, MS - Summer 2027",
+    "location": "Santa Clara, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-17T11:57:35",
+    "url": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Santa-Clara-CA/AI-Infrastructure-Engineer-Intern--MS---Summer-2027_2604829-1"
+  },
+  {
+    "id": "528215c9b87997e5",
+    "company": "Nexorant LLC",
+    "title": "Software Engineer Intern",
+    "location": "Phoenix, AZ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-17T11:57:35",
+    "url": "https://jobright.ai/jobs/info/6afc903893c0a36328a8cabe"
+  },
+  {
+    "id": "f7bd1266c14d6f15",
+    "company": "Texas Instruments",
+    "title": "Analog IC Design (AI/ML) Engineering Intern",
+    "location": "Dallas, TX, United States",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-17T11:57:35",
+    "url": "https://edbz.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/25020319"
+  },
+  {
+    "id": "9fde76c1f5db3c7d",
+    "company": "Waymo",
+    "title": "2027 Summer Intern, BS/MS/PhD, Software Engineer, Eval Data Infra",
+    "location": "Mountain View, United States",
+    "is_2027": true,
+    "priority": 1,
+    "source": "startupjobs",
+    "posted": "2026-10-05",
+    "scraped_at": "2026-11-17T11:57:35",
+    "url": "https://startup.jobs/2027-summer-intern-bs-ms-phd-software-engineer-eval-data-infra-waymo-10300850"
   }
 ]
