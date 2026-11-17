@@ -84609,5 +84609,65 @@
     "posted": "Nov 15",
     "scraped_at": "2026-11-16T18:01:37",
     "url": "https://go.vansh.nyc/1AA?s=y"
+  },
+  {
+    "id": "61bb34af297cc9e9",
+    "company": "Clera",
+    "title": "Full-Stack Software Engineering Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 16",
+    "scraped_at": "2026-11-16T21:03:07",
+    "url": "https://go.vansh.nyc/1AN?s=y"
+  },
+  {
+    "id": "b31e137d74c84049",
+    "company": "HexArmor",
+    "title": "Software Engineer Intern",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 16",
+    "scraped_at": "2026-11-16T21:03:07",
+    "url": "https://go.vansh.nyc/1AQ?s=y"
+  },
+  {
+    "id": "2599432c964a1938",
+    "company": "HexArmor",
+    "title": "Software Engineering Intern",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-16T21:03:07",
+    "url": "https://jobright.ai/jobs/info/6afba1dbbe8589f0b74bfce7"
+  },
+  {
+    "id": "2be948926892c9e7",
+    "company": "LinkedIn",
+    "title": "Systems & Infrastructure Engineer Intern, Masters - Summer 2027 (Mountain View, CA)",
+    "location": "Mountain View, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-16T21:03:07",
+    "url": "https://jobright.ai/jobs/info/6afb9092c5917ce34b5dc536"
+  },
+  {
+    "id": "342e9382be7ff85b",
+    "company": "TikTok",
+    "title": "Client Security & Data Foundation Machine Learning Engineer - Intern (TikTok BRIC) - 2027 Start (PhD)",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-16T21:03:07",
+    "url": "https://jobright.ai/jobs/info/6afba0ef06c0aac84dd97a27"
   }
 ]
