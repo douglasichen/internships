@@ -84693,5 +84693,53 @@
     "posted": "2026-11-16",
     "scraped_at": "2026-11-16T23:51:05",
     "url": "https://jobright.ai/jobs/info/6afbd714755d7cdf657fd7c6"
+  },
+  {
+    "id": "68eda622db95d85c",
+    "company": "Birdseye Security Solutions",
+    "title": "Software Developer Intern",
+    "location": "Mississauga, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 16",
+    "scraped_at": "2026-11-17T03:21:05",
+    "url": "https://go.vansh.nyc/1AZ?s=y"
+  },
+  {
+    "id": "5040b1e5267d5486",
+    "company": "Coddi",
+    "title": "Frontend Software Engineering Intern (Web & Mobile)",
+    "location": "Los Angeles metropolitan area, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-17T03:21:05",
+    "url": "https://jobright.ai/jobs/info/6afc12228074edef8dd62079"
+  },
+  {
+    "id": "07c152c5c5be3d5e",
+    "company": "T-Mobile",
+    "title": "Summer 2027 Software Engineering AI Intern",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-17T03:21:05",
+    "url": "https://jobright.ai/jobs/info/6afbe4c240b855eb290c8622"
+  },
+  {
+    "id": "5a797aa25cd5229d",
+    "company": "youbloom",
+    "title": "React Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-16",
+    "scraped_at": "2026-11-17T03:21:05",
+    "url": "https://jobright.ai/jobs/info/6afc047a40b855eb290c8fa9"
   }
 ]
