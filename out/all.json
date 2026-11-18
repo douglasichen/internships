@@ -85413,5 +85413,41 @@
     "posted": "2026-11-17",
     "scraped_at": "2026-11-17T20:50:34",
     "url": "https://jobright.ai/jobs/info/6afd0b346a51d629d475af29"
+  },
+  {
+    "id": "b3c57950a3e7c418",
+    "company": "Airbnb",
+    "title": "Software Engineering Intern (BS/MS)",
+    "location": "San Francisco, California",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-17T23:48:38",
+    "url": "https://careers.airbnb.com/positions/8360478?gh_jid=8360478"
+  },
+  {
+    "id": "cda0c7ecd0f229f0",
+    "company": "Oakridge",
+    "title": "Software Engineering Intern for OAKRIDGE HOLDINGS the parent company of danieldeboulay.com & phonesheet.org",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-17T23:48:38",
+    "url": "https://jobright.ai/jobs/info/6afd1f47661724f2a358be9b"
+  },
+  {
+    "id": "50ff355f4296f18a",
+    "company": "PT Indorama Petrochemical",
+    "title": "AI & Full-Stack Development Intern 2027",
+    "location": "Hilton Head Island, SC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-17T23:48:38",
+    "url": "https://jobright.ai/jobs/info/6afd3077af5227454a93c520"
   }
 ]
