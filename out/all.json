@@ -85329,5 +85329,89 @@
     "posted": "2026-11-16",
     "scraped_at": "2026-11-17T17:47:27",
     "url": "https://jobright.ai/jobs/info/6afcd22ce0cdcfc911430111"
+  },
+  {
+    "id": "cb005fb1ebd17ca0",
+    "company": "General Atomics",
+    "title": "Intern - Software Engineer",
+    "location": "Charlottesville, VA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-17T20:50:34",
+    "url": "https://jobright.ai/jobs/info/6afcef9ad163750294928501"
+  },
+  {
+    "id": "3307599166268cb4",
+    "company": "Lumentum",
+    "title": "Internship - SW Developer Support - Program Management Office",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-17T20:50:34",
+    "url": "https://jobright.ai/jobs/info/6afce7a3d163750294928080"
+  },
+  {
+    "id": "3ebd81efe498aa65",
+    "company": "PayPal",
+    "title": "Full Stack Software Engineer Intern",
+    "location": "Central Singapore, Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-17T20:50:34",
+    "url": "https://paypal.wd1.myworkdayjobs.com/jobs/job/Central-Singapore-Singapore/Full-Stack-Software-Engineer-Intern_R0138930"
+  },
+  {
+    "id": "16a209d19acae540",
+    "company": "PayPal",
+    "title": "Software Engineer Intern - Backend",
+    "location": "Central Singapore, Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-17T20:50:34",
+    "url": "https://paypal.wd1.myworkdayjobs.com/jobs/job/Central-Singapore-Singapore/Software-Engineer-Intern---Backend_R0138931"
+  },
+  {
+    "id": "5b05bc58d8a0262d",
+    "company": "TikTok USDS Joint Venture",
+    "title": "Machine Learning Engineer Intern (CapCut) - 2027 Start",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-09-21",
+    "scraped_at": "2026-11-17T20:50:34",
+    "url": "https://jobright.ai/jobs/info/6afcffb02ac165125e4ce929"
+  },
+  {
+    "id": "ef7a9180c3a3b400",
+    "company": "TikTok USDS Joint Venture",
+    "title": "Software Engineer Intern (E-Commerce) - 2027 Start",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-08-07",
+    "scraped_at": "2026-11-17T20:50:34",
+    "url": "https://jobright.ai/jobs/info/6afcffb12ac165125e4ce92a"
+  },
+  {
+    "id": "f0bbef42b87b7c0c",
+    "company": "True Rx Health Strategists",
+    "title": "Software Engineer Intern",
+    "location": "Washington, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-17T20:50:34",
+    "url": "https://jobright.ai/jobs/info/6afd0b346a51d629d475af29"
   }
 ]
