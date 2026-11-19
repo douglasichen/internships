@@ -85881,5 +85881,53 @@
     "posted": "2026-11-17",
     "scraped_at": "2026-11-18T17:44:20",
     "url": "https://jobright.ai/jobs/info/6afe069d758942b6422b69f4"
+  },
+  {
+    "id": "c6cf5c4363e1156b",
+    "company": "Microsoft",
+    "title": "Research Intern - AI Software Systems",
+    "location": "Redmond, WA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-18T21:01:32",
+    "url": "https://jobright.ai/jobs/info/6afe38c1f170d82b39672937"
+  },
+  {
+    "id": "1a5a0353674b92db",
+    "company": "Sage",
+    "title": "Software Engineering Intern",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-18T21:01:32",
+    "url": "https://jobright.ai/jobs/info/6afe3bba758942b6422b8ae7"
+  },
+  {
+    "id": "f4baf0320c522b89",
+    "company": "TetraMem - Accelerate The World",
+    "title": "Machine Learning Intern (2027)",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-18T21:01:32",
+    "url": "https://jobright.ai/jobs/info/6afe5c23f3e7976cc610dfcc"
+  },
+  {
+    "id": "8e22acb91145b9b5",
+    "company": "The Church of Jesus Christ of Latter-day Saints",
+    "title": "Email Developer Intern",
+    "location": "Salt Lake City, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-18T21:01:32",
+    "url": "https://jobright.ai/jobs/info/6afe511ef3e7976cc610dca9"
   }
 ]
