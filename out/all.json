@@ -86001,5 +86001,41 @@
     "posted": "2026-10-14",
     "scraped_at": "2026-11-19T05:49:23",
     "url": "https://startup.jobs/software-engineer-intern-two-dots-socialpoint-studio-zynga-company-10460772"
+  },
+  {
+    "id": "277ae5dd3e663c60",
+    "company": "BeamSphere",
+    "title": "Firmware Engineering Intern",
+    "location": "Milwaukee, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-19",
+    "scraped_at": "2026-11-19T08:46:09",
+    "url": "https://jobright.ai/jobs/info/6aff055ec1c02a9acd807db3"
+  },
+  {
+    "id": "9a049982d4acef46",
+    "company": "Horizon Lane",
+    "title": "Firmware Engineering Intern",
+    "location": "Mequon, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-19",
+    "scraped_at": "2026-11-19T08:46:09",
+    "url": "https://jobright.ai/jobs/info/6afef915aea17e3f50eac60b"
+  },
+  {
+    "id": "cee36ceeffda957e",
+    "company": "Scale",
+    "title": "Machine Learning Research Intern (Summer 2027)",
+    "location": "New York, NY; San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-10",
+    "scraped_at": "2026-11-19T08:46:09",
+    "url": "https://jobright.ai/jobs/info/6ad6608352aa6152bb694a42"
   }
 ]
