@@ -86037,5 +86037,77 @@
     "posted": "2026-11-10",
     "scraped_at": "2026-11-19T08:46:09",
     "url": "https://jobright.ai/jobs/info/6ad6608352aa6152bb694a42"
+  },
+  {
+    "id": "12b421e12a878f44",
+    "company": "Carnival Corporation",
+    "title": "Intern, Crew Operations BI Report Developer",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-19",
+    "scraped_at": "2026-11-19T11:41:05",
+    "url": "https://jobright.ai/jobs/info/6aff255f97dcc4fc8dca90bc"
+  },
+  {
+    "id": "ceffd61bacc8a303",
+    "company": "Elevated Web Design",
+    "title": "ML Software Engineering Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-19",
+    "scraped_at": "2026-11-19T11:41:05",
+    "url": "https://jobright.ai/jobs/info/6aff1d1072b9be368528e6e3"
+  },
+  {
+    "id": "50d2237e180c3521",
+    "company": "Leidos",
+    "title": "Software Developer Intern, AI Project \ud83c\uddfa\ud83c\uddf8",
+    "location": "Colorado Springs, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 18",
+    "scraped_at": "2026-11-19T11:41:05",
+    "url": "https://go.vansh.nyc/1CT?s=y"
+  },
+  {
+    "id": "67bb2eed067d5e93",
+    "company": "RTX",
+    "title": "Software Security Intern (Summer 2027)",
+    "location": "Cedar Rapids, IA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-19T11:41:05",
+    "url": "https://jobright.ai/jobs/info/6aff245aaea17e3f50eadae3"
+  },
+  {
+    "id": "febf446e23825f07",
+    "company": "Scout Space",
+    "title": "Computer Vision (AI/ML) Engineering Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-19",
+    "scraped_at": "2026-11-19T11:41:05",
+    "url": "https://jobright.ai/jobs/info/6aff10edc1c02a9acd8082c1"
+  },
+  {
+    "id": "4ec4c82a6afa01dd",
+    "company": "Volvo Group",
+    "title": "Intern: Software (Summer 2027)",
+    "location": "Shippensburg, PA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-19T11:41:05",
+    "url": "https://jobright.ai/jobs/info/6aff277e1c42ea8f6b9fda3c"
   }
 ]
