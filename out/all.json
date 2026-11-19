@@ -85523,18 +85523,6 @@
     "url": "https://careers-sri.icims.com/jobs/6540/drexel-university-co-op%3a-software-engineering/job"
   },
   {
-    "id": "d7bd534bf41abb3b",
-    "company": "State Street",
-    "title": "Software Engineering Intern - Full-time Internship - Jan - June 2027",
-    "location": "Quincy, MA",
-    "is_2027": true,
-    "priority": 3,
-    "source": "speedyapply",
-    "posted": "1d",
-    "scraped_at": "2026-11-18T14:38:56",
-    "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/global/job/Quincy-Massachusetts/Software-Engineering-Intern---Full-time-Internship--Jan---June-2027-_R-801241"
-  },
-  {
     "id": "64d346d8055abbe1",
     "company": "Airbnb",
     "title": "Software Engineering Intern",
@@ -85761,5 +85749,137 @@
     "posted": "2026-11-16",
     "scraped_at": "2026-11-18T14:38:56",
     "url": "https://jobright.ai/jobs/info/6afd482822d5c881bd1c0788"
+  },
+  {
+    "id": "a604d2be2fb6e4ac",
+    "company": "Flare",
+    "title": "Stagiaire en d\u00e9veloppement logiciel \u2013 Hiver 2027 / Intern Software Developer \u2013 Winter 2027",
+    "location": "Montreal, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-06-17",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://startup.jobs/stagiaire-en-developpement-logiciel-hiver-2027-intern-software-developer-winter-2027-flare-company-8272508"
+  },
+  {
+    "id": "d70da6e00bbe264d",
+    "company": "HERE Technologies",
+    "title": "Software Engineer Intern",
+    "location": "Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://jobright.ai/jobs/info/6afe2c01f3e7976cc610cc8b"
+  },
+  {
+    "id": "b2591c7a1193b700",
+    "company": "KLA",
+    "title": "Software Applications Engineering Intern",
+    "location": "Milpitas, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Software-Applications-Engineering-Intern_2642337-1"
+  },
+  {
+    "id": "22c3c327dcae48e8",
+    "company": "Kira",
+    "title": "Software Engineering Intern (Winter '27)",
+    "location": "New York, NY; San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://jobright.ai/jobs/info/6afe2046f3e7976cc610c1fb"
+  },
+  {
+    "id": "53823092848c7013",
+    "company": "Leidos",
+    "title": "Software Developer (AI Project) Intern",
+    "location": "Colorado Springs, CO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://jobright.ai/jobs/info/6afe0fe40324c008a17e3f49"
+  },
+  {
+    "id": "b61c6986c004e2d0",
+    "company": "Marvell",
+    "title": "MS AI Infrastructure Engineer Intern",
+    "location": "Santa Clara, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Nov 17",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://go.vansh.nyc/1Cp?s=y"
+  },
+  {
+    "id": "9a305a5e7488d959",
+    "company": "Samsung Semiconductor",
+    "title": "Intern, SSD Firmware Engineer",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://jobright.ai/jobs/info/6afe2adff3e7976cc610cbbf"
+  },
+  {
+    "id": "342bf84e5d7c94d7",
+    "company": "Samsung Semiconductor",
+    "title": "SSD Firmware Engineer Intern",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 18",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://go.vansh.nyc/1Cu?s=y"
+  },
+  {
+    "id": "bbc07bd725edbb3e",
+    "company": "The Aerospace Corporation",
+    "title": "2027 Software Tools and Assurance Grad Intern",
+    "location": "El Segundo, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://jobright.ai/jobs/info/6afe1b75758942b6422b760e"
+  },
+  {
+    "id": "8e53cdbfe63d306c",
+    "company": "Truveta",
+    "title": "Winter Software Engineering Intern",
+    "location": "Seattle, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-18",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://jobright.ai/jobs/info/6afe0b818cffea7c97c8fa26"
+  },
+  {
+    "id": "dcbac616da1038d9",
+    "company": "Valeris",
+    "title": "Software Engineer Intern",
+    "location": "Louisville, KY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-17",
+    "scraped_at": "2026-11-18T17:44:20",
+    "url": "https://jobright.ai/jobs/info/6afe069d758942b6422b69f4"
   }
 ]
