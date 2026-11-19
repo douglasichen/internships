@@ -85941,5 +85941,65 @@
     "posted": "2026-11-18",
     "scraped_at": "2026-11-19T00:05:17",
     "url": "https://jobright.ai/jobs/info/6afe6840f170d82b39673ac5"
+  },
+  {
+    "id": "6b5dee7979a80708",
+    "company": "Micron",
+    "title": "Intern - Firmware and Product Test Engineer",
+    "location": "MSB, Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-19T05:49:23",
+    "url": "https://micron.wd1.myworkdayjobs.com/External/job/MSB-Singapore/Intern---Firmware-and-Product-Test-Engineer_JR117288"
+  },
+  {
+    "id": "e56136696f9f5d52",
+    "company": "Cadence",
+    "title": "Intern Software Engineer, Summer 2027, Three Month Duration",
+    "location": "EDINBURGH 01",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-19T05:49:23",
+    "url": "https://cadence.wd1.myworkdayjobs.com/External_Careers/job/EDINBURGH-01/Intern-Software-Engineer--Summer-2027--Three-Month-Duration----_R57170"
+  },
+  {
+    "id": "742a0cee7ef38d52",
+    "company": "KLA",
+    "title": "Software Application Engineer Intern",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-19T05:49:23",
+    "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Austin-TX/Software-Application-Engineer-Intern_2643260-1"
+  },
+  {
+    "id": "a9e44294a5da936b",
+    "company": "PTC",
+    "title": "Creo Software Engineering Intern (Summer 2027)",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-19",
+    "scraped_at": "2026-11-19T05:49:23",
+    "url": "https://jobright.ai/jobs/info/6afecc821c42ea8f6b9fb6d8"
+  },
+  {
+    "id": "bb89ef475fbf65bd",
+    "company": "Zynga",
+    "title": "Software Engineer Intern (Two Dots) - Socialpoint Studio",
+    "location": "Barcelona, Spain",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-10-14",
+    "scraped_at": "2026-11-19T05:49:23",
+    "url": "https://startup.jobs/software-engineer-intern-two-dots-socialpoint-studio-zynga-company-10460772"
   }
 ]
