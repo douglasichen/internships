@@ -86721,5 +86721,53 @@
     "posted": "2026-11-19",
     "scraped_at": "2026-11-19T22:53:58",
     "url": "https://jobright.ai/jobs/info/6affb20f72b9be3685293ca1"
+  },
+  {
+    "id": "23487e0a0dab605f",
+    "company": "Agoda",
+    "title": "Software Engineer Internship 2027 (6 months) - India-based, Gurgaon office",
+    "location": "Gurugram, India",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2024-10-15",
+    "scraped_at": "2026-11-20T02:39:40",
+    "url": "https://startup.jobs/software-engineer-internship-2027-6-months-india-based-gurgaon-office-agoda-5925747"
+  },
+  {
+    "id": "843381d0a4874472",
+    "company": "CAS",
+    "title": "Technology Intern, Software Engineering",
+    "location": "Columbus, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 19",
+    "scraped_at": "2026-11-20T02:39:40",
+    "url": "https://go.vansh.nyc/1E9?s=y"
+  },
+  {
+    "id": "942cd7f37d0f8460",
+    "company": "Cadence",
+    "title": "Software Engineering Intern - Circuit Simulation infrastructure",
+    "location": "SAN JOSE",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-20T02:39:40",
+    "url": "https://cadence.wd1.myworkdayjobs.com/External_Careers/job/SAN-JOSE/Software-Engineering-Intern---Circuit-Simulation-infrastructure_R57254-1"
+  },
+  {
+    "id": "668a6db0cff9f851",
+    "company": "T-Mobile",
+    "title": "Summer 2027 AI Engineering Internship - Site Reliability & Automation",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-19",
+    "scraped_at": "2026-11-20T02:39:40",
+    "url": "https://jobright.ai/jobs/info/6affe11a1126e09fee092af9"
   }
 ]
