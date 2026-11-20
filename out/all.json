@@ -86805,5 +86805,53 @@
     "posted": "Nov 20",
     "scraped_at": "2026-11-20T05:25:43",
     "url": "https://go.vansh.nyc/1En?s=y"
+  },
+  {
+    "id": "2c1d4b3b35d4c404",
+    "company": "GlobalFoundries",
+    "title": "AI/ML Analytics Intern, Digital Manufacturing (Summer 2027)",
+    "location": "USA - New York - Malta",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-20T08:25:14",
+    "url": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---New-York---Malta/AI-ML-Analytics-Intern--Digital-Manufacturing--Summer-2027-_JR-2604570"
+  },
+  {
+    "id": "61d26379d4db03f9",
+    "company": "Nvidia",
+    "title": "GPU Firmware Intern - 2027",
+    "location": "Taiwan, Taipei",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-20T08:25:14",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Taiwan-Taipei/GPU-Firmware-Intern---2027_JR2029959"
+  },
+  {
+    "id": "c9eb8b1165b00d13",
+    "company": "Rockwell Automation",
+    "title": "Firmware Engineering Intern \ud83d\udec2",
+    "location": "Milwaukee, WI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 20",
+    "scraped_at": "2026-11-20T08:25:14",
+    "url": "https://go.vansh.nyc/1Ey?s=y"
+  },
+  {
+    "id": "b31451890bdcd47c",
+    "company": "Tech World Networking",
+    "title": "Software Engineering Intern",
+    "location": "Rochester, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-20",
+    "scraped_at": "2026-11-20T08:25:14",
+    "url": "https://jobright.ai/jobs/info/6b004a9be0dc96195927ff1c"
   }
 ]
