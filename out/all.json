@@ -86769,5 +86769,41 @@
     "posted": "2026-11-19",
     "scraped_at": "2026-11-20T02:39:40",
     "url": "https://jobright.ai/jobs/info/6affe11a1126e09fee092af9"
+  },
+  {
+    "id": "427bb126114b0268",
+    "company": "CAS",
+    "title": "Infrastructure Engineer Intern, Technology",
+    "location": "Columbus, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 20",
+    "scraped_at": "2026-11-20T05:25:43",
+    "url": "https://go.vansh.nyc/1Ej?s=y"
+  },
+  {
+    "id": "65b5b7e98f0fe5e5",
+    "company": "Deliveroo",
+    "title": "Software Engineering Summer Internship 2027 (London)",
+    "location": "London, United Kingdom",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-19",
+    "scraped_at": "2026-11-20T05:25:43",
+    "url": "https://startup.jobs/software-engineering-summer-internship-2027-london-deliveroo-10838300"
+  },
+  {
+    "id": "7720b1cac18eb2a8",
+    "company": "Smule",
+    "title": "Machine Learning Engineer Intern",
+    "location": "Salt Lake City, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 20",
+    "scraped_at": "2026-11-20T05:25:43",
+    "url": "https://go.vansh.nyc/1En?s=y"
   }
 ]
