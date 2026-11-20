@@ -86853,5 +86853,113 @@
     "posted": "2026-11-20",
     "scraped_at": "2026-11-20T08:25:14",
     "url": "https://jobright.ai/jobs/info/6b004a9be0dc96195927ff1c"
+  },
+  {
+    "id": "8204ac7a63fb1b2b",
+    "company": "Micron",
+    "title": "Intern - Firmware and Product Test Engineer",
+    "location": "MSB, Singapore",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-20T11:26:09",
+    "url": "https://micron.wd1.myworkdayjobs.com/External/job/MSB-Singapore/Intern---Firmware-and-Product-Test-Engineer_JR117289"
+  },
+  {
+    "id": "5fb0a7129eb58667",
+    "company": "Lucid Motors",
+    "title": "Intern, AI/ML, Vehicle Infotainment, Summer 2027",
+    "location": "Newark, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-20T11:26:09",
+    "url": "https://lucidmotors.com/careers/search/5290923007?gh_jid=5290923007"
+  },
+  {
+    "id": "cfc3afc9f5115dee",
+    "company": "Rivian",
+    "title": "Software Engineering Intern - AI Platform, Autonomy (Summer 2027)",
+    "location": "Palo Alto, California",
+    "is_2027": true,
+    "priority": 2,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-11-20T11:26:09",
+    "url": "https://us-careers-rivian.icims.com/jobs/37339/login"
+  },
+  {
+    "id": "f33fdbc6f61a5d9f",
+    "company": "Career Launch Tech Initiative",
+    "title": "Software Engineer Intern-CLTI",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-20",
+    "scraped_at": "2026-11-20T11:26:09",
+    "url": "https://jobright.ai/jobs/info/6b00726289d8ca1e8495623f"
+  },
+  {
+    "id": "9dfd95837f2c23c8",
+    "company": "GeoComply",
+    "title": "Software Engineer Intern (Infrastructure & Platform)",
+    "location": "Ho Chi Minh City, Vietnam",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-20",
+    "scraped_at": "2026-11-20T11:26:09",
+    "url": "https://startup.jobs/software-engineer-intern-infrastructure-platform-geocomply-10841959"
+  },
+  {
+    "id": "183f81027c74bb14",
+    "company": "Lucid Motors",
+    "title": "AI/ML Intern, Vehicle Infotainment",
+    "location": "Newark, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Nov 20",
+    "scraped_at": "2026-11-20T11:26:09",
+    "url": "https://go.vansh.nyc/1EM?s=y"
+  },
+  {
+    "id": "cac5796ad0535b47",
+    "company": "Ralliant",
+    "title": "Software Engineering (AI Building) Intern (Summer 2027)",
+    "location": "Beaverton, OR",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-20",
+    "scraped_at": "2026-11-20T11:26:09",
+    "url": "https://jobright.ai/jobs/info/6b007956e0dc961959281334"
+  },
+  {
+    "id": "ef40957b8d7962db",
+    "company": "Symbotic",
+    "title": "Intern- Software Engineer, Front-End",
+    "location": "Austin, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-19",
+    "scraped_at": "2026-11-20T11:26:09",
+    "url": "https://jobright.ai/jobs/info/6b005af7d1fe3bc162e3af32"
+  },
+  {
+    "id": "0e2937c5e4cc7581",
+    "company": "ZOLL Medical Corporation",
+    "title": "Software Automation Intern",
+    "location": "Chelmsford, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-19",
+    "scraped_at": "2026-11-20T11:26:09",
+    "url": "https://jobright.ai/jobs/info/6b00771889d8ca1e849564e4"
   }
 ]
