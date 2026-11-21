@@ -87489,5 +87489,17 @@
     "posted": "2026-11-20",
     "scraped_at": "2026-11-21T01:05:18",
     "url": "https://startup.jobs/associate-software-engineer-internship-auctane-10848886"
+  },
+  {
+    "id": "39d46677adbe7cab",
+    "company": "Activision Blizzard",
+    "title": "Data Platform Engineering Intern",
+    "location": "Irvine, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "github_readme",
+    "posted": "Nov 20",
+    "scraped_at": "2026-11-21T12:29:34",
+    "url": "https://go.vansh.nyc/1Ge?s=y"
   }
 ]
