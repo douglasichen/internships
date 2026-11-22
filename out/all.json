@@ -87501,5 +87501,53 @@
     "posted": "Nov 20",
     "scraped_at": "2026-11-21T12:29:34",
     "url": "https://go.vansh.nyc/1Ge?s=y"
+  },
+  {
+    "id": "8b1fa88026916f8b",
+    "company": "Althais (Antler P27)",
+    "title": "Software Development & Machine Learning Engineer Intern",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-21",
+    "scraped_at": "2026-11-21T20:53:01",
+    "url": "https://jobright.ai/jobs/info/6b0231a5b2c65d24f91ed4a6"
+  },
+  {
+    "id": "2ee20c0f08f094d3",
+    "company": "EVOC LABS",
+    "title": "Full Stack Developer Internship",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-21",
+    "scraped_at": "2026-11-21T20:53:01",
+    "url": "https://jobright.ai/jobs/info/6b0248169378f7b150e11e0a"
+  },
+  {
+    "id": "03a6a0311be79ca1",
+    "company": "Neros Technologies",
+    "title": "Firmware/Embedded Software Engineer Intern - Summer 2027",
+    "location": "Torrance, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-21",
+    "scraped_at": "2026-11-21T20:53:01",
+    "url": "https://jobright.ai/jobs/info/6b024a7fb2c65d24f91ed6b6"
+  },
+  {
+    "id": "71179292be6585cb",
+    "company": "Tesla",
+    "title": "Internship, Software Engineer, SI Hardware Architecture Simulation (Winter/Spring 2027)",
+    "location": "Palo Alto, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-21",
+    "scraped_at": "2026-11-21T20:53:01",
+    "url": "https://jobright.ai/jobs/info/6b023f81505c87ccb3a2ecea"
   }
 ]
