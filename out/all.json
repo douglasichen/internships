@@ -87549,5 +87549,41 @@
     "posted": "2026-11-21",
     "scraped_at": "2026-11-21T20:53:01",
     "url": "https://jobright.ai/jobs/info/6b023f81505c87ccb3a2ecea"
+  },
+  {
+    "id": "691fa8e10b30be6d",
+    "company": "Gorbel",
+    "title": "Front-End Web Developer Co-Op",
+    "location": "Victor, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-11-22T16:01:18",
+    "url": "https://gorbel.wd501.myworkdayjobs.com/en-US/gorbelcareers/job/USA-New-York-Victor/Front-End-Web-Developer-Co-Op_REQ-2026-2375-1"
+  },
+  {
+    "id": "2eba1b3c1caea6a2",
+    "company": "Newell Brands",
+    "title": "2027 Newell Brands Intern- Sales AI & Analytics Developer Intern Job Details | Newell Brands",
+    "location": "Huntersville, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-14",
+    "scraped_at": "2026-11-22T16:01:18",
+    "url": "https://jobright.ai/jobs/info/6b03563ac35a3d9ff8f4932e"
+  },
+  {
+    "id": "7949fd90f320017d",
+    "company": "ZOLL",
+    "title": "Software Automation Intern",
+    "location": "Chelmsford, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "2d",
+    "scraped_at": "2026-11-22T16:01:18",
+    "url": "https://zoll.wd5.myworkdayjobs.com/en-US/zollmedicalcorp/job/Chelmsford-MA/Software-Automation-Intern_R20929"
   }
 ]
