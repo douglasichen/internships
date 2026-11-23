@@ -87681,5 +87681,77 @@
     "posted": "",
     "scraped_at": "2026-11-23T07:58:46",
     "url": "https://intel.wd1.myworkdayjobs.com/External/job/Poland-Gdansk/System-Software-Engineering-Intern_JR0289477"
+  },
+  {
+    "id": "bf1472083b909123",
+    "company": "Benchling",
+    "title": "Software Engineer, Intern (Summer 2027)",
+    "location": "San Francisco, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-23T10:48:15",
+    "url": "https://jobs.ashbyhq.com/benchling/96370d1b-d35e-446b-8e26-dce088860099"
+  },
+  {
+    "id": "0a1a273e8cb0c478",
+    "company": "MIT Lincoln Laboratory",
+    "title": "Summer Research Program Intern 2027, Embedded and AI Systems (Group 10-02)",
+    "location": "Lexington, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-23",
+    "scraped_at": "2026-11-23T10:48:15",
+    "url": "https://jobright.ai/jobs/info/6b046cc94c822a415e670953"
+  },
+  {
+    "id": "5113ce8ae697e0a3",
+    "company": "Motorola Solutions",
+    "title": "Mission Critical Networks Software Engineer - Summer 2027 Internship",
+    "location": "Schaumburg, IL; Chicago, IL",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-23",
+    "scraped_at": "2026-11-23T10:48:15",
+    "url": "https://jobright.ai/jobs/info/6b0458c3566251ad7b86108e"
+  },
+  {
+    "id": "8d02c9fa20218d2d",
+    "company": "Serco",
+    "title": "Software Engineering Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-23",
+    "scraped_at": "2026-11-23T10:48:15",
+    "url": "https://jobright.ai/jobs/info/6b045d20566251ad7b8611e4"
+  },
+  {
+    "id": "896d315c69c3df67",
+    "company": "Serco",
+    "title": "Software Engineering Intern- Middletown, RI",
+    "location": "Middletown, RI; Newport, RI; Warwick, RI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-23",
+    "scraped_at": "2026-11-23T10:48:15",
+    "url": "https://jobright.ai/jobs/info/6b045d1aa72582cade08cb89"
+  },
+  {
+    "id": "13a3fce9a861bc10",
+    "company": "apexanalytix",
+    "title": "Software Engineering Intern, Platform Tooling",
+    "location": "Greensboro, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-23",
+    "scraped_at": "2026-11-23T10:48:15",
+    "url": "https://jobright.ai/jobs/info/6b0465bfa72582cade08cfd5"
   }
 ]
