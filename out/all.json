@@ -87585,5 +87585,17 @@
     "posted": "2d",
     "scraped_at": "2026-11-22T16:01:18",
     "url": "https://zoll.wd5.myworkdayjobs.com/en-US/zollmedicalcorp/job/Chelmsford-MA/Software-Automation-Intern_R20929"
+  },
+  {
+    "id": "b29ec0abe66508f1",
+    "company": "Nvidia",
+    "title": "Software Engineering Intern",
+    "location": "Germany, Munich",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-22T19:12:34",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Germany-Munich/Software-Engineering-Intern_JR2029967"
   }
 ]
