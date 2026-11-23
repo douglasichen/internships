@@ -87597,5 +87597,29 @@
     "posted": "",
     "scraped_at": "2026-11-22T19:12:34",
     "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Germany-Munich/Software-Engineering-Intern_JR2029967"
+  },
+  {
+    "id": "a61996fa087813df",
+    "company": "Intel",
+    "title": "Security Software Applications Eng Graduate Intern",
+    "location": "PRC, Shanghai",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-22T22:15:37",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/PRC-Shanghai/Security-Software-Applications-Eng-Graduate-Intern_JR0289314"
+  },
+  {
+    "id": "78b476572769535e",
+    "company": "TikTok",
+    "title": "Client Security & Data Foundation Software Engineer - Intern (TikTok BRIC) - 2027 Start",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "jobright",
+    "posted": "2026-11-22",
+    "scraped_at": "2026-11-22T22:15:37",
+    "url": "https://jobright.ai/jobs/info/6b03a6016300701fae1ae2b5"
   }
 ]
