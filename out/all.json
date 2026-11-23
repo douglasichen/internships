@@ -87621,5 +87621,29 @@
     "posted": "2026-11-22",
     "scraped_at": "2026-11-22T22:15:37",
     "url": "https://jobright.ai/jobs/info/6b03a6016300701fae1ae2b5"
+  },
+  {
+    "id": "83389514e63ced4e",
+    "company": "First Resonance",
+    "title": "Software Engineering Intern, Platform (Summer 2027)",
+    "location": "El Segundo, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-22",
+    "scraped_at": "2026-11-23T00:56:48",
+    "url": "https://jobright.ai/jobs/info/6b03d6cd6300701fae1ae914"
+  },
+  {
+    "id": "bb6f411ccae663d1",
+    "company": "Northrop Grumman",
+    "title": "AI/ML Engineering Intern \ud83c\uddfa\ud83c\uddf8",
+    "location": "Morrisville, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 19",
+    "scraped_at": "2026-11-23T00:56:48",
+    "url": "https://go.vansh.nyc/1GD?s=y"
   }
 ]
