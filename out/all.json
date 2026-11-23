@@ -87645,5 +87645,29 @@
     "posted": "Nov 19",
     "scraped_at": "2026-11-23T00:56:48",
     "url": "https://go.vansh.nyc/1GD?s=y"
+  },
+  {
+    "id": "8df23422436f1e5b",
+    "company": "Nvidia",
+    "title": "Software Engineering Intern",
+    "location": "2 Locations",
+    "is_2027": true,
+    "priority": 1,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-23T05:02:26",
+    "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Armenia-Yerevan/Software-Engineering-Intern_JR2030226"
+  },
+  {
+    "id": "d1907f63d3b86f0d",
+    "company": "Oracle",
+    "title": "Intern as Software Engineer - part time",
+    "location": "BRNO, Czech Republic",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-23T05:02:26",
+    "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_45001/job/351109"
   }
 ]
