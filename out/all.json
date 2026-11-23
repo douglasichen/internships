@@ -87669,5 +87669,17 @@
     "posted": "",
     "scraped_at": "2026-11-23T05:02:26",
     "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_45001/job/351109"
+  },
+  {
+    "id": "8822df0abc4a8252",
+    "company": "Intel",
+    "title": "System Software Engineering Intern",
+    "location": "Poland, Gdansk",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-23T07:58:46",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Poland-Gdansk/System-Software-Engineering-Intern_JR0289477"
   }
 ]
