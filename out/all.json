@@ -88449,5 +88449,53 @@
     "posted": "2026-11-24",
     "scraped_at": "2026-11-24T07:52:22",
     "url": "https://jobright.ai/jobs/info/6b057d362cb8a4d8561c4abe"
+  },
+  {
+    "id": "8476232b04a4459c",
+    "company": "Aptima",
+    "title": "Software Engineer Intern (Summer 2027)",
+    "location": "Fairborn, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-24",
+    "scraped_at": "2026-11-24T10:40:38",
+    "url": "https://jobright.ai/jobs/info/6b05a54ed43f730eab594c71"
+  },
+  {
+    "id": "71b331acca008fd0",
+    "company": "Cadence",
+    "title": "Software Engineering Intern \u2013API Pseudo-Emulator",
+    "location": "CESSON SEVIGNE 01",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-24T10:40:38",
+    "url": "https://cadence.wd1.myworkdayjobs.com/External_Careers/job/CESSON-SEVIGNE-01/Software-Engineering-Intern--API-Pseudo-Emulator_R57169"
+  },
+  {
+    "id": "eb70320376785a04",
+    "company": "Clearline Capital LP",
+    "title": "Winter Intern \u2013 Software Engineering Intern (Full-Stack & Data)| Clearline Real Estate (NYC)",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-24",
+    "scraped_at": "2026-11-24T10:40:38",
+    "url": "https://jobright.ai/jobs/info/6b05b4612835ccc63ff53e65"
+  },
+  {
+    "id": "bbf784456b9c4f90",
+    "company": "G-Research",
+    "title": "Infrastructure Software Engineering Internship",
+    "location": "London",
+    "is_2027": true,
+    "priority": 3,
+    "source": "custom_boards",
+    "posted": "",
+    "scraped_at": "2026-11-24T10:40:38",
+    "url": "https://www.gresearch.com/vacancies/infrastructure-software-engineering-internship-2/"
   }
 ]
