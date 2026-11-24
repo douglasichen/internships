@@ -88305,5 +88305,77 @@
     "posted": "2026-11-23",
     "scraped_at": "2026-11-23T22:17:18",
     "url": "https://startup.jobs/software-development-intern-waterloo-university-web3-core-brave-10862799"
+  },
+  {
+    "id": "23510ea81358d021",
+    "company": "Federal Home Loan Bank of Indianapolis",
+    "title": "Data Platform Engineer Intern",
+    "location": "Indianapolis, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 23",
+    "scraped_at": "2026-11-24T01:00:59",
+    "url": "https://go.vansh.nyc/1I0?s=y"
+  },
+  {
+    "id": "c67d7fc34e0f63d9",
+    "company": "Siemens",
+    "title": "Research Intern \u2013 Machine Learning for Electronics Design Automation",
+    "location": "Princeton, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-23",
+    "scraped_at": "2026-11-24T01:00:59",
+    "url": "https://jobright.ai/jobs/info/6b0518677bec27df08f95d00"
+  },
+  {
+    "id": "5277d6e32f1924f5",
+    "company": "Siemens",
+    "title": "Research Intern \u2013 Machine Learning for Power Systems",
+    "location": "Princeton, NJ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-23",
+    "scraped_at": "2026-11-24T01:00:59",
+    "url": "https://jobright.ai/jobs/info/6b05186c2d88b678f117b1f9"
+  },
+  {
+    "id": "59ccfa9c38eaaa6b",
+    "company": "Siemens",
+    "title": "Research Intern \u2013 Scientific Machine Learning for Physics and Simulation",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-23",
+    "scraped_at": "2026-11-24T01:00:59",
+    "url": "https://jobright.ai/jobs/info/6b05187f7bec27df08f95d04"
+  },
+  {
+    "id": "c0124305af273e86",
+    "company": "Takeda",
+    "title": "2027 Summer Internship Program:  AI/ML Digital Pathology Imaging Intern",
+    "location": "Boston, MA; Cambridge, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-22",
+    "scraped_at": "2026-11-24T01:00:59",
+    "url": "https://jobright.ai/jobs/info/6b05160913646880439e6cf3"
+  },
+  {
+    "id": "8ddfca88bff2215d",
+    "company": "Takeda",
+    "title": "2027 Summer Internship Program: AI/ML in Quantitative Clinical Pharmacology Intern",
+    "location": "Boston, MA; Cambridge, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-22",
+    "scraped_at": "2026-11-24T01:00:59",
+    "url": "https://jobright.ai/jobs/info/6b05161cb4933fb9f4362c82"
   }
 ]
