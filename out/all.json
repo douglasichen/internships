@@ -88497,5 +88497,113 @@
     "posted": "",
     "scraped_at": "2026-11-24T10:40:38",
     "url": "https://www.gresearch.com/vacancies/infrastructure-software-engineering-internship-2/"
+  },
+  {
+    "id": "2b1388ed976caf94",
+    "company": "Cadence",
+    "title": "Embedded Systems Verification Engineer Intern",
+    "location": "OUJDA 01",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-24T13:53:01",
+    "url": "https://cadence.wd1.myworkdayjobs.com/External_Careers/job/OUJDA-01/Embedded-Systems-Verification-Engineer-Intern_R57191"
+  },
+  {
+    "id": "cc7cc84b9be1e994",
+    "company": "Ericsson",
+    "title": "Intern-Software Developer",
+    "location": "Beijing,Beijing,China",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-24T13:53:01",
+    "url": "https://jobs.ericsson.com/careers/job/563121777643035"
+  },
+  {
+    "id": "f9330789c1f69351",
+    "company": "General Motors",
+    "title": "Software Verification Engineer Intern, AV/AI Platform",
+    "location": "Warren, MI",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 24",
+    "scraped_at": "2026-11-24T13:53:01",
+    "url": "https://go.vansh.nyc/1Ir?s=y"
+  },
+  {
+    "id": "39fe00a875697e0c",
+    "company": "Motorola Solutions",
+    "title": "Software Engineering Intern - 2027 Internship Program",
+    "location": "Salt Lake City, UT",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-24",
+    "scraped_at": "2026-11-24T13:53:01",
+    "url": "https://jobright.ai/jobs/info/6b05bd20d43f730eab595859"
+  },
+  {
+    "id": "4f87f0fce80a8b94",
+    "company": "NVIDIA",
+    "title": "Developer Technology Intern, AI",
+    "location": "Santa Clara, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 24",
+    "scraped_at": "2026-11-24T13:53:01",
+    "url": "https://go.vansh.nyc/1Im?s=y"
+  },
+  {
+    "id": "4df634f1abd26de2",
+    "company": "Philips",
+    "title": "Embedded Software Development Intern, AI-Agentic",
+    "location": "Bothell, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 23",
+    "scraped_at": "2026-11-24T13:53:01",
+    "url": "https://go.vansh.nyc/1Ij?s=y"
+  },
+  {
+    "id": "141acac2ebd67e95",
+    "company": "QinetiQ",
+    "title": "Software Engineer Intern",
+    "location": "Remote; United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 23",
+    "scraped_at": "2026-11-24T13:53:01",
+    "url": "https://go.vansh.nyc/1Ip?s=y"
+  },
+  {
+    "id": "8694ee5d16ca88ee",
+    "company": "Roto",
+    "title": "Creative Developer Intern",
+    "location": "Dublin, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-24",
+    "scraped_at": "2026-11-24T13:53:01",
+    "url": "https://jobright.ai/jobs/info/6b05bf9dd43f730eab595b22"
+  },
+  {
+    "id": "f29771aa854fbc5b",
+    "company": "T-Mobile",
+    "title": "Site Reliability Engineering (SRE) Intern, Database Platform Engineering \ud83c\uddfa\ud83c\uddf8",
+    "location": "Atlanta, GA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 23",
+    "scraped_at": "2026-11-24T13:53:01",
+    "url": "https://go.vansh.nyc/1Ik?s=y"
   }
 ]
