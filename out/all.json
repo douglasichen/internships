@@ -88401,5 +88401,53 @@
     "posted": "Nov 05",
     "scraped_at": "2026-11-24T04:16:23",
     "url": "https://go.vansh.nyc/1I3?s=y"
+  },
+  {
+    "id": "1ef4fa6c73e039e1",
+    "company": "Idaho National Laboratory",
+    "title": "Infrastructure Data Integration & Risk-Informed Maintenance Pilot Intern",
+    "location": "Idaho Falls, ID",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 22",
+    "scraped_at": "2026-11-24T07:52:22",
+    "url": "https://go.vansh.nyc/1I6?s=y"
+  },
+  {
+    "id": "5adc795c302fd3ae",
+    "company": "Oscar Insurance",
+    "title": "Software Engineering Intern",
+    "location": "New York, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-23",
+    "scraped_at": "2026-11-24T07:52:22",
+    "url": "https://startup.jobs/software-engineering-intern-oscar-10867190"
+  },
+  {
+    "id": "c18f9fcc82f03798",
+    "company": "SharkNinja France",
+    "title": "SUMMER 2027: FIRMWARE ENGINEERING INTERN, ADVANCED DEVELOPMENT (MAY TO AUGUST)",
+    "location": "Needham, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-24",
+    "scraped_at": "2026-11-24T07:52:22",
+    "url": "https://jobright.ai/jobs/info/6b057d422835ccc63ff52c26"
+  },
+  {
+    "id": "5cc50a36122186b9",
+    "company": "SharkNinja France",
+    "title": "SUMMER 2027: SOFTWARE DEVELOPMENT TEST ENGINEERING CO-OP(MAY TO AUGUST)",
+    "location": "Needham, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-24",
+    "scraped_at": "2026-11-24T07:52:22",
+    "url": "https://jobright.ai/jobs/info/6b057d362cb8a4d8561c4abe"
   }
 ]
