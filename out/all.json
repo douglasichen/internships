@@ -88377,5 +88377,29 @@
     "posted": "2026-11-22",
     "scraped_at": "2026-11-24T01:00:59",
     "url": "https://jobright.ai/jobs/info/6b05161cb4933fb9f4362c82"
+  },
+  {
+    "id": "2c849ed60e74fd91",
+    "company": "Cintas",
+    "title": "IT Intern - OT Software Engineer Job Details | Cintas",
+    "location": "Mason, OH",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-11",
+    "scraped_at": "2026-11-24T04:16:23",
+    "url": "https://jobright.ai/jobs/info/6b0553283210e87f92af893d"
+  },
+  {
+    "id": "d8082dae37aa296c",
+    "company": "Esri",
+    "title": "Software Engineer Intern",
+    "location": "St. Louis, MO",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 05",
+    "scraped_at": "2026-11-24T04:16:23",
+    "url": "https://go.vansh.nyc/1I3?s=y"
   }
 ]
