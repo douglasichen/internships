@@ -88965,5 +88965,65 @@
     "posted": "2026-11-24",
     "scraped_at": "2026-11-25T07:59:01",
     "url": "https://jobright.ai/jobs/info/6b061619460ce5352ae3e1d8"
+  },
+  {
+    "id": "c68e234949f28327",
+    "company": "Intel",
+    "title": "System Software Engineering Intern",
+    "location": "Poland, Gdansk",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-25T10:43:50",
+    "url": "https://intel.wd1.myworkdayjobs.com/External/job/Poland-Gdansk/System-Software-Engineering-Intern_JR0289489"
+  },
+  {
+    "id": "1ae7d31bf2bfd9b5",
+    "company": "Marvell",
+    "title": "Applied AI/ML Research Scientist Intern",
+    "location": "Santa Clara, CA",
+    "is_2027": true,
+    "priority": 2,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-25T10:43:50",
+    "url": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Santa-Clara-CA/Applied-AI-ML-Research-Scientist-Intern_2603847-1"
+  },
+  {
+    "id": "3a3617b64db9c516",
+    "company": "Noblis",
+    "title": "Spring 2027 Internship - AI/ML Research Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-25",
+    "scraped_at": "2026-11-25T10:43:50",
+    "url": "https://jobright.ai/jobs/info/6b06fad46c5083822fdc5bd2"
+  },
+  {
+    "id": "67bb6b37dd403705",
+    "company": "Northrop Grumman",
+    "title": "2027 Computer Systems Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-25",
+    "scraped_at": "2026-11-25T10:43:50",
+    "url": "https://jobright.ai/jobs/info/6b07042db624dcc57de769e8"
+  },
+  {
+    "id": "343bf607dd3f24cc",
+    "company": "Saputo",
+    "title": "Data Engineer Intern, Enterprise Analytics",
+    "location": "Mississauga, Canada",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 25",
+    "scraped_at": "2026-11-25T10:43:50",
+    "url": "https://go.vansh.nyc/1Jd?s=y"
   }
 ]
