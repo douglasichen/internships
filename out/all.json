@@ -89517,5 +89517,41 @@
     "posted": "2026-11-26",
     "scraped_at": "2026-11-26T03:30:05",
     "url": "https://jobright.ai/jobs/info/6b07ed010bb3d71a623195d9"
+  },
+  {
+    "id": "317f0af8aa2da034",
+    "company": "KLA",
+    "title": "AI/ML Engineer (Internship)",
+    "location": "Singapore, Singapore",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-26T07:00:38",
+    "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Singapore-Singapore/AI-ML-Engineer--Internship-_2643698"
+  },
+  {
+    "id": "1324c035fe91f6fa",
+    "company": "KiddeFenwal",
+    "title": "Embedded Software Engineering Co-Op/Intern",
+    "location": "Ashland, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-25",
+    "scraped_at": "2026-11-26T07:00:38",
+    "url": "https://jobright.ai/jobs/info/6b08120503dd5bd15ba460d4"
+  },
+  {
+    "id": "5c86ef06cfe731ae",
+    "company": "Takeda",
+    "title": "2027 Summer Internship Program: Statistical Machine Learning and Precision Medicine Intern",
+    "location": "Boston, MA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-24",
+    "scraped_at": "2026-11-26T07:00:38",
+    "url": "https://jobright.ai/jobs/info/6b080b9baa59d5ea1da5023d"
   }
 ]
