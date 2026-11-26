@@ -88823,6 +88823,18 @@
     "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/Germany-Wuerselen/Developer-Technology-Intern---Video_JR2029859"
   },
   {
+    "id": "5d999c896fb6890f",
+    "company": "Bandwidth",
+    "title": "Software Engineer Intern - Summer 2027",
+    "location": "Raleigh, United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-25",
+    "scraped_at": "2026-11-25T07:59:01",
+    "url": "https://startup.jobs/software-engineer-intern-summer-2027-bandwidth-2-10875793"
+  },
+  {
     "id": "b5daf2fb370bf370",
     "company": "Advanced Energy",
     "title": "Intern - Firmware Engineer - Spring 2027",
@@ -88869,18 +88881,6 @@
     "posted": "2026-11-24",
     "scraped_at": "2026-11-25T07:59:01",
     "url": "https://jobright.ai/jobs/info/6b0615783e56157448ed34f6"
-  },
-  {
-    "id": "5d999c896fb6890f",
-    "company": "Bandwidth",
-    "title": "Software Engineer Intern - Summer 2027",
-    "location": "Raleigh, United States",
-    "is_2027": true,
-    "priority": 3,
-    "source": "startupjobs",
-    "posted": "2026-11-25",
-    "scraped_at": "2026-11-25T07:59:01",
-    "url": "https://startup.jobs/software-engineer-intern-summer-2027-bandwidth-2-10875793"
   },
   {
     "id": "f2d9d729bd39ebde",
@@ -89553,5 +89553,101 @@
     "posted": "2026-11-24",
     "scraped_at": "2026-11-26T07:00:38",
     "url": "https://jobright.ai/jobs/info/6b080b9baa59d5ea1da5023d"
+  },
+  {
+    "id": "15c7b6c2aab175e5",
+    "company": "Bandwidth",
+    "title": "Software Engineer Intern - Summer 2027",
+    "location": "Raleigh, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-11-26T15:51:39",
+    "url": "https://job-boards.greenhouse.io/bandwidth/jobs/8414440"
+  },
+  {
+    "id": "99230017cb92e626",
+    "company": "Bandwidth",
+    "title": "Software Engineer Intern - Summer 2027",
+    "location": "Raleigh, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-11-26T15:51:39",
+    "url": "https://job-boards.greenhouse.io/bandwidth/jobs/8414444"
+  },
+  {
+    "id": "f16be8cbf8a54cd7",
+    "company": "Bandwidth",
+    "title": "Software Engineer Intern - Summer 2027",
+    "location": "Raleigh, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-11-26T15:51:39",
+    "url": "https://job-boards.greenhouse.io/bandwidth/jobs/8414430"
+  },
+  {
+    "id": "7112c650b1450a29",
+    "company": "Xona Space Systems",
+    "title": "Software Engineering - Engineering Productivity Intern",
+    "location": "Burlingame, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "speedyapply",
+    "posted": "1d",
+    "scraped_at": "2026-11-26T15:51:39",
+    "url": "https://jobs.ashbyhq.com/xona-space/d3549244-52e2-4894-87f9-99fc8cbe26ab"
+  },
+  {
+    "id": "76bb6cbba55fd829",
+    "company": "Atoms",
+    "title": "Software Engineering Intern - 2027 Summer Term",
+    "location": "Los Angeles, CA; Mountain View, CA; New York, NY; San Francisco, CA; Seattle, WA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-26",
+    "scraped_at": "2026-11-26T15:51:39",
+    "url": "https://jobright.ai/jobs/info/6b08854e0bd5d5fe945f4cbe"
+  },
+  {
+    "id": "acadc0667fc4875d",
+    "company": "CliquePrize - Local Giveaway Marketing for Small Businesses",
+    "title": "Backend Software Engineer Intern \u2013 Auto Dialer, API & Systems Integration",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-26",
+    "scraped_at": "2026-11-26T15:51:39",
+    "url": "https://jobright.ai/jobs/info/6b089617cc765a1208d9ca54"
+  },
+  {
+    "id": "2e52865a23f60116",
+    "company": "Toshiba America Electronic Components",
+    "title": "Firmware Engineer Intern",
+    "location": "San Jose, CA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 23",
+    "scraped_at": "2026-11-26T15:51:39",
+    "url": "https://go.vansh.nyc/1Kk?s=y"
+  },
+  {
+    "id": "9ced5818055a0ec0",
+    "company": "ViaSat",
+    "title": "Embedded Software Engineer Intern, Government \ud83c\uddfa\ud83c\uddf8",
+    "location": "Tempe, AZ",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 23",
+    "scraped_at": "2026-11-26T15:51:39",
+    "url": "https://go.vansh.nyc/1Kl?s=y"
   }
 ]
