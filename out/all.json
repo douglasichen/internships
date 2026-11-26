@@ -89433,5 +89433,29 @@
     "posted": "Nov 25",
     "scraped_at": "2026-11-25T19:04:26",
     "url": "https://go.vansh.nyc/1JM?s=y"
+  },
+  {
+    "id": "2bd22a885218664b",
+    "company": "Cantor Fitzgerald",
+    "title": "Technology Infrastructure & Automation Intern",
+    "location": "New York, NY",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 24",
+    "scraped_at": "2026-11-25T21:47:47",
+    "url": "https://go.vansh.nyc/1K2?s=y"
+  },
+  {
+    "id": "711284d58f637426",
+    "company": "ManTech",
+    "title": "Developer Intern, C++ \ud83c\uddfa\ud83c\uddf8",
+    "location": "Remote; United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 25",
+    "scraped_at": "2026-11-25T21:47:47",
+    "url": "https://go.vansh.nyc/1K6?s=y"
   }
 ]
