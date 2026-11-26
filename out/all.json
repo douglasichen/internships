@@ -89469,5 +89469,53 @@
     "posted": "2026-11-25",
     "scraped_at": "2026-11-26T00:31:02",
     "url": "https://jobright.ai/jobs/info/6b07c88715c65ea0eb57d6cf"
+  },
+  {
+    "id": "17927d911bff109c",
+    "company": "Rubrik",
+    "title": "Software Engineer (UI) - Winter Intern",
+    "location": "Bangalore",
+    "is_2027": true,
+    "priority": 3,
+    "source": "ats_boards",
+    "posted": "",
+    "scraped_at": "2026-11-26T03:30:05",
+    "url": "https://www.rubrik.com/company/careers/departments/job.8413157?gh_jid=8413157"
+  },
+  {
+    "id": "a2daa78917c121db",
+    "company": "Certa.ai",
+    "title": "Frontend Engineer - Internship",
+    "location": "United States; Canada; United Kingdom; Australia; Ireland; New Zealand; Hong Kong; Singapore; United Arab Emirates; India",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-24",
+    "scraped_at": "2026-11-26T03:30:05",
+    "url": "https://jobright.ai/jobs/info/6b07d4120bb3d71a62318fd5"
+  },
+  {
+    "id": "c1c3214b7f63dc34",
+    "company": "Globalization Partners",
+    "title": "Software Engineering Intern (6-Month Placement: January \u2013 June 2027)",
+    "location": "",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-25",
+    "scraped_at": "2026-11-26T03:30:05",
+    "url": "https://startup.jobs/software-engineering-intern-6-month-placement-january-june-2027-globalization-partners-10890341"
+  },
+  {
+    "id": "7838e0e0c95913a9",
+    "company": "Hearst",
+    "title": "Software Engineering Intern",
+    "location": "Carmel, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-26",
+    "scraped_at": "2026-11-26T03:30:05",
+    "url": "https://jobright.ai/jobs/info/6b07ed010bb3d71a623195d9"
   }
 ]
