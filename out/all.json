@@ -89555,18 +89555,6 @@
     "url": "https://jobright.ai/jobs/info/6b080b9baa59d5ea1da5023d"
   },
   {
-    "id": "15c7b6c2aab175e5",
-    "company": "Bandwidth",
-    "title": "Software Engineer Intern - Summer 2027",
-    "location": "Raleigh, NC",
-    "is_2027": true,
-    "priority": 3,
-    "source": "speedyapply",
-    "posted": "1d",
-    "scraped_at": "2026-11-26T15:51:39",
-    "url": "https://job-boards.greenhouse.io/bandwidth/jobs/8414440"
-  },
-  {
     "id": "99230017cb92e626",
     "company": "Bandwidth",
     "title": "Software Engineer Intern - Summer 2027",
@@ -89649,5 +89637,17 @@
     "posted": "Nov 23",
     "scraped_at": "2026-11-26T15:51:39",
     "url": "https://go.vansh.nyc/1Kl?s=y"
+  },
+  {
+    "id": "a42d813583102f58",
+    "company": "PQShield",
+    "title": "Internship - Software Engineer (Placement Year 2027)",
+    "location": "Oxford, United Kingdom",
+    "is_2027": true,
+    "priority": 3,
+    "source": "startupjobs",
+    "posted": "2026-11-26",
+    "scraped_at": "2026-11-26T18:50:44",
+    "url": "https://startup.jobs/internship-software-engineer-placement-year-2027-pqshield-10895986"
   }
 ]
