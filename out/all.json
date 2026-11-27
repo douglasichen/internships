@@ -89555,18 +89555,6 @@
     "url": "https://jobright.ai/jobs/info/6b080b9baa59d5ea1da5023d"
   },
   {
-    "id": "99230017cb92e626",
-    "company": "Bandwidth",
-    "title": "Software Engineer Intern - Summer 2027",
-    "location": "Raleigh, NC",
-    "is_2027": true,
-    "priority": 3,
-    "source": "speedyapply",
-    "posted": "1d",
-    "scraped_at": "2026-11-26T15:51:39",
-    "url": "https://job-boards.greenhouse.io/bandwidth/jobs/8414444"
-  },
-  {
     "id": "f16be8cbf8a54cd7",
     "company": "Bandwidth",
     "title": "Software Engineer Intern - Summer 2027",
@@ -89649,5 +89637,29 @@
     "posted": "2026-11-26",
     "scraped_at": "2026-11-26T18:50:44",
     "url": "https://startup.jobs/internship-software-engineer-placement-year-2027-pqshield-10895986"
+  },
+  {
+    "id": "1c9917627693d3a9",
+    "company": "ASML",
+    "title": "Timing and Energy Software Intern",
+    "location": "San Diego, CA",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 25",
+    "scraped_at": "2026-11-26T22:25:41",
+    "url": "https://go.vansh.nyc/1KY?s=y"
+  },
+  {
+    "id": "fd74da6d14bad68c",
+    "company": "Samsung",
+    "title": "Data Engineer Intern",
+    "location": "Plano, TX",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 24",
+    "scraped_at": "2026-11-26T22:25:41",
+    "url": "https://go.vansh.nyc/1L3?s=y"
   }
 ]
