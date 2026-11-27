@@ -89649,5 +89649,29 @@
     "posted": "Nov 24",
     "scraped_at": "2026-11-26T22:25:41",
     "url": "https://go.vansh.nyc/1L3?s=y"
+  },
+  {
+    "id": "839bd589b816e0ca",
+    "company": "BetaNXT",
+    "title": "Intern, Cloud &Technology Infrastructure",
+    "location": "Cary, NC",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-27",
+    "scraped_at": "2026-11-27T13:45:19",
+    "url": "https://jobright.ai/jobs/info/6b09a5bf0dcf7f64923b4a79"
+  },
+  {
+    "id": "2d1346c49f5e690f",
+    "company": "POZzlePiece Inc",
+    "title": "Q&A Beta Tester / App Developer Intern",
+    "location": "United States",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-27",
+    "scraped_at": "2026-11-27T13:45:19",
+    "url": "https://jobright.ai/jobs/info/6b09c5ff62c6023db30228b2"
   }
 ]
