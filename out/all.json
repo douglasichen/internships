@@ -89673,5 +89673,89 @@
     "posted": "2026-11-27",
     "scraped_at": "2026-11-27T13:45:19",
     "url": "https://jobright.ai/jobs/info/6b09c5ff62c6023db30228b2"
+  },
+  {
+    "id": "a9a7bb033235630f",
+    "company": "BAE Systems",
+    "title": "Programmer Analyst Intern - Summer 2027",
+    "location": "Fort Wayne, IN",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-15",
+    "scraped_at": "2026-11-27T21:19:57",
+    "url": "https://jobright.ai/jobs/info/6b0a2e530dcf7f64923b6679"
+  },
+  {
+    "id": "e426a6f1f6f391e9",
+    "company": "General Dynamics Information Technology",
+    "title": "Artificial Intelligence/Machine Learning Software Development and Engineer Intern",
+    "location": "Bossier City, LA",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 23",
+    "scraped_at": "2026-11-27T21:19:57",
+    "url": "https://go.vansh.nyc/1LA?s=y"
+  },
+  {
+    "id": "68dbd0ffb70bda5b",
+    "company": "Hakk\u014dda, an IBM Company",
+    "title": "Software Developer Intern (IBM Enterprise AI & Infrastructure) - Poughkeepsie - 2027",
+    "location": "Poughkeepsie, AR",
+    "is_2027": true,
+    "priority": 3,
+    "source": "jobright",
+    "posted": "2026-11-27",
+    "scraped_at": "2026-11-27T21:19:57",
+    "url": "https://jobright.ai/jobs/info/6b0a38dddd884ad2cc58f849"
+  },
+  {
+    "id": "398d9d74ffe69982",
+    "company": "Michaels Stores",
+    "title": "Digital Software Engineer Intern",
+    "location": "Irving, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 15",
+    "scraped_at": "2026-11-27T21:19:57",
+    "url": "https://go.vansh.nyc/1LP?s=y"
+  },
+  {
+    "id": "e884647500930864",
+    "company": "Michaels Stores",
+    "title": "Software Engineer Intern",
+    "location": "Irving, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 15",
+    "scraped_at": "2026-11-27T21:19:57",
+    "url": "https://go.vansh.nyc/1LQ?s=y"
+  },
+  {
+    "id": "2991aa07ec955fd5",
+    "company": "NVIDIA",
+    "title": "Developer Technology Intern",
+    "location": "Santa Clara, CA; Canada; United States",
+    "is_2027": true,
+    "priority": 1,
+    "source": "github_readme",
+    "posted": "Nov 24",
+    "scraped_at": "2026-11-27T21:19:57",
+    "url": "https://go.vansh.nyc/1LH?s=y"
+  },
+  {
+    "id": "12252f0cb86516a1",
+    "company": "Signet Jewelers",
+    "title": "Software Engineer Intern, Digital Commerce",
+    "location": "Irving, TX",
+    "is_2027": true,
+    "priority": 3,
+    "source": "github_readme",
+    "posted": "Nov 24",
+    "scraped_at": "2026-11-27T21:19:57",
+    "url": "https://go.vansh.nyc/1LW?s=y"
   }
 ]
